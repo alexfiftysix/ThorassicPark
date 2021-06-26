@@ -1,0 +1,101 @@
+{
+    "name": "Builder Input Actions",
+    "maps": [
+        {
+            "name": "Basic",
+            "id": "465d2edb-04f6-4369-8a9b-35a8cca6131b",
+            "actions": [
+                {
+                    "name": "Build",
+                    "type": "Button",
+                    "id": "b71f41fd-b645-47c7-827a-0e30ff91344c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "MousePosition",
+                    "type": "Value",
+                    "id": "921436bd-67c8-4af5-ba4a-b7e37cb5c00b",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SetHouse1",
+                    "type": "Button",
+                    "id": "62ebc467-f75a-4d98-8486-b424029e63e1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SetHouse2",
+                    "type": "Button",
+                    "id": "b8746ed8-0d13-4248-b47d-32ef14201dbb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3d492619-df33-437b-a73f-d423eae1b998",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Build",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "db57083f-7980-45f5-8e8c-9f7066ab1ffa",
+                    "path": "<Pointer>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "01ce32a3-d63c-4307-9d1b-731132cca874",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SetHouse1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dda4f468-8b42-41bc-9daf-7cd42c98a0b8",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SetHouse1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7d615589-07f1-47d7-b1f8-fe0b711a838c",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SetHouse2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
