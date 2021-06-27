@@ -11,6 +11,11 @@ namespace Utilities
             return Random.value < chance;
         }
 
+        public static bool Percent(float percent)
+        {
+            return Random.value * 100 < percent;
+        }
+
         public static int Int(float min, float max)
         {
             if (min > max)

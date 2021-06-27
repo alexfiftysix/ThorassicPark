@@ -13,6 +13,7 @@ namespace Phase_1.Builder
 
         public Attraction[] buildings = new Attraction[5];
         public UnityEngine.Camera mainCamera;
+        public GameManager gameManager;
 
         public void SetGhostBuilding(int index)
         {
@@ -41,7 +42,9 @@ namespace Phase_1.Builder
             // TODO: Remove that transparent shader (if it's added)
             var placementPosition = GetGridMouseWorldPosition();
             var building = Instantiate(_ghostBuilding, placementPosition, Quaternion.identity);
-            building.GetComponent<Attraction>().Build(moneyBag);
+            var attraction = building.GetComponent<Attraction>(); 
+            attraction.Build(moneyBag);
+            gameManager.AddAttraction(attraction);
 
             Destroy(_ghostBuilding);
         }

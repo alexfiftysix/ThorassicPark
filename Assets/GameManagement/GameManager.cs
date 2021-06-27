@@ -1,12 +1,12 @@
-using System;
+using System.Collections.Generic;
+using System.Linq;
 using Phase_1.Builder;
+using Phase_1.Builder.Buildings;
 using Phase_1.Camera;
 using Phase_2.Helipad;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities;
-using Utilities.Extensions;
-using Random = System.Random;
 
 namespace GameManagement
 {
@@ -17,9 +17,7 @@ namespace GameManagement
         public Text phaseText;
         public Text winText;
 
-        private DateTime _startTime;
         private Phase _phase = Phase.Building;
-        public float buildingTimeInSeconds = 2;
         public Builder builder;
 
         // Escape point
@@ -29,6 +27,11 @@ namespace GameManagement
         private Bounds _escapePointSpawnBounds = new Bounds(new Vector3(0, 0, 0), new Vector3(4, 4, 0));
         [SerializeField] private int timeBeforeEscapeSpawnsInSeconds = 1;
 
+        // Park Breaking
+        [SerializeField] private float parkBreakInterval = 5f;
+        private float _parkBreakIntervalTimePassed;
+        private readonly List<Attraction> _attractions = new List<Attraction>();
+        
         public void PlayerEscaped()
         {
             winText.text = "You won!";
@@ -40,31 +43,46 @@ namespace GameManagement
             winText.text = "You died";
             _phase = Phase.GameLost;
         }
+
+        public void AddAttraction(Attraction attraction)
+        {
+            _attractions.Add(attraction);
+        }
         
         private void Start()
         {
-            _startTime = DateTime.Now;
             phaseText.text = "Building Phase";
             winText.text = "";
         }
 
         private void Update()
         {
-            if (_phase == Phase.Building 
-                && DateTime.Now > _startTime + TimeSpan.FromSeconds(buildingTimeInSeconds))
+            if (_phase == Phase.Building && Interval.HasPassed(parkBreakInterval, _parkBreakIntervalTimePassed, out _parkBreakIntervalTimePassed))
             {
-                EnterWaitingPhase();
+                var chance = _attractions.Sum(a => a.breakChancePercent);
+                Debug.Log($"TICK {chance}");
+                if (MyRandom.Percent(chance))
+                {
+                    Debug.Log("DINO ESCAPE");
+                    EnterWaitingPhase();
+                }
             }
 
-            if (_phase == Phase.WaitingForEscape
-                && Time.time > _escapePhaseStartTime + timeBeforeEscapeSpawnsInSeconds)
+            if (_phase == Phase.WaitingForEscape && Time.time > _escapePhaseStartTime + timeBeforeEscapeSpawnsInSeconds)
             {
                 StartEscapePhase();
             }
         }
+        
+        
 
         private void EnterWaitingPhase()
         {
+            foreach (var attraction in _attractions)
+            {
+                attraction.Break();
+            }
+            
             _phase = Phase.WaitingForEscape;
             _escapePhaseStartTime = Time.time;
 

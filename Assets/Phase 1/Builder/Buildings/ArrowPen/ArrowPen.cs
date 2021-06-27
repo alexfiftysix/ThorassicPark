@@ -23,6 +23,7 @@ namespace Phase_1.Builder.Buildings.ArrowPen
         public void Start()
         {
             _startTime = Time.time;
+            breakChancePercent = 2;
         }
 
         public void Update()
@@ -34,8 +35,6 @@ namespace Phase_1.Builder.Buildings.ArrowPen
 
             if (!_isBroken && Interval.HasPassed(_moneyTime, _moneyTimePassed, out _moneyTimePassed))
             {
-                Debug.Log("TICK");
-                Debug.Log($"Count: {viewRadius.VisitorCount}");
                 moneyBag.AddMoney(viewRadius.VisitorCount);
             }
         }
@@ -54,7 +53,7 @@ namespace Phase_1.Builder.Buildings.ArrowPen
             }
         }
 
-        private void Break()
+        public override void Break()
         {
             Destroy(viewRadius);
             foreach (var wall in walls)

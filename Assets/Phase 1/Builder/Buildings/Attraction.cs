@@ -7,6 +7,7 @@ namespace Phase_1.Builder.Buildings
     {
         public ViewRadius viewRadius;
         public MoneyBag moneyBag;
+        public float breakChancePercent = 0;
             
         public virtual int GetCost()
         {
@@ -27,5 +28,10 @@ namespace Phase_1.Builder.Buildings
         {
             return other.GetComponent<ViewRadius>() == viewRadius;
         }
+
+        public virtual void Break()
+        {
+            
+        } 
     }
 }
