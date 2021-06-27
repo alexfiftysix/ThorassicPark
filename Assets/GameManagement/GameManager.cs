@@ -60,30 +60,26 @@ namespace GameManagement
             if (_phase == Phase.Building && Interval.HasPassed(parkBreakInterval, _parkBreakIntervalTimePassed, out _parkBreakIntervalTimePassed))
             {
                 var chance = _attractions.Sum(a => a.breakChancePercent);
-                Debug.Log($"TICK {chance}");
                 if (MyRandom.Percent(chance))
                 {
-                    Debug.Log("DINO ESCAPE");
-                    EnterWaitingPhase();
+                    EnterRunFromDinosaursPhase();
                 }
             }
 
-            if (_phase == Phase.WaitingForEscape && Time.time > _escapePhaseStartTime + timeBeforeEscapeSpawnsInSeconds)
+            if (_phase == Phase.RunningFromDinosaurs && Time.time > _escapePhaseStartTime + timeBeforeEscapeSpawnsInSeconds)
             {
                 StartEscapePhase();
             }
         }
-        
-        
 
-        private void EnterWaitingPhase()
+        public void EnterRunFromDinosaursPhase()
         {
             foreach (var attraction in _attractions)
             {
                 attraction.Break();
             }
             
-            _phase = Phase.WaitingForEscape;
+            _phase = Phase.RunningFromDinosaurs;
             _escapePhaseStartTime = Time.time;
 
             var player = ActivatePlayer();
