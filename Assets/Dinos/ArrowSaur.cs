@@ -2,6 +2,7 @@ using System.Linq;
 using UnityEngine;
 using Utilities;
 using Visitors;
+using Random = UnityEngine.Random;
 
 namespace Dinos
 {
@@ -13,6 +14,7 @@ namespace Dinos
         [SerializeField] private Chaseable target;
         private const float FindTargetMaxDelay = 1;
         private float _findTargetTimePassed;
+        [SerializeField] private int damage = 1;  
 
         [SerializeField] private float bouncePower = 0.1f;
         private float _bounceDelay;
@@ -20,7 +22,7 @@ namespace Dinos
 
         private Transform _transform;
         private Rigidbody2D _rigidbody2D;
-    
+
         private void Start()
         {
             _transform = transform;
@@ -29,7 +31,7 @@ namespace Dinos
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
             if (target == null)
             {
@@ -51,6 +53,15 @@ namespace Dinos
             }
         }
 
+        public void OnCollisionEnter2D(Collision2D other)
+        {
+            var chaseable = other.gameObject.GetComponent<Chaseable>();
+            if (!(chaseable is null))
+            {
+                chaseable.TakeDamage(damage);
+            }
+        }
+
         private void Bounce()
         {
             var force = MyRandom.NormalVector2() * bouncePower;
@@ -68,8 +79,7 @@ namespace Dinos
 
         private void MoveForwards()
         {
-            _transform.position += _transform.up * (speed * Time.deltaTime); // transform.forward takes us on the Z-axis
-            // _rigidbody2D.velocity = Vector2.up * speed;
+            _transform.position += _transform.up * (speed * Time.deltaTime);
         }
     
         private static Chaseable FindTarget()

@@ -11,7 +11,7 @@ namespace Phase_1.Builder
         private GameObject _ghostBuilding;
         public MoneyBag moneyBag;
 
-        public Attraction[] buildings = new Attraction[5];
+        public Attraction[] buildings;
         public UnityEngine.Camera mainCamera;
         public GameManager gameManager;
 
@@ -19,7 +19,7 @@ namespace Phase_1.Builder
         {
             if (!(_ghostBuilding is null))
             {
-                Destroy(_ghostBuilding);
+                OnDeselectGhost();
             }
 
             var ghostPlan = buildings[index];
@@ -49,7 +49,17 @@ namespace Phase_1.Builder
             Destroy(_ghostBuilding);
             _ghostBuilding = null;
         }
+
+        public void OnSetBuilding1()
+        {
+            SetGhostBuilding(0);
+        }
         
+        public void OnSetBuilding2()
+        {
+            SetGhostBuilding(1);
+        }
+
         public void OnDeselectGhost()
         {
             if (_ghostBuilding is null) return;

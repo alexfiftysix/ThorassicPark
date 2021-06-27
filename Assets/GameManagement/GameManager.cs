@@ -4,6 +4,7 @@ using Phase_1.Builder;
 using Phase_1.Builder.Buildings;
 using Phase_1.Camera;
 using Phase_2.Helipad;
+using Player;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities;
@@ -84,6 +85,7 @@ namespace GameManagement
 
             var player = ActivatePlayer();
             mainCamera.EnterEscapePhase(player);
+            player.GetComponent<PlayerController>().manager = GetComponent<GameManager>();
 
             Destroy(builder.gameObject);
             phaseText.text = "Escape Phase";

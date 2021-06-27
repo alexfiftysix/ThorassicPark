@@ -22,7 +22,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "SetHouse1",
+                    "name": "SetBuilding1",
                     "type": "Button",
                     "id": "62ebc467-f75a-4d98-8486-b424029e63e1",
                     "expectedControlType": "Button",
@@ -30,7 +30,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "SetHouse2",
+                    "name": "SetBuilding2",
                     "type": "Button",
                     "id": "b8746ed8-0d13-4248-b47d-32ef14201dbb",
                     "expectedControlType": "Button",
@@ -76,7 +76,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SetHouse1",
+                    "action": "SetBuilding1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -87,7 +87,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SetHouse1",
+                    "action": "SetBuilding1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -98,7 +98,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SetHouse2",
+                    "action": "SetBuilding2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
