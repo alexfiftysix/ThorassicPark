@@ -33,7 +33,7 @@ namespace Phase_1.Builder
         void Update()
         {
             var newPosition = GetGridMouseWorldPosition();
-            if (_ghostBuilding == null) return;
+            if (_ghostBuilding is null) return;
             _ghostBuilding.transform.position = newPosition;
         }
 
@@ -47,6 +47,16 @@ namespace Phase_1.Builder
             gameManager.AddAttraction(attraction);
 
             Destroy(_ghostBuilding);
+            _ghostBuilding = null;
+        }
+        
+        public void OnDeselectGhost()
+        {
+            if (_ghostBuilding is null) return;
+
+            moneyBag.AddMoney(_ghostBuilding.GetComponent<Attraction>().GetCost());
+            Destroy(_ghostBuilding);
+            _ghostBuilding = null;
         }
 
         private Vector3 GetGridMouseWorldPosition(int z = -1)
