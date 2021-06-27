@@ -62,7 +62,7 @@ namespace GameManagement
                 StartEscapePhase();
             }
         }
-        
+
         private void EnterWaitingPhase()
         {
             _phase = Phase.WaitingForEscape;
@@ -77,8 +77,8 @@ namespace GameManagement
 
         private void StartEscapePhase()
         {
-            var escapeX = MyRandom.RandomInt(_escapePointSpawnBounds.min.x, _escapePointSpawnBounds.max.x);
-            var escapeY = MyRandom.RandomInt(_escapePointSpawnBounds.min.y, _escapePointSpawnBounds.max.y);
+            var escapeX = MyRandom.Int(_escapePointSpawnBounds.min.x, _escapePointSpawnBounds.max.x);
+            var escapeY = MyRandom.Int(_escapePointSpawnBounds.min.y, _escapePointSpawnBounds.max.y);
             var escapePointLocation = new Vector3(escapeX, escapeY, -1);
             _escapePoint = Instantiate(escapePointPrefab, escapePointLocation, Quaternion.identity);
             _escapePoint.manager = this;

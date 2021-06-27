@@ -103,6 +103,7 @@ MonoBehaviour:
   speed: 1
   rotationSpeed: 1
   target: {fileID: 0}
+  bouncePower: 0.2
 --- !u!61 &7163406423809755086
 BoxCollider2D:
   m_ObjectHideFlags: 0

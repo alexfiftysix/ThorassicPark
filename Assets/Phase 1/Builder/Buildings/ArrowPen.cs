@@ -40,7 +40,7 @@ namespace Phase_1.Builder.Buildings
         {
             for (var i = 0; i < dinosaurCount; i++)
             {
-                Instantiate(dinosaur, transform.position, Quaternion.identity);
+                Instantiate(dinosaur, transform.position - Vector3.forward, Quaternion.identity);
             }
         }
 
