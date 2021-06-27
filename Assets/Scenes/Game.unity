@@ -3481,6 +3481,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7570075259205250733, guid: e72466afc7eed1442bdc53aa1f512b21, type: 3}
+      propertyPath: m_NotificationBehavior
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7570075259205250733, guid: e72466afc7eed1442bdc53aa1f512b21, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7570075259205250733, guid: e72466afc7eed1442bdc53aa1f512b21, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 600312100}
+    - target: {fileID: 7570075259205250733, guid: e72466afc7eed1442bdc53aa1f512b21, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EnterEscapePhase
+      objectReference: {fileID: 0}
+    - target: {fileID: 7570075259205250733, guid: e72466afc7eed1442bdc53aa1f512b21, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Phase_1.Camera.CameraController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7570075259205250733, guid: e72466afc7eed1442bdc53aa1f512b21, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7570075259205250735, guid: e72466afc7eed1442bdc53aa1f512b21, type: 3}
       propertyPath: m_Name
       value: Main Camera

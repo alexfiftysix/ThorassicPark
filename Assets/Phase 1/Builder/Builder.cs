@@ -41,6 +41,7 @@ namespace Phase_1.Builder
         {
             // TODO: Remove that transparent shader (if it's added)
             var placementPosition = GetGridMouseWorldPosition();
+            placementPosition = new Vector3(placementPosition.x, placementPosition.y, 0);
             var building = Instantiate(_ghostBuilding, placementPosition, Quaternion.identity);
             var attraction = building.GetComponent<Attraction>(); 
             attraction.Build(moneyBag);

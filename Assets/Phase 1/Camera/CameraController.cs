@@ -60,7 +60,7 @@ namespace Phase_1.Camera
             }
         }
 
-        private void OnMove(InputValue inputValue)
+        public void OnMove(InputValue inputValue)
         {
             if (_phase == Phase.Escaping) return;
 
