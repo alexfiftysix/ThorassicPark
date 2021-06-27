@@ -2,14 +2,11 @@ using System.Linq;
 using UnityEngine;
 using Utilities;
 using Visitors;
-using Random = Unity.Mathematics.Random;
 
 namespace Dinos
 {
     public class ArrowSaur : MonoBehaviour
     {
-        [SerializeField] private DinoState state;
-        [SerializeField] private Vector2 direction = Vector2.up;
         [SerializeField] private float speed = 1f;
         [SerializeField] private float rotationSpeed = 5;
 
@@ -28,7 +25,7 @@ namespace Dinos
         {
             _transform = transform;
             _rigidbody2D = GetComponent<Rigidbody2D>();
-            _bounceDelay = UnityEngine.Random.Range(1f, 4f);
+            _bounceDelay = Random.Range(1f, 4f);
         }
 
         // Update is called once per frame
@@ -36,7 +33,7 @@ namespace Dinos
         {
             if (target == null)
             {
-                if (IntervalHasPassed(FindTargetMaxDelay, _findTargetTimePassed, out _findTargetTimePassed))
+                if (Interval.HasPassed(FindTargetMaxDelay, _findTargetTimePassed, out _findTargetTimePassed))
                 {
                     target = FindTarget();
                 }
@@ -47,17 +44,16 @@ namespace Dinos
                 MoveForwards();
             }
 
-            if (IntervalHasPassed(_bounceDelay, _bounceTimePassed, out _bounceTimePassed))
+            if (Interval.HasPassed(_bounceDelay, _bounceTimePassed, out _bounceTimePassed))
             {
                 Bounce();
-                _bounceDelay = UnityEngine.Random.Range(0.2f, 2f);
+                _bounceDelay = Random.Range(0.2f, 2f);
             }
         }
 
         private void Bounce()
         {
             var force = MyRandom.NormalVector2() * bouncePower;
-            Debug.Log(force);
             _rigidbody2D.AddForce(force, ForceMode2D.Impulse);
         }
 
@@ -80,20 +76,5 @@ namespace Dinos
         {
             return FindObjectsOfType<Chaseable>().Where(c => !c.IsDead()).ToList().RandomChoice();
         }
-    
-    
-
-        private static bool IntervalHasPassed(float maxTimeInSeconds, float timeSinceLastInterval, out float newTime)
-        {
-            newTime = timeSinceLastInterval + Time.deltaTime;
-
-            if (newTime > maxTimeInSeconds)
-            {
-                newTime = 0;
-                return true;
-            }
-
-            return false;
-        } 
     }
 }

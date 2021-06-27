@@ -11,7 +11,7 @@ namespace Phase_1.Builder
         private GameObject _ghostBuilding;
         private int _money = 5;
 
-        public Building[] buildings = new Building[5];
+        public Attraction[] buildings = new Attraction[5];
         public UnityEngine.Camera mainCamera;
         public Text moneyText;
 
@@ -23,7 +23,7 @@ namespace Phase_1.Builder
             }
 
             var ghostPlan = buildings[index];
-            if (_money < ghostPlan.GetComponent<Building>().GetCost()) return;
+            if (_money < ghostPlan.GetComponent<Attraction>().GetCost()) return;
 
             _ghostBuilding = Instantiate(ghostPlan.gameObject, Vector3.zero, Quaternion.identity);
         }
@@ -39,7 +39,7 @@ namespace Phase_1.Builder
         void OnBuild()
         {
             // TODO: Remove that transparent shader (if it's added)
-            var cost = _ghostBuilding.GetComponent<Building>().GetCost();
+            var cost = _ghostBuilding.GetComponent<Attraction>().GetCost();
             if (_money < cost)
             {
                 // TODO: Make the user know what's happened
@@ -48,7 +48,7 @@ namespace Phase_1.Builder
 
             var placementPosition = GetGridMouseWorldPosition();
             var building = Instantiate(_ghostBuilding, placementPosition, Quaternion.identity);
-            building.GetComponent<Building>().Build();
+            building.GetComponent<Attraction>().Build();
             Destroy(_ghostBuilding);
 
             _money -= cost;

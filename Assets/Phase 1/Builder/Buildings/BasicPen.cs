@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Phase_1.Builder.Buildings
 {
-    public class BasicPen : Building
+    public class BasicPen : Attraction
     {
         public GameObject dinosaur;
         public int dinosaurCount = 1;

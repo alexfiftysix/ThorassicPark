@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Phase_1.Builder.Buildings
 {
-    public class ArrowPen : Building
+    public class ArrowPen : Attraction
     {
         public GameObject dinosaur;
         [SerializeField] private  int dinosaurCount = 3;

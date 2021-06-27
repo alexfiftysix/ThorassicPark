@@ -11,7 +11,7 @@ namespace Dinos
     public class Dinosaur : MonoBehaviour
     {
         public float speed = 0.008f;
-        [SerializeField] private Building pen;
+        [SerializeField] private Attraction pen;
 
         [SerializeField] private Vector2 direction = Vector2.down;
         [SerializeField] private int damage = 1;
@@ -138,7 +138,7 @@ namespace Dinos
 
         public void SetPen(GameObject newPen)
         {
-            pen = newPen.GetComponent<Building>();
+            pen = newPen.GetComponent<Attraction>();
             _penBounds = newPen.GetComponent<Renderer>().bounds;
         }
 
