@@ -15,6 +15,8 @@ namespace GameManagement
     {
         public CameraController mainCamera;
         public GameObject playerPrefab;
+        private PlayerController _player;
+
         public Text phaseText;
         public Text winText;
 
@@ -85,7 +87,8 @@ namespace GameManagement
 
             var player = ActivatePlayer();
             mainCamera.EnterEscapePhase(player);
-            player.GetComponent<PlayerController>().manager = GetComponent<GameManager>();
+            _player = player.GetComponent<PlayerController>();
+            _player.manager = GetComponent<GameManager>();
 
             builder.DeselectGhost();
             Destroy(builder.gameObject);
@@ -99,6 +102,7 @@ namespace GameManagement
             var escapePointLocation = new Vector3(escapeX, escapeY, -1);
             _escapePoint = Instantiate(escapePointPrefab, escapePointLocation, Quaternion.identity);
             _escapePoint.manager = this;
+            _player.helipad = _escapePoint;
 
             _phase = Phase.Escaping;
         }

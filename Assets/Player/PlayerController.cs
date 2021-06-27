@@ -1,4 +1,7 @@
+using System.Linq.Expressions;
+using Extensions;
 using GameManagement;
+using Phase_2.Helipad;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -15,6 +18,12 @@ namespace Player
         public Slider healthBar;
         private int _health = 10;
 
+        
+        public GameObject helipadPointer;
+        public EscapePoint helipad;
+        private float _helipadPointedSpeed = 15;
+        private bool _helipadSpawned = false;
+        
         [SerializeField] private Vector2 direction = Vector2.zero;
 
         private Transform _transform;
@@ -33,11 +42,21 @@ namespace Player
         void Update()
         {
             Move();
+
+            if (!(helipad is null))
+            {
+                if (!_helipadSpawned)
+                {
+                    helipadPointer.GetComponent<PointerPivot>().pointer.enabled = true;
+                    _helipadSpawned = true;
+                }
+                MoveHelipadPointer();
+            }
         }
     
         private void Move()
         {
-            var oldPosition = (Vector2) transform.position;
+            var oldPosition = (Vector2) _transform.position;
             var movement = direction * speed;
             var newPosition = new Vector2(oldPosition.x + movement.x, oldPosition.y + movement.y);
             _transform.position = newPosition.ToVector3();
@@ -46,6 +65,14 @@ namespace Player
         private void OnMove(InputValue inputValue)
         {
             direction = inputValue.Get<Vector2>();
+        }
+
+        private void MoveHelipadPointer()
+        {
+            var newDirection = helipad.transform.position - _transform.position;
+            var angle = Mathf.Atan2(newDirection.y, newDirection.x) * Mathf.Rad2Deg - 90;
+            var rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            helipadPointer.transform.rotation = Quaternion.Slerp(helipadPointer.transform.rotation, rotation, _helipadPointedSpeed * Time.deltaTime);
         }
 
         public override bool TakeDamage(int damage)
