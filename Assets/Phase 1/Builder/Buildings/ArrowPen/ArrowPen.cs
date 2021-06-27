@@ -12,9 +12,7 @@ namespace Phase_1.Builder.Buildings.ArrowPen
 
         public List<GameObject> walls; 
 
-        [SerializeField] private int breakTime = 5;
         private const int Cost = 1;
-        private float _startTime;
         private bool _isBroken = false;
 
         private float _moneyTime = 5;
@@ -22,17 +20,11 @@ namespace Phase_1.Builder.Buildings.ArrowPen
 
         public void Start()
         {
-            _startTime = Time.time;
             breakChancePercent = 2;
         }
 
         public void Update()
         {
-            if (!_isBroken && Time.time - _startTime > breakTime)
-            {
-                Break();
-            }
-
             if (!_isBroken && Interval.HasPassed(_moneyTime, _moneyTimePassed, out _moneyTimePassed))
             {
                 moneyBag.AddMoney(viewRadius.VisitorCount);

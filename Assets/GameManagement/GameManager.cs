@@ -87,6 +87,7 @@ namespace GameManagement
             mainCamera.EnterEscapePhase(player);
             player.GetComponent<PlayerController>().manager = GetComponent<GameManager>();
 
+            builder.DeselectGhost();
             Destroy(builder.gameObject);
             phaseText.text = "Escape Phase";
         }

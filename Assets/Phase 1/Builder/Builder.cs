@@ -15,11 +15,19 @@ namespace Phase_1.Builder
         public UnityEngine.Camera mainCamera;
         public GameManager gameManager;
 
+        // Update is called once per frame
+        void Update()
+        {
+            var newPosition = GetGridMouseWorldPosition();
+            if (_ghostBuilding is null) return;
+            _ghostBuilding.transform.position = newPosition;
+        }
+
         public void SetGhostBuilding(int index)
         {
             if (!(_ghostBuilding is null))
             {
-                OnDeselectGhost();
+                DeselectGhost();
             }
 
             var ghostPlan = buildings[index];
@@ -29,15 +37,7 @@ namespace Phase_1.Builder
             }
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-            var newPosition = GetGridMouseWorldPosition();
-            if (_ghostBuilding is null) return;
-            _ghostBuilding.transform.position = newPosition;
-        }
-
-        void OnBuild()
+        public void OnBuild()
         {
             // TODO: Remove that transparent shader (if it's added)
             var placementPosition = GetGridMouseWorldPosition();
@@ -51,17 +51,7 @@ namespace Phase_1.Builder
             _ghostBuilding = null;
         }
 
-        public void OnSetBuilding1()
-        {
-            SetGhostBuilding(0);
-        }
-        
-        public void OnSetBuilding2()
-        {
-            SetGhostBuilding(1);
-        }
-
-        public void OnDeselectGhost()
+        public void DeselectGhost()
         {
             if (_ghostBuilding is null) return;
 

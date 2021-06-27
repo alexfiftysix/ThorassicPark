@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 2a78e03b3836d0c4ba4b001c80ff1f77, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -56,7 +56,75 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7049339014872148110}
+        m_TargetAssemblyTypeName: Phase_1.Builder.Builder, Assembly-CSharp
+        m_MethodName: OnBuild
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b71f41fd-b645-47c7-827a-0e30ff91344c
+    m_ActionName: Basic/Build[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 921436bd-67c8-4af5-ba4a-b7e37cb5c00b
+    m_ActionName: Basic/MousePosition[/Mouse/position,/Touchscreen/position,/Pen/position]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7049339014872148110}
+        m_TargetAssemblyTypeName: Phase_1.Builder.Builder, Assembly-CSharp
+        m_MethodName: SetGhostBuilding
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 62ebc467-f75a-4d98-8486-b424029e63e1
+    m_ActionName: Basic/SetBuilding1[/Keyboard/1,/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7049339014872148110}
+        m_TargetAssemblyTypeName: Phase_1.Builder.Builder, Assembly-CSharp
+        m_MethodName: SetGhostBuilding
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b8746ed8-0d13-4248-b47d-32ef14201dbb
+    m_ActionName: Basic/SetBuilding2[/Keyboard/2]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7049339014872148110}
+        m_TargetAssemblyTypeName: Phase_1.Builder.Builder, Assembly-CSharp
+        m_MethodName: DeselectGhost
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 060e269b-a428-4d6d-adb0-5667c5d6482b
+    m_ActionName: Basic/DeselectGhost[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Basic
@@ -74,11 +142,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12d699dc82ec0d049a44075c880683bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moneyBag: {fileID: 0}
   buildings:
   - {fileID: 4037315886019962139, guid: 4fa6a7ec4a5d1d745817b61c7bc50445, type: 3}
-  - {fileID: 0}
+  - {fileID: -6693205948645633491, guid: f460e7879ffb60c4e8233e2a266e93a2, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   mainCamera: {fileID: 0}
-  moneyText: {fileID: 0}
+  gameManager: {fileID: 0}
