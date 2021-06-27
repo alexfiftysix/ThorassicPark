@@ -35,7 +35,6 @@ namespace Visitors
             {
                 if (Interval.HasPassed(_wanderingTime, _wanderingTimePassed, out _wanderingTimePassed))
                 {
-                    _wanderingTimePassed = 0;
                     _target = ChooseTarget();
                     if (_target is null) return;
                     _state = VisitorState.WalkingToAttraction;

@@ -1,5 +1,6 @@
 using System;
 using Dinos;
+using GameManagement;
 using UnityEngine;
 
 namespace Phase_1.Builder.Buildings
@@ -17,8 +18,9 @@ namespace Phase_1.Builder.Buildings
             _startTime = DateTime.Now;
         }
 
-        public override void Build()
+        public override void Build(MoneyBag newMoneyBag)
         {
+            base.Build(newMoneyBag);
             SpawnDinosaurs();
         }
 

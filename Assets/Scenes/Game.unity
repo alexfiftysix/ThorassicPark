@@ -2436,17 +2436,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 841120593}
   m_CullTransparentMesh: 1
---- !u!114 &844694123 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8363036984877243615, guid: 538eb2731c4450e40991893fa50a57fa, type: 3}
-  m_PrefabInstance: {fileID: 8363036985116778164}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e8a4dcfa138a3e4da802569e8d95ae8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1033497914
 GameObject:
   m_ObjectHideFlags: 0
@@ -3121,6 +3110,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4035853642978410775, guid: e7ad889f09310474fa6282aab3878d2b, type: 3}
     - target: {fileID: 7049339014872148110, guid: 63d0318a27af3114eb2c43a07bb7d8ef, type: 3}
+      propertyPath: moneyBag
+      value: 
+      objectReference: {fileID: 8363036985116778165}
+    - target: {fileID: 7049339014872148110, guid: 63d0318a27af3114eb2c43a07bb7d8ef, type: 3}
       propertyPath: moneyText
       value: 
       objectReference: {fileID: 836319845}
@@ -3209,7 +3202,7 @@ PrefabInstance:
     - target: {fileID: 7570075259205250642, guid: e72466afc7eed1442bdc53aa1f512b21, type: 3}
       propertyPath: gameManager
       value: 
-      objectReference: {fileID: 844694123}
+      objectReference: {fileID: 0}
     - target: {fileID: 7570075259205250643, guid: e72466afc7eed1442bdc53aa1f512b21, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3267,6 +3260,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2251839720636743574, guid: 538eb2731c4450e40991893fa50a57fa, type: 3}
+      propertyPath: moneyText
+      value: 
+      objectReference: {fileID: 836319845}
     - target: {fileID: 8363036984877243608, guid: 538eb2731c4450e40991893fa50a57fa, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -3349,3 +3346,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 538eb2731c4450e40991893fa50a57fa, type: 3}
+--- !u!114 &8363036985116778165 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2251839720636743574, guid: 538eb2731c4450e40991893fa50a57fa, type: 3}
+  m_PrefabInstance: {fileID: 8363036985116778164}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bf74c0e7e83d4044ae74f65bfd200df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -1,19 +1,18 @@
 using System;
+using GameManagement;
 using Phase_1.Builder.Buildings;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 namespace Phase_1.Builder
 {
     public class Builder : MonoBehaviour
     {
         private GameObject _ghostBuilding;
-        private int _money = 5;
+        public MoneyBag moneyBag;
 
         public Attraction[] buildings = new Attraction[5];
         public UnityEngine.Camera mainCamera;
-        public Text moneyText;
 
         public void SetGhostBuilding(int index)
         {
@@ -23,9 +22,10 @@ namespace Phase_1.Builder
             }
 
             var ghostPlan = buildings[index];
-            if (_money < ghostPlan.GetComponent<Attraction>().GetCost()) return;
-
-            _ghostBuilding = Instantiate(ghostPlan.gameObject, Vector3.zero, Quaternion.identity);
+            if (moneyBag.Withdraw(ghostPlan.GetComponent<Attraction>().GetCost()))
+            {
+                _ghostBuilding = Instantiate(ghostPlan.gameObject, Vector3.zero, Quaternion.identity);
+            }
         }
 
         // Update is called once per frame
@@ -39,20 +39,11 @@ namespace Phase_1.Builder
         void OnBuild()
         {
             // TODO: Remove that transparent shader (if it's added)
-            var cost = _ghostBuilding.GetComponent<Attraction>().GetCost();
-            if (_money < cost)
-            {
-                // TODO: Make the user know what's happened
-                return;
-            }
-
             var placementPosition = GetGridMouseWorldPosition();
             var building = Instantiate(_ghostBuilding, placementPosition, Quaternion.identity);
-            building.GetComponent<Attraction>().Build();
-            Destroy(_ghostBuilding);
+            building.GetComponent<Attraction>().Build(moneyBag);
 
-            _money -= cost;
-            SetMoneyText(_money);
+            Destroy(_ghostBuilding);
         }
 
         private Vector3 GetGridMouseWorldPosition(int z = -1)
@@ -62,11 +53,6 @@ namespace Phase_1.Builder
             var roundedX = Convert.ToInt32(Math.Round(mouseWorldPos.x));
             var roundedY = Convert.ToInt32(Math.Round(mouseWorldPos.y));
             return new Vector3(roundedX, roundedY, z);
-        }
-
-        private void SetMoneyText(int money)
-        {
-            moneyText.text = $"${_money}";
         }
     }
 }

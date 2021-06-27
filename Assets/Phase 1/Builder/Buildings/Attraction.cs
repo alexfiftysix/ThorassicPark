@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using GameManagement;
+using UnityEngine;
 
 namespace Phase_1.Builder.Buildings
 {
     public abstract class Attraction : MonoBehaviour
     {
-        public GameObject viewRadius; 
+        public ViewRadius viewRadius;
+        public MoneyBag moneyBag;
             
         public virtual int GetCost()
         {
@@ -15,12 +17,15 @@ namespace Phase_1.Builder.Buildings
         {
             return false;
         }
-        
-        public virtual void Build() {}
 
-        public bool IsViewRadius(GameObject gameObj)
+        public virtual void Build(MoneyBag newMoneyBag)
         {
-            return gameObj == viewRadius;
+            moneyBag = newMoneyBag;
+        }
+
+        public bool IsViewRadius(GameObject other)
+        {
+            return other.GetComponent<ViewRadius>() == viewRadius;
         }
     }
 }
