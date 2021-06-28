@@ -3380,6 +3380,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FruitHatWoman
       objectReference: {fileID: 0}
+    - target: {fileID: 7243007372674161526, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6cbe84e1babb11f42a6893543c76bc6e, type: 2}
     - target: {fileID: 7243007372674161527, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
       propertyPath: m_RootOrder
       value: 4

@@ -151,3 +151,4 @@ MonoBehaviour:
   - {fileID: 0}
   mainCamera: {fileID: 0}
   gameManager: {fileID: 0}
+  ghostMaterial: {fileID: 2100000, guid: 6cbe84e1babb11f42a6893543c76bc6e, type: 2}
