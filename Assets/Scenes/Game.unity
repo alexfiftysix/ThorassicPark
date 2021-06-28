@@ -3433,6 +3433,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2039780607563844262, guid: e72466afc7eed1442bdc53aa1f512b21, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1410877284}
+    - target: {fileID: 2039780607563844262, guid: e72466afc7eed1442bdc53aa1f512b21, type: 3}
+      propertyPath: myCamera
+      value: 
+      objectReference: {fileID: 1410877284}
     - target: {fileID: 7570075259205250642, guid: e72466afc7eed1442bdc53aa1f512b21, type: 3}
       propertyPath: gameManager
       value: 

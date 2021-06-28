@@ -15,11 +15,9 @@ namespace Phase_1.Camera
         private Vector2 _movementDirection = Vector2.zero;
         private UnityEngine.Camera _camera;
 
-        private float _zoomSpeed = 10f;
-        private float _minZoom = 4f;
-        private float _maxZoom = 15f;
         private float _goalOrthographicSize = 5f;
         private bool _hasZoomed = false;
+        private float _zoomSpeed = 3;
 
         [SerializeField] private float cameraFollowSpeed = 5;
         
@@ -49,13 +47,14 @@ namespace Phase_1.Camera
             _goalOrthographicSize = 1.5f;
             player = newPlayer;
             _phase = Phase.Escaping;
+            Destroy(GetComponent<MouseWheelZoom>());
         }
 
         private void ZoomToGoalSize()
         {
             if (_phase != Phase.Building && !_hasZoomed)
             {
-                _camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, _goalOrthographicSize, Time.deltaTime);
+                _camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, _goalOrthographicSize, Time.deltaTime * _zoomSpeed);
                 if (Math.Abs(_camera.orthographicSize - _goalOrthographicSize) < 0.001)
                 {
                     _hasZoomed = true;
@@ -68,15 +67,6 @@ namespace Phase_1.Camera
             if (_phase != Phase.Building) return;
 
             _movementDirection = inputValue.Get<Vector2>();
-        }
-
-        public void OnZoom(InputValue inputValue)
-        {
-            if (_phase != Phase.Building) return;
-
-            var val = inputValue.Get<Vector2>().y / 60 * -1;
-            var goalSize = Math.Max(Math.Min(_camera.orthographicSize + val, _maxZoom), _minZoom);
-            _camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, goalSize, Time.deltaTime * _zoomSpeed);
         }
 
         private void FollowPlayer()
