@@ -44,14 +44,6 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
-                },
-                {
-                    "name": "Zoom",
-                    "type": "Value",
-                    "id": "33dbaa46-4cb1-4a39-a6bf-017724112f82",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -134,12 +126,12 @@
                 },
                 {
                     "name": "",
-                    "id": "3fa756ed-42b6-4b01-aeab-f420b3394c31",
-                    "path": "<Mouse>/scroll",
+                    "id": "3e2e3a57-3b43-468a-9d61-dd21db615622",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Zoom",
+                    "action": "DeselectGhost",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
