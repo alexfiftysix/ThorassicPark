@@ -1,5 +1,3 @@
-using System.Linq.Expressions;
-using Extensions;
 using GameManagement;
 using Phase_2.Helipad;
 using UnityEngine;
@@ -8,7 +6,7 @@ using UnityEngine.UI;
 using Utilities.Extensions;
 using Visitors;
 
-namespace Player
+namespace Phase_2.Player
 {
     public class PlayerController : Chaseable
     {

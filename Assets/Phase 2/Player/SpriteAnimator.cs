@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Player
+namespace Phase_2.Player
 {
     public class SpriteAnimator : MonoBehaviour
     {
