@@ -9,6 +9,7 @@ namespace Phase_1.Builder
     public class Builder : MonoBehaviour
     {
         private GameObject _ghostBuilding;
+        private Attraction _ghostAttraction;
         public MoneyBag moneyBag;
 
         public Attraction[] buildings;
@@ -21,9 +22,15 @@ namespace Phase_1.Builder
         // Update is called once per frame
         void Update()
         {
-            var newPosition = GetGridMouseWorldPosition();
             if (_ghostBuilding is null) return;
+
+            var newPosition = GetGridMouseWorldPosition();
             _ghostBuilding.transform.position = newPosition;
+
+            _ghostAttraction.SetColor(_ghostAttraction.CanBePlaced()
+                ? GhostConstants.CanPlace
+                : GhostConstants.CanNotPlace
+            );
         }
 
         public void SetGhostBuilding(int index)
@@ -37,6 +44,7 @@ namespace Phase_1.Builder
             if (moneyBag.Withdraw(ghostPlan.GetComponent<Attraction>().GetCost()))
             {
                 _ghostBuilding = Instantiate(ghostPlan.gameObject, Vector3.zero, Quaternion.identity);
+                _ghostAttraction = _ghostBuilding.GetComponent<Attraction>();
                 var spriteRenderer = _ghostBuilding.GetComponent<SpriteRenderer>();
                 _previousMaterial = spriteRenderer.material;
                 spriteRenderer.material = ghostMaterial;
@@ -57,9 +65,10 @@ namespace Phase_1.Builder
         {
             if (_ghostBuilding is null) return;
 
-            moneyBag.AddMoney(_ghostBuilding.GetComponent<Attraction>().GetCost());
+            moneyBag.AddMoney(_ghostAttraction.GetCost());
             Destroy(_ghostBuilding);
             _ghostBuilding = null;
+            _ghostAttraction = null;
         }
 
         private Vector3 GetGridMouseWorldPosition(int z = -1)

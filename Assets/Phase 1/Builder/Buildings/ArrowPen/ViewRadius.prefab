@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1553216457769698542}
   - component: {fileID: 8343282942350421647}
   - component: {fileID: 3884449066275285933}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ViewRadius
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -8,7 +8,7 @@ namespace Phase_1.Builder.Buildings
         public ViewRadius viewRadius;
         public MoneyBag moneyBag;
         public float breakChancePercent = 0;
-            
+
         public virtual int GetCost()
         {
             return 0;
@@ -32,6 +32,16 @@ namespace Phase_1.Builder.Buildings
         public virtual void Break()
         {
             
-        } 
+        }
+
+        public virtual bool CanBePlaced()
+        {
+            return false;
+        }
+
+        public virtual void SetColor(Color newColor)
+        {
+            Debug.Log("Default Set Color");
+        }
     }
 }

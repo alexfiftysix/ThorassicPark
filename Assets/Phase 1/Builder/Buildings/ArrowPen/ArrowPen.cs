@@ -1,6 +1,9 @@
 using System.Collections.Generic;
+using System.Linq;
 using GameManagement;
 using UnityEngine;
+using UnityEngine.iOS;
+using UnityEngine.UIElements;
 using Utilities;
 
 namespace Phase_1.Builder.Buildings.ArrowPen
@@ -17,9 +20,16 @@ namespace Phase_1.Builder.Buildings.ArrowPen
 
         private float _moneyTime = 5;
         private float _moneyTimePassed;
+        
+        // Ghost
+        private List<GameObject> _overlappingBuildings;
+        private float _clearNullsMaxTime = 1;
+        private float _clearNullsTimePassed = 1;
+        private static readonly int GhostShaderColor = Shader.PropertyToID("Color_c9794d5cc0484bfb99bcbf82f83078e6");
 
         public void Start()
         {
+            _overlappingBuildings = new List<GameObject>();
             breakChancePercent = 2;
         }
 
@@ -28,6 +38,11 @@ namespace Phase_1.Builder.Buildings.ArrowPen
             if (!_isBroken && Interval.HasPassed(_moneyTime, _moneyTimePassed, out _moneyTimePassed))
             {
                 moneyBag.AddMoney(viewRadius.VisitorCount);
+            }
+            
+            if (Interval.HasPassed(_clearNullsMaxTime, _clearNullsTimePassed, out _clearNullsTimePassed))
+            {
+                _overlappingBuildings = _overlappingBuildings.Where(b => !(b is null)).ToList();
             }
         }
 
@@ -54,6 +69,36 @@ namespace Phase_1.Builder.Buildings.ArrowPen
             }
 
             _isBroken = true;
+        }
+
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.layer == LayerMask.NameToLayer("Building"))
+            {
+                _overlappingBuildings.Add(other.gameObject);
+            }
+        }
+
+        void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.gameObject.layer == LayerMask.NameToLayer("Building"))
+            {
+                _overlappingBuildings.Remove(other.gameObject);
+            }
+        }
+
+        public override bool CanBePlaced()
+        {
+            var canPlace = _overlappingBuildings.Count == 0;
+            Debug.Log($"Can: {canPlace}");
+            return canPlace;
+        }
+
+        
+        
+        public override void SetColor(Color newColor)
+        {
+            GetComponent<SpriteRenderer>().material.SetColor(GhostShaderColor, newColor);
         }
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8728381041935031009}
   - component: {fileID: 2861211043082151810}
   - component: {fileID: 4037315886019962139}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GallimimusPen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,5 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aafca8e6db696e14fb9e52e9fb801393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  viewRadius: {fileID: 0}
+  moneyBag: {fileID: 0}
+  breakChancePercent: 0
   dinosaur: {fileID: 6527162677521624114, guid: 79da69acdbdfc144cb93f8c6db0b85f3, type: 3}
   dinosaurCount: 3
