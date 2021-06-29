@@ -18,6 +18,9 @@ namespace Phase_1.Builder
 
         private Material _previousMaterial;
         public Material ghostMaterial;
+        
+        // ghost overlaps
+        private bool _ghostCanBePlaced;
 
         // Update is called once per frame
         void Update()
@@ -27,10 +30,15 @@ namespace Phase_1.Builder
             var newPosition = GetGridMouseWorldPosition();
             _ghostBuilding.transform.position = newPosition;
 
-            _ghostAttraction.SetColor(_ghostAttraction.CanBePlaced()
-                ? GhostConstants.CanPlace
-                : GhostConstants.CanNotPlace
-            );
+            var isOverlapping = _ghostAttraction.CanBePlaced();
+            if (isOverlapping != _ghostCanBePlaced)
+            {
+                _ghostCanBePlaced = isOverlapping;
+                _ghostAttraction.SetColor(_ghostCanBePlaced
+                    ? GhostConstants.CanPlace
+                    : GhostConstants.CanNotPlace
+                );
+            }
         }
 
         public void SetGhostBuilding(int index)
@@ -45,6 +53,7 @@ namespace Phase_1.Builder
             {
                 _ghostBuilding = Instantiate(ghostPlan.gameObject, Vector3.zero, Quaternion.identity);
                 _ghostAttraction = _ghostBuilding.GetComponent<Attraction>();
+                _ghostCanBePlaced = true;
                 var spriteRenderer = _ghostBuilding.GetComponent<SpriteRenderer>();
                 _previousMaterial = spriteRenderer.material;
                 spriteRenderer.material = ghostMaterial;
@@ -53,6 +62,9 @@ namespace Phase_1.Builder
 
         public void OnBuild()
         {
+            if (_ghostBuilding is null) return;
+            if (!_ghostCanBePlaced) return;
+            
             _ghostBuilding.GetComponent<SpriteRenderer>().material = _previousMaterial;
             var attraction = _ghostBuilding.GetComponent<Attraction>(); 
             attraction.Build(moneyBag);

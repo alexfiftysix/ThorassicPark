@@ -2,8 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using GameManagement;
 using UnityEngine;
-using UnityEngine.iOS;
-using UnityEngine.UIElements;
 using Utilities;
 
 namespace Phase_1.Builder.Buildings.ArrowPen
@@ -90,7 +88,6 @@ namespace Phase_1.Builder.Buildings.ArrowPen
         public override bool CanBePlaced()
         {
             var canPlace = _overlappingBuildings.Count == 0;
-            Debug.Log($"Can: {canPlace}");
             return canPlace;
         }
 
