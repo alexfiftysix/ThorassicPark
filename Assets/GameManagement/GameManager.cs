@@ -6,6 +6,7 @@ using Phase_1.Camera;
 using Phase_2.Helipad;
 using Phase_2.Player;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Utilities;
 
@@ -40,12 +41,14 @@ namespace GameManagement
         {
             winText.text = "You won!";
             _phase = Phase.GameWon;
+            SceneManager.LoadScene(2);
         }
 
         public void GameOver()
         {
             winText.text = "You died";
             _phase = Phase.GameLost;
+            SceneManager.LoadScene(2);
         }
 
         public void AddAttraction(Attraction attraction)
