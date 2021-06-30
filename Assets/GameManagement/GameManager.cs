@@ -31,6 +31,7 @@ namespace GameManagement
         [SerializeField] private int timeBeforeEscapeSpawnsInSeconds = 1;
 
         // Park Breaking
+        public Slider breakChanceSlider;
         [SerializeField] private float parkBreakInterval = 5f;
         private float _parkBreakIntervalTimePassed;
         private readonly List<Attraction> _attractions = new List<Attraction>();
@@ -50,6 +51,7 @@ namespace GameManagement
         public void AddAttraction(Attraction attraction)
         {
             _attractions.Add(attraction);
+            breakChanceSlider.value = _attractions.Sum(a => a.breakChancePercent);
         }
         
         private void Start()
@@ -81,6 +83,8 @@ namespace GameManagement
             {
                 attraction.Break();
             }
+
+            Destroy(breakChanceSlider.gameObject);
             
             _phase = Phase.RunningFromDinosaurs;
             _escapePhaseStartTime = Time.time;
