@@ -1,3 +1,4 @@
+using Statistics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +7,6 @@ namespace GameManagement
 {
     public class MoneyBag : MonoBehaviour
     {
-        private int _money = 5;
         public TextMeshProUGUI moneyText;
 
         /// <summary>
@@ -14,10 +14,10 @@ namespace GameManagement
         /// </summary>
         public bool Withdraw(int dollars)
         {
-            if (_money >= dollars)
+            if (MyStatistics.MoneyEarned >= dollars)
             {
-                _money -= dollars;
-                SetMoneyText(_money);
+                MyStatistics.MoneyEarned -= dollars;
+                SetMoneyText(MyStatistics.MoneyEarned);
                 return true;
             }
 
@@ -26,8 +26,8 @@ namespace GameManagement
 
         public void AddMoney(int dollars)
         {
-            _money += dollars;
-            SetMoneyText(_money);
+            MyStatistics.MoneyEarned += dollars;
+            SetMoneyText(MyStatistics.MoneyEarned);
         }
 
         private void SetMoneyText(int money)

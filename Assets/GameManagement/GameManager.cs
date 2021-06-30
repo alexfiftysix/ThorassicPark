@@ -5,6 +5,7 @@ using Phase_1.Builder.Buildings;
 using Phase_1.Camera;
 using Phase_2.Helipad;
 using Phase_2.Player;
+using Statistics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -41,6 +42,7 @@ namespace GameManagement
         {
             winText.text = "You won!";
             _phase = Phase.GameWon;
+            MyStatistics.WonLastGame = true;
             SceneManager.LoadScene(2);
         }
 
@@ -48,6 +50,7 @@ namespace GameManagement
         {
             winText.text = "You died";
             _phase = Phase.GameLost;
+            MyStatistics.WonLastGame = false;
             SceneManager.LoadScene(2);
         }
 
