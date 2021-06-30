@@ -76,7 +76,7 @@ namespace Phase_1.Builder
             _ghostAttraction = null;
         }
 
-        private Vector3 GetGridMouseWorldPosition(int z = -1)
+        private Vector3 GetGridMouseWorldPosition(int z = 0)
         {
             var mousePos = Mouse.current.position.ReadValue();
             var mouseWorldPos = mainCamera.ScreenToWorldPoint(mousePos);
