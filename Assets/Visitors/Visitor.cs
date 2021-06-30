@@ -63,7 +63,7 @@ namespace Visitors
 
         public void OnTriggerStay2D(Collider2D other)
         {
-            if (_state == VisitorState.WalkingToAttraction && other.gameObject == _target.viewRadius)
+            if (_state == VisitorState.WalkingToAttraction && other.gameObject.GetComponent<ViewRadius>() == _target.viewRadius)
             {
                 StartEnjoying();
             }
@@ -96,7 +96,7 @@ namespace Visitors
         {
             var oldPosition = (Vector2) transform.position;
             var movement = _direction * speed;
-            var newPosition = new Vector2(oldPosition.x + movement.x, oldPosition.y + movement.y);
+            var newPosition = new Vector3(oldPosition.x + movement.x, oldPosition.y + movement.y, -1f);
             _transform.position = newPosition;
         }
 
