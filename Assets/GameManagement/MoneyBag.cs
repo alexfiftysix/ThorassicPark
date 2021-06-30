@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,7 +7,7 @@ namespace GameManagement
     public class MoneyBag : MonoBehaviour
     {
         private int _money = 5;
-        public Text moneyText;
+        public TextMeshProUGUI moneyText;
 
         /// <summary>
         /// Returns true if the bag has enough money, and deducts that amount if possible
