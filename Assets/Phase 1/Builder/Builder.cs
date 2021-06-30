@@ -16,9 +16,6 @@ namespace Phase_1.Builder
         public UnityEngine.Camera mainCamera;
         public GameManager gameManager;
 
-        private Material _previousMaterial;
-        public Material ghostMaterial;
-        
         // ghost overlaps
         private bool _ghostCanBePlaced;
 
@@ -53,10 +50,8 @@ namespace Phase_1.Builder
             {
                 _ghostBuilding = Instantiate(ghostPlan.gameObject, Vector3.zero, Quaternion.identity);
                 _ghostAttraction = _ghostBuilding.GetComponent<Attraction>();
+                _ghostAttraction.Ghostify();
                 _ghostCanBePlaced = true;
-                var spriteRenderer = _ghostBuilding.GetComponent<SpriteRenderer>();
-                _previousMaterial = spriteRenderer.material;
-                spriteRenderer.material = ghostMaterial;
             }
         }
 
@@ -65,10 +60,8 @@ namespace Phase_1.Builder
             if (_ghostBuilding is null) return;
             if (!_ghostCanBePlaced) return;
             
-            _ghostBuilding.GetComponent<SpriteRenderer>().material = _previousMaterial;
-            var attraction = _ghostBuilding.GetComponent<Attraction>(); 
-            attraction.Build(moneyBag);
-            gameManager.AddAttraction(attraction);
+            _ghostAttraction.Build(moneyBag);
+            gameManager.AddAttraction(_ghostAttraction);
 
             _ghostBuilding = null;
         }
