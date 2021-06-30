@@ -89,7 +89,7 @@ namespace Visitors
 
         private Attraction ChooseTarget()
         {
-            return FindObjectsOfType<Attraction>().ToList().RandomChoice();
+            return FindObjectsOfType<Attraction>().Where(a => !a.isGhost).ToList().RandomChoice();
         }
 
         private void Move()

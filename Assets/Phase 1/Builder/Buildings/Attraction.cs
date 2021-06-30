@@ -16,6 +16,7 @@ namespace Phase_1.Builder.Buildings
         public Material ghostMaterial;
         private Material _standardMaterial;
         private static readonly int GhostShaderColor = Shader.PropertyToID("Color_c9794d5cc0484bfb99bcbf82f83078e6");
+        public bool isGhost;
 
         protected virtual void Awake()
         {
@@ -51,11 +52,13 @@ namespace Phase_1.Builder.Buildings
         public virtual void Ghostify()
         {
             spriteRenderer.material = ghostMaterial;
+            isGhost = true;
         }
 
         private void UnGhostify()
         {
             spriteRenderer.material = _standardMaterial;
+            isGhost = false;
         }
 
         public virtual void SetColor(Color newColor)
