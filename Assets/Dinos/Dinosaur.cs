@@ -42,7 +42,7 @@ namespace Dinos
         {
             if (state == DinoState.Chilling)
             {
-                if (pen.IsBroken())
+                if (pen.isBroken)
                 {
                     state = DinoState.Chasing;
                     return;
@@ -118,7 +118,7 @@ namespace Dinos
             var movement = direction * speed;
             var newPosition = new Vector3(oldPosition.x + movement.x, oldPosition.y + movement.y, -2);
 
-            if (pen.IsBroken() || IsWithinPen(newPosition))
+            if (pen.isBroken || IsWithinPen(newPosition))
             {
                 transform.position = newPosition;
             }

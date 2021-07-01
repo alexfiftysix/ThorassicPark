@@ -1,4 +1,5 @@
-﻿using GameManagement;
+﻿using System.Collections.Generic;
+using GameManagement;
 using Phase_1.Builder.Buildings.ArrowPen;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ namespace Phase_1.Builder.Buildings
         public MoneyBag moneyBag;
         public float breakChancePercent;
         public OverlapCheck overlapCheck;
-        
+
         // Ghost building
         public SpriteRenderer spriteRenderer;
         public Material ghostMaterial;
@@ -18,19 +19,15 @@ namespace Phase_1.Builder.Buildings
         private static readonly int GhostShaderColor = Shader.PropertyToID("Color_c9794d5cc0484bfb99bcbf82f83078e6");
         public bool isGhost;
 
+        // Break
+        public List<GameObject> walls;
+        public bool isBroken = false;
+
+        public int cost = 1;
+
         protected virtual void Awake()
         {
             _standardMaterial = spriteRenderer.material;
-        } 
-
-        public virtual int GetCost()
-        {
-            return 0;
-        }
-        
-        public virtual bool IsBroken()
-        {
-            return false;
         }
 
         public virtual void Build(MoneyBag newMoneyBag)
@@ -41,12 +38,17 @@ namespace Phase_1.Builder.Buildings
 
         public virtual void Break()
         {
-            
+            Destroy(viewRadius);
+
+            foreach (var wall in walls)
+            {
+                Destroy(wall);
+            }
         }
 
         public virtual bool CanBePlaced()
         {
-            return false;
+            return !overlapCheck.HasOverlap();
         }
 
         public virtual void Ghostify()

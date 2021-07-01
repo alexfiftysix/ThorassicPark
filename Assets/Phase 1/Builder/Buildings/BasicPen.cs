@@ -34,15 +34,5 @@ namespace Phase_1.Builder.Buildings
                 dino.GetComponent<Dinosaur>().SetPen(gameObject);
             }
         }
-        
-        public override bool IsBroken()
-        {
-            return DateTime.Now - TimeSpan.FromSeconds(_breakTime) > _startTime;
-        }
-
-        public override int GetCost()
-        {
-            return Cost;
-        }
     }
 }

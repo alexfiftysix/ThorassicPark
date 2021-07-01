@@ -46,7 +46,7 @@ namespace Phase_1.Builder
             }
 
             var ghostPlan = buildings[index];
-            if (moneyBag.Withdraw(ghostPlan.GetComponent<Attraction>().GetCost()))
+            if (moneyBag.Withdraw(ghostPlan.GetComponent<Attraction>().cost))
             {
                 _ghostBuilding = Instantiate(ghostPlan.gameObject, Vector3.zero, Quaternion.identity);
                 _ghostAttraction = _ghostBuilding.GetComponent<Attraction>();
@@ -70,7 +70,7 @@ namespace Phase_1.Builder
         {
             if (_ghostBuilding is null) return;
 
-            moneyBag.AddMoney(_ghostAttraction.GetCost());
+            moneyBag.AddMoney(_ghostAttraction.cost);
             Destroy(_ghostBuilding);
             _ghostBuilding = null;
             _ghostAttraction = null;

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using GameManagement;
 using UnityEngine;
 using Utilities;
@@ -10,11 +9,6 @@ namespace Phase_1.Builder.Buildings.ArrowPen
         public GameObject dinosaur;
         [SerializeField] private  int dinosaurCount = 3;
 
-        public List<GameObject> walls; 
-
-        private const int Cost = 1;
-        private bool _isBroken;
-
         private const float MoneyTime = 5; // TODO: Move this to its own script
         private float _moneyTimePassed;
         
@@ -24,20 +18,15 @@ namespace Phase_1.Builder.Buildings.ArrowPen
         private void Start()
         {
             breakChancePercent = 2;
-            _isBroken = false;
+            isBroken = false;
         }
 
         public void Update()
         {
-            if (!_isBroken && Interval.HasPassed(MoneyTime, _moneyTimePassed, out _moneyTimePassed))
+            if (!isBroken && Interval.HasPassed(MoneyTime, _moneyTimePassed, out _moneyTimePassed))
             {
                 moneyBag.AddMoney(viewRadius.VisitorCount);
             }
-        }
-
-        public override int GetCost()
-        {
-            return Cost;
         }
 
         public override void Build(MoneyBag newMoneyBag)
@@ -47,22 +36,6 @@ namespace Phase_1.Builder.Buildings.ArrowPen
             {
                 Instantiate(dinosaur, transform.position - Vector3.forward, Quaternion.identity);
             }
-        }
-
-        public override void Break()
-        {
-            Destroy(viewRadius);
-            foreach (var wall in walls)
-            {
-                Destroy(wall);
-            }
-
-            _isBroken = true;
-        }
-
-        public override bool CanBePlaced()
-        {
-            return !overlapCheck.HasOverlap();
         }
     }
 }
