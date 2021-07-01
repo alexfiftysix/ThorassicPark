@@ -59,11 +59,12 @@ namespace Phase_1.Builder
         {
             if (_ghostBuilding is null) return;
             if (!_ghostCanBePlaced) return;
-            
+
             _ghostAttraction.Build(moneyBag);
             gameManager.AddAttraction(_ghostAttraction);
 
             _ghostBuilding = null;
+            _ghostAttraction = null;
         }
 
         public void DeselectGhost()

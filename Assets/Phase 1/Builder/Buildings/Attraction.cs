@@ -55,17 +55,27 @@ namespace Phase_1.Builder.Buildings
         {
             spriteRenderer.material = ghostMaterial;
             isGhost = true;
+            SetWallColliders(false);
         }
 
         private void UnGhostify()
         {
             spriteRenderer.material = _standardMaterial;
             isGhost = false;
+            SetWallColliders(true);
         }
 
         public virtual void SetColor(Color newColor)
         {
             spriteRenderer.material.SetColor(GhostShaderColor, newColor);
+        }
+
+        private void SetWallColliders(bool newState)
+        {
+            foreach (var wall in walls)
+            {
+                wall.GetComponent<Collider2D>().enabled = newState;
+            }
         }
     }
 }

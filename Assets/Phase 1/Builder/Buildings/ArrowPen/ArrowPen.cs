@@ -11,9 +11,6 @@ namespace Phase_1.Builder.Buildings.ArrowPen
 
         private const float MoneyTime = 5; // TODO: Move this to its own script
         private float _moneyTimePassed;
-        
-        // Ghost
-        private static readonly int GhostShaderColor = Shader.PropertyToID("Color_c9794d5cc0484bfb99bcbf82f83078e6");
 
         private void Start()
         {
