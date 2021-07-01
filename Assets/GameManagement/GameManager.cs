@@ -20,7 +20,6 @@ namespace GameManagement
         private PlayerController _player;
 
         public Text phaseText;
-        public Text winText;
 
         private Phase _phase = Phase.Building;
         public Builder builder;
@@ -40,7 +39,6 @@ namespace GameManagement
         
         public void PlayerEscaped()
         {
-            winText.text = "You won!";
             _phase = Phase.GameWon;
             MyStatistics.WonLastGame = true;
             SceneManager.LoadScene(2);
@@ -48,7 +46,6 @@ namespace GameManagement
 
         public void GameOver()
         {
-            winText.text = "You died";
             _phase = Phase.GameLost;
             MyStatistics.WonLastGame = false;
             SceneManager.LoadScene(2);
@@ -63,7 +60,6 @@ namespace GameManagement
         private void Start()
         {
             phaseText.text = "Building Phase";
-            winText.text = "";
         }
 
         private void Update()

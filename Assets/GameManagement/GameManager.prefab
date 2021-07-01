@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 8363036984877243608}
   - component: {fileID: 8363036984877243609}
   - component: {fileID: 2251839720636743574}
+  - component: {fileID: -7952229473891565875}
+  - component: {fileID: -6305880583304843667}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -47,11 +49,11 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   playerPrefab: {fileID: 7201206678435542381, guid: 2dd16ac4854659a45bfb25cbd1a6787d, type: 3}
   phaseText: {fileID: 0}
-  winText: {fileID: 0}
-  buildingTimeInSeconds: 1
   builder: {fileID: 0}
-  escapePointPrefab: {fileID: 0}
+  escapePointPrefab: {fileID: 4110359013886583792, guid: 3d2b33ce50f548c48a0e29a46b516788, type: 3}
   timeBeforeEscapeSpawnsInSeconds: 1
+  breakChanceSlider: {fileID: 0}
+  parkBreakInterval: 5
 --- !u!114 &2251839720636743574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,3 +67,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyText: {fileID: 0}
+--- !u!114 &-7952229473891565875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8363036984877243614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 571043275d6efce439e15490e1ab85e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 0}
+--- !u!114 &-6305880583304843667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8363036984877243614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: d956c1cbd633d6047bd1dcd46523b2d3, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -7952229473891565875}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: OnPause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 989df86a-2c2f-43f2-9791-c5c75a9cb9cd
+    m_ActionName: PauseMenu/Pause[/Keyboard/escape]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: PauseMenu
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}

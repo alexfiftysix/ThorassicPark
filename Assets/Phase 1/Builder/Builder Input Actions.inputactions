@@ -123,17 +123,6 @@
                     "action": "DeselectGhost",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3e2e3a57-3b43-468a-9d61-dd21db615622",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "DeselectGhost",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         }

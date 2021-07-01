@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff3105defe2d7e48a718856defc53b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.015
+  speed: 2
   manager: {fileID: 0}
   healthBar: {fileID: 4758573952024336151, guid: 5b43c5e6dfe56c241b7e15da2ee3b8ef, type: 3}
   helipadPointer: {fileID: 2765473143208520802}

@@ -10,7 +10,7 @@ namespace Phase_2.Player
 {
     public class PlayerController : Chaseable
     {
-        [SerializeField] private float speed = 0.01f;
+        [SerializeField] private float speed = 1f;
         public GameManager manager;
 
         public Slider healthBar;
@@ -55,7 +55,7 @@ namespace Phase_2.Player
         private void Move()
         {
             var oldPosition = (Vector2) _transform.position;
-            var movement = direction * speed;
+            var movement = direction * (speed * Time.deltaTime);
             var newPosition = new Vector2(oldPosition.x + movement.x, oldPosition.y + movement.y);
             _transform.position = newPosition.ToVector3();
         }

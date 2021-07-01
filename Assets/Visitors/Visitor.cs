@@ -8,7 +8,7 @@ namespace Visitors
 {
     public class Visitor: Chaseable
     {
-        [SerializeField] private float speed = 0.002f;
+        [SerializeField] private float speed = 1f;
         private Vector2 _direction = Vector2.down;
 
         private int _health = 10;
@@ -95,7 +95,7 @@ namespace Visitors
         private void Move()
         {
             var oldPosition = (Vector2) transform.position;
-            var movement = _direction * speed;
+            var movement = _direction * (speed * Time.deltaTime);
             var newPosition = new Vector3(oldPosition.x + movement.x, oldPosition.y + movement.y, -1f);
             _transform.position = newPosition;
         }

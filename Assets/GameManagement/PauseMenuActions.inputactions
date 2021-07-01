@@ -1,0 +1,50 @@
+{
+    "name": "PauseMenuActions",
+    "maps": [
+        {
+            "name": "PauseMenu",
+            "id": "84c372ac-a557-4a81-b876-835821662b09",
+            "actions": [
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "989df86a-2c2f-43f2-9791-c5c75a9cb9cd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "074d6d04-e240-46d0-b891-4507f8d382a6",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "KeyboardMouse",
+            "bindingGroup": "KeyboardMouse",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
