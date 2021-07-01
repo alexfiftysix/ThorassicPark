@@ -38,7 +38,7 @@ namespace Phase_1.Builder.Buildings
 
         public virtual void Break()
         {
-            Destroy(viewRadius);
+            Destroy(viewRadius.gameObject);
 
             foreach (var wall in walls)
             {
