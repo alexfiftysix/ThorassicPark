@@ -6235,7 +6235,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 87.59, y: -20.4}
+  m_AnchoredPosition: {x: 87.589966, y: -20.400024}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &585984819
@@ -7618,11 +7618,11 @@ PrefabInstance:
     - target: {fileID: 7049339014872148110, guid: 63d0318a27af3114eb2c43a07bb7d8ef, type: 3}
       propertyPath: buildings.Array.data[0]
       value: 
-      objectReference: {fileID: 824366217041316039, guid: ed778d47e2807324e8ab6ecf46b637a8, type: 3}
+      objectReference: {fileID: 9128726092906686687, guid: 2ca5568e94dc33547badc5da1c14d3ef, type: 3}
     - target: {fileID: 7049339014872148110, guid: 63d0318a27af3114eb2c43a07bb7d8ef, type: 3}
       propertyPath: buildings.Array.data[1]
       value: 
-      objectReference: {fileID: 9128726092906686687, guid: 2ca5568e94dc33547badc5da1c14d3ef, type: 3}
+      objectReference: {fileID: 4847376592673436236, guid: ccad2886684778f4781cd62311ea56a0, type: 3}
     - target: {fileID: 7049339014872148111, guid: 63d0318a27af3114eb2c43a07bb7d8ef, type: 3}
       propertyPath: m_Name
       value: Builder

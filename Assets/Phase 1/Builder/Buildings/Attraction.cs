@@ -23,6 +23,10 @@ namespace Phase_1.Builder.Buildings
         public List<GameObject> walls;
         public bool isBroken = false;
 
+        // Monsters
+        public GameObject monster;
+        public int monsterCount = 3;
+
         public int cost = 1;
 
         protected virtual void Awake()
@@ -34,6 +38,10 @@ namespace Phase_1.Builder.Buildings
         {
             moneyBag = newMoneyBag;
             UnGhostify();
+            for (var i = 0; i < monsterCount; i++)
+            {
+                Instantiate(monster, transform.position - Vector3.forward, Quaternion.identity);
+            }
         }
 
         public virtual void Break()

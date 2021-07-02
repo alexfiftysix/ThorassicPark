@@ -206,9 +206,10 @@ MonoBehaviour:
   - {fileID: 7361582017181727080}
   - {fileID: 7361582017022699734}
   isBroken: 0
+  cardSprite: {fileID: 0}
+  monster: {fileID: 8950219344596500561, guid: ee56740e89704c94ba171255ae4d5f5a, type: 3}
+  monsterCount: 3
   cost: 2
-  dinosaur: {fileID: 3424970828197151150, guid: 37ee4af43af776a4eb3d1068386fd9a9, type: 3}
-  dinosaurCount: 1
 --- !u!1001 &4188406287562050642
 PrefabInstance:
   m_ObjectHideFlags: 0

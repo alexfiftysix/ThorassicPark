@@ -51,13 +51,17 @@ MonoBehaviour:
   overlapCheck: {fileID: 2514336750556980693}
   spriteRenderer: {fileID: 8220721555475123563}
   ghostMaterial: {fileID: 2100000, guid: 6cbe84e1babb11f42a6893543c76bc6e, type: 2}
-  dinosaur: {fileID: 1844796906014014963, guid: a5ac019069d53254ca0690fe01f52a18, type: 3}
-  dinosaurCount: 3
+  isGhost: 0
   walls:
   - {fileID: 3322667203337810446}
   - {fileID: 3322667203343852599}
   - {fileID: 3322667203681469411}
   - {fileID: 3322667203522318941}
+  isBroken: 0
+  cardSprite: {fileID: 0}
+  monster: {fileID: 1844796906014014963, guid: a5ac019069d53254ca0690fe01f52a18, type: 3}
+  monsterCount: 3
+  cost: 1
 --- !u!1 &8220721555475123562
 GameObject:
   m_ObjectHideFlags: 0
