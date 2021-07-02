@@ -1,6 +1,8 @@
 using System;
+using System.Linq;
 using GameManagement;
 using Phase_1.Builder.Buildings;
+using Phase_1.Builder.CardChooser;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,6 +21,11 @@ namespace Phase_1.Builder
         // ghost overlaps
         private bool _ghostCanBePlaced;
 
+        void Start()
+        {
+            buildings = ChosenCards.Attractions.Select(c => c.attraction).ToArray();
+        }
+        
         // Update is called once per frame
         void Update()
         {
