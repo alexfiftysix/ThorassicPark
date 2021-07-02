@@ -7622,7 +7622,7 @@ PrefabInstance:
     - target: {fileID: 7049339014872148110, guid: 63d0318a27af3114eb2c43a07bb7d8ef, type: 3}
       propertyPath: buildings.Array.data[1]
       value: 
-      objectReference: {fileID: 4037315886019962139, guid: 4fa6a7ec4a5d1d745817b61c7bc50445, type: 3}
+      objectReference: {fileID: 9128726092906686687, guid: 2ca5568e94dc33547badc5da1c14d3ef, type: 3}
     - target: {fileID: 7049339014872148111, guid: 63d0318a27af3114eb2c43a07bb7d8ef, type: 3}
       propertyPath: m_Name
       value: Builder
