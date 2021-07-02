@@ -38,6 +38,7 @@ namespace Phase_1.Builder.CardChooser
             if (IsFull()) return false;
 
             chosen.First(c => c.isEmpty).SetAttraction(attraction);
+            ChosenCards.Attractions = chosen;
             return true;
         }
     }

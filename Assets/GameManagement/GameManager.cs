@@ -41,14 +41,14 @@ namespace GameManagement
         {
             _phase = Phase.GameWon;
             MyStatistics.WonLastGame = true;
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(3);
         }
 
         public void GameOver()
         {
             _phase = Phase.GameLost;
             MyStatistics.WonLastGame = false;
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(3); // TODO: Do this better
         }
 
         public void AddAttraction(Attraction attraction)

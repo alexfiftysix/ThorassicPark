@@ -1,6 +1,7 @@
 using Statistics;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GameManagement
 {
@@ -16,10 +17,15 @@ namespace GameManagement
             moneyText.text = $"${MyStatistics.MoneyEarned}";
         }
 
-        // Update is called once per frame
-        void Update()
+        public void PlayAgain()
         {
+            SceneManager.LoadScene(1); // TODO: Don't use magic numbers
+        }
         
+        public void Quit()
+        {
+            Debug.Log("QUIT");
+            Application.Quit();
         }
     }
 }
