@@ -8,7 +8,7 @@ public static class ListExtensions
     
     public static T RandomChoice<T>(this List<T> list)
     {
-        var index = _random.Next(list.Count);
+        var index = _random.Next(list.Count); // TODO: Update this one plz
         return list[index];        
     }
 }

@@ -1,23 +1,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Utilities;
+using Utilities.Extensions;
 
 namespace Phase_1.Builder.Buildings.ArrowPen
 {
     public class OverlapCheck : MonoBehaviour
     {
         private List<GameObject> _overlappingBuildings = new List<GameObject>();
-        private float _clearNullsMaxTime = 1;
-        private float _clearNullsTimePassed = 1;
-    
-        // Update is called once per frame
-        void Update()
+        private const float ClearNullsMaxTime = 1;
+
+        private void Start()
         {
-            if (Interval.HasPassed(_clearNullsMaxTime, _clearNullsTimePassed, out _clearNullsTimePassed))
-            {
-                _overlappingBuildings = _overlappingBuildings.Where(b => !(b is null)).ToList();
-            }
+            gameObject.AddTimer(ClearNullsMaxTime, ClearNulls);
+        }
+
+        private void ClearNulls()
+        {
+            _overlappingBuildings = _overlappingBuildings.Where(b => !(b is null)).ToList();
         }
 
         public bool HasOverlap()

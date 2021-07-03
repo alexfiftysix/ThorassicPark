@@ -98,12 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d3dafc02976be244846c4b3a262c937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
-  direction: {x: 0, y: 1}
   speed: 1
   rotationSpeed: 1
   target: {fileID: 0}
-  bouncePower: 0.2
+  damage: 1
+  bouncePower: 0.02
 --- !u!61 &7163406423809755086
 BoxCollider2D:
   m_ObjectHideFlags: 0

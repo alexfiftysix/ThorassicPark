@@ -1,6 +1,7 @@
 using System.Linq;
 using UnityEngine;
 using Utilities;
+using Utilities.Extensions;
 using Visitors;
 using Random = UnityEngine.Random;
 
@@ -10,21 +11,21 @@ namespace Dinos
     {
         [SerializeField] private float speed = 1f;
         [SerializeField] private float rotationSpeed = 5;
-
-        [SerializeField] private Chaseable target;
-        private const float FindTargetMaxDelay = 1;
-        private float _findTargetTimePassed;
-        [SerializeField] private int damage = 1;  
-
-        [SerializeField] private float bouncePower = 0.1f;
-        private float _bounceDelay;
-        private float _bounceTimePassed;
-
         private Transform _transform;
         private Rigidbody2D _rigidbody2D;
 
+        // Target
+        [SerializeField] private Chaseable target;
+        private const float FindTargetMaxDelay = 2;
+        [SerializeField] private int damage = 1;
+
+        [SerializeField] private float bouncePower = 0.1f;
+        private float _bounceDelay;
+
         private void Start()
         {
+            gameObject.AddTimer(FindTargetMaxDelay, FindTarget);
+            gameObject.AddTimer(_bounceDelay, Bounce);
             _transform = transform;
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _bounceDelay = Random.Range(1f, 4f);
@@ -33,23 +34,10 @@ namespace Dinos
         // Update is called once per frame
         private void Update()
         {
-            if (target == null)
-            {
-                if (Interval.HasPassed(FindTargetMaxDelay, _findTargetTimePassed, out _findTargetTimePassed))
-                {
-                    target = FindTarget();
-                }
-            }
-            else
+            if (!(target is null))
             {
                 RotateTowardTarget(target.transform.position);
                 MoveForwards();
-            }
-
-            if (Interval.HasPassed(_bounceDelay, _bounceTimePassed, out _bounceTimePassed))
-            {
-                Bounce();
-                _bounceDelay = Random.Range(0.2f, 2f);
             }
         }
 
@@ -82,9 +70,9 @@ namespace Dinos
             _transform.position += _transform.up * (speed * Time.deltaTime);
         }
     
-        private static Chaseable FindTarget()
+        private void FindTarget()
         {
-            return FindObjectsOfType<Chaseable>().Where(c => !c.IsDead()).ToList().RandomChoice();
+            target = FindObjectsOfType<Chaseable>().Where(c => !c.IsDead()).ToList().RandomChoice(); // TODO: Change to IEnumerable extension
         }
     }
 }
