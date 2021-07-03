@@ -1,3 +1,4 @@
+using Phase_1.Builder.DeckBuilder;
 using Statistics;
 using TMPro;
 using UnityEngine;
@@ -15,6 +16,13 @@ namespace GameManagement
         {
             winLoseText.text = MyStatistics.WonLastGame ? "You won!" : "You lost";
             moneyText.text = $"${MyStatistics.MoneyEarned}";
+            
+            // Achievements
+            if (!MyStatistics.WonLastGame) return;
+            if (MyStatistics.MoneyEarned >= 10)
+            {
+                CardStore.UnlockCard("ArrowPenPink");
+            }
         }
 
         public void PlayAgain()
