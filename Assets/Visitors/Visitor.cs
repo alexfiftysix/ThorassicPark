@@ -3,6 +3,7 @@ using System.Linq;
 using Phase_1.Builder.Buildings;
 using UnityEngine;
 using Utilities;
+using Utilities.Extensions;
 
 namespace Visitors
 {
@@ -10,22 +11,27 @@ namespace Visitors
     {
         [SerializeField] private float speed = 1f;
         private Vector2 _direction = Vector2.down;
+        private Attraction _target;
+        private Transform _transform;
 
         private int _health = 10;
-
-        private float _wanderingTime = 5f;
-        private float _wanderingTimePassed;
-        private VisitorState _state = VisitorState.Wandering;
-        private Attraction _target;
-
-        private float _enjoyingTime;
-        private float _enjoyingTimePassed;
+        private VisitorState _state;
         
-        private Transform _transform;
+        // Wandering
+        private const int WanderingTime = 3;
+        private Timer _wanderingTimer;
+
+        // Enjoying
+        private const float EnjoyingTime = 5;
+        private Timer _enjoyingTimer;
 
         private void Start()
         {
-            _transform = transform;
+            _transform = gameObject.transform;
+            _wanderingTimer = gameObject.AddTimer(WanderingTime, ChooseTarget);
+            _enjoyingTimer = gameObject.AddTimer(EnjoyingTime, StartWandering);
+            SetState(VisitorState.Wandering);
+            
         }
 
         // Update is called once per frame
@@ -33,14 +39,6 @@ namespace Visitors
         {
             if (_state == VisitorState.Wandering)
             {
-                if (Interval.HasPassed(_wanderingTime, _wanderingTimePassed, out _wanderingTimePassed))
-                {
-                    _target = ChooseTarget();
-                    if (_target is null) return;
-                    _state = VisitorState.WalkingToAttraction;
-                    return;
-                }
-
                 var wantsToTurn = MyRandom.CoinFlip(.005f);
                 if (wantsToTurn)
                 {
@@ -50,13 +48,6 @@ namespace Visitors
             else if (_state == VisitorState.WalkingToAttraction)
             {
                 TurnToTarget();
-            }
-            else if (_state == VisitorState.EnjoyingAttraction)
-            {
-                if (Interval.HasPassed(_enjoyingTime, _enjoyingTimePassed, out _enjoyingTimePassed))
-                {
-                    StartWandering();
-                }
             }
             Move();
         }
@@ -87,9 +78,11 @@ namespace Visitors
             return _health < 0;
         }
 
-        private Attraction ChooseTarget()
+        private void ChooseTarget()
         {
-            return FindObjectsOfType<Attraction>().Where(a => !a.isGhost).ToList().RandomChoice();
+            _target = FindObjectsOfType<Attraction>().Where(a => !a.isGhost).ToList().RandomChoice();
+            if (_target is null) return;
+            SetState(VisitorState.WalkingToAttraction);
         }
 
         private void Move()
@@ -130,18 +123,22 @@ namespace Visitors
 
         private void StartWandering()
         {
-            _wanderingTimePassed = 0;
-            _wanderingTime = Random.Range(3f, 8f);
-            _state = VisitorState.Wandering;
+            SetState(VisitorState.Wandering);
             _target = null;
         }
 
         private void StartEnjoying()
         {
             _direction *= 0.5f;
-            _enjoyingTimePassed = 0;
-            _enjoyingTime = Random.Range(3f, 8f);
-            _state = VisitorState.EnjoyingAttraction;
+            _enjoyingTimer.Reset();
+            SetState(VisitorState.EnjoyingAttraction);
+        }
+
+        private void SetState(VisitorState state)
+        {
+            _wanderingTimer.isActive = state == VisitorState.Wandering;
+            _enjoyingTimer.isActive = state == VisitorState.EnjoyingAttraction;
+            _state = state;
         }
     }
 }
