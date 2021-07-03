@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Phase_1.Builder.CardChooser
+namespace Phase_1.Builder.DeckBuilder
 {
     public class AttractionCard : MonoBehaviour
     {

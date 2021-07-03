@@ -3,7 +3,7 @@ using System.Linq;
 using Phase_1.Builder.Buildings;
 using UnityEngine;
 
-namespace Phase_1.Builder.CardChooser
+namespace Phase_1.Builder.DeckBuilder
 {
     public class Deck : MonoBehaviour
     {

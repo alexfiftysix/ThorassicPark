@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Phase_1.Builder.CardChooser
+namespace Phase_1.Builder.DeckBuilder
 {
     public static class ChosenCards
     {

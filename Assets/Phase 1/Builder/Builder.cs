@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using GameManagement;
 using Phase_1.Builder.Buildings;
-using Phase_1.Builder.CardChooser;
+using Phase_1.Builder.DeckBuilder;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Phase_1.Builder.CardChooser
+namespace Phase_1.Builder.DeckBuilder
 {
     public class DeckMenuManager : MonoBehaviour
     {
