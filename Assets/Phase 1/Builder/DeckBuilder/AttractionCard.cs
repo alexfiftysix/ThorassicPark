@@ -14,20 +14,23 @@ namespace Phase_1.Builder.DeckBuilder
         public Image check;
         public Image cross;
         public Deck deck;
-        public bool isUnlocked;
         public bool isBigCard; // TODO: Allow clicking bigCard to deselect small card also
         public bool isEmpty = true;
         
-
+        private bool _isUnlocked;
         private readonly Color _defaultImageColour = new Color(0, 0, 0, 0);
 
         // Start is called before the first frame update
         void Start()
         {
-            cross.gameObject.SetActive(!isUnlocked);
             SetAttraction(attraction);
-        
             SetSelected(false);
+
+            if (!isBigCard)
+            {
+                _isUnlocked = CardStore.UnlockedAttractions.Contains(attraction.name);
+                cross.gameObject.SetActive(!_isUnlocked);
+            }
         }
 
         public void SetAttraction(Attraction at)
@@ -47,7 +50,7 @@ namespace Phase_1.Builder.DeckBuilder
 
         public void OnClick()
         {
-            if (isBigCard || !isUnlocked) return;
+            if (isBigCard || !_isUnlocked) return;
 
             var isChosen = deck.AttractionIsChosen(attraction);
             if (isChosen)
