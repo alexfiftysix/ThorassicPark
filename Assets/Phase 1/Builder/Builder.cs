@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using GameManagement;
 using Phase_1.Builder.Buildings;
 using Phase_1.Builder.DeckBuilder;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Utilities.Extensions;
 
 namespace Phase_1.Builder
 {
@@ -18,12 +20,16 @@ namespace Phase_1.Builder
         public UnityEngine.Camera mainCamera;
         public GameManager gameManager;
 
+        public List<AttractionCard> cards;
+
         // ghost overlaps
         private bool _ghostCanBePlaced;
 
         void Start()
         {
             buildings = ChosenCards.Attractions.Select(c => c.attraction).ToArray();
+
+            FillHand(); 
         }
         
         // Update is called once per frame
@@ -82,6 +88,16 @@ namespace Phase_1.Builder
             Destroy(_ghostBuilding);
             _ghostBuilding = null;
             _ghostAttraction = null;
+        }
+
+        private void FillHand()
+        {
+            for (var i = 0; i < ChosenCards.Attractions.Count; i++)
+            {
+                cards[i].SetAttraction(ChosenCards.Attractions[i].attraction);
+            }
+            
+            
         }
 
         private Vector3 GetGridMouseWorldPosition(int z = 0)

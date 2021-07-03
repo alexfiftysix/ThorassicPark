@@ -146,6 +146,10 @@ PrefabInstance:
       propertyPath: attraction
       value: 
       objectReference: {fileID: 9128726092906686687, guid: 2ca5568e94dc33547badc5da1c14d3ef, type: 3}
+    - target: {fileID: 6085398872567330752, guid: e64aab4a9d6d4824bb6348ffd4f309ae, type: 3}
+      propertyPath: isUnlocked
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6085398872567330758, guid: e64aab4a9d6d4824bb6348ffd4f309ae, type: 3}
       propertyPath: m_Name
       value: Choice2
@@ -1778,6 +1782,10 @@ PrefabInstance:
       propertyPath: isEmpty
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6085398872567330752, guid: e64aab4a9d6d4824bb6348ffd4f309ae, type: 3}
+      propertyPath: isUnlocked
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6085398872567330758, guid: e64aab4a9d6d4824bb6348ffd4f309ae, type: 3}
       propertyPath: m_Name
       value: Choice1
@@ -2317,6 +2325,10 @@ PrefabInstance:
       propertyPath: attraction
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6085398872567330752, guid: e64aab4a9d6d4824bb6348ffd4f309ae, type: 3}
+      propertyPath: isUnlocked
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6085398872567330758, guid: e64aab4a9d6d4824bb6348ffd4f309ae, type: 3}
       propertyPath: m_Name
       value: Chosen1
@@ -2736,6 +2748,10 @@ PrefabInstance:
     - target: {fileID: 6085398872567330752, guid: e64aab4a9d6d4824bb6348ffd4f309ae, type: 3}
       propertyPath: attraction
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6085398872567330752, guid: e64aab4a9d6d4824bb6348ffd4f309ae, type: 3}
+      propertyPath: isUnlocked
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6085398872567330758, guid: e64aab4a9d6d4824bb6348ffd4f309ae, type: 3}
       propertyPath: m_Name

@@ -14,7 +14,7 @@ namespace Phase_1.Builder.DeckBuilder
         public Image check;
         public Image cross;
         public Deck deck;
-        public bool isBigCard; // TODO: Allow clicking bigCard to deselect small card also
+        public bool isStatic; // TODO: Allow clicking bigCard to deselect small card also
         public bool isEmpty = true;
         
         private bool _isUnlocked;
@@ -26,7 +26,7 @@ namespace Phase_1.Builder.DeckBuilder
             SetAttraction(attraction);
             SetSelected(false);
 
-            if (!isBigCard)
+            if (!isStatic)
             {
                 _isUnlocked = CardStore.UnlockedAttractions.Contains(attraction.name);
                 cross.gameObject.SetActive(!_isUnlocked);
@@ -50,7 +50,7 @@ namespace Phase_1.Builder.DeckBuilder
 
         public void OnClick()
         {
-            if (isBigCard || !_isUnlocked) return;
+            if (isStatic || !_isUnlocked) return;
 
             var isChosen = deck.AttractionIsChosen(attraction);
             if (isChosen)
@@ -66,7 +66,7 @@ namespace Phase_1.Builder.DeckBuilder
 
         private void SetSelected(bool set)
         {
-            if (isBigCard)
+            if (isStatic)
             {
                 check.gameObject.SetActive(false);
             } else
