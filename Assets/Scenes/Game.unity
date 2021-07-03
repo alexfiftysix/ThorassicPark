@@ -6623,7 +6623,7 @@ Transform:
   m_Children:
   - {fileID: 359986534}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1311540218
 GameObject:
@@ -6697,7 +6697,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1410877284 stripped
 Camera:
@@ -7473,7 +7473,7 @@ Transform:
   m_Children:
   - {fileID: 1520989302}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5712669599856806437
 PrefabInstance:
@@ -7492,7 +7492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5712669600154593782, guid: ca7ec89c67ca0a142bdc1514878e4ac0, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5712669600154593782, guid: ca7ec89c67ca0a142bdc1514878e4ac0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7545,7 +7545,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7049339014872148109, guid: 63d0318a27af3114eb2c43a07bb7d8ef, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7049339014872148109, guid: 63d0318a27af3114eb2c43a07bb7d8ef, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7642,7 +7642,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7243007372674161527, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7243007372674161527, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
       propertyPath: m_LocalPosition.x

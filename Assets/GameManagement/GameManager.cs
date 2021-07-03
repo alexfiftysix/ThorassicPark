@@ -10,6 +10,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Utilities;
+using Utilities.Extensions;
 
 namespace GameManagement
 {
@@ -34,8 +35,22 @@ namespace GameManagement
         // Park Breaking
         public Slider breakChanceSlider;
         [SerializeField] private float parkBreakInterval = 5f;
-        private float _parkBreakIntervalTimePassed;
         private readonly List<Attraction> _attractions = new List<Attraction>();
+        private Timer _parkBreakTimer;
+
+        private void Start()
+        {
+            _parkBreakTimer = gameObject.AddTimer(parkBreakInterval, TryBreak);
+            phaseText.text = "Building Phase";
+        }
+
+        private void Update()
+        {
+            if (_phase == Phase.RunningFromDinosaurs && Time.time > _escapePhaseStartTime + timeBeforeEscapeSpawnsInSeconds)
+            {
+                StartEscapePhase();
+            }
+        }
         
         public void PlayerEscaped()
         {
@@ -56,26 +71,13 @@ namespace GameManagement
             _attractions.Add(attraction);
             breakChanceSlider.value = _attractions.Sum(a => a.breakChancePercent);
         }
-        
-        private void Start()
-        {
-            phaseText.text = "Building Phase";
-        }
 
-        private void Update()
+        private void TryBreak()
         {
-            if (_phase == Phase.Building && Interval.HasPassed(parkBreakInterval, _parkBreakIntervalTimePassed, out _parkBreakIntervalTimePassed))
+            var chance = _attractions.Sum(a => a.breakChancePercent);
+            if (MyRandom.Percent(chance))
             {
-                var chance = _attractions.Sum(a => a.breakChancePercent);
-                if (MyRandom.Percent(chance))
-                {
-                    EnterRunFromDinosaursPhase();
-                }
-            }
-
-            if (_phase == Phase.RunningFromDinosaurs && Time.time > _escapePhaseStartTime + timeBeforeEscapeSpawnsInSeconds)
-            {
-                StartEscapePhase();
+                EnterRunFromDinosaursPhase();
             }
         }
 
@@ -87,6 +89,7 @@ namespace GameManagement
             }
 
             Destroy(breakChanceSlider.gameObject);
+            Destroy(_parkBreakTimer);
             
             _phase = Phase.RunningFromDinosaurs;
             _escapePhaseStartTime = Time.time;
