@@ -12,15 +12,19 @@ namespace Phase_1.Builder.DeckBuilder
         public TextMeshProUGUI costText;
         public Image image;
         public Image check;
+        public Image cross;
         public Deck deck;
+        public bool isUnlocked;
         public bool isBigCard; // TODO: Allow clicking bigCard to deselect small card also
         public bool isEmpty = true;
+        
 
         private readonly Color _defaultImageColour = new Color(0, 0, 0, 0);
 
         // Start is called before the first frame update
         void Start()
         {
+            cross.gameObject.SetActive(!isUnlocked);
             SetAttraction(attraction);
         
             SetSelected(false);
@@ -43,7 +47,7 @@ namespace Phase_1.Builder.DeckBuilder
 
         public void OnClick()
         {
-            if (isBigCard) return;
+            if (isBigCard || !isUnlocked) return;
 
             var isChosen = deck.AttractionIsChosen(attraction);
             if (isChosen)
