@@ -7,16 +7,10 @@ namespace Phase_1.Builder.Buildings.ArrowPen
 {
     public class OverlapCheck : MonoBehaviour
     {
-        private List<GameObject> _overlappingBuildings;
+        private List<GameObject> _overlappingBuildings = new List<GameObject>();
         private float _clearNullsMaxTime = 1;
         private float _clearNullsTimePassed = 1;
     
-        // Start is called before the first frame update
-        void Start()
-        {
-            _overlappingBuildings = new List<GameObject>();
-        }
-
         // Update is called once per frame
         void Update()
         {
