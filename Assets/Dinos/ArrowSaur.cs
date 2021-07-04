@@ -22,6 +22,8 @@ namespace Dinos
         [SerializeField] private float bouncePower = 0.1f;
         private float _bounceDelay;
 
+        private AudioSource _biteSound;
+
         private void Start()
         {
             gameObject.AddTimer(FindTargetMaxDelay, FindTarget);
@@ -29,6 +31,7 @@ namespace Dinos
             _transform = transform;
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _bounceDelay = Random.Range(1f, 4f);
+            _biteSound = GetComponent<AudioSource>();
         }
 
         // Update is called once per frame
@@ -46,8 +49,15 @@ namespace Dinos
             var chaseable = other.gameObject.GetComponent<Chaseable>();
             if (!(chaseable is null))
             {
-                chaseable.TakeDamage(damage);
+                Bite(target);
             }
+        }
+
+        private void Bite(Chaseable target)
+        {
+            Debug.Log("Bite");
+            target.TakeDamage(damage);
+            _biteSound.Play();
         }
 
         private void Bounce()
@@ -75,4 +85,4 @@ namespace Dinos
             target = FindObjectsOfType<Chaseable>().Where(c => !c.IsDead()).ToList().RandomChoice(); // TODO: Change to IEnumerable extension
         }
     }
-}
+} 
