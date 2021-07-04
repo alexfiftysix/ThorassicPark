@@ -33,10 +33,12 @@ namespace GameManagement
 
         // Park Breaking
         private readonly List<Attraction> _attractions = new List<Attraction>();
+        private AudioSource _breakSound;
 
         private void Start()
         {
             phaseText.text = "Building Phase";
+            _breakSound = GetComponent<AudioSource>();
         }
 
         private void Update()
@@ -94,6 +96,8 @@ namespace GameManagement
             builder.DeselectGhost();
             Destroy(builder.gameObject);
             phaseText.text = "Escape Phase";
+
+            _breakSound.Play();
         }
 
         private void StartEscapePhase()

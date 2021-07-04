@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using GameManagement;
 using Phase_1.Builder.Buildings.ArrowPen;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Utilities;
@@ -40,11 +39,15 @@ namespace Phase_1.Builder.Buildings
         private Timer _breakTimer;
         private GameManager _gameManager;
 
+        // Build
+        private AudioSource _audioSource;
+
         public int cost = 1;
 
         protected virtual void Awake()
         {
             _defaultMaterial = spriteRenderer.material;
+            _audioSource = GetComponent<AudioSource>();
         }
 
         public virtual void Build(MoneyBag newMoneyBag, GameManager gameManager)
@@ -58,6 +61,7 @@ namespace Phase_1.Builder.Buildings
             }
 
             StartDamagedTimer();
+            _audioSource.Play();
         }
 
         protected virtual void Break()
