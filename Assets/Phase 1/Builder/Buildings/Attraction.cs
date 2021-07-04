@@ -1,11 +1,15 @@
 ﻿using System.Collections.Generic;
 using GameManagement;
 using Phase_1.Builder.Buildings.ArrowPen;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using Utilities;
+using Utilities.Extensions;
 
 namespace Phase_1.Builder.Buildings
 {
-    public abstract class Attraction : MonoBehaviour
+    public abstract class Attraction : MonoBehaviour, IPointerClickHandler
     {
         public ViewRadius viewRadius;
         public MoneyBag moneyBag;
@@ -15,7 +19,7 @@ namespace Phase_1.Builder.Buildings
         // Ghost building
         public SpriteRenderer spriteRenderer;
         public Material ghostMaterial;
-        private Material _standardMaterial;
+        private Material _defaultMaterial;
         private static readonly int GhostShaderColor = Shader.PropertyToID("Color_c9794d5cc0484bfb99bcbf82f83078e6");
         public bool isGhost;
 
@@ -26,28 +30,47 @@ namespace Phase_1.Builder.Buildings
         // Monsters
         public GameObject monster;
         public int monsterCount = 3;
+        
+        // Damage
+        public Material damagedMaterial;
+        [SerializeField] private float timeToBecomeDamaged = 5;
+        private Timer _damagedTimer;
+        private bool _isDamaged;
+        [SerializeField] private float timeToBreak = 3;
+        private Timer _breakTimer;
+        private GameManager _gameManager;
 
         public int cost = 1;
 
         protected virtual void Awake()
         {
-            _standardMaterial = spriteRenderer.material;
+            _defaultMaterial = spriteRenderer.material;
         }
 
-        public virtual void Build(MoneyBag newMoneyBag)
+        public virtual void Build(MoneyBag newMoneyBag, GameManager gameManager)
         {
             moneyBag = newMoneyBag;
+            _gameManager = gameManager;
             UnGhostify();
             for (var i = 0; i < monsterCount; i++)
             {
                 Instantiate(monster, transform.position - Vector3.forward, Quaternion.identity);
             }
+
+            StartDamagedTimer();
         }
 
-        public virtual void Break()
+        protected virtual void Break()
         {
-            Destroy(viewRadius.gameObject);
+            _gameManager.EnterRunFromDinosaursPhase();
+        }
 
+        public virtual void ReleaseDinosaurs()
+        {
+            spriteRenderer.material = _defaultMaterial;
+            Destroy(viewRadius.gameObject);
+            Destroy(_breakTimer);
+            Destroy(_damagedTimer);
             foreach (var wall in walls)
             {
                 Destroy(wall);
@@ -66,9 +89,38 @@ namespace Phase_1.Builder.Buildings
             SetWallColliders(false);
         }
 
+        private void StartDamagedTimer()
+        {
+            _damagedTimer = gameObject.AddTimer(timeToBecomeDamaged, () =>
+            {
+                spriteRenderer.material = damagedMaterial;
+                _isDamaged = true;
+                Destroy(_damagedTimer);
+                StartBreakTimer();
+            });
+        }
+
+        private void StartBreakTimer()
+        {
+            _breakTimer = gameObject.AddTimer(timeToBreak, () =>
+            {
+                Break();
+                Destroy(_breakTimer);
+            });
+        }
+
+        private void Repair()
+        {
+            Debug.Log("Repair");
+            _isDamaged = false;
+            spriteRenderer.material = _defaultMaterial;
+            Destroy(_breakTimer);
+            StartDamagedTimer();
+        }
+
         private void UnGhostify()
         {
-            spriteRenderer.material = _standardMaterial;
+            spriteRenderer.material = _defaultMaterial;
             isGhost = false;
             SetWallColliders(true);
         }
@@ -83,6 +135,15 @@ namespace Phase_1.Builder.Buildings
             foreach (var wall in walls)
             {
                 wall.GetComponent<Collider2D>().enabled = newState;
+            }
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            Debug.Log("CLICKED!");
+            if (_isDamaged)
+            {
+                Repair();
             }
         }
     }

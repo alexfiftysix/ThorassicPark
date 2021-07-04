@@ -10,7 +10,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Utilities;
-using Utilities.Extensions;
 
 namespace GameManagement
 {
@@ -33,14 +32,10 @@ namespace GameManagement
         [SerializeField] private int timeBeforeEscapeSpawnsInSeconds = 1;
 
         // Park Breaking
-        public Slider breakChanceSlider;
-        [SerializeField] private float parkBreakInterval = 5f;
         private readonly List<Attraction> _attractions = new List<Attraction>();
-        private Timer _parkBreakTimer;
 
         private void Start()
         {
-            _parkBreakTimer = gameObject.AddTimer(parkBreakInterval, TryBreak);
             phaseText.text = "Building Phase";
         }
 
@@ -69,7 +64,6 @@ namespace GameManagement
         public void AddAttraction(Attraction attraction)
         {
             _attractions.Add(attraction);
-            breakChanceSlider.value = _attractions.Sum(a => a.breakChancePercent);
         }
 
         private void TryBreak()
@@ -85,12 +79,9 @@ namespace GameManagement
         {
             foreach (var attraction in _attractions)
             {
-                attraction.Break();
+                attraction.ReleaseDinosaurs();
             }
 
-            Destroy(breakChanceSlider.gameObject);
-            Destroy(_parkBreakTimer);
-            
             _phase = Phase.RunningFromDinosaurs;
             _escapePhaseStartTime = Time.time;
 

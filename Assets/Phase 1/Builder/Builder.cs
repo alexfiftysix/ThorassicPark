@@ -6,7 +6,6 @@ using Phase_1.Builder.Buildings;
 using Phase_1.Builder.DeckBuilder;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Utilities.Extensions;
 
 namespace Phase_1.Builder
 {
@@ -73,7 +72,7 @@ namespace Phase_1.Builder
             if (_ghostBuilding is null) return;
             if (!_ghostCanBePlaced) return;
 
-            _ghostAttraction.Build(moneyBag);
+            _ghostAttraction.Build(moneyBag, gameManager);
             gameManager.AddAttraction(_ghostAttraction);
 
             _ghostBuilding = null;

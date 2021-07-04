@@ -206,9 +206,9 @@ MonoBehaviour:
   - {fileID: 6612129230725063675}
   - {fileID: 6612129230834086469}
   isBroken: 0
-  cardSprite: {fileID: 0}
   monster: {fileID: 3424970828197151150, guid: 37ee4af43af776a4eb3d1068386fd9a9, type: 3}
   monsterCount: 3
+  damagedMaterial: {fileID: 2100000, guid: 3e852c4efd4f1c842967162464726937, type: 2}
   cost: 1
 --- !u!1001 &561439241716414098
 PrefabInstance:

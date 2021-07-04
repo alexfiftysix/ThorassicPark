@@ -21,7 +21,7 @@ namespace Phase_1.Builder.Buildings.ArrowPen
             moneyBag.AddMoney(viewRadius.VisitorCount);
         }
 
-        public override void Break()
+        protected override void Break()
         {
             base.Break();
             Destroy(_moneyTimer);
