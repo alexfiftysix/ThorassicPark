@@ -55,7 +55,6 @@ namespace Dinos
 
         private void Bite(Chaseable target)
         {
-            Debug.Log("Bite");
             target.TakeDamage(damage);
             _biteSound.Play();
         }

@@ -7,39 +7,37 @@ namespace Phase_1.Builder.DeckBuilder
 {
     public class Deck : MonoBehaviour
     {
-        private const int MaxChosen = 2;
-        public List<AttractionCard> chosen = new List<AttractionCard>(MaxChosen);
+        public List<UnlockableAttraction> attractions;
+        private static Deck _instance;
 
-        public bool AttractionIsChosen(Attraction attraction)
+        private void Awake()
         {
-            return chosen.Exists(c => !(c is null) && !c.isEmpty && c.attraction.name == attraction.name); // TODO: Checking on name is bad
-        }
-
-        public void DeSelectAttraction(Attraction attraction)
-        {
-            if (AttractionIsChosen(attraction))
+            if (_instance is null)
             {
-                chosen.First(c => !c.isEmpty && c.attraction.name == attraction.name).SetAttraction(null); // TODO: Checking on name is bad
+                _instance = this;
+                DontDestroyOnLoad(gameObject);                
+            }
+            else
+            {
+                Destroy(gameObject);
             }
         }
 
-        private bool IsFull()
+        public void UnlockAttraction(string attractionName)
         {
-            return chosen.All(c => !c.isEmpty);
+            var firstOrDefault = attractions.FirstOrDefault(a => a.attraction.name == attractionName);
+            if (firstOrDefault is null)
+            {
+                throw new AttractionNotFoundException($"Attraction {attractionName} not found in deck");
+            }
+
+            firstOrDefault.isUnlocked = true;
         }
 
-        /// <summary>
-        /// Add attraction to your deck
-        /// </summary>
-        /// <param name="attraction"></param>
-        /// <returns>True if attraction was selected</returns>
-        public bool ChooseAttraction(Attraction attraction)
+        public bool IsUnlocked(Attraction attraction)
         {
-            if (IsFull()) return false;
-
-            chosen.First(c => c.isEmpty).SetAttraction(attraction);
-            ChosenCards.Attractions = chosen;
-            return true;
+            // TODO: String comparison bad
+            return attractions.Exists(a => a.attraction.name == attraction.name && a.isUnlocked);
         }
     }
 }
