@@ -10,18 +10,20 @@ namespace GameManagement
     {
         public TextMeshProUGUI winLoseText;
         public TextMeshProUGUI moneyText;
+        private Deck _deck;
         
         // Start is called before the first frame update
         void Start()
         {
             winLoseText.text = MyStatistics.WonLastGame ? "You won!" : "You lost";
             moneyText.text = $"${MyStatistics.MoneyEarned}";
+            _deck = FindObjectOfType<Deck>();
             
             // Achievements
             if (!MyStatistics.WonLastGame) return;
-            if (MyStatistics.MoneyEarned >= 10)
+            if (MyStatistics.MoneyEarned >= 10) // TODO: Wrap this up in some kind of Achievements class
             {
-                CardStore.UnlockCard("ArrowPenPink");
+                _deck.UnlockAttraction("ArrowPenPink");
             }
         }
 

@@ -115,7 +115,6 @@ namespace Phase_1.Builder.Buildings
 
         private void Repair()
         {
-            Debug.Log("Repair");
             _isDamaged = false;
             spriteRenderer.material = _defaultMaterial;
             Destroy(_breakTimer);
@@ -144,7 +143,6 @@ namespace Phase_1.Builder.Buildings
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            Debug.Log("CLICKED!");
             if (_isDamaged)
             {
                 Repair();

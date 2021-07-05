@@ -13,52 +13,56 @@ namespace Phase_1.Builder.DeckBuilder
         public Image image;
         public Image check;
         public Image cross;
-        public Deck deck;
         public bool isStatic; // TODO: Allow clicking bigCard to deselect small card also
         public bool isEmpty = true;
         
         private bool _isUnlocked;
         private readonly Color _defaultImageColour = new Color(0, 0, 0, 0);
+        private Deck _deck;
+        private Hand _hand;
 
         // Start is called before the first frame update
         void Start()
         {
             SetAttraction(attraction);
             SetSelected(false);
+            _deck = FindObjectOfType<Deck>();
+            _hand = FindObjectOfType<Hand>(); 
 
             if (!isStatic)
             {
-                _isUnlocked = CardStore.UnlockedAttractions.Contains(attraction.name);
+                _isUnlocked = attraction is null || _deck.IsUnlocked(attraction);
                 cross.gameObject.SetActive(!_isUnlocked);
             }
         }
 
-        public void SetAttraction(Attraction at)
+        
+        public void SetAttraction(Attraction newAttraction)
         {
-            isEmpty = at is null; 
-            var monsterSpriteRenderer = at is null ? null : at.monster.GetComponent<SpriteRenderer>();
+            isEmpty = newAttraction is null; 
+            var monsterSpriteRenderer = newAttraction is null ? null : newAttraction.monster.GetComponent<SpriteRenderer>();
             image.color = monsterSpriteRenderer is null ? _defaultImageColour : monsterSpriteRenderer.color;
             image.sprite = monsterSpriteRenderer is null ? null : monsterSpriteRenderer.sprite;
             image.preserveAspect = true;
 
-            nameText.text = at is null ? "____" : at.name;
-            costText.text = at is null ? "$$$" : $"${at.cost}";
+            nameText.text = newAttraction is null ? "____" : newAttraction.name;
+            costText.text = newAttraction is null ? "$$$" : $"${newAttraction.cost}";
 
-            attraction = at;
-            if (at is null) SetSelected(false);
+            this.attraction = newAttraction;
+            if (newAttraction is null) SetSelected(false);
         }
 
         public void OnClick()
         {
             if (isStatic || !_isUnlocked) return;
 
-            var isChosen = deck.AttractionIsChosen(attraction);
+            var isChosen = _hand.AlreadyInHand(attraction);
             if (isChosen)
             {
-                deck.DeSelectAttraction(attraction);
+                _hand.Remove(attraction);
                 SetSelected(false);
             }
-            else if (deck.ChooseAttraction(attraction))
+            else if (_hand.Add(attraction))
             {
                 SetSelected(true);
             }

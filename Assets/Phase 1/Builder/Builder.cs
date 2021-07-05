@@ -15,20 +15,17 @@ namespace Phase_1.Builder
         private Attraction _ghostAttraction;
         public MoneyBag moneyBag;
 
-        public Attraction[] buildings;
         public UnityEngine.Camera mainCamera;
         public GameManager gameManager;
 
-        public List<AttractionCard> cards;
+        private Hand _hand;
 
         // ghost overlaps
         private bool _ghostCanBePlaced;
 
-        void Start()
+        private void Start()
         {
-            buildings = ChosenCards.Attractions.Select(c => c.attraction).ToArray();
-
-            FillHand(); 
+            _hand = FindObjectOfType<Hand>();
         }
         
         // Update is called once per frame
@@ -57,7 +54,7 @@ namespace Phase_1.Builder
                 DeselectGhost();
             }
 
-            var ghostPlan = buildings[index];
+            var ghostPlan = _hand.GetAttraction(index);
             if (moneyBag.Withdraw(ghostPlan.GetComponent<Attraction>().cost))
             {
                 _ghostBuilding = Instantiate(ghostPlan.gameObject, Vector3.zero, Quaternion.identity);
@@ -87,16 +84,6 @@ namespace Phase_1.Builder
             Destroy(_ghostBuilding);
             _ghostBuilding = null;
             _ghostAttraction = null;
-        }
-
-        private void FillHand()
-        {
-            for (var i = 0; i < ChosenCards.Attractions.Count; i++)
-            {
-                cards[i].SetAttraction(ChosenCards.Attractions[i].attraction);
-            }
-            
-            
         }
 
         private Vector3 GetGridMouseWorldPosition(int z = 0)

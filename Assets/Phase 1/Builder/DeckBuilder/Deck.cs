@@ -7,39 +7,28 @@ namespace Phase_1.Builder.DeckBuilder
 {
     public class Deck : MonoBehaviour
     {
-        private const int MaxChosen = 2;
-        public List<AttractionCard> chosen = new List<AttractionCard>(MaxChosen);
+        public List<UnlockableAttraction> attractions;
 
-        public bool AttractionIsChosen(Attraction attraction)
+        private void Awake()
         {
-            return chosen.Exists(c => !(c is null) && !c.isEmpty && c.attraction.name == attraction.name); // TODO: Checking on name is bad
+            DontDestroyOnLoad(gameObject);
         }
 
-        public void DeSelectAttraction(Attraction attraction)
+        public void UnlockAttraction(string attractionName)
         {
-            if (AttractionIsChosen(attraction))
+            var firstOrDefault = attractions.FirstOrDefault(a => a.attraction.name == attractionName);
+            if (firstOrDefault is null)
             {
-                chosen.First(c => !c.isEmpty && c.attraction.name == attraction.name).SetAttraction(null); // TODO: Checking on name is bad
+                throw new AttractionNotFoundException($"Attraction {attractionName} not found in deck");
             }
+
+            firstOrDefault.isUnlocked = true;
         }
 
-        private bool IsFull()
+        public bool IsUnlocked(Attraction attraction)
         {
-            return chosen.All(c => !c.isEmpty);
-        }
-
-        /// <summary>
-        /// Add attraction to your deck
-        /// </summary>
-        /// <param name="attraction"></param>
-        /// <returns>True if attraction was selected</returns>
-        public bool ChooseAttraction(Attraction attraction)
-        {
-            if (IsFull()) return false;
-
-            chosen.First(c => c.isEmpty).SetAttraction(attraction);
-            ChosenCards.Attractions = chosen;
-            return true;
+            // TODO: String comparison bad
+            return attractions.Exists(a => a.attraction.name == attraction.name && a.isUnlocked);
         }
     }
 }
