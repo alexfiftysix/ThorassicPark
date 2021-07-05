@@ -568,15 +568,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b27bace7194cb7743b8032d06196176a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attraction: {fileID: 824366217041316039, guid: ed778d47e2807324e8ab6ecf46b637a8, type: 3}
+  attraction: {fileID: 0}
   nameText: {fileID: 6061312219213008427}
   costText: {fileID: 1362276604602527360}
   image: {fileID: 3290205781985509045}
   check: {fileID: 1542874076362328918}
   cross: {fileID: 3339602716067927670}
-  deck: {fileID: 0}
-  isUnlocked: 0
-  isBigCard: 0
+  isStatic: 0
   isEmpty: 1
 --- !u!1 &6918518149356707903
 GameObject:

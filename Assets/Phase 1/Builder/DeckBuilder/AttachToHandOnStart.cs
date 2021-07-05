@@ -2,12 +2,12 @@ using UnityEngine;
 
 namespace Phase_1.Builder.DeckBuilder
 {
-    public class AttachToHandOnAwake : MonoBehaviour
+    public class AttachToHandOnStart : MonoBehaviour
     {
         public int handIndex;
         
         // Start is called before the first frame update
-        void Awake()
+        private void Start()
         {
             var hand = FindObjectOfType<Hand>();
             var card = GetComponent<AttractionCard>();

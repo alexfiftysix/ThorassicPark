@@ -8,10 +8,19 @@ namespace Phase_1.Builder.DeckBuilder
     public class Deck : MonoBehaviour
     {
         public List<UnlockableAttraction> attractions;
+        private static Deck _instance;
 
         private void Awake()
         {
-            DontDestroyOnLoad(gameObject);
+            if (_instance is null)
+            {
+                _instance = this;
+                DontDestroyOnLoad(gameObject);                
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
 
         public void UnlockAttraction(string attractionName)

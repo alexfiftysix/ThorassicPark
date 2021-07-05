@@ -21,8 +21,7 @@ namespace Phase_1.Builder.DeckBuilder
         private Deck _deck;
         private Hand _hand;
 
-        // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
             SetAttraction(attraction);
             SetSelected(false);
@@ -33,10 +32,14 @@ namespace Phase_1.Builder.DeckBuilder
             {
                 _isUnlocked = attraction is null || _deck.IsUnlocked(attraction);
                 cross.gameObject.SetActive(!_isUnlocked);
+
+                if (_hand.Contains(attraction))
+                {
+                    SetSelected(true);
+                }
             }
         }
 
-        
         public void SetAttraction(Attraction newAttraction)
         {
             isEmpty = newAttraction is null; 
@@ -48,7 +51,7 @@ namespace Phase_1.Builder.DeckBuilder
             nameText.text = newAttraction is null ? "____" : newAttraction.name;
             costText.text = newAttraction is null ? "$$$" : $"${newAttraction.cost}";
 
-            this.attraction = newAttraction;
+            attraction = newAttraction;
             if (newAttraction is null) SetSelected(false);
         }
 
@@ -56,16 +59,8 @@ namespace Phase_1.Builder.DeckBuilder
         {
             if (isStatic || !_isUnlocked) return;
 
-            var isChosen = _hand.AlreadyInHand(attraction);
-            if (isChosen)
-            {
-                _hand.Remove(attraction);
-                SetSelected(false);
-            }
-            else if (_hand.Add(attraction))
-            {
-                SetSelected(true);
-            }
+            var added = _hand.Toggle(attraction);
+            SetSelected(added);
         }
 
         private void SetSelected(bool set)
