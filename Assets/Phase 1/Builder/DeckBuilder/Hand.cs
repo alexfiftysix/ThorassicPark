@@ -76,7 +76,6 @@ namespace Phase_1.Builder.DeckBuilder
             card.SetAttraction(_attractions[index]);
         }
 
-        
         /// <summary>
         /// Add or remove attraction from Hand
         /// </summary>
@@ -93,11 +92,10 @@ namespace Phase_1.Builder.DeckBuilder
             Add(attraction);
             return true;
         }
-        
+
         public bool Contains(Attraction attraction)
         {
-            return cards.Exists(c =>
-                !(c is null) && !c.isEmpty && c.attraction.name == attraction.name); // TODO: Checking on name is bad
+            return _attractions.Exists(a => a.name == attraction.name);
         }
 
         private void Remove(Attraction attraction)
@@ -134,7 +132,7 @@ namespace Phase_1.Builder.DeckBuilder
                 throw new IndexOutOfRangeException($"Your hand has capacity [{_maxLength}], but asked for card at index {index}");
             }
         }
-        
+
         private void Add(Attraction attraction, int index = -1)
         {
             if (IsFull()) return;
@@ -156,6 +154,5 @@ namespace Phase_1.Builder.DeckBuilder
             cards[index].SetAttraction(attraction);
             _attractions[index] = attraction;
         }
-
     }
 }
