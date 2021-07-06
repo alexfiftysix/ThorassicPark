@@ -6,5 +6,6 @@
         WalkingToAttraction,
         EnjoyingAttraction,
         FreakingOut,
+        FollowingPlayer,
     }
 }

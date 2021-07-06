@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using GameManagement;
 using Phase_1.Builder.Buildings;
+using Phase_2.Player;
 using UnityEngine;
 using Utilities;
 using Utilities.Extensions;
@@ -30,6 +32,7 @@ namespace Visitors
         private static float _runningSpeedMultiplier = 1.4f;
         private static float _runningDirectionChangeDelay = 1f;
         private Timer _runningTimer; // TODO: destroy this once the visitor finds the player
+        private PlayerController _player;
 
         private void Start()
         {
@@ -50,10 +53,25 @@ namespace Visitors
             }
         }
 
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (_state != VisitorState.FreakingOut) return;
+
+            if (other.gameObject.name == "VisitorCatchRadius") // TODO: String check bad
+            {
+                _state = VisitorState.FollowingPlayer;
+                Destroy(_runningTimer);
+                _player = FindObjectOfType<PlayerController>();
+            }
+        }
+
         // Update is called once per frame
         private void Update()
         {
-            // TODO: If you run into the player, stop freaking out and follow them
+            if (_state == VisitorState.FollowingPlayer)
+            {
+                TurnToTarget(_player.transform);
+            }
             if (_state == VisitorState.Wandering)
             {
                 var wantsToTurn = MyRandom.CoinFlip(.005f);
@@ -64,7 +82,7 @@ namespace Visitors
             }
             else if (_state == VisitorState.WalkingToAttraction)
             {
-                TurnToTarget();
+                TurnToTarget(_target.transform);
             }
             Move();
         }
@@ -120,9 +138,9 @@ namespace Visitors
             _direction = _directions.RandomChoice();
         }
 
-        private void TurnToTarget()
+        private void TurnToTarget(Transform target)
         {
-            _direction = _target.transform.position - transform.position;
+            _direction = target.position - transform.position;
         }
 
         private void Die()
