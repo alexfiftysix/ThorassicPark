@@ -11,14 +11,13 @@ namespace Phase_2.Player
     public class PlayerController : Chaseable
     {
         [SerializeField] private float speed = 1f;
-        public GameManager manager;
+        [HideInInspector] public GameManager manager;
 
-        public Slider healthBar;
+        [HideInInspector] public Slider healthBar;
         private int _health = 10;
 
-        
         public GameObject helipadPointer;
-        public EscapePoint helipad;
+        [HideInInspector] public EscapePoint helipad;
         private float _helipadPointedSpeed = 15;
         private bool _helipadSpawned = false;
         

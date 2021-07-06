@@ -92,9 +92,9 @@ namespace GameManagement
 
             var player = ActivatePlayer();
             mainCamera.EnterEscapePhase(player);
-            _player = player.GetComponent<PlayerController>();
-            _player.manager = GetComponent<GameManager>();
-            _player.GetComponent<MouseWheelZoom>().myCamera = mainCamera.GetComponent<Camera>();
+            _player = player.GetComponentInChildren<PlayerController>();
+            _player.manager = this;
+            _player.GetComponentInChildren<MouseWheelZoom>().myCamera = mainCamera.GetComponent<Camera>();
 
             builder.DeselectGhost();
             Destroy(builder.gameObject);

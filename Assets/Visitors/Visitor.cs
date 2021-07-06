@@ -29,7 +29,7 @@ namespace Visitors
         // Running Around
         private static float _runningSpeedMultiplier = 1.4f;
         private static float _runningDirectionChangeDelay = 1f;
-        private Timer _runningTimer;
+        private Timer _runningTimer; // TODO: destroy this once the visitor finds the player
 
         private void Start()
         {
