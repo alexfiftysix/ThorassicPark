@@ -26,7 +26,10 @@ namespace Visitors
         private const float EnjoyingTime = 5;
         private Timer _enjoyingTimer;
 
-        private bool _parkIsBroken = false;
+        // Running Around
+        private static float _runningSpeedMultiplier = 1.4f;
+        private static float _runningDirectionChangeDelay = 1f;
+        private Timer _runningTimer;
 
         private void Start()
         {
@@ -42,20 +45,15 @@ namespace Visitors
         {
             if (newPhase == Phase.RunningFromDinosaurs)
             {
-                Debug.Log("Phase changed!!");
-                _parkIsBroken = true;
+                _state = VisitorState.FreakingOut;
+                _runningTimer = gameObject.AddTimer(_runningDirectionChangeDelay, ChooseDirection);
             }
         }
 
         // Update is called once per frame
         private void Update()
         {
-            if (_parkIsBroken)
-            {
-                // TODO: Go crazy, unless you've latched on to the player
-                //       In which case, follow them
-            }
-            
+            // TODO: If you run into the player, stop freaking out and follow them
             if (_state == VisitorState.Wandering)
             {
                 var wantsToTurn = MyRandom.CoinFlip(.005f);
@@ -71,7 +69,10 @@ namespace Visitors
             Move();
         }
 
-        
+        private void RunAround()
+        {
+            
+        }
         
         public void OnTriggerStay2D(Collider2D other)
         {
@@ -109,7 +110,7 @@ namespace Visitors
         private void Move()
         {
             var oldPosition = (Vector2) transform.position;
-            var movement = _direction * (speed * Time.deltaTime);
+            var movement = _direction * (speed * Time.deltaTime * (_state == VisitorState.FreakingOut ? _runningSpeedMultiplier : 1));
             var newPosition = new Vector3(oldPosition.x + movement.x, oldPosition.y + movement.y, -1f);
             _transform.position = newPosition;
         }
