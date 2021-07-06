@@ -4,6 +4,7 @@
     {
         Wandering = 0,
         WalkingToAttraction,
-        EnjoyingAttraction
+        EnjoyingAttraction,
+        FreakingOut,
     }
 }

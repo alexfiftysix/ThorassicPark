@@ -1,5 +1,5 @@
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using Phase_1.Builder;
 using Phase_1.Builder.Buildings;
 using Phase_1.Camera;
@@ -21,7 +21,19 @@ namespace GameManagement
 
         public Text phaseText;
 
-        private Phase _phase = Phase.Building;
+        // [HideInInspector] public Phase phase = Phase.Building;
+
+        private Phase _phase;
+        private Phase Phase
+        {
+            get => _phase;
+            set
+            {
+                _phase = value;
+                OnPhaseChanged?.Invoke(this, value);
+            }
+        }
+        [HideInInspector] public event EventHandler<Phase> OnPhaseChanged;
         public Builder builder;
 
         // Escape point
@@ -43,7 +55,7 @@ namespace GameManagement
 
         private void Update()
         {
-            if (_phase == Phase.RunningFromDinosaurs && Time.time > _escapePhaseStartTime + timeBeforeEscapeSpawnsInSeconds)
+            if (Phase == Phase.RunningFromDinosaurs && Time.time > _escapePhaseStartTime + timeBeforeEscapeSpawnsInSeconds)
             {
                 StartEscapePhase();
             }
@@ -51,14 +63,14 @@ namespace GameManagement
         
         public void PlayerEscaped()
         {
-            _phase = Phase.GameWon;
+            Phase = Phase.GameWon;
             MyStatistics.WonLastGame = true;
             SceneManager.LoadScene(3);
         }
 
         public void GameOver()
         {
-            _phase = Phase.GameLost;
+            Phase = Phase.GameLost;
             MyStatistics.WonLastGame = false;
             SceneManager.LoadScene(3); // TODO: Do this better
         }
@@ -68,15 +80,6 @@ namespace GameManagement
             _attractions.Add(attraction);
         }
 
-        private void TryBreak()
-        {
-            var chance = _attractions.Sum(a => a.breakChancePercent);
-            if (MyRandom.Percent(chance))
-            {
-                EnterRunFromDinosaursPhase();
-            }
-        }
-
         public void EnterRunFromDinosaursPhase()
         {
             foreach (var attraction in _attractions)
@@ -84,7 +87,7 @@ namespace GameManagement
                 attraction.ReleaseDinosaurs();
             }
 
-            _phase = Phase.RunningFromDinosaurs;
+            Phase = Phase.RunningFromDinosaurs;
             _escapePhaseStartTime = Time.time;
 
             var player = ActivatePlayer();
@@ -109,7 +112,7 @@ namespace GameManagement
             _escapePoint.manager = this;
             _player.helipad = _escapePoint;
 
-            _phase = Phase.Escaping;
+            Phase = Phase.Escaping;
         }
 
         private GameObject ActivatePlayer()

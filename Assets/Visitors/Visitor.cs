@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using GameManagement;
 using Phase_1.Builder.Buildings;
 using UnityEngine;
 using Utilities;
@@ -25,18 +26,36 @@ namespace Visitors
         private const float EnjoyingTime = 5;
         private Timer _enjoyingTimer;
 
+        private bool _parkIsBroken = false;
+
         private void Start()
         {
             _transform = gameObject.transform;
             _wanderingTimer = gameObject.AddTimer(WanderingTime, ChooseTarget);
             _enjoyingTimer = gameObject.AddTimer(EnjoyingTime, StartWandering);
             SetState(VisitorState.Wandering);
-            
+
+            FindObjectOfType<GameManager>().OnPhaseChanged += OnPhaseChanged;
+        }
+
+        private void OnPhaseChanged(object sender, Phase newPhase)
+        {
+            if (newPhase == Phase.RunningFromDinosaurs)
+            {
+                Debug.Log("Phase changed!!");
+                _parkIsBroken = true;
+            }
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
+            if (_parkIsBroken)
+            {
+                // TODO: Go crazy, unless you've latched on to the player
+                //       In which case, follow them
+            }
+            
             if (_state == VisitorState.Wandering)
             {
                 var wantsToTurn = MyRandom.CoinFlip(.005f);
@@ -52,6 +71,8 @@ namespace Visitors
             Move();
         }
 
+        
+        
         public void OnTriggerStay2D(Collider2D other)
         {
             if (_state == VisitorState.WalkingToAttraction && other.gameObject.GetComponent<ViewRadius>() == _target.viewRadius)
