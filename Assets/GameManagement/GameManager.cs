@@ -23,17 +23,8 @@ namespace GameManagement
 
         // [HideInInspector] public Phase phase = Phase.Building;
 
-        private Phase _phase;
-        private Phase Phase
-        {
-            get => _phase;
-            set
-            {
-                _phase = value;
-                OnPhaseChanged?.Invoke(this, value);
-            }
-        }
-        [HideInInspector] public event EventHandler<Phase> OnPhaseChanged;
+        private Phase _phase = Phase.Building;
+        [HideInInspector] public event EventHandler OnParkBreaks;
         public Builder builder;
 
         // Escape point
@@ -55,7 +46,7 @@ namespace GameManagement
 
         private void Update()
         {
-            if (Phase == Phase.RunningFromDinosaurs && Time.time > _escapePhaseStartTime + timeBeforeEscapeSpawnsInSeconds)
+            if (_phase == Phase.RunningFromDinosaurs && Time.time > _escapePhaseStartTime + timeBeforeEscapeSpawnsInSeconds)
             {
                 StartEscapePhase();
             }
@@ -63,14 +54,14 @@ namespace GameManagement
         
         public void PlayerEscaped()
         {
-            Phase = Phase.GameWon;
+            _phase = Phase.GameWon;
             MyStatistics.WonLastGame = true;
             SceneManager.LoadScene(3);
         }
 
         public void GameOver()
         {
-            Phase = Phase.GameLost;
+            _phase = Phase.GameLost;
             MyStatistics.WonLastGame = false;
             SceneManager.LoadScene(3); // TODO: Do this better
         }
@@ -87,7 +78,7 @@ namespace GameManagement
                 attraction.ReleaseDinosaurs();
             }
 
-            Phase = Phase.RunningFromDinosaurs;
+            _phase = Phase.RunningFromDinosaurs;
             _escapePhaseStartTime = Time.time;
 
             var player = ActivatePlayer();
@@ -99,6 +90,8 @@ namespace GameManagement
             builder.DeselectGhost();
             Destroy(builder.gameObject);
             phaseText.text = "Escape Phase";
+
+            OnParkBreaks?.Invoke(this, EventArgs.Empty);
 
             _breakSound.Play();
         }
@@ -112,7 +105,7 @@ namespace GameManagement
             _escapePoint.manager = this;
             _player.helipad = _escapePoint;
 
-            Phase = Phase.Escaping;
+            _phase = Phase.Escaping;
         }
 
         private GameObject ActivatePlayer()

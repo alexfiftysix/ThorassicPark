@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using GameManagement;
 using UnityEngine;
@@ -14,15 +15,12 @@ namespace Visitors
 
         private void Start()
         {
-            FindObjectOfType<GameManager>().OnPhaseChanged += OnPhaseChanged;
+            FindObjectOfType<GameManager>().OnParkBreaks += OnParkBreaks;
         }
 
-        private void OnPhaseChanged(object sender, Phase newPhase)
+        private void OnParkBreaks(object sender, EventArgs args)
         {
-            if (newPhase == Phase.RunningFromDinosaurs)
-            {
-                _parkIsBroken = true;
-            }
+            _parkIsBroken = true;
         }
 
         // Update is called once per frame
@@ -32,7 +30,7 @@ namespace Visitors
 
             if (MyRandom.CoinFlip(spawnChance))
             {
-                var visitor= visitorBag.RandomChoice();
+                var visitor = visitorBag.RandomChoice();
                 Instantiate(visitor, transform.position, Quaternion.identity);
             }
         }

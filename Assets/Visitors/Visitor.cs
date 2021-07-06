@@ -10,7 +10,7 @@ using Utilities.Extensions;
 
 namespace Visitors
 {
-    public class Visitor: Chaseable
+    public class Visitor : Chaseable
     {
         [SerializeField] private float speed = 1f;
         private Vector2 _direction = Vector2.down;
@@ -19,7 +19,7 @@ namespace Visitors
 
         private int _health = 10;
         private VisitorState _state;
-        
+
         // Wandering
         private const int WanderingTime = 3;
         private Timer _wanderingTimer;
@@ -41,16 +41,13 @@ namespace Visitors
             _enjoyingTimer = gameObject.AddTimer(EnjoyingTime, StartWandering);
             SetState(VisitorState.Wandering);
 
-            FindObjectOfType<GameManager>().OnPhaseChanged += OnPhaseChanged;
+            FindObjectOfType<GameManager>().OnParkBreaks += OnParkBreaks;
         }
 
-        private void OnPhaseChanged(object sender, Phase newPhase)
+        private void OnParkBreaks(object sender, EventArgs args)
         {
-            if (newPhase == Phase.RunningFromDinosaurs)
-            {
-                _state = VisitorState.FreakingOut;
-                _runningTimer = gameObject.AddTimer(_runningDirectionChangeDelay, ChooseDirection);
-            }
+            _state = VisitorState.FreakingOut;
+            _runningTimer = gameObject.AddTimer(_runningDirectionChangeDelay, ChooseDirection);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -72,6 +69,7 @@ namespace Visitors
             {
                 TurnToTarget(_player.transform);
             }
+
             if (_state == VisitorState.Wandering)
             {
                 var wantsToTurn = MyRandom.CoinFlip(.005f);
@@ -84,17 +82,14 @@ namespace Visitors
             {
                 TurnToTarget(_target.transform);
             }
+
             Move();
         }
 
-        private void RunAround()
-        {
-            
-        }
-        
         public void OnTriggerStay2D(Collider2D other)
         {
-            if (_state == VisitorState.WalkingToAttraction && other.gameObject.GetComponent<ViewRadius>() == _target.viewRadius)
+            if (_state == VisitorState.WalkingToAttraction &&
+                other.gameObject.GetComponent<ViewRadius>() == _target.viewRadius)
             {
                 StartEnjoying();
             }
@@ -128,7 +123,8 @@ namespace Visitors
         private void Move()
         {
             var oldPosition = (Vector2) transform.position;
-            var movement = _direction * (speed * Time.deltaTime * (_state == VisitorState.FreakingOut ? _runningSpeedMultiplier : 1));
+            var movement = _direction * (speed * Time.deltaTime *
+                                         (_state == VisitorState.FreakingOut ? _runningSpeedMultiplier : 1));
             var newPosition = new Vector3(oldPosition.x + movement.x, oldPosition.y + movement.y, -1f);
             _transform.position = newPosition;
         }
