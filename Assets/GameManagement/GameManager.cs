@@ -37,6 +37,9 @@ namespace GameManagement
         // Park Breaking
         private readonly List<Attraction> _attractions = new List<Attraction>();
         private AudioSource _breakSound;
+        
+        // Prestige
+        [HideInInspector] public float prestige = 0;
 
         private void Start()
         {
@@ -69,6 +72,7 @@ namespace GameManagement
         public void AddAttraction(Attraction attraction)
         {
             _attractions.Add(attraction);
+            prestige += attraction.prestige;
         }
 
         public void EnterRunFromDinosaursPhase()

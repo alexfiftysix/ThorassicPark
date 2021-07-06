@@ -11,28 +11,37 @@ namespace Visitors
     {
         public float spawnChance;
         public List<GameObject> visitorBag;
-        private bool _parkIsBroken = false;
+        private int _visitorCount = 0;
+        private GameManager _gameManager;
+        private int MaxVisitorCount => PrestigeToVisitorCount(_gameManager.prestige);
+
+        [SerializeField] private float addVisitorInterval = 0.5f;
+        private Timer _addVisitorTimer;
+
+        private static int PrestigeToVisitorCount(float prestige)
+        {
+            return Convert.ToInt32(Math.Floor(prestige));
+        }
 
         private void Start()
         {
-            FindObjectOfType<GameManager>().OnParkBreaks += OnParkBreaks;
+            _gameManager = FindObjectOfType<GameManager>();
+            _gameManager.OnParkBreaks += OnParkBreaks;
+            _addVisitorTimer = gameObject.AddTimer(addVisitorInterval, SpawnVisitor);
         }
 
         private void OnParkBreaks(object sender, EventArgs args)
         {
-            _parkIsBroken = true;
+            Destroy(_addVisitorTimer);
         }
 
-        // Update is called once per frame
-        private void Update()
+        private void SpawnVisitor()
         {
-            if (_parkIsBroken) return;
+            if (_visitorCount >= MaxVisitorCount) return;
 
-            if (MyRandom.CoinFlip(spawnChance))
-            {
-                var visitor = visitorBag.RandomChoice();
-                Instantiate(visitor, transform.position, Quaternion.identity);
-            }
+            var visitor = visitorBag.RandomChoice();
+            Instantiate(visitor, transform.position, Quaternion.identity);
+            _visitorCount += 1;
         }
     }
 }

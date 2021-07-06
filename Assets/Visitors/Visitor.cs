@@ -29,8 +29,8 @@ namespace Visitors
         private Timer _enjoyingTimer;
 
         // Running Around
-        private static float _runningSpeedMultiplier = 1.4f;
-        private static float _runningDirectionChangeDelay = 1f;
+        private const float RunningSpeedMultiplier = 1.4f;
+        private const float RunningDirectionChangeDelay = 1f;
         private Timer _runningTimer; // TODO: destroy this once the visitor finds the player
         private PlayerController _player;
 
@@ -47,7 +47,7 @@ namespace Visitors
         private void OnParkBreaks(object sender, EventArgs args)
         {
             _state = VisitorState.FreakingOut;
-            _runningTimer = gameObject.AddTimer(_runningDirectionChangeDelay, ChooseDirection);
+            _runningTimer = gameObject.AddTimer(RunningDirectionChangeDelay, ChooseDirection);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -124,7 +124,7 @@ namespace Visitors
         {
             var oldPosition = (Vector2) transform.position;
             var movement = _direction * (speed * Time.deltaTime *
-                                         (_state == VisitorState.FreakingOut ? _runningSpeedMultiplier : 1));
+                                         (_state == VisitorState.FreakingOut ? RunningSpeedMultiplier : 1));
             var newPosition = new Vector3(oldPosition.x + movement.x, oldPosition.y + movement.y, -1f);
             _transform.position = newPosition;
         }

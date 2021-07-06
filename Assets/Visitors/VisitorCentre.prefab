@@ -95,6 +95,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 485d18ef09c755c49b5d8895b58b6898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnChance: 0.0005
+  spawnChance: 0.005
   visitorBag:
   - {fileID: 7243007372674161525, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}

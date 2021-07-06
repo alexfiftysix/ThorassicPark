@@ -39,6 +39,9 @@ namespace Phase_1.Builder.Buildings
         private Timer _breakTimer;
         private GameManager _gameManager;
 
+        // Prestige
+        [SerializeField] public float prestige = 1;
+
         // Build
         private AudioSource _audioSource;
 
