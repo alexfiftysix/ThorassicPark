@@ -19,10 +19,13 @@ namespace Visitors
 
         private int _health = 10;
         private VisitorState _state;
+        private GameManager _gameManager;
 
         // Wandering
         private const int WanderingTime = 3;
         private Timer _wanderingTimer;
+        private const int WanderingTurnTime = 3;
+        private Timer _wanderingTurnTimer;
 
         // Enjoying
         private const float EnjoyingTime = 5;
@@ -31,7 +34,9 @@ namespace Visitors
         // Running Around
         private const float RunningSpeedMultiplier = 1.4f;
         private const float RunningDirectionChangeDelay = 1f;
-        private Timer _runningTimer; // TODO: destroy this once the visitor finds the player
+        private Timer _runningTurnTimer;
+
+        // Following Player
         private PlayerController _player;
 
         private void Start()
@@ -39,27 +44,20 @@ namespace Visitors
             _transform = gameObject.transform;
             _wanderingTimer = gameObject.AddTimer(WanderingTime, ChooseTarget);
             _enjoyingTimer = gameObject.AddTimer(EnjoyingTime, StartWandering);
+            _wanderingTurnTimer = gameObject.AddTimer(WanderingTurnTime, ChooseDirection);
             SetState(VisitorState.Wandering);
 
-            FindObjectOfType<GameManager>().OnParkBreaks += OnParkBreaks;
+            _gameManager = FindObjectOfType<GameManager>(); 
+            _gameManager.OnParkBreaks += OnParkBreaks;
         }
 
         private void OnParkBreaks(object sender, EventArgs args)
         {
-            _state = VisitorState.FreakingOut;
-            _runningTimer = gameObject.AddTimer(RunningDirectionChangeDelay, ChooseDirection);
-        }
-
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (_state != VisitorState.FreakingOut) return;
-
-            if (other.gameObject.name == "VisitorCatchRadius") // TODO: String check bad
-            {
-                _state = VisitorState.FollowingPlayer;
-                Destroy(_runningTimer);
-                _player = FindObjectOfType<PlayerController>();
-            }
+            SetState(VisitorState.FreakingOut);
+            Destroy(_wanderingTimer);
+            Destroy(_wanderingTurnTimer);
+            Destroy(_enjoyingTimer);
+            _runningTurnTimer = gameObject.AddTimer(RunningDirectionChangeDelay, ChooseDirection);
         }
 
         // Update is called once per frame
@@ -68,15 +66,6 @@ namespace Visitors
             if (_state == VisitorState.FollowingPlayer)
             {
                 TurnToTarget(_player.transform);
-            }
-
-            if (_state == VisitorState.Wandering)
-            {
-                var wantsToTurn = MyRandom.CoinFlip(.005f);
-                if (wantsToTurn)
-                {
-                    ChooseDirection();
-                }
             }
             else if (_state == VisitorState.WalkingToAttraction)
             {
@@ -88,10 +77,18 @@ namespace Visitors
 
         public void OnTriggerStay2D(Collider2D other)
         {
-            if (_state == VisitorState.WalkingToAttraction &&
-                other.gameObject.GetComponent<ViewRadius>() == _target.viewRadius)
+            // Using Stay for this because the Visitor may pick an attraction they're already in the viewRadius of 
+            if (_state == VisitorState.WalkingToAttraction
+                && other.gameObject.GetComponent<ViewRadius>() == _target.viewRadius)
             {
                 StartEnjoying();
+            }
+            else if (_state == VisitorState.FreakingOut
+                     && other.gameObject.name == "VisitorCatchRadius") // TODO: String check bad
+            {
+                SetState(VisitorState.FollowingPlayer);
+                Destroy(_runningTurnTimer);
+                _player = FindObjectOfType<PlayerController>();
             }
         }
 
@@ -115,7 +112,7 @@ namespace Visitors
 
         private void ChooseTarget()
         {
-            _target = FindObjectsOfType<Attraction>().Where(a => !a.isGhost).ToList().RandomChoice();
+            _target = _gameManager.attractions.Where(a => !a.isGhost).RandomChoice();
             if (_target is null) return;
             SetState(VisitorState.WalkingToAttraction);
         }
@@ -131,7 +128,10 @@ namespace Visitors
 
         private void ChooseDirection()
         {
-            _direction = _directions.RandomChoice();
+            if (_state == VisitorState.Wandering || _state == VisitorState.FreakingOut)
+            {
+                _direction = _directions.RandomChoice();
+            }
         }
 
         private void TurnToTarget(Transform target)
@@ -172,8 +172,8 @@ namespace Visitors
 
         private void SetState(VisitorState state)
         {
-            _wanderingTimer.isActive = state == VisitorState.Wandering;
-            _enjoyingTimer.isActive = state == VisitorState.EnjoyingAttraction;
+            if (!(_wanderingTimer is null)) _wanderingTimer.isActive = state == VisitorState.Wandering;
+            if (!(_enjoyingTimer is null)) _enjoyingTimer.isActive = state == VisitorState.EnjoyingAttraction;
             _state = state;
         }
     }

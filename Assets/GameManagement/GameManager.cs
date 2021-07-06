@@ -20,11 +20,8 @@ namespace GameManagement
         private PlayerController _player;
 
         public Text phaseText;
-
-        // [HideInInspector] public Phase phase = Phase.Building;
-
         private Phase _phase = Phase.Building;
-        [HideInInspector] public event EventHandler OnParkBreaks;
+        public event EventHandler OnParkBreaks;
         public Builder builder;
 
         // Escape point
@@ -35,7 +32,7 @@ namespace GameManagement
         [SerializeField] private int timeBeforeEscapeSpawnsInSeconds = 1;
 
         // Park Breaking
-        private readonly List<Attraction> _attractions = new List<Attraction>();
+        public readonly List<Attraction> attractions = new List<Attraction>();
         private AudioSource _breakSound;
         
         // Prestige
@@ -71,13 +68,13 @@ namespace GameManagement
 
         public void AddAttraction(Attraction attraction)
         {
-            _attractions.Add(attraction);
+            attractions.Add(attraction);
             prestige += attraction.prestige;
         }
 
         public void EnterRunFromDinosaursPhase()
         {
-            foreach (var attraction in _attractions)
+            foreach (var attraction in attractions)
             {
                 attraction.ReleaseDinosaurs();
             }
