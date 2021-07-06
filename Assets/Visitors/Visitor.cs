@@ -1,13 +1,16 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using GameManagement;
 using Phase_1.Builder.Buildings;
+using Phase_2.Player;
 using UnityEngine;
 using Utilities;
 using Utilities.Extensions;
 
 namespace Visitors
 {
-    public class Visitor: Chaseable
+    public class Visitor : Chaseable
     {
         [SerializeField] private float speed = 1f;
         private Vector2 _direction = Vector2.down;
@@ -16,7 +19,7 @@ namespace Visitors
 
         private int _health = 10;
         private VisitorState _state;
-        
+
         // Wandering
         private const int WanderingTime = 3;
         private Timer _wanderingTimer;
@@ -25,18 +28,48 @@ namespace Visitors
         private const float EnjoyingTime = 5;
         private Timer _enjoyingTimer;
 
+        // Running Around
+        private static float _runningSpeedMultiplier = 1.4f;
+        private static float _runningDirectionChangeDelay = 1f;
+        private Timer _runningTimer; // TODO: destroy this once the visitor finds the player
+        private PlayerController _player;
+
         private void Start()
         {
             _transform = gameObject.transform;
             _wanderingTimer = gameObject.AddTimer(WanderingTime, ChooseTarget);
             _enjoyingTimer = gameObject.AddTimer(EnjoyingTime, StartWandering);
             SetState(VisitorState.Wandering);
-            
+
+            FindObjectOfType<GameManager>().OnParkBreaks += OnParkBreaks;
+        }
+
+        private void OnParkBreaks(object sender, EventArgs args)
+        {
+            _state = VisitorState.FreakingOut;
+            _runningTimer = gameObject.AddTimer(_runningDirectionChangeDelay, ChooseDirection);
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (_state != VisitorState.FreakingOut) return;
+
+            if (other.gameObject.name == "VisitorCatchRadius") // TODO: String check bad
+            {
+                _state = VisitorState.FollowingPlayer;
+                Destroy(_runningTimer);
+                _player = FindObjectOfType<PlayerController>();
+            }
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
+            if (_state == VisitorState.FollowingPlayer)
+            {
+                TurnToTarget(_player.transform);
+            }
+
             if (_state == VisitorState.Wandering)
             {
                 var wantsToTurn = MyRandom.CoinFlip(.005f);
@@ -47,14 +80,16 @@ namespace Visitors
             }
             else if (_state == VisitorState.WalkingToAttraction)
             {
-                TurnToTarget();
+                TurnToTarget(_target.transform);
             }
+
             Move();
         }
 
         public void OnTriggerStay2D(Collider2D other)
         {
-            if (_state == VisitorState.WalkingToAttraction && other.gameObject.GetComponent<ViewRadius>() == _target.viewRadius)
+            if (_state == VisitorState.WalkingToAttraction &&
+                other.gameObject.GetComponent<ViewRadius>() == _target.viewRadius)
             {
                 StartEnjoying();
             }
@@ -88,7 +123,8 @@ namespace Visitors
         private void Move()
         {
             var oldPosition = (Vector2) transform.position;
-            var movement = _direction * (speed * Time.deltaTime);
+            var movement = _direction * (speed * Time.deltaTime *
+                                         (_state == VisitorState.FreakingOut ? _runningSpeedMultiplier : 1));
             var newPosition = new Vector3(oldPosition.x + movement.x, oldPosition.y + movement.y, -1f);
             _transform.position = newPosition;
         }
@@ -98,9 +134,9 @@ namespace Visitors
             _direction = _directions.RandomChoice();
         }
 
-        private void TurnToTarget()
+        private void TurnToTarget(Transform target)
         {
-            _direction = _target.transform.position - transform.position;
+            _direction = target.position - transform.position;
         }
 
         private void Die()

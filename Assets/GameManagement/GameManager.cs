@@ -1,5 +1,5 @@
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using Phase_1.Builder;
 using Phase_1.Builder.Buildings;
 using Phase_1.Camera;
@@ -21,7 +21,10 @@ namespace GameManagement
 
         public Text phaseText;
 
+        // [HideInInspector] public Phase phase = Phase.Building;
+
         private Phase _phase = Phase.Building;
+        [HideInInspector] public event EventHandler OnParkBreaks;
         public Builder builder;
 
         // Escape point
@@ -68,15 +71,6 @@ namespace GameManagement
             _attractions.Add(attraction);
         }
 
-        private void TryBreak()
-        {
-            var chance = _attractions.Sum(a => a.breakChancePercent);
-            if (MyRandom.Percent(chance))
-            {
-                EnterRunFromDinosaursPhase();
-            }
-        }
-
         public void EnterRunFromDinosaursPhase()
         {
             foreach (var attraction in _attractions)
@@ -89,13 +83,15 @@ namespace GameManagement
 
             var player = ActivatePlayer();
             mainCamera.EnterEscapePhase(player);
-            _player = player.GetComponent<PlayerController>();
-            _player.manager = GetComponent<GameManager>();
-            _player.GetComponent<MouseWheelZoom>().myCamera = mainCamera.GetComponent<Camera>();
+            _player = player.GetComponentInChildren<PlayerController>();
+            _player.manager = this;
+            _player.GetComponentInChildren<MouseWheelZoom>().myCamera = mainCamera.GetComponent<Camera>();
 
             builder.DeselectGhost();
             Destroy(builder.gameObject);
             phaseText.text = "Escape Phase";
+
+            OnParkBreaks?.Invoke(this, EventArgs.Empty);
 
             _breakSound.Play();
         }
