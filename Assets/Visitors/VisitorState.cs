@@ -7,5 +7,6 @@
         EnjoyingAttraction,
         FreakingOut,
         FollowingPlayer,
+        HeadingToEscapePoint,
     }
 }

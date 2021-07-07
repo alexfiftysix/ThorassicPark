@@ -34,9 +34,12 @@ namespace GameManagement
         // Park Breaking
         public readonly List<Attraction> attractions = new List<Attraction>();
         private AudioSource _breakSound;
-        
+
         // Prestige
         [HideInInspector] public float prestige = 0;
+
+        // Escapees
+        private int _visitorEscapeCount = 0;
 
         private void Start()
         {
@@ -46,12 +49,13 @@ namespace GameManagement
 
         private void Update()
         {
-            if (_phase == Phase.RunningFromDinosaurs && Time.time > _escapePhaseStartTime + timeBeforeEscapeSpawnsInSeconds)
+            if (_phase == Phase.RunningFromDinosaurs &&
+                Time.time > _escapePhaseStartTime + timeBeforeEscapeSpawnsInSeconds)
             {
                 StartEscapePhase();
             }
         }
-        
+
         public void PlayerEscaped()
         {
             _phase = Phase.GameWon;
@@ -95,6 +99,11 @@ namespace GameManagement
             OnParkBreaks?.Invoke(this, EventArgs.Empty);
 
             _breakSound.Play();
+        }
+
+        public void VisitorEscaped()
+        {
+            _visitorEscapeCount++;
         }
 
         private void StartEscapePhase()

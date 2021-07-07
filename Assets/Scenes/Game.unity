@@ -653,7 +653,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2810499c1e5f3fd4a8b7628b63dba593, type: 2}
+  - {fileID: 2100000, guid: 302e52e974ff36645be3a54fd39d2ab5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7579,6 +7579,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa4dd9d0e0f1c4b46b3cffff469a3818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &6625491422904249327
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1500150472228074504, guid: 58fd26a09c3f97645ad4f8a79b37345d, type: 3}
+      propertyPath: m_Name
+      value: VisitorEscapePointBuilding
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238425252607008406, guid: 58fd26a09c3f97645ad4f8a79b37345d, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238425252607008406, guid: 58fd26a09c3f97645ad4f8a79b37345d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238425252607008406, guid: 58fd26a09c3f97645ad4f8a79b37345d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238425252607008406, guid: 58fd26a09c3f97645ad4f8a79b37345d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238425252607008406, guid: 58fd26a09c3f97645ad4f8a79b37345d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238425252607008406, guid: 58fd26a09c3f97645ad4f8a79b37345d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238425252607008406, guid: 58fd26a09c3f97645ad4f8a79b37345d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238425252607008406, guid: 58fd26a09c3f97645ad4f8a79b37345d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238425252607008406, guid: 58fd26a09c3f97645ad4f8a79b37345d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238425252607008406, guid: 58fd26a09c3f97645ad4f8a79b37345d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238425252607008406, guid: 58fd26a09c3f97645ad4f8a79b37345d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8243082565422847628, guid: 58fd26a09c3f97645ad4f8a79b37345d, type: 3}
+      propertyPath: m_Name
+      value: VisitorEscapePoint
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 58fd26a09c3f97645ad4f8a79b37345d, type: 3}
 --- !u!1001 &7049339014408304311
 PrefabInstance:
   m_ObjectHideFlags: 0

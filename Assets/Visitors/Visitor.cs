@@ -38,6 +38,10 @@ namespace Visitors
 
         // Following Player
         private PlayerController _player;
+        
+        // Escaping
+        private bool _escaped;
+        private GameObject _escapePoint;
 
         private void Start()
         {
@@ -47,7 +51,7 @@ namespace Visitors
             _wanderingTurnTimer = gameObject.AddTimer(WanderingTurnTime, ChooseDirection);
             SetState(VisitorState.Wandering);
 
-            _gameManager = FindObjectOfType<GameManager>(); 
+            _gameManager = FindObjectOfType<GameManager>();
             _gameManager.OnParkBreaks += OnParkBreaks;
         }
 
@@ -71,6 +75,10 @@ namespace Visitors
             {
                 TurnToTarget(_target.transform);
             }
+            else if (_state == VisitorState.HeadingToEscapePoint)
+            {
+                TurnToTarget(_escapePoint.transform);
+            }
 
             Move();
         }
@@ -83,13 +91,36 @@ namespace Visitors
             {
                 StartEnjoying();
             }
-            else if (_state == VisitorState.FreakingOut
-                     && other.gameObject.name == "VisitorCatchRadius") // TODO: String check bad
+            else if (_state == VisitorState.FreakingOut && other.gameObject.name == "VisitorCatchRadius")
             {
+                // TODO: String check bad
                 SetState(VisitorState.FollowingPlayer);
                 Destroy(_runningTurnTimer);
                 _player = FindObjectOfType<PlayerController>();
             }
+            else if (_state == VisitorState.FollowingPlayer && other.gameObject.name == "VisitorEscapePointRadius")
+            {
+                // TODO: String check bad
+                SetState(VisitorState.HeadingToEscapePoint);
+                _escapePoint = other.gameObject.FindParent("VisitorEscapePoint");
+            }
+        }
+        
+
+        public void OnCollisionEnter2D(Collision2D other)
+        {
+            if (_state == VisitorState.HeadingToEscapePoint && !_escaped && other.gameObject.name == "VisitorEscapePointBuilding")
+            {
+                // TODO: string check bad
+                Escape();
+            }
+        }
+
+        private void Escape()
+        {
+            _escaped = true;
+            _gameManager.VisitorEscaped();
+            Destroy(gameObject);
         }
 
         // Return true if the Visitor has died

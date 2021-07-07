@@ -39,6 +39,8 @@ namespace Dinos
         {
             if (!(target is null))
             {
+                // TODO: This doesn't work. After a visitor dies, they're still tracked.
+                // You could have a "Died" event from the visitor which dinos subscribe to when they start chasing a visitor?
                 RotateTowardTarget(target.transform.position);
                 MoveForwards();
             }
