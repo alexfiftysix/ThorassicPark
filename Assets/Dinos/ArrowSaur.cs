@@ -37,7 +37,7 @@ namespace Dinos
         // Update is called once per frame
         private void Update()
         {
-            if (!(target is null))
+            if (target != null)
             {
                 // TODO: This doesn't work. After a visitor dies, they're still tracked.
                 // You could have a "Died" event from the visitor which dinos subscribe to when they start chasing a visitor?
@@ -49,15 +49,15 @@ namespace Dinos
         public void OnCollisionEnter2D(Collision2D other)
         {
             var chaseable = other.gameObject.GetComponent<Chaseable>();
-            if (!(chaseable is null))
+            if (chaseable != null)
             {
-                Bite(target);
+                Bite(chaseable);
             }
         }
 
-        private void Bite(Chaseable target)
+        private void Bite(Chaseable biteTarget)
         {
-            target.TakeDamage(damage);
+            biteTarget.TakeDamage(damage);
             _biteSound.Play();
         }
 

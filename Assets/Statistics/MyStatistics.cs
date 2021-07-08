@@ -2,7 +2,14 @@
 {
     public static class MyStatistics
     {
-        public static int MoneyEarned = 5;
-        public static bool WonLastGame = false;
+        public static int moneyEarned = 5;
+        public static bool wonLastGame = false;
+        public static int visitorsSaved = 0;
+
+        public static void Reset()
+        {
+            moneyEarned = 5;
+            visitorsSaved = 0;
+        }
     }
 }

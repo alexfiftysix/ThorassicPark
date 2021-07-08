@@ -38,13 +38,11 @@ namespace GameManagement
         // Prestige
         [HideInInspector] public float prestige = 0;
 
-        // Escapees
-        private int _visitorEscapeCount = 0;
-
         private void Start()
         {
             phaseText.text = "Building Phase";
             _breakSound = GetComponent<AudioSource>();
+            MyStatistics.Reset();
         }
 
         private void Update()
@@ -59,14 +57,14 @@ namespace GameManagement
         public void PlayerEscaped()
         {
             _phase = Phase.GameWon;
-            MyStatistics.WonLastGame = true;
+            MyStatistics.wonLastGame = true;
             SceneManager.LoadScene(3);
         }
 
         public void GameOver()
         {
             _phase = Phase.GameLost;
-            MyStatistics.WonLastGame = false;
+            MyStatistics.wonLastGame = false;
             SceneManager.LoadScene(3); // TODO: Do this better
         }
 
@@ -103,7 +101,7 @@ namespace GameManagement
 
         public void VisitorEscaped()
         {
-            _visitorEscapeCount++;
+            MyStatistics.visitorsSaved++;
         }
 
         private void StartEscapePhase()
