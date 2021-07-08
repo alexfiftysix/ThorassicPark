@@ -20,6 +20,7 @@ namespace Phase_1.Builder.Buildings.ZombiePen
         private bool _parkIsBroken = false;
 
         // Biting
+        private AudioSource _biteSound;
         private float _biteDelay = 1.5f;
         private float _biteTimePassed = 0;
 
@@ -31,6 +32,7 @@ namespace Phase_1.Builder.Buildings.ZombiePen
             _parkIsBroken = gameManager.phase != Phase.Building;
 
             _transform = zombieBase.transform;
+            _biteSound = GetComponent<AudioSource>();
         }
 
         private void Update()
@@ -75,22 +77,32 @@ namespace Phase_1.Builder.Buildings.ZombiePen
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("Visitor")) // TODO: String comparison bad 
             {
-                Bite(other.gameObject);
+                Zombify(other.gameObject);
             }
             else if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
-                other.gameObject.GetComponentInParent<PlayerController>().TakeDamage(2);
+                Bite(other.gameObject.GetComponentInParent<PlayerController>());
             }
         }
 
-        private void Bite(GameObject visitor)
+        private void Zombify(GameObject visitor)
         {
             if (_biteTimePassed < _biteDelay) return;
 
             _biteTimePassed = 0;
+            _biteSound.Play();
             var position = visitor.transform.position;
             Destroy(visitor);
             Instantiate(zombieBase, position, Quaternion.identity);
+        }
+
+        private void Bite(PlayerController player)
+        {
+            if (_biteTimePassed < _biteDelay) return;
+
+            _biteTimePassed = 0;
+            _biteSound.Play();
+            player.TakeDamage(damage);
         }
 
         private void TurnToTarget(Transform target)
