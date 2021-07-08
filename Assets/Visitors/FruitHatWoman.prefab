@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7243007372674161528}
   - component: {fileID: 2121127131415297268}
   - component: {fileID: -8025782846807671249}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FruitHatWoman
   m_TagString: Untagged
   m_Icon: {fileID: 0}
