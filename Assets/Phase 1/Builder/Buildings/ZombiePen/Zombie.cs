@@ -19,6 +19,10 @@ namespace Phase_1.Builder.Buildings.ZombiePen
 
         private bool _parkIsBroken = false;
 
+        // Biting
+        private float _biteDelay = 1.5f;
+        private float _biteTimePassed = 0;
+
         // Start is called before the first frame update
         private void Start()
         {
@@ -32,6 +36,8 @@ namespace Phase_1.Builder.Buildings.ZombiePen
         private void Update()
         {
             if (!_parkIsBroken) return;
+
+            _biteTimePassed += Time.deltaTime;
 
             if (_target == null)
             {
@@ -65,7 +71,7 @@ namespace Phase_1.Builder.Buildings.ZombiePen
             _target = FindObjectsOfType<Chaseable>().RandomChoice();
         }
 
-        private void OnCollisionEnter2D(Collision2D other)
+        private void OnCollisionStay2D(Collision2D other)
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("Visitor")) // TODO: String comparison bad 
             {
@@ -79,6 +85,9 @@ namespace Phase_1.Builder.Buildings.ZombiePen
 
         private void Bite(GameObject visitor)
         {
+            if (_biteTimePassed < _biteDelay) return;
+
+            _biteTimePassed = 0;
             var position = visitor.transform.position;
             Destroy(visitor);
             Instantiate(zombieBase, position, Quaternion.identity);
