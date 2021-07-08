@@ -50,3 +50,5 @@ MonoBehaviour:
     isUnlocked: 1
   - attraction: {fileID: 4847376592673436236, guid: ccad2886684778f4781cd62311ea56a0, type: 3}
     isUnlocked: 0
+  - attraction: {fileID: 824366217041316039, guid: 1fdbb84de0bbeff4a98741645bbc9259, type: 3}
+    isUnlocked: 1

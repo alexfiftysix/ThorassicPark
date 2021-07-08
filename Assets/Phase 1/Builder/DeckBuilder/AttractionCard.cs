@@ -43,7 +43,7 @@ namespace Phase_1.Builder.DeckBuilder
         public void SetAttraction(Attraction newAttraction)
         {
             isEmpty = newAttraction is null; 
-            var monsterSpriteRenderer = newAttraction is null ? null : newAttraction.monster.GetComponent<SpriteRenderer>();
+            var monsterSpriteRenderer = newAttraction is null ? null : newAttraction.monster.GetComponentInChildren<SpriteRenderer>();
             image.color = monsterSpriteRenderer is null ? _defaultImageColour : monsterSpriteRenderer.color;
             image.sprite = monsterSpriteRenderer is null ? null : monsterSpriteRenderer.sprite;
             image.preserveAspect = true;
