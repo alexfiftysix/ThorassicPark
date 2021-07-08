@@ -64,6 +64,7 @@ MonoBehaviour:
   damagedMaterial: {fileID: 2100000, guid: 3e852c4efd4f1c842967162464726937, type: 2}
   timeToBecomeDamaged: 5
   timeToBreak: 3
+  prestige: 10
   cost: 1
 --- !u!82 &8657063122454846166
 AudioSource:

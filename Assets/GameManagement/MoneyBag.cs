@@ -14,10 +14,10 @@ namespace GameManagement
         /// </summary>
         public bool Withdraw(int dollars)
         {
-            if (MyStatistics.MoneyEarned >= dollars)
+            if (MyStatistics.moneyEarned >= dollars)
             {
-                MyStatistics.MoneyEarned -= dollars;
-                SetMoneyText(MyStatistics.MoneyEarned);
+                MyStatistics.moneyEarned -= dollars;
+                SetMoneyText(MyStatistics.moneyEarned);
                 return true;
             }
 
@@ -26,8 +26,8 @@ namespace GameManagement
 
         public void AddMoney(int dollars)
         {
-            MyStatistics.MoneyEarned += dollars;
-            SetMoneyText(MyStatistics.MoneyEarned);
+            MyStatistics.moneyEarned += dollars;
+            SetMoneyText(MyStatistics.moneyEarned);
         }
 
         private void SetMoneyText(int money)

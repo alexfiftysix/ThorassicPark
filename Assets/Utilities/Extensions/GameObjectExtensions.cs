@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Utilities.Extensions
@@ -10,6 +11,21 @@ namespace Utilities.Extensions
             var timer = gameObject.AddComponent<Timer>(); 
             timer.Init(intervalTime, @delegate);
             return timer;
+        }
+
+        [CanBeNull]
+        public static GameObject FindParent(this GameObject gameObject, string name)
+        {
+            if (gameObject.transform.parent.gameObject.name == name)
+            {
+                return gameObject.transform.parent.gameObject;
+            }
+            else if (gameObject.transform.parent == null)
+            {
+                return null;
+            }
+
+            return gameObject.transform.parent.gameObject.FindParent(name);
         }
     }
 }
