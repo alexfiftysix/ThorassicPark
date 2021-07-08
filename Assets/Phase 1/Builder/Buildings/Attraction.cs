@@ -12,7 +12,6 @@ namespace Phase_1.Builder.Buildings
     {
         public ViewRadius viewRadius;
         public MoneyBag moneyBag;
-        public float breakChancePercent;
         public OverlapCheck overlapCheck;
 
         // Ghost building
@@ -44,6 +43,10 @@ namespace Phase_1.Builder.Buildings
 
         // Build
         private AudioSource _audioSource;
+        
+        // Money
+        private const float MoneyTime = 5;
+        private Timer _moneyTimer;
 
         public int cost = 1;
 
@@ -51,6 +54,16 @@ namespace Phase_1.Builder.Buildings
         {
             _defaultMaterial = spriteRenderer.material;
             _audioSource = GetComponent<AudioSource>();
+        }
+
+        protected virtual void Start()
+        {
+            _moneyTimer = gameObject.AddTimer(MoneyTime, AddMoney);
+        }
+        
+        protected virtual void AddMoney()
+        {
+            moneyBag.AddMoney(viewRadius.VisitorCount);
         }
 
         public virtual void Build(MoneyBag newMoneyBag, GameManager gameManager)
@@ -70,6 +83,7 @@ namespace Phase_1.Builder.Buildings
         protected virtual void Break()
         {
             _gameManager.EnterRunFromDinosaursPhase();
+            Destroy(_moneyTimer);
         }
 
         public virtual void ReleaseDinosaurs()

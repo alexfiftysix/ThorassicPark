@@ -10,7 +10,7 @@ namespace Phase_1.Builder.DeckBuilder
 {
     public class Hand : MonoBehaviour
     {
-        public List<AttractionCard> cards; // TODO: Why are these going null on restart??
+        public List<AttractionCard> cards;
         private List<Attraction> _attractions; // TODO: Don't like having 2 lists conveying very similar information
         private int _maxLength;
         private Deck _deck;

@@ -20,7 +20,7 @@ namespace GameManagement
         private PlayerController _player;
 
         public Text phaseText;
-        private Phase _phase = Phase.Building;
+        public Phase phase = Phase.Building;
         public event EventHandler OnParkBreaks;
         public Builder builder;
 
@@ -47,7 +47,7 @@ namespace GameManagement
 
         private void Update()
         {
-            if (_phase == Phase.RunningFromDinosaurs &&
+            if (phase == Phase.RunningFromDinosaurs &&
                 Time.time > _escapePhaseStartTime + timeBeforeEscapeSpawnsInSeconds)
             {
                 StartEscapePhase();
@@ -56,14 +56,14 @@ namespace GameManagement
 
         public void PlayerEscaped()
         {
-            _phase = Phase.GameWon;
+            phase = Phase.GameWon;
             MyStatistics.wonLastGame = true;
             SceneManager.LoadScene(3);
         }
 
         public void GameOver()
         {
-            _phase = Phase.GameLost;
+            phase = Phase.GameLost;
             MyStatistics.wonLastGame = false;
             SceneManager.LoadScene(3); // TODO: Do this better
         }
@@ -81,7 +81,7 @@ namespace GameManagement
                 attraction.ReleaseDinosaurs();
             }
 
-            _phase = Phase.RunningFromDinosaurs;
+            phase = Phase.RunningFromDinosaurs;
             _escapePhaseStartTime = Time.time;
 
             var player = ActivatePlayer();
@@ -113,7 +113,7 @@ namespace GameManagement
             _escapePoint.manager = this;
             _player.helipad = _escapePoint;
 
-            _phase = Phase.Escaping;
+            phase = Phase.Escaping;
         }
 
         private GameObject ActivatePlayer()

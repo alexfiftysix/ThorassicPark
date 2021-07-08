@@ -27,6 +27,10 @@ namespace GameManagement
             {
                 _deck.UnlockAttraction("ArrowPenPink");
             }
+            if (MyStatistics.visitorsSaved >= 10) // TODO: Wrap this up in some kind of Achievements class
+            {
+                _deck.UnlockAttraction("ZombiePen");
+            }
         }
 
         public void PlayAgain()

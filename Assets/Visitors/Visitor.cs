@@ -62,6 +62,7 @@ namespace Visitors
             Destroy(_wanderingTurnTimer);
             Destroy(_enjoyingTimer);
             _runningTurnTimer = gameObject.AddTimer(RunningDirectionChangeDelay, ChooseDirection);
+            _direction = Directions.directions.RandomChoice();
         }
 
         // Update is called once per frame
@@ -161,7 +162,7 @@ namespace Visitors
         {
             if (_state == VisitorState.Wandering || _state == VisitorState.FreakingOut)
             {
-                _direction = _directions.RandomChoice();
+                _direction = Directions.directions.RandomChoice();
             }
         }
 
@@ -174,19 +175,6 @@ namespace Visitors
         {
             Destroy(gameObject);
         }
-
-        private readonly List<Vector2> _directions = new List<Vector2>()
-        {
-            Vector2.up,
-            Vector2.down,
-            Vector2.left,
-            Vector2.right,
-            new Vector2(1, 1),
-            new Vector2(1, -1),
-            new Vector2(-1, 1),
-            new Vector2(-1, -1),
-            Vector2.zero
-        };
 
         private void StartWandering()
         {
