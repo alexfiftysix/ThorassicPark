@@ -104,6 +104,7 @@ MonoBehaviour:
   target: {fileID: 0}
   damage: 1
   bouncePower: 0.02
+  biteAudioEvent: {fileID: 11400000, guid: 8a1ec240dcd686e44bfe9bebb45be507, type: 2}
 --- !u!61 &7163406423809755086
 BoxCollider2D:
   m_ObjectHideFlags: 0

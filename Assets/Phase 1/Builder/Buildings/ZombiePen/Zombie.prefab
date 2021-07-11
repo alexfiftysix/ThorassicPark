@@ -155,6 +155,7 @@ MonoBehaviour:
   zombieBase: {fileID: 5343487538611026992}
   speed: 0.4
   damage: 2
+  biteSound: {fileID: 11400000, guid: 367c3b7b8aed01c46955c45f0aa458cb, type: 2}
 --- !u!82 &3265939636158807633
 AudioSource:
   m_ObjectHideFlags: 0

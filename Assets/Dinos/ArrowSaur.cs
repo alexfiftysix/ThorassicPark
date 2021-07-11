@@ -1,4 +1,5 @@
 using System.Linq;
+using Common.Audio;
 using UnityEngine;
 using Utilities;
 using Utilities.Extensions;
@@ -22,7 +23,8 @@ namespace Dinos
         [SerializeField] private float bouncePower = 0.1f;
         private float _bounceDelay;
 
-        private AudioSource _biteSound;
+        private AudioSource _biteAudioSource;
+        public AudioEvent biteAudioEvent;
 
         private void Start()
         {
@@ -31,7 +33,7 @@ namespace Dinos
             _transform = transform;
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _bounceDelay = Random.Range(1f, 4f);
-            _biteSound = GetComponent<AudioSource>();
+            _biteAudioSource = GetComponent<AudioSource>();
         }
 
         // Update is called once per frame
@@ -57,7 +59,7 @@ namespace Dinos
         private void Bite(Chaseable biteTarget)
         {
             biteTarget.TakeDamage(damage);
-            _biteSound.Play();
+            biteAudioEvent.Play(_biteAudioSource);
         }
 
         private void Bounce()
