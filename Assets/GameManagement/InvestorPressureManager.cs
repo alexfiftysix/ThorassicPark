@@ -61,8 +61,9 @@ namespace GameManagement
 
         private void OnParkBreaks()
         {
-            Destroy(slider);
+            Destroy(slider.gameObject);
             Destroy(_calculationTimer);
+            Destroy(_lowGrowthTimer);
             ExitLowGrowthZone();
         }
 
@@ -72,11 +73,11 @@ namespace GameManagement
 
             CalculateGrowthPerSecond();
             
-            if (!_lowGrowthTimer.isActive && _growthPerSecond < lowGrowthThreshold)
+            if (!_lowGrowthTimer.isActive && _averageGrowthOverTime < lowGrowthThreshold)
             {
                 EnterLowGrowthZone();
             } 
-            else if (_lowGrowthTimer.isActive && _growthPerSecond >= lowGrowthThreshold)
+            else if (_lowGrowthTimer.isActive && _averageGrowthOverTime >= lowGrowthThreshold)
             {
                 ExitLowGrowthZone();
             }
