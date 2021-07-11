@@ -34,9 +34,9 @@ namespace GameManagement
         private float _averageGrowthOverTime = 0;
 
         [SerializeField] private int lowGrowthMaximumTimeInSeconds = 5;
-        [SerializeField] private float lowGrowthThreshold = 1;
+        private float _lowGrowthThreshold = -100;
         private Timer _lowGrowthTimer;
-        private bool _growthTimerCanActivate = false;
+        public TextMeshProUGUI lowGrowthThresholdText;
 
         // Start is called before the first frame update
         private void Start()
@@ -74,11 +74,11 @@ namespace GameManagement
 
             CalculateGrowthPerSecond();
             
-            if (_growthTimerCanActivate && !_lowGrowthTimer.isActive && _averageGrowthOverTime < lowGrowthThreshold)
+            if (!_lowGrowthTimer.isActive && _averageGrowthOverTime < _lowGrowthThreshold)
             {
                 EnterLowGrowthZone();
             } 
-            else if (_lowGrowthTimer.isActive && _averageGrowthOverTime >= lowGrowthThreshold)
+            else if (_lowGrowthTimer.isActive && _averageGrowthOverTime >= _lowGrowthThreshold)
             {
                 ExitLowGrowthZone();
             }
@@ -123,9 +123,11 @@ namespace GameManagement
 
             growthPerSecondText.text = $"{_averageGrowthOverTime:C}";
 
-            _growthTimerCanActivate = _growthTimerCanActivate || _averageGrowthOverTime > 1;
+            var growthThreshold = _averageGrowthOverTime / 3;
+            growthThreshold = growthThreshold <= 0 ? -100 : growthThreshold;
+            _lowGrowthThreshold = Math.Max(_lowGrowthThreshold, growthThreshold);
+            lowGrowthThresholdText.text = $"{_lowGrowthThreshold:C}";
         }
-
 
         private void InvestorShutdown()
         {
