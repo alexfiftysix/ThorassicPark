@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -7952229473891565875}
   - component: {fileID: -6305880583304843667}
   - component: {fileID: -4699165534488121435}
+  - component: {fileID: 2644001649830032285}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -50,9 +51,11 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   playerPrefab: {fileID: 7201206678435542381, guid: 2dd16ac4854659a45bfb25cbd1a6787d, type: 3}
   phaseText: {fileID: 0}
+  phase: 0
   builder: {fileID: 0}
   escapePointPrefab: {fileID: 4110359013886583792, guid: 3d2b33ce50f548c48a0e29a46b516788, type: 3}
   timeBeforeEscapeSpawnsInSeconds: 1
+  prestige: 0
 --- !u!114 &2251839720636743574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,3 +224,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2644001649830032285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8363036984877243614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b1c3b8ea057ec545be34e3439f95582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intervalInSeconds: 5
+  sliderMoveSpeed: 1
+  sliderGrowthSpeed: 1
+  slider: {fileID: 0}
