@@ -2,7 +2,7 @@
 {
     public static class MyStatistics
     {
-        public static int moneyEarned = 5;
+        public static float moneyEarned = 5;
         public static bool wonLastGame = false;
         public static int visitorsSaved = 0;
 

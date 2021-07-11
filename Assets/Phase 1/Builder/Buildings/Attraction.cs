@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using GameManagement;
 using Phase_1.Builder.Buildings.ArrowPen;
 using UnityEngine;
@@ -45,7 +46,8 @@ namespace Phase_1.Builder.Buildings
         private AudioSource _audioSource;
         
         // Money
-        private const float MoneyTime = 5;
+        private const float MoneyIntervalInSeconds = 1;
+        [SerializeField] private float moneyPerVisitorPerSecond = 1;
         private Timer _moneyTimer;
 
         public int cost = 1;
@@ -58,12 +60,12 @@ namespace Phase_1.Builder.Buildings
 
         protected virtual void Start()
         {
-            _moneyTimer = gameObject.AddTimer(MoneyTime, AddMoney);
+            _moneyTimer = gameObject.AddTimer(MoneyIntervalInSeconds, AddMoney);
         }
         
         protected virtual void AddMoney()
         {
-            moneyBag.AddMoney(viewRadius.VisitorCount);
+            moneyBag.AddMoney(viewRadius.VisitorCount / moneyPerVisitorPerSecond);
         }
 
         public virtual void Build(MoneyBag newMoneyBag, GameManager gameManager)

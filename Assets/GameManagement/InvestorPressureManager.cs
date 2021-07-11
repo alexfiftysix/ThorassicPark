@@ -13,7 +13,7 @@ namespace GameManagement
         [SerializeField] private float sliderMoveSpeed = 1;
         [SerializeField] private float sliderGrowthSpeed = 1;
 
-        private int _moneyAtLastInterval;
+        private float _moneyAtLastInterval;
         private Timer _moneyTimer;
 
         public Slider slider;
@@ -44,7 +44,7 @@ namespace GameManagement
         private void CalculateDollarsPerSecond()
         {
             _dollarsPerSecond = (MyStatistics.moneyEarned - _moneyAtLastInterval) / intervalInSeconds;
-            dollarsPerSecondText.text = $"${_dollarsPerSecond}/s";
+            dollarsPerSecondText.text = $"{_dollarsPerSecond:C}/s";
             if (_dollarsPerSecond > slider.maxValue)
             {
                 _sliderMaxValue = _dollarsPerSecond;
