@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Statistics;
 using TMPro;
 using UnityEngine;
@@ -12,7 +14,7 @@ namespace GameManagement
     {
         private GameManager _gameManager;
 
-        private float _intervalInSeconds = 1;
+        private const float IntervalInSeconds = 1;
         [SerializeField] private float sliderMoveSpeed = 1;
         [SerializeField] private float sliderGrowthSpeed = 1;
 
@@ -26,10 +28,12 @@ namespace GameManagement
         public TextMeshProUGUI growthPerSecondText;
         private float _lastDollarsPerSecond = 0;
         private float _growthPerSecond = 0;
-        private float _highestGrowthPerSecond = 1;
-        private float _lowestGrowthPerSecond = -1;
+        private float _highestGrowthOverTime = 1;
+        private float _lowestGrowthOverTime = -1;
+        private Queue<float> _growthOverTime = new Queue<float>();
+        private float _averageGrowthOverTime = 0;
 
-        [SerializeField] private float lowGrowthMaximumTime = 5;
+        [SerializeField] private int lowGrowthMaximumTimeInSeconds = 5;
         [SerializeField] private float lowGrowthThreshold = 1;
         private Timer _lowGrowthTimer;
 
@@ -37,20 +41,22 @@ namespace GameManagement
         private void Start()
         {
             _moneyAtLastInterval = MyStatistics.moneyEarned;
-            _calculationTimer = gameObject.AddTimer(_intervalInSeconds, Recalculate);
+            _calculationTimer = gameObject.AddTimer(IntervalInSeconds, Recalculate);
 
             _gameManager = GetComponent<GameManager>();
             _gameManager.OnParkBreaks += (sender, args) => OnParkBreaks();
 
-            _lowGrowthTimer = gameObject.AddTimer(lowGrowthMaximumTime, InvestorShutdown);
+            _lowGrowthTimer = gameObject.AddTimer(lowGrowthMaximumTimeInSeconds, InvestorShutdown);
             _lowGrowthTimer.DeActivate();
+
+            _growthOverTime = new Queue<float>(lowGrowthMaximumTimeInSeconds);
         }
 
         private void Update()
         {
-            slider.value = Mathf.Lerp(slider.value, _growthPerSecond, sliderMoveSpeed * Time.deltaTime);
-            slider.maxValue = Mathf.Lerp(slider.maxValue, _highestGrowthPerSecond * 1.25f, sliderGrowthSpeed * Time.deltaTime);
-            slider.minValue = Mathf.Lerp(slider.minValue, _lowestGrowthPerSecond * 1.25f, sliderGrowthSpeed * Time.deltaTime);
+            slider.value = Mathf.Lerp(slider.value, _averageGrowthOverTime, sliderMoveSpeed * Time.deltaTime);
+            slider.maxValue = Mathf.Lerp(slider.maxValue, _highestGrowthOverTime * 1.25f, sliderGrowthSpeed * Time.deltaTime);
+            slider.minValue = Mathf.Lerp(slider.minValue, _lowestGrowthOverTime * 1.25f, sliderGrowthSpeed * Time.deltaTime);
         }
 
         private void OnParkBreaks()
@@ -96,7 +102,7 @@ namespace GameManagement
 
         private void CalculateDollarsPerSecond()
         {
-            _dollarsPerSecond = (MyStatistics.moneyEarned - _moneyAtLastInterval) / _intervalInSeconds;
+            _dollarsPerSecond = (MyStatistics.moneyEarned - _moneyAtLastInterval) / IntervalInSeconds;
             _moneyAtLastInterval = MyStatistics.moneyEarned;
             _highestDollarsPerSecond = Math.Max(_highestDollarsPerSecond, _dollarsPerSecond);
         }
@@ -105,10 +111,15 @@ namespace GameManagement
         {
             _growthPerSecond = _dollarsPerSecond - _lastDollarsPerSecond;
             _lastDollarsPerSecond = _dollarsPerSecond;
-            _highestGrowthPerSecond = Math.Max(_highestGrowthPerSecond, _growthPerSecond);
-            _lowestGrowthPerSecond = Math.Min(_lowestGrowthPerSecond, _growthPerSecond);
 
-            growthPerSecondText.text = $"{_growthPerSecond:C}";
+            _growthOverTime.Enqueue(_growthPerSecond);
+            if (_growthOverTime.Count > lowGrowthMaximumTimeInSeconds) _growthOverTime.Dequeue();
+
+            _averageGrowthOverTime = _growthOverTime.Average();
+            _highestGrowthOverTime = Math.Max(_highestGrowthOverTime, _averageGrowthOverTime);
+            _lowestGrowthOverTime = Math.Min(_lowestGrowthOverTime, _averageGrowthOverTime);
+
+            growthPerSecondText.text = $"{_averageGrowthOverTime:C}";
         }
 
 
