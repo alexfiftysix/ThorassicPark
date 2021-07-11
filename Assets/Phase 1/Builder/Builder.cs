@@ -4,6 +4,7 @@ using Phase_1.Builder.Buildings;
 using Phase_1.Builder.DeckBuilder;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Utilities;
 
 namespace Phase_1.Builder
 {
@@ -16,7 +17,13 @@ namespace Phase_1.Builder
         public UnityEngine.Camera mainCamera;
         public GameManager gameManager;
 
+        public Canvas handCanvas;
+        private const float HandCanvasHiddenYPosition = -100;
+        private float _handCanvasX;
+        private float _handCanvasZ;
         private Hand _hand;
+
+        private bool _parkIsBroken = false;
 
         // ghost overlaps
         private bool _ghostCanBePlaced;
@@ -24,11 +31,21 @@ namespace Phase_1.Builder
         private void Start()
         {
             _hand = FindObjectOfType<Hand>();
+            FindObjectOfType<GameManager>().OnParkBreaks += (sender, args) => OnParkBreak();
+
+            _handCanvasX = handCanvas.transform.position.x;
+            _handCanvasZ = handCanvas.transform.position.z;
         }
         
         // Update is called once per frame
         void Update()
         {
+            if (_parkIsBroken)
+            {
+                var newY = Mathf.Lerp(handCanvas.transform.position.y, HandCanvasHiddenYPosition, Constants.UiMoveSpeed * Time.deltaTime);
+                handCanvas.transform.position = new Vector3(_handCanvasX, newY, _handCanvasZ);
+            }
+
             if (_ghostBuilding is null) return;
 
             var newPosition = GetGridMouseWorldPosition();
@@ -47,6 +64,8 @@ namespace Phase_1.Builder
 
         public void SetGhostBuilding(int index)
         {
+            if (_parkIsBroken) return;
+            
             if (!(_ghostBuilding is null))
             {
                 DeselectGhost();
@@ -64,8 +83,7 @@ namespace Phase_1.Builder
 
         public void OnBuild()
         {
-            if (_ghostBuilding is null) return;
-            if (!_ghostCanBePlaced) return;
+            if (_ghostBuilding is null || _parkIsBroken || !_ghostCanBePlaced) return;
 
             _ghostAttraction.Build(moneyBag, gameManager);
             gameManager.AddAttraction(_ghostAttraction);
@@ -91,6 +109,12 @@ namespace Phase_1.Builder
             var roundedX = Convert.ToInt32(Math.Round(mouseWorldPos.x));
             var roundedY = Convert.ToInt32(Math.Round(mouseWorldPos.y));
             return new Vector3(roundedX, roundedY, z);
+        }
+
+        private void OnParkBreak()
+        {
+            DeselectGhost();
+            _parkIsBroken = true;
         }
     }
 }

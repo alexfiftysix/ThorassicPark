@@ -90,8 +90,6 @@ namespace GameManagement
             _player.manager = this;
             _player.GetComponentInChildren<MouseWheelZoom>().myCamera = mainCamera.GetComponent<Camera>();
 
-            builder.DeselectGhost();
-            Destroy(builder.gameObject);
             phaseText.text = "Escape Phase";
 
             OnParkBreaks?.Invoke(this, EventArgs.Empty);

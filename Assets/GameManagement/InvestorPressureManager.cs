@@ -40,7 +40,6 @@ namespace GameManagement
         
         // Move on/off screen
         private float _goalXPosition = -150;
-        private float _showHideSpeed = 5;
 
         // Start is called before the first frame update
         private void Start()
@@ -63,7 +62,7 @@ namespace GameManagement
             slider.maxValue = Mathf.Lerp(slider.maxValue, _highestGrowthOverTime * 1.25f, sliderGrowthSpeed * Time.deltaTime);
             slider.minValue = Mathf.Lerp(slider.minValue, _lowestGrowthOverTime * 1.25f, sliderGrowthSpeed * Time.deltaTime);
 
-            var newX = Mathf.Lerp(slider.transform.position.x, _goalXPosition, _showHideSpeed * Time.deltaTime);
+            var newX = Mathf.Lerp(slider.transform.position.x, _goalXPosition, Constants.UiMoveSpeed * Time.deltaTime);
             slider.transform.position = new Vector2(newX, slider.transform.position.y);
         }
 
