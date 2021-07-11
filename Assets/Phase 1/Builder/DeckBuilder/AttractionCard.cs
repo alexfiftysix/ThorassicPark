@@ -7,7 +7,7 @@ namespace Phase_1.Builder.DeckBuilder
 {
     public class AttractionCard : MonoBehaviour
     {
-        public Attraction attraction;
+        public Unlockable unlockable;
         public TextMeshProUGUI nameText;
         public TextMeshProUGUI costText;
         public Image image;
@@ -16,50 +16,46 @@ namespace Phase_1.Builder.DeckBuilder
         public bool isStatic; // TODO: Allow clicking bigCard to deselect small card also
         public bool isEmpty = true;
         
-        private bool _isUnlocked;
         private readonly Color _defaultImageColour = new Color(0, 0, 0, 0);
-        private Deck _deck;
         private Hand _hand;
 
         private void Start()
         {
-            SetAttraction(attraction);
+            SetAttraction(unlockable);
             SetSelected(false);
-            _deck = FindObjectOfType<Deck>();
             _hand = FindObjectOfType<Hand>(); 
 
             if (!isStatic)
             {
-                _isUnlocked = attraction is null || _deck.IsUnlocked(attraction);
-                cross.gameObject.SetActive(!_isUnlocked);
+                cross.gameObject.SetActive(!unlockable.isUnlocked);
 
-                if (_hand.Contains(attraction))
+                if (_hand.Contains(unlockable.attraction))
                 {
                     SetSelected(true);
                 }
             }
         }
 
-        public void SetAttraction(Attraction newAttraction)
+        public void SetAttraction(Unlockable newAttraction)
         {
             isEmpty = newAttraction is null; 
-            var monsterSpriteRenderer = newAttraction is null ? null : newAttraction.monster.GetComponentInChildren<SpriteRenderer>();
+            var monsterSpriteRenderer = newAttraction is null ? null : newAttraction.attraction.monster.GetComponentInChildren<SpriteRenderer>();
             image.color = monsterSpriteRenderer is null ? _defaultImageColour : monsterSpriteRenderer.color;
             image.sprite = monsterSpriteRenderer is null ? null : monsterSpriteRenderer.sprite;
             image.preserveAspect = true;
 
             nameText.text = newAttraction is null ? "____" : newAttraction.name;
-            costText.text = newAttraction is null ? "$$$" : $"${newAttraction.cost}";
+            costText.text = newAttraction is null ? "$$$" : $"${newAttraction.attraction.cost}";
 
-            attraction = newAttraction;
+            unlockable = newAttraction;
             if (newAttraction is null) SetSelected(false);
         }
 
         public void OnClick()
         {
-            if (isStatic || !_isUnlocked) return;
+            if (isStatic || !unlockable.isUnlocked) return;
 
-            var added = _hand.Toggle(attraction);
+            var added = _hand.Toggle(unlockable);
             SetSelected(added);
         }
 

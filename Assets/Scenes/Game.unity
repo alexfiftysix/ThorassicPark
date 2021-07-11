@@ -573,6 +573,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Deck
       objectReference: {fileID: 0}
+    - target: {fileID: 5157655054117028479, guid: 01fc4d486337b744c98c72d080f100f3, type: 3}
+      propertyPath: attractions.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7163d12743c32a341a53caf36cbaa143, type: 2}
+    - target: {fileID: 5157655054117028479, guid: 01fc4d486337b744c98c72d080f100f3, type: 3}
+      propertyPath: attractions.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: c9d3235ee7a045e4398906202ec5be19, type: 2}
+    - target: {fileID: 5157655054117028479, guid: 01fc4d486337b744c98c72d080f100f3, type: 3}
+      propertyPath: attractions.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6d83980686dcb6f4c99ae58557edf498, type: 2}
+    - target: {fileID: 5157655054117028479, guid: 01fc4d486337b744c98c72d080f100f3, type: 3}
+      propertyPath: attractions.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: cb5c5baf453883c4dac4f4ceb58d5e87, type: 2}
     - target: {fileID: 5157655054117028736, guid: 01fc4d486337b744c98c72d080f100f3, type: 3}
       propertyPath: m_RootOrder
       value: 9

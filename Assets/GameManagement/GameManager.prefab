@@ -236,7 +236,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b1c3b8ea057ec545be34e3439f95582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intervalInSeconds: 5
   sliderMoveSpeed: 1
   sliderGrowthSpeed: 1
   slider: {fileID: 0}
+  growthPerSecondText: {fileID: 0}
+  lowGrowthMaximumTimeInSeconds: 5
+  lowGrowthThresholdText: {fileID: 0}

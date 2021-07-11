@@ -11,7 +11,7 @@ namespace Phase_1.Builder.DeckBuilder
     public class Hand : MonoBehaviour
     {
         public List<AttractionCard> cards;
-        private List<Attraction> _attractions; // TODO: Don't like having 2 lists conveying very similar information
+        private List<Unlockable> _attractions; // TODO: Don't like having 2 lists conveying very similar information
         private int _maxLength;
         private Deck _deck;
         private static Hand _instance;
@@ -33,7 +33,7 @@ namespace Phase_1.Builder.DeckBuilder
         {
             FindDeck();
             _maxLength = cards.Count;
-            _attractions = new List<Attraction>(_maxLength);
+            _attractions = new List<Unlockable>(_maxLength);
 
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
@@ -58,13 +58,11 @@ namespace Phase_1.Builder.DeckBuilder
         {
             if (!IsEmpty()) return;
 
-            // FindDeck();
-
-            var choices = _deck.attractions.Where(a => a.isUnlocked).Shuffled().ToArray();
+            var choices = _deck.unlockables.Where(a => a.isUnlocked).Shuffled().ToArray();
 
             for (var i = 0; i < cards.Count; i++)
             {
-                Add(choices[i].attraction);
+                Add(choices[i]);
             }
         }
 
@@ -79,17 +77,17 @@ namespace Phase_1.Builder.DeckBuilder
         /// <summary>
         /// Add or remove attraction from Hand
         /// </summary>
-        /// <param name="attraction"></param>
+        /// <param name="unlockable"></param>
         /// <returns>True if added, false if removed</returns>
-        public bool Toggle(Attraction attraction)
+        public bool Toggle(Unlockable unlockable)
         {
-            if (Contains(attraction))
+            if (Contains(unlockable.attraction))
             {
-                Remove(attraction);
+                Remove(unlockable);
                 return false;
             }
 
-            Add(attraction);
+            Add(unlockable);
             return true;
         }
 
@@ -98,14 +96,13 @@ namespace Phase_1.Builder.DeckBuilder
             return _attractions.Exists(a => a.name == attraction.name);
         }
 
-        private void Remove(Attraction attraction)
+        private void Remove(Unlockable unlockable)
         {
-            if (Contains(attraction))
-            {
-                // TODO: Checking on name is bad
-                cards.First(c => c.attraction.name == attraction.name).SetAttraction(null);
-                _attractions = _attractions.Where(a => a.name != attraction.name).ToList();
-            }
+            if (!Contains(unlockable.attraction)) return;
+
+            // TODO: Checking on name is bad
+            cards.First(c => c.unlockable.name == unlockable.name).SetAttraction(null);
+            _attractions = _attractions.Where(a => a.name != unlockable.name).ToList();
         }
 
         private bool IsFull()
@@ -122,20 +119,22 @@ namespace Phase_1.Builder.DeckBuilder
         {
             RequireIndexInRange(index);
 
-            return _attractions[index];
+            return _attractions[index].attraction;
         }
 
         private void RequireIndexInRange(int index)
         {
             if (index >= cards.Count)
             {
-                throw new IndexOutOfRangeException($"Your hand has capacity [{_maxLength}], but asked for card at index {index}");
+                throw new IndexOutOfRangeException(
+                    $"Your hand has capacity [{_maxLength}], but asked for card at index {index}");
             }
         }
 
-        private void Add(Attraction attraction, int index = -1)
+        private void Add(Unlockable attraction, int index = -1)
         {
             if (IsFull()) return;
+            if (!attraction.isUnlocked) return;
 
             if (index == -1)
             {
