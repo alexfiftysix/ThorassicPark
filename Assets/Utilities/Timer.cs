@@ -21,6 +21,17 @@ namespace Utilities
             _timePassed = 0;
         }
 
+        public void Activate()
+        {
+            Reset();
+            isActive = true;
+        }
+        
+        public void DeActivate()
+        {
+            isActive = false;
+        }
+
         private void Update()
         {
             if (HasPassed(_intervalTime, _timePassed) && isActive)

@@ -24,15 +24,15 @@ namespace GameManagement
             return false;
         }
 
-        public void AddMoney(int dollars)
+        public void AddMoney(float dollars)
         {
             MyStatistics.moneyEarned += dollars;
             SetMoneyText(MyStatistics.moneyEarned);
         }
 
-        private void SetMoneyText(int money)
+        private void SetMoneyText(float money)
         {
-            moneyText.text = $"${money}";
+            moneyText.text = $"{money:C}";
         }
     }
 }

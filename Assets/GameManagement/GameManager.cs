@@ -99,6 +99,15 @@ namespace GameManagement
             _breakSound.Play();
         }
 
+        /// <summary>
+        /// Used if growth is too low for too long.
+        /// </summary>
+        public void InvestorShutDown()
+        {
+            Debug.Log("Investor Shut Down!");
+            EnterRunFromDinosaursPhase();
+        }
+
         public void VisitorEscaped()
         {
             MyStatistics.visitorsSaved++;

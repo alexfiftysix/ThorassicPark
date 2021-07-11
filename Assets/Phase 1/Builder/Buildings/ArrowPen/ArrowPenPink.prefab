@@ -196,7 +196,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewRadius: {fileID: 9130085208717705485}
   moneyBag: {fileID: 0}
-  breakChancePercent: 5
   overlapCheck: {fileID: 7697034475094138718}
   spriteRenderer: {fileID: 4188406288318642144}
   ghostMaterial: {fileID: 2100000, guid: 6cbe84e1babb11f42a6893543c76bc6e, type: 2}
@@ -212,6 +211,8 @@ MonoBehaviour:
   damagedMaterial: {fileID: 2100000, guid: 3e852c4efd4f1c842967162464726937, type: 2}
   timeToBecomeDamaged: 5
   timeToBreak: 3
+  prestige: 1
+  moneyPerVisitorPerSecond: 1.4
   cost: 2
 --- !u!82 &-5727262964090130030
 AudioSource:
