@@ -36,6 +36,7 @@ namespace GameManagement
         [SerializeField] private int lowGrowthMaximumTimeInSeconds = 5;
         [SerializeField] private float lowGrowthThreshold = 1;
         private Timer _lowGrowthTimer;
+        private bool _growthTimerCanActivate = false;
 
         // Start is called before the first frame update
         private void Start()
@@ -73,7 +74,7 @@ namespace GameManagement
 
             CalculateGrowthPerSecond();
             
-            if (!_lowGrowthTimer.isActive && _averageGrowthOverTime < lowGrowthThreshold)
+            if (_growthTimerCanActivate && !_lowGrowthTimer.isActive && _averageGrowthOverTime < lowGrowthThreshold)
             {
                 EnterLowGrowthZone();
             } 
@@ -121,6 +122,8 @@ namespace GameManagement
             _lowestGrowthOverTime = Math.Min(_lowestGrowthOverTime, _averageGrowthOverTime);
 
             growthPerSecondText.text = $"{_averageGrowthOverTime:C}";
+
+            _growthTimerCanActivate = _growthTimerCanActivate || _averageGrowthOverTime > 1;
         }
 
 

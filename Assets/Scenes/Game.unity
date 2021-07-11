@@ -8533,7 +8533,7 @@ PrefabInstance:
       objectReference: {fileID: 1721769574}
     - target: {fileID: 2644001649830032285, guid: 538eb2731c4450e40991893fa50a57fa, type: 3}
       propertyPath: lowGrowthMaximumTime
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2644001649830032285, guid: 538eb2731c4450e40991893fa50a57fa, type: 3}
       propertyPath: earningsChangePerSecond
