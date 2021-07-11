@@ -1,4 +1,5 @@
 using System;
+using Common.Audio;
 using GameManagement;
 using Phase_2.Player;
 using UnityEngine;
@@ -20,7 +21,8 @@ namespace Phase_1.Builder.Buildings.ZombiePen
         private bool _parkIsBroken = false;
 
         // Biting
-        private AudioSource _biteSound;
+        private AudioSource _biteAudioSource;
+        public AudioEvent biteSound;
         private float _biteDelay = 1.5f;
         private float _biteTimePassed = 0;
 
@@ -32,7 +34,7 @@ namespace Phase_1.Builder.Buildings.ZombiePen
             _parkIsBroken = gameManager.phase != Phase.Building;
 
             _transform = zombieBase.transform;
-            _biteSound = GetComponent<AudioSource>();
+            _biteAudioSource = GetComponent<AudioSource>();
         }
 
         private void Update()
@@ -90,7 +92,6 @@ namespace Phase_1.Builder.Buildings.ZombiePen
             if (_biteTimePassed < _biteDelay) return;
 
             _biteTimePassed = 0;
-            _biteSound.Play();
             var position = visitor.transform.position;
             Destroy(visitor);
             Instantiate(zombieBase, position, Quaternion.identity);
@@ -101,7 +102,7 @@ namespace Phase_1.Builder.Buildings.ZombiePen
             if (_biteTimePassed < _biteDelay) return;
 
             _biteTimePassed = 0;
-            _biteSound.Play();
+            biteSound.Play(_biteAudioSource);
             player.TakeDamage(damage);
         }
 
