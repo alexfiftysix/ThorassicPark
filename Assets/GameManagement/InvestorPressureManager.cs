@@ -37,6 +37,10 @@ namespace GameManagement
         private float _lowGrowthThreshold = -100;
         private Timer _lowGrowthTimer;
         public TextMeshProUGUI lowGrowthThresholdText;
+        
+        // Move on/off screen
+        private float _goalXPosition = -150;
+        private float _showHideSpeed = 5;
 
         // Start is called before the first frame update
         private void Start()
@@ -58,14 +62,17 @@ namespace GameManagement
             slider.value = Mathf.Lerp(slider.value, _averageGrowthOverTime, sliderMoveSpeed * Time.deltaTime);
             slider.maxValue = Mathf.Lerp(slider.maxValue, _highestGrowthOverTime * 1.25f, sliderGrowthSpeed * Time.deltaTime);
             slider.minValue = Mathf.Lerp(slider.minValue, _lowestGrowthOverTime * 1.25f, sliderGrowthSpeed * Time.deltaTime);
+
+            var newX = Mathf.Lerp(slider.transform.position.x, _goalXPosition, _showHideSpeed * Time.deltaTime);
+            slider.transform.position = new Vector2(newX, slider.transform.position.y);
         }
 
         private void OnParkBreaks()
         {
-            Destroy(slider.gameObject);
             Destroy(_calculationTimer);
             Destroy(_lowGrowthTimer);
             ExitLowGrowthZone();
+            _goalXPosition = -150;
         }
 
         private void Recalculate()
@@ -126,6 +133,10 @@ namespace GameManagement
             var growthThreshold = _averageGrowthOverTime / 3;
             growthThreshold = growthThreshold <= 0 ? -100 : growthThreshold;
             _lowGrowthThreshold = Math.Max(_lowGrowthThreshold, growthThreshold);
+            if (_lowGrowthThreshold > 0)
+            {
+                _goalXPosition = 50;
+            }
             lowGrowthThresholdText.text = $"{_lowGrowthThreshold:C}";
         }
 
