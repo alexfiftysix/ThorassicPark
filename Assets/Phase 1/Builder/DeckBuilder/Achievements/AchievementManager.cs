@@ -1,4 +1,5 @@
-using System.Linq;
+using GameManagement;
+using Statistics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utilities.Extensions;
@@ -24,17 +25,27 @@ namespace Phase_1.Builder.DeckBuilder.Achievements
 
         private void CheckAchievements()
         {
-            foreach (var unlockable in _deck.unlockables.Where(u => !u.isUnlocked))
-            {
-                unlockable.Test(_toaster);
-            }
+            _deck.unlockables.ForEach(u => u.Test(_toaster));
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            if (scene.name == "Game")
+            switch (scene.name)
             {
-                _toaster = FindObjectOfType<Toaster>();
+                case "Game":
+                    _toaster = FindObjectOfType<Toaster>();
+                    break;
+                case "PostGame":
+                    LockInUnlockables();
+                    break;
+            }
+        }
+
+        private void LockInUnlockables()
+        {
+            if (MyStatistics.wonLastGame)
+            {
+                _deck.unlockables.ForEach(u => u.LockItIn());
             }
         }
     }

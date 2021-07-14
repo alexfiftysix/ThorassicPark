@@ -1,10 +1,12 @@
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 
 namespace Phase_1.Builder.DeckBuilder.Achievements
 {
+    /// The Toaster takes a message, and pops up a message box to the user
+    /// Toasts may be timed, at which point they'll pop away again
+    /// Only so many toasts can be shown at any one time
     public class Toaster : MonoBehaviour
     {
         public int capacity = 3;
