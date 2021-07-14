@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5157655054117028736}
   - component: {fileID: 5157655054117028479}
+  - component: {fileID: 6607545596781106373}
   m_Layer: 0
   m_Name: Deck
   m_TagString: Untagged
@@ -43,12 +44,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2243f2a8f551dad49a81706536790e1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attractions:
-  - attraction: {fileID: 824366217041316039, guid: ed778d47e2807324e8ab6ecf46b637a8, type: 3}
-    isUnlocked: 1
-  - attraction: {fileID: 9128726092906686687, guid: 2ca5568e94dc33547badc5da1c14d3ef, type: 3}
-    isUnlocked: 1
-  - attraction: {fileID: 4847376592673436236, guid: ccad2886684778f4781cd62311ea56a0, type: 3}
-    isUnlocked: 0
-  - attraction: {fileID: 824366217041316039, guid: 1fdbb84de0bbeff4a98741645bbc9259, type: 3}
-    isUnlocked: 0
+  unlockables:
+  - {fileID: 11400000, guid: 7163d12743c32a341a53caf36cbaa143, type: 2}
+  - {fileID: 11400000, guid: c9d3235ee7a045e4398906202ec5be19, type: 2}
+  - {fileID: 11400000, guid: 6d83980686dcb6f4c99ae58557edf498, type: 2}
+  - {fileID: 11400000, guid: cb5c5baf453883c4dac4f4ceb58d5e87, type: 2}
+--- !u!114 &6607545596781106373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5157655054117028478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58b71571e4d98d94f8fa7964f9d0d26a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  achievementCheckInterval: 3
