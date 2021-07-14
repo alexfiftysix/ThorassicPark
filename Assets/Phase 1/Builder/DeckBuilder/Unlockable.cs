@@ -1,4 +1,5 @@
 ﻿using Phase_1.Builder.Buildings;
+using Phase_1.Builder.DeckBuilder.Achievements;
 using Statistics;
 using UnityEngine;
 
@@ -13,15 +14,15 @@ namespace Phase_1.Builder.DeckBuilder
         public float perGameMoneyRequired;
         public float perGameVisitorsRequired;
 
-        public void Test()
+        public void Test(Toaster toaster)
         {
             if (isUnlocked) return;
 
             if (MyStatistics.moneyEarned >= perGameMoneyRequired &&
                 MyStatistics.visitorsSaved >= perGameVisitorsRequired)
             {
-                Debug.Log($"Unlocked: {attraction.name}");
                 isUnlocked = true;
+                toaster.Add($"Unlocked: {attraction.name}");
             }
         }
     }

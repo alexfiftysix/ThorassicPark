@@ -154,6 +154,10 @@ PrefabInstance:
       propertyPath: isUnlocked
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6085398872567330752, guid: e64aab4a9d6d4824bb6348ffd4f309ae, type: 3}
+      propertyPath: unlockable
+      value: 
+      objectReference: {fileID: 11400000, guid: c9d3235ee7a045e4398906202ec5be19, type: 2}
     - target: {fileID: 6085398872567330758, guid: e64aab4a9d6d4824bb6348ffd4f309ae, type: 3}
       propertyPath: m_Name
       value: Choice2
@@ -716,6 +720,10 @@ PrefabInstance:
       propertyPath: attraction
       value: 
       objectReference: {fileID: 4847376592673436236, guid: ccad2886684778f4781cd62311ea56a0, type: 3}
+    - target: {fileID: 6085398872567330752, guid: e64aab4a9d6d4824bb6348ffd4f309ae, type: 3}
+      propertyPath: unlockable
+      value: 
+      objectReference: {fileID: 11400000, guid: 6d83980686dcb6f4c99ae58557edf498, type: 2}
     - target: {fileID: 6085398872567330758, guid: e64aab4a9d6d4824bb6348ffd4f309ae, type: 3}
       propertyPath: m_Name
       value: Choice3
@@ -1814,6 +1822,10 @@ PrefabInstance:
       propertyPath: isUnlocked
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6085398872567330752, guid: e64aab4a9d6d4824bb6348ffd4f309ae, type: 3}
+      propertyPath: unlockable
+      value: 
+      objectReference: {fileID: 11400000, guid: 7163d12743c32a341a53caf36cbaa143, type: 2}
     - target: {fileID: 6085398872567330758, guid: e64aab4a9d6d4824bb6348ffd4f309ae, type: 3}
       propertyPath: m_Name
       value: Choice1
@@ -2817,6 +2829,10 @@ PrefabInstance:
       propertyPath: attraction
       value: 
       objectReference: {fileID: 824366217041316039, guid: 1fdbb84de0bbeff4a98741645bbc9259, type: 3}
+    - target: {fileID: 6085398872567330752, guid: e64aab4a9d6d4824bb6348ffd4f309ae, type: 3}
+      propertyPath: unlockable
+      value: 
+      objectReference: {fileID: 11400000, guid: cb5c5baf453883c4dac4f4ceb58d5e87, type: 2}
     - target: {fileID: 6085398872567330758, guid: e64aab4a9d6d4824bb6348ffd4f309ae, type: 3}
       propertyPath: m_Name
       value: Choice4
