@@ -40,18 +40,12 @@ namespace GameManagement
         // Prestige
         [HideInInspector] public float prestige = 0;
 
-        // Park Growing
-        private Timer _parkExpansionTimer;
-        public ParkArea firstArea;
-        public ParkArea northArea;
-
         private void Start()
         {
             phaseText.text = "Building Phase";
             _breakSound = GetComponent<AudioSource>();
             mainCamera = FindObjectOfType<CameraController>();
             MyStatistics.Reset();
-            _parkExpansionTimer = gameObject.AddTimer(10, ExpandPark);
         }
 
         private void Update()
@@ -135,13 +129,6 @@ namespace GameManagement
         private GameObject ActivatePlayer()
         {
             return Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
-        }
-
-        private void ExpandPark()
-        {
-            _parkExpansionTimer.DeActivate();
-            firstArea.ClearWall(CompassDirection.North);
-            northArea.ClearWall(CompassDirection.South);
         }
     }
 }
