@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2938820568105780413}
+  - component: {fileID: 6475194721572806208}
   m_Layer: 0
   m_Name: ParkWallBlock
   m_TagString: Untagged
@@ -27,13 +28,29 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 426420463543201269}
+  - {fileID: 426420462996793016}
   - {fileID: 426420461971507106}
   - {fileID: 426420463531303487}
-  - {fileID: 426420462996793016}
+  - {fileID: 426420463543201269}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6475194721572806208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2938820568105780410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dfe3d076c690d940b2f17e642382b4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  northWall: {fileID: 8455966976567960082}
+  eastWall: {fileID: 8455966975579964168}
+  southWall: {fileID: 8455966977101948565}
+  westWall: {fileID: 8455966977080879455}
 --- !u!1001 &2938820566726168980
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -87,10 +104,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6742285108485788316, guid: 5954ba344b4fe854a8dcdaebe91fd1db, type: 3}
       propertyPath: m_Name
-      value: RightWall
+      value: EastWall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5954ba344b4fe854a8dcdaebe91fd1db, type: 3}
+--- !u!1 &8455966975579964168 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6742285108485788316, guid: 5954ba344b4fe854a8dcdaebe91fd1db, type: 3}
+  m_PrefabInstance: {fileID: 2938820566726168980}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &426420461971507106 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3252226316205184566, guid: 5954ba344b4fe854a8dcdaebe91fd1db, type: 3}
@@ -105,7 +127,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3252226316205184566, guid: 5954ba344b4fe854a8dcdaebe91fd1db, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3252226316205184566, guid: 5954ba344b4fe854a8dcdaebe91fd1db, type: 3}
       propertyPath: m_LocalPosition.x
@@ -149,10 +171,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6742285108485788316, guid: 5954ba344b4fe854a8dcdaebe91fd1db, type: 3}
       propertyPath: m_Name
-      value: TopWall
+      value: NorthWall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5954ba344b4fe854a8dcdaebe91fd1db, type: 3}
+--- !u!1 &8455966976567960082 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6742285108485788316, guid: 5954ba344b4fe854a8dcdaebe91fd1db, type: 3}
+  m_PrefabInstance: {fileID: 2938820567751979150}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &426420462996793016 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3252226316205184566, guid: 5954ba344b4fe854a8dcdaebe91fd1db, type: 3}
@@ -167,7 +194,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3252226316205184566, guid: 5954ba344b4fe854a8dcdaebe91fd1db, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3252226316205184566, guid: 5954ba344b4fe854a8dcdaebe91fd1db, type: 3}
       propertyPath: m_LocalPosition.x
@@ -211,10 +238,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6742285108485788316, guid: 5954ba344b4fe854a8dcdaebe91fd1db, type: 3}
       propertyPath: m_Name
-      value: LeftWall
+      value: WestWall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5954ba344b4fe854a8dcdaebe91fd1db, type: 3}
+--- !u!1 &8455966977080879455 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6742285108485788316, guid: 5954ba344b4fe854a8dcdaebe91fd1db, type: 3}
+  m_PrefabInstance: {fileID: 2938820568245697475}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &426420463543201269 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3252226316205184566, guid: 5954ba344b4fe854a8dcdaebe91fd1db, type: 3}
@@ -273,10 +305,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6742285108485788316, guid: 5954ba344b4fe854a8dcdaebe91fd1db, type: 3}
       propertyPath: m_Name
-      value: BottomWall
+      value: SouthWall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5954ba344b4fe854a8dcdaebe91fd1db, type: 3}
+--- !u!1 &8455966977101948565 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6742285108485788316, guid: 5954ba344b4fe854a8dcdaebe91fd1db, type: 3}
+  m_PrefabInstance: {fileID: 2938820568283870217}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &426420463531303487 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3252226316205184566, guid: 5954ba344b4fe854a8dcdaebe91fd1db, type: 3}
