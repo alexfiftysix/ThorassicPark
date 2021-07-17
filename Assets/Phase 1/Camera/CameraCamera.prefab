@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7570075259205250732}
   - component: {fileID: 7570075259205250734}
   - component: {fileID: 8462765546595534742}
-  - component: {fileID: 2039780607563844262}
+  - component: {fileID: 9161223759898978342}
   m_Layer: 0
   m_Name: CameraCamera
   m_TagString: MainCamera
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!114 &2039780607563844262
+--- !u!114 &9161223759898978342
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,10 +126,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7570075259205250735}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc00c8bb68da382449f70c3b5e02de4e, type: 3}
+  m_Script: {fileID: 11500000, guid: 56666c5a40171f54783dd416a44f42bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myCamera: {fileID: 0}
-  zoomSpeed: 10
-  minZoom: 4
-  maxZoom: 15
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 0
