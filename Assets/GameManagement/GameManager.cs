@@ -42,6 +42,7 @@ namespace GameManagement
         {
             phaseText.text = "Building Phase";
             _breakSound = GetComponent<AudioSource>();
+            mainCamera = FindObjectOfType<CameraController>();
             MyStatistics.Reset();
         }
 

@@ -54,7 +54,7 @@ MonoBehaviour:
   phase: 0
   builder: {fileID: 0}
   escapePointPrefab: {fileID: 4110359013886583792, guid: 3d2b33ce50f548c48a0e29a46b516788, type: 3}
-  timeBeforeEscapeSpawnsInSeconds: 1
+  timeBeforeEscapeSpawnsInSeconds: 30
   prestige: 0
 --- !u!114 &2251839720636743574
 MonoBehaviour:
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: d956c1cbd633d6047bd1dcd46523b2d3, type: 3}
-  m_NotificationBehavior: 2
+  m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
