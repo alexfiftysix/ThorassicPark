@@ -10,7 +10,8 @@ namespace World
         [SerializeField] private GameObject southWall;
         [SerializeField] private GameObject westWall;
 
-        public bool isOpen;
+        public int xPosition;
+        public int yPosition;
         // private float widthAndHeight = 20;
 
         public void ClearWall(CompassDirection direction)
