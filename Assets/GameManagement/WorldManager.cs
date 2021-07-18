@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using Utilities;
 using Utilities.Extensions;
@@ -20,11 +21,52 @@ namespace GameManagement
         private Timer _parkExpansionTimer;
         private const int ParkExpansionTimeInSeconds = 10;
 
+        public GameObject parkExpansionMenu;
+
         // Start is called before the first frame update
         void Start()
         {
-            _parkExpansionTimer = gameObject.AddTimer(ParkExpansionTimeInSeconds, () => ExpandPark(firstArea, CompassDirection.North));
+            _parkExpansionTimer = gameObject.AddTimer(ParkExpansionTimeInSeconds, ShowParkExpansionMenu);
             _parkAreas[1, 1] = firstArea;
+            parkExpansionMenu.SetActive(false);
+        }
+
+        // TODO: why can't you just use Expand(CompassDirection) in the editor?
+        public void ExpandNorth()
+        {
+            Expand(CompassDirection.North);
+        }
+        
+        public void ExpandEast()
+        {
+            Expand(CompassDirection.East);
+        }
+        
+        public void ExpandSouth()
+        {
+            Expand(CompassDirection.South);
+        }
+        
+        public void ExpandWest()
+        {
+            Expand(CompassDirection.West);
+        }
+        
+        public void Expand(CompassDirection direction)
+        {
+            var expandFrom = _parkAreas[1, 1];
+            ExpandPark(expandFrom, direction);
+            HideParkExpansionMenu();
+        }
+        
+        private void ExpandPark(ParkArea source, CompassDirection direction)
+        {
+            var directionVector2 = direction.ToVector2();
+            var x = Convert.ToInt32(source.xPosition + directionVector2.X);
+            var y = Convert.ToInt32(source.yPosition + directionVector2.Y);
+
+            var newArea = BuildAreaAtCoordinates(x, y);
+            source.Join(direction, newArea);
         }
 
         private ParkArea BuildAreaAtCoordinates(int x, int y)
@@ -45,16 +87,16 @@ namespace GameManagement
             return newArea;
         }
 
-        private void ExpandPark(ParkArea source, CompassDirection direction)
+        private void ShowParkExpansionMenu()
         {
-            _parkExpansionTimer.DeActivate();
-            
-            var directionVector2 = direction.ToVector2();
-            var x = Convert.ToInt32(source.xPosition + directionVector2.X);
-            var y = Convert.ToInt32(source.yPosition + directionVector2.Y);
+            TimeControl.Pause();
+            parkExpansionMenu.SetActive(true);
+        }
 
-            var newArea = BuildAreaAtCoordinates(x, y);
-            source.Join(direction, newArea);
+        private void HideParkExpansionMenu()
+        {
+            TimeControl.UnPause();
+            parkExpansionMenu.SetActive(false);
         }
     }
 }
