@@ -34,6 +34,7 @@ namespace GameManagement
             _parkAreas[1, 1] = firstArea;
             parkExpansionMenu.SetActive(false);
             _mainCamera = FindObjectOfType<Camera>();
+            gameObject.GetComponent<GameManager>().OnParkBreaks += (sender, args) => OnParkBreaks();
         }
 
         // TODO: why can't you just use Expand(CompassDirection) in the editor?
@@ -108,6 +109,11 @@ namespace GameManagement
             TimeControl.UnPause();
             parkExpansionMenu.SetActive(false);
             _selectedParkArea.UnHighlight();
+        }
+
+        private void OnParkBreaks()
+        {
+            _parkExpansionTimer.DeActivate();
         }
     }
 }
