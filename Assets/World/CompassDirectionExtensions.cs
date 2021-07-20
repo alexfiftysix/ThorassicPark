@@ -24,7 +24,7 @@ namespace World
                 CompassDirection.North => new Vector2(0, 1),
                 CompassDirection.South => new Vector2(0, -1),
                 CompassDirection.East => new Vector2(1, 0),
-                CompassDirection.West => new Vector2(0, 1),
+                CompassDirection.West => new Vector2(-1, 0),
                 _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, null)
             };
         }

@@ -1,5 +1,5 @@
 using System;
-using UnityEditor.PackageManager;
+using System.Linq;
 using UnityEngine;
 using Utilities;
 using Utilities.Extensions;
@@ -13,7 +13,8 @@ namespace GameManagement
     /// </summary>
     public class WorldManager : MonoBehaviour
     {
-        private readonly ParkArea[,] _parkAreas = new ParkArea[3,3];
+        private readonly ParkArea[,] _parkAreas = new ParkArea[3, 3];
+        private ParkArea _selectedParkArea;
 
         public ParkArea parkAreaPrefab;
         public ParkArea firstArea;
@@ -40,29 +41,28 @@ namespace GameManagement
         {
             Expand(CompassDirection.North);
         }
-        
+
         public void ExpandEast()
         {
             Expand(CompassDirection.East);
         }
-        
+
         public void ExpandSouth()
         {
             Expand(CompassDirection.South);
         }
-        
+
         public void ExpandWest()
         {
             Expand(CompassDirection.West);
         }
-        
+
         public void Expand(CompassDirection direction)
         {
-            var expandFrom = _parkAreas[1, 1];
-            ExpandPark(expandFrom, direction);
+            ExpandPark(_selectedParkArea, direction);
             HideParkExpansionMenu();
         }
-        
+
         private void ExpandPark(ParkArea source, CompassDirection direction)
         {
             var directionVector2 = direction.ToVector2();
@@ -79,6 +79,7 @@ namespace GameManagement
             {
                 throw new IndexOutOfRangeException();
             }
+
             if (_parkAreas[x, y] is { }) return _parkAreas[x, y];
 
             // TODO: This is some fragile maths.
@@ -93,11 +94,12 @@ namespace GameManagement
 
         private void ShowParkExpansionMenu()
         {
+            _selectedParkArea = _parkAreas.Flatten().Where(p => !(p is null)).RandomChoice();
             _previousOrthographicSize = _mainCamera.orthographicSize;
             _mainCamera.orthographicSize = 50;
             TimeControl.Pause();
             parkExpansionMenu.SetActive(true);
-            _parkAreas[1, 1].Highlight();
+            _selectedParkArea.Highlight();
         }
 
         private void HideParkExpansionMenu()
@@ -105,7 +107,7 @@ namespace GameManagement
             _mainCamera.orthographicSize = _previousOrthographicSize;
             TimeControl.UnPause();
             parkExpansionMenu.SetActive(false);
-            _parkAreas[1, 1].UnHighlight();
+            _selectedParkArea.UnHighlight();
         }
     }
 }
