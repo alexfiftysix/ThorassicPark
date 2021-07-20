@@ -97,6 +97,7 @@ namespace GameManagement
             _mainCamera.orthographicSize = 50;
             TimeControl.Pause();
             parkExpansionMenu.SetActive(true);
+            _parkAreas[1, 1].Highlight();
         }
 
         private void HideParkExpansionMenu()
@@ -104,6 +105,7 @@ namespace GameManagement
             _mainCamera.orthographicSize = previousOrthographicSize;
             TimeControl.UnPause();
             parkExpansionMenu.SetActive(false);
+            _parkAreas[1, 1].UnHighlight();
         }
     }
 }

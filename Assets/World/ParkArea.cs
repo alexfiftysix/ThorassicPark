@@ -9,10 +9,14 @@ namespace World
         [SerializeField] private GameObject eastWall;
         [SerializeField] private GameObject southWall;
         [SerializeField] private GameObject westWall;
+        [SerializeField] private SpriteRenderer floor;
 
         public int xPosition;
         public int yPosition;
         // private float widthAndHeight = 20;
+        
+        private readonly Color _highlightColour = new Color(1, 0.92f, 0.016f, 0.3f);
+        private readonly Color _transparentColour = new Color(0,0,0,0);
 
         public void ClearWall(CompassDirection direction)
         {
@@ -44,6 +48,16 @@ namespace World
         {
             ClearWall(direction);
             other.ClearWall(direction.Opposite());
+        }
+
+        public void Highlight()
+        {
+            floor.color = _highlightColour;
+        }
+
+        public void UnHighlight()
+        {
+            floor.color = _transparentColour;
         }
     }
 }
