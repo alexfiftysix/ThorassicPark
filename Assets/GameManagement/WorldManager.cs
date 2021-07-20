@@ -23,12 +23,16 @@ namespace GameManagement
 
         public GameObject parkExpansionMenu;
 
+        private Camera _mainCamera;
+        private float previousOrthographicSize;
+
         // Start is called before the first frame update
         void Start()
         {
             _parkExpansionTimer = gameObject.AddTimer(ParkExpansionTimeInSeconds, ShowParkExpansionMenu);
             _parkAreas[1, 1] = firstArea;
             parkExpansionMenu.SetActive(false);
+            _mainCamera = FindObjectOfType<Camera>();
         }
 
         // TODO: why can't you just use Expand(CompassDirection) in the editor?
@@ -89,12 +93,15 @@ namespace GameManagement
 
         private void ShowParkExpansionMenu()
         {
+            previousOrthographicSize = _mainCamera.orthographicSize;
+            _mainCamera.orthographicSize = 50;
             TimeControl.Pause();
             parkExpansionMenu.SetActive(true);
         }
 
         private void HideParkExpansionMenu()
         {
+            _mainCamera.orthographicSize = previousOrthographicSize;
             TimeControl.UnPause();
             parkExpansionMenu.SetActive(false);
         }
