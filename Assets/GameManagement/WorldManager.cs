@@ -24,7 +24,7 @@ namespace GameManagement
         public GameObject parkExpansionMenu;
 
         private Camera _mainCamera;
-        private float previousOrthographicSize;
+        private float _previousOrthographicSize;
 
         // Start is called before the first frame update
         void Start()
@@ -93,7 +93,7 @@ namespace GameManagement
 
         private void ShowParkExpansionMenu()
         {
-            previousOrthographicSize = _mainCamera.orthographicSize;
+            _previousOrthographicSize = _mainCamera.orthographicSize;
             _mainCamera.orthographicSize = 50;
             TimeControl.Pause();
             parkExpansionMenu.SetActive(true);
@@ -102,7 +102,7 @@ namespace GameManagement
 
         private void HideParkExpansionMenu()
         {
-            _mainCamera.orthographicSize = previousOrthographicSize;
+            _mainCamera.orthographicSize = _previousOrthographicSize;
             TimeControl.UnPause();
             parkExpansionMenu.SetActive(false);
             _parkAreas[1, 1].UnHighlight();
