@@ -23,7 +23,7 @@ namespace Phase_1.Camera
         
         private void Start()
         {
-            _camera = GetComponent<UnityEngine.Camera>();
+            _camera = GetComponentInChildren<UnityEngine.Camera>();
         }
 
         void Update()

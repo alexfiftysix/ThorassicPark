@@ -10,6 +10,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Utilities;
+using Utilities.Extensions;
+using World;
 
 namespace GameManagement
 {
@@ -42,6 +44,7 @@ namespace GameManagement
         {
             phaseText.text = "Building Phase";
             _breakSound = GetComponent<AudioSource>();
+            mainCamera = FindObjectOfType<CameraController>();
             MyStatistics.Reset();
         }
 
