@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ZombiePen
   m_EditorClassIdentifier: 
   attraction: {fileID: 824366217041316039, guid: 1fdbb84de0bbeff4a98741645bbc9259, type: 3}
-  isUnlocked: 1
+  isUnlocked: 0
   perGameMoneyRequired: 200
   perGameVisitorsRequired: 0
