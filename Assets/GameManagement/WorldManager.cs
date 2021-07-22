@@ -27,6 +27,9 @@ namespace GameManagement
         private Camera _mainCamera;
         private float _previousOrthographicSize;
 
+        private int _areasCount = 1;
+        private int _maxAreas = 4;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -72,6 +75,11 @@ namespace GameManagement
 
             var newArea = BuildAreaAtCoordinates(x, y);
             source.Join(direction, newArea);
+            _areasCount++;
+            if (_areasCount >= _maxAreas)
+            {
+                _parkExpansionTimer.DeActivate();
+            }
         }
 
         private ParkArea BuildAreaAtCoordinates(int x, int y)
