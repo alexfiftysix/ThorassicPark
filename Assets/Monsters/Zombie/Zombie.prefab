@@ -152,9 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8affa4cce7ad4354dbe962a76b9c4397, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: 60f656168a945b3439de8d403a4345a5, type: 2}
   zombieBase: {fileID: 5343487538611026992}
-  speed: 0.4
-  damage: 2
   biteSound: {fileID: 11400000, guid: 367c3b7b8aed01c46955c45f0aa458cb, type: 2}
 --- !u!82 &3265939636158807633
 AudioSource:

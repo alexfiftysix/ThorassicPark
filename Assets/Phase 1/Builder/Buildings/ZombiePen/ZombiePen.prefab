@@ -64,6 +64,7 @@ MonoBehaviour:
   timeToBecomeDamaged: 5
   timeToBreak: 3
   prestige: 10
+  moneyPerVisitorPerSecond: 1
   cost: 1
 --- !u!82 &8657063122454846166
 AudioSource:

@@ -1,18 +1,16 @@
 using System;
-using Common.Audio;
 using GameManagement;
 using Phase_2.Player;
 using UnityEngine;
 using Utilities.Extensions;
 using Visitors;
 
-namespace Phase_1.Builder.Buildings.ZombiePen
+namespace Monsters.Zombie
 {
     public class Zombie : MonoBehaviour
     {
+        public MonsterStats stats;
         public GameObject zombieBase;
-        public float speed = 0.4f;
-        public int damage = 2;
 
         private Chaseable _target;
         private Vector2 _direction = Vector2.up;
@@ -22,7 +20,6 @@ namespace Phase_1.Builder.Buildings.ZombiePen
 
         // Biting
         private AudioSource _biteAudioSource;
-        public AudioEvent biteSound;
         private float _biteDelay = 1.5f;
         private float _biteTimePassed = 0;
 
@@ -57,7 +54,7 @@ namespace Phase_1.Builder.Buildings.ZombiePen
         private void Move()
         {
             var oldPosition = (Vector2) _transform.position;
-            var movement = _direction * (speed * Time.deltaTime);
+            var movement = _direction * (stats.movementSpeed * Time.deltaTime);
             var newPosition = new Vector3(oldPosition.x + movement.x, oldPosition.y + movement.y, -1f);
             _transform.position = newPosition;
         }
@@ -102,8 +99,8 @@ namespace Phase_1.Builder.Buildings.ZombiePen
             if (_biteTimePassed < _biteDelay) return;
 
             _biteTimePassed = 0;
-            biteSound.Play(_biteAudioSource);
-            player.TakeDamage(damage);
+            stats.meleeSound.Play(_biteAudioSource);
+            player.TakeDamage(stats.meleeDamage);
         }
 
         private void TurnToTarget(Transform target)
