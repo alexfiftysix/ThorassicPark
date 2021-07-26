@@ -1,18 +1,17 @@
+using Phase_1.Builder.DeckBuilder.Achievements;
 using UnityEditor;
 using UnityEngine;
 
-namespace Phase_1.Builder.DeckBuilder.Achievements
+namespace DevTools.Editor
 {
     [CustomEditor(typeof(AchievementReset), true)]
-    public class AchievementResetEditor : Editor
+    public class AchievementResetEditor : UnityEditor.Editor
     {
         private AchievementReset _achievementReset;
         
         private void OnEnable()
         {
-            Debug.Log("Enabled");
             _achievementReset = (AchievementReset)target;
-            Debug.Log(_achievementReset);
         }
 
         public override void OnInspectorGUI()

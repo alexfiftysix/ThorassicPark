@@ -1,10 +1,11 @@
-﻿using UnityEditor;
+﻿using Common.Audio;
+using UnityEditor;
 using UnityEngine;
 
-namespace Common.Audio
+namespace DevTools.Editor
 {
     [CustomEditor(typeof(AudioEvent), true)]
-    public class AudioEventEditor : Editor
+    public class AudioEventEditor : UnityEditor.Editor
     {
         [SerializeField] private AudioSource previewer;
 
