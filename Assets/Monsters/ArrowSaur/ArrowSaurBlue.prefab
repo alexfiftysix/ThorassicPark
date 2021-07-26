@@ -99,12 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d3dafc02976be244846c4b3a262c937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  rotationSpeed: 3
+  monsterStats: {fileID: 11400000, guid: 927a654169a7caa4c82455b10834ad73, type: 2}
   target: {fileID: 0}
-  damage: 2
-  bouncePower: 0.5
-  biteAudioEvent: {fileID: 11400000, guid: 8a1ec240dcd686e44bfe9bebb45be507, type: 2}
 --- !u!61 &6157671801932397459
 BoxCollider2D:
   m_ObjectHideFlags: 0

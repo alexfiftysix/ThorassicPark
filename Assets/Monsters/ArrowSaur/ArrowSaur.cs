@@ -1,48 +1,36 @@
 using System.Linq;
-using Common.Audio;
 using UnityEngine;
-using Utilities;
 using Utilities.Extensions;
 using Visitors;
-using Random = UnityEngine.Random;
 
-namespace Dinos
+namespace Monsters
 {
     public class ArrowSaur : MonoBehaviour
     {
-        [SerializeField] private float speed = 1f;
-        [SerializeField] private float rotationSpeed = 5;
-        private Transform _transform;
-        private Rigidbody2D _rigidbody2D;
+        public MonsterStats monsterStats;
 
         // Target
-        [SerializeField] private Chaseable target;
+        private Chaseable _target;
         private const float FindTargetMaxDelay = 2;
-        [SerializeField] private int damage = 1;
 
-        [SerializeField] private float bouncePower = 0.1f;
-        private float _bounceDelay;
-
+        private Transform _transform;
+        
         private AudioSource _biteAudioSource;
-        public AudioEvent biteAudioEvent;
 
         private void Start()
         {
             gameObject.AddTimer(FindTargetMaxDelay, FindTarget);
-            gameObject.AddTimer(_bounceDelay, Bounce);
             _transform = transform;
-            _rigidbody2D = GetComponent<Rigidbody2D>();
-            _bounceDelay = Random.Range(1f, 4f);
             _biteAudioSource = GetComponent<AudioSource>();
         }
 
         // Update is called once per frame
         private void Update()
         {
-            if (target != null)
+            if (_target != null)
             {
                 // You could have a "Died" event from the visitor which dinos subscribe to when they start chasing a visitor?
-                RotateTowardTarget(target.transform.position);
+                RotateTowardTarget(_target.transform.position);
                 MoveForwards();
             }
         }
@@ -58,14 +46,8 @@ namespace Dinos
 
         private void Bite(Chaseable biteTarget)
         {
-            biteTarget.TakeDamage(damage);
-            biteAudioEvent.Play(_biteAudioSource);
-        }
-
-        private void Bounce()
-        {
-            var force = MyRandom.NormalVector2() * bouncePower;
-            _rigidbody2D.AddForce(force, ForceMode2D.Impulse);
+            biteTarget.TakeDamage(monsterStats.meleeDamage);
+            monsterStats.meleeSound.Play(_biteAudioSource);
         }
 
         private void RotateTowardTarget(Vector3 targetPosition)
@@ -74,17 +56,17 @@ namespace Dinos
             var angle = Mathf.Atan2(newDirection.y, newDirection.x) * Mathf.Rad2Deg - 90;
             var rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, monsterStats.turnSpeed * Time.deltaTime);
         }
 
         private void MoveForwards()
         {
-            _transform.position += _transform.up * (speed * Time.deltaTime);
+            _transform.position += _transform.up * (monsterStats.movementSpeed * Time.deltaTime);
         }
     
         private void FindTarget()
         {
-            target = FindObjectsOfType<Chaseable>().Where(c => !c.IsDead()).ToList().RandomChoice(); // TODO: Change to IEnumerable extension
+            _target = FindObjectsOfType<Chaseable>().Where(c => !c.IsDead()).RandomChoice();
         }
     }
 } 

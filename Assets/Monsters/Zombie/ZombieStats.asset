@@ -9,14 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df392a9ebea3e0347924871916119583, type: 3}
-  m_Name: DinoBite
+  m_Script: {fileID: 11500000, guid: 9f6ebf13c96042ad85222e4fed76d033, type: 3}
+  m_Name: ZombieStats
   m_EditorClassIdentifier: 
-  clips:
-  - {fileID: 8300000, guid: c5eea38740b924147b2a3515c024142b, type: 3}
-  volume:
-    min: 0.5
-    max: 1
-  pitch:
-    min: 0.75
-    max: 1.25
+  maxHealth: 0
+  meleeDamage: 0
+  meleeSound: {fileID: 0}
+  movementSpeed: 0
+  turnSpeed: 0
