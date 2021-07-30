@@ -37,10 +37,13 @@ namespace Monsters.ArrowSaurMonster
 
         public void OnCollisionEnter2D(Collision2D other)
         {
-            var chaseable = other.gameObject.GetComponent<Chaseable>();
-            if (chaseable != null)
+            if (other.gameObject.layer == LayerMask.NameToLayer("Visitor")) // TODO: String comparison bad 
             {
-                Bite(chaseable);
+                Bite(other.gameObject.GetComponent<Chaseable>());
+            }
+            else if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+            {
+                Bite(other.gameObject.GetComponentInParent<Chaseable>());
             }
         }
 
