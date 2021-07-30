@@ -3,7 +3,7 @@ using UnityEngine;
 using Utilities.Extensions;
 using Visitors;
 
-namespace Monsters
+namespace Monsters.ArrowSaurMonster
 {
     public class ArrowSaur : MonoBehaviour
     {
