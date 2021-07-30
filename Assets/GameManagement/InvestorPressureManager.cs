@@ -33,7 +33,7 @@ namespace GameManagement
         private Queue<float> _growthOverTime = new Queue<float>();
         private float _averageGrowthOverTime = 0;
 
-        [SerializeField] private int lowGrowthMaximumTimeInSeconds = 5;
+        [SerializeField] private int lowGrowthMaximumTimeInSeconds = 10;
         private float _lowGrowthThreshold = -100;
         private Timer _lowGrowthTimer;
         public TextMeshProUGUI lowGrowthThresholdText;
