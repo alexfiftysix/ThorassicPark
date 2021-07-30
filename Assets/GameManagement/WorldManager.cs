@@ -20,7 +20,7 @@ namespace GameManagement
         public ParkArea firstArea;
 
         private Timer _parkExpansionTimer;
-        private const int ParkExpansionTimeInSeconds = 10;
+        private const int ParkExpansionTimeInSeconds = 60;
 
         public GameObject parkExpansionMenu;
 
