@@ -57,9 +57,7 @@ MonoBehaviour:
   - {fileID: 3322667203343852599}
   - {fileID: 3322667203681469411}
   - {fileID: 3322667203522318941}
-  isBroken: 0
-  monster: {fileID: 5343487538611026992, guid: 263bf1c4718e8b247bf2fb7560c39934, type: 3}
-  monsterCount: 3
+  config: {fileID: 11400000, guid: 3f8a09a1b2c78a646a229825467937cb, type: 2}
   damagedMaterial: {fileID: 2100000, guid: 3e852c4efd4f1c842967162464726937, type: 2}
   timeToBecomeDamaged: 5
   timeToBreak: 3

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using GameManagement;
 using Phase_1.Builder.Buildings.ArrowPen;
 using UnityEngine;
@@ -19,16 +18,13 @@ namespace Phase_1.Builder.Buildings
         public SpriteRenderer spriteRenderer;
         public Material ghostMaterial;
         private Material _defaultMaterial;
-        private static readonly int GhostShaderColor = Shader.PropertyToID("Color_c9794d5cc0484bfb99bcbf82f83078e6");
+        private static readonly int GhostShaderColor = Shader.PropertyToID("Color_c9794d5cc0484bfb99bcbf82f83078e6"); // TODO: Ah! This is awful!
         public bool isGhost;
 
         // Break
         public List<GameObject> walls;
-        public bool isBroken = false;
 
-        // Monsters
-        public GameObject monster;
-        public int monsterCount = 3;
+        public AttractionConfiguration config;
         
         // Damage
         public Material damagedMaterial;
@@ -40,7 +36,7 @@ namespace Phase_1.Builder.Buildings
         private GameManager _gameManager;
 
         // Prestige
-        [SerializeField] public float prestige = 1;
+        [SerializeField] public float prestige = 1; // TODO: Bad! This is referenced directly by visitors, add some abstraction layer
 
         // Build
         private AudioSource _audioSource;
@@ -56,6 +52,7 @@ namespace Phase_1.Builder.Buildings
         {
             _defaultMaterial = spriteRenderer.material;
             _audioSource = GetComponent<AudioSource>();
+            prestige = config.prestige; // TODO: Bad! There's a hard link here between visitors and attractions, add some abstraction layer
         }
 
         protected virtual void Start()
@@ -73,9 +70,9 @@ namespace Phase_1.Builder.Buildings
             moneyBag = newMoneyBag;
             _gameManager = gameManager;
             UnGhostify();
-            for (var i = 0; i < monsterCount; i++)
+            for (var i = 0; i < config.monsterCount; i++)
             {
-                Instantiate(monster, transform.position - Vector3.forward, Quaternion.identity);
+                Instantiate(config.monsterPrefab, transform.position - Vector3.forward, Quaternion.identity);
             }
 
             StartDamagedTimer();

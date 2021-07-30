@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a640513255c642f0b44f3cf59976f1c2, type: 3}
-  m_Name: ArrowPenBlue
+  m_Name: ArrowPenBlueUnlockable
   m_EditorClassIdentifier: 
   attraction: {fileID: 9128726092906686687, guid: 2ca5568e94dc33547badc5da1c14d3ef, type: 3}
   isUnlocked: 1
