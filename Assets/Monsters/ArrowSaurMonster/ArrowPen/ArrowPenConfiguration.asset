@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: ArrowPenConfiguration
   m_EditorClassIdentifier: 
   prestige: 1
-  monsterCount: 3
+  monsterCount: 1
   monsterPrefab: {fileID: 1844796906014014963, guid: a5ac019069d53254ca0690fe01f52a18, type: 3}
+  timeToBecomeDamaged:
+    min: 5
+    max: 15

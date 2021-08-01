@@ -28,7 +28,6 @@ namespace Phase_1.Builder.Buildings
         
         // Damage
         public Material damagedMaterial;
-        [SerializeField] private float timeToBecomeDamaged = 5;
         private Timer _damagedTimer;
         private bool _isDamaged;
         [SerializeField] private float timeToBreak = 3;
@@ -111,7 +110,7 @@ namespace Phase_1.Builder.Buildings
 
         private void StartDamagedTimer()
         {
-            _damagedTimer = gameObject.AddTimer(timeToBecomeDamaged, () =>
+            _damagedTimer = gameObject.AddTimer(config.timeToBecomeDamaged, () =>
             {
                 spriteRenderer.material = damagedMaterial;
                 _isDamaged = true;

@@ -1,4 +1,5 @@
 using UnityEngine;
+using Utilities;
 
 namespace Phase_1.Builder.Buildings
 {
@@ -8,5 +9,6 @@ namespace Phase_1.Builder.Buildings
         public float prestige;
         public int monsterCount;
         public GameObject monsterPrefab;
+        public RangedFloat timeToBecomeDamaged;
     }
 }

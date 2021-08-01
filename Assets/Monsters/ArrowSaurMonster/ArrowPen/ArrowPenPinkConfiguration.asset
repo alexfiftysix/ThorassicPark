@@ -15,3 +15,6 @@ MonoBehaviour:
   prestige: 3
   monsterCount: 3
   monsterPrefab: {fileID: 8950219344596500561, guid: ee56740e89704c94ba171255ae4d5f5a, type: 3}
+  timeToBecomeDamaged:
+    min: 5
+    max: 8
