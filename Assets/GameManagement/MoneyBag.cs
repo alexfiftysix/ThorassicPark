@@ -27,6 +27,7 @@ namespace GameManagement
         public void AddMoney(float dollars)
         {
             MyStatistics.moneyEarned += dollars;
+            MyStatistics.grossMoneyEarned += dollars;
             SetMoneyText(MyStatistics.moneyEarned);
         }
 

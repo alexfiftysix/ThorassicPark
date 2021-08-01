@@ -44,7 +44,7 @@ namespace GameManagement
         // Start is called before the first frame update
         private void Start()
         {
-            _moneyAtLastInterval = MyStatistics.moneyEarned;
+            _moneyAtLastInterval = MyStatistics.grossMoneyEarned;
             _calculationTimer = gameObject.AddTimer(IntervalInSeconds, Recalculate);
 
             _gameManager = GetComponent<GameManager>();
@@ -110,8 +110,8 @@ namespace GameManagement
 
         private void CalculateDollarsPerSecond()
         {
-            _dollarsPerSecond = (MyStatistics.moneyEarned - _moneyAtLastInterval) / IntervalInSeconds;
-            _moneyAtLastInterval = MyStatistics.moneyEarned;
+            _dollarsPerSecond = (MyStatistics.grossMoneyEarned - _moneyAtLastInterval) / IntervalInSeconds;
+            _moneyAtLastInterval = MyStatistics.grossMoneyEarned;
             _highestDollarsPerSecond = Math.Max(_highestDollarsPerSecond, _dollarsPerSecond);
         }
 
