@@ -13121,6 +13121,10 @@ PrefabInstance:
       propertyPath: lowGrowthThresholdText
       value: 
       objectReference: {fileID: 1691887076}
+    - target: {fileID: 2644001649830032285, guid: 538eb2731c4450e40991893fa50a57fa, type: 3}
+      propertyPath: lowGrowthMaximumTimeInSeconds
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8363036984877243608, guid: 538eb2731c4450e40991893fa50a57fa, type: 3}
       propertyPath: m_RootOrder
       value: 5

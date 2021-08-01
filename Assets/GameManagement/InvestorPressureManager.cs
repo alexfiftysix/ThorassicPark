@@ -33,7 +33,7 @@ namespace GameManagement
         private Queue<float> _growthOverTime = new Queue<float>();
         private float _averageGrowthOverTime = 0;
 
-        [SerializeField] private int lowGrowthMaximumTimeInSeconds = 5;
+        [SerializeField] private int lowGrowthMaximumTimeInSeconds = 10;
         private float _lowGrowthThreshold = -100;
         private Timer _lowGrowthTimer;
         public TextMeshProUGUI lowGrowthThresholdText;
@@ -44,7 +44,7 @@ namespace GameManagement
         // Start is called before the first frame update
         private void Start()
         {
-            _moneyAtLastInterval = MyStatistics.moneyEarned;
+            _moneyAtLastInterval = MyStatistics.grossMoneyEarned;
             _calculationTimer = gameObject.AddTimer(IntervalInSeconds, Recalculate);
 
             _gameManager = GetComponent<GameManager>();
@@ -110,8 +110,8 @@ namespace GameManagement
 
         private void CalculateDollarsPerSecond()
         {
-            _dollarsPerSecond = (MyStatistics.moneyEarned - _moneyAtLastInterval) / IntervalInSeconds;
-            _moneyAtLastInterval = MyStatistics.moneyEarned;
+            _dollarsPerSecond = (MyStatistics.grossMoneyEarned - _moneyAtLastInterval) / IntervalInSeconds;
+            _moneyAtLastInterval = MyStatistics.grossMoneyEarned;
             _highestDollarsPerSecond = Math.Max(_highestDollarsPerSecond, _dollarsPerSecond);
         }
 

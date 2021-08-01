@@ -8,6 +8,11 @@ namespace Utilities.Extensions
     {
         public static Timer AddTimer(this GameObject gameObject, float intervalTime, Action @delegate)
         {
+            return AddTimer(gameObject, new RangedFloat(intervalTime, intervalTime), @delegate);
+        }
+        
+        public static Timer AddTimer(this GameObject gameObject, RangedFloat intervalTime, Action @delegate)
+        {
             var timer = gameObject.AddComponent<Timer>(); 
             timer.Init(intervalTime, @delegate);
             return timer;

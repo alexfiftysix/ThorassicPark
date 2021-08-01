@@ -2,8 +2,8 @@
 {
     public static class MyStatistics
     {
-        // TODO: This could be a ScriptableObject?
         public static float moneyEarned = 5;
+        public static float grossMoneyEarned = 5;
         public static bool wonLastGame = false;
         public static int visitorsSaved = 0;
 

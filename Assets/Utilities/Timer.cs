@@ -5,15 +5,17 @@ namespace Utilities
 {
     public class Timer : MonoBehaviour
     {
-        private float _intervalTime;
+        private RangedFloat _intervalTime;
+        private float _maxTime;
         private Action _delegate;
         private float _timePassed;
         public bool isActive = true;
 
-        public void Init(float intervalTime, Action @delegate)
+        public void Init(RangedFloat intervalTime, Action @delegate)
         {
             _intervalTime = intervalTime;
             _delegate = @delegate;
+            _maxTime = _intervalTime.GetRandomValue();
         }
 
         public void Reset()
@@ -34,19 +36,20 @@ namespace Utilities
 
         private void Update()
         {
-            if (HasPassed(_intervalTime, _timePassed) && isActive)
+            if (HasPassed() && isActive)
             {
                 _delegate();
             }
         }
 
-        private bool HasPassed(float maxTimeInSeconds, float timeSinceLastInterval)
+        private bool HasPassed()
         {
-            _timePassed = timeSinceLastInterval + Time.deltaTime;
+            _timePassed = _timePassed + Time.deltaTime;
 
-            if (_timePassed > maxTimeInSeconds)
+            if (_timePassed > _maxTime)
             {
-                _timePassed -= maxTimeInSeconds;
+                _timePassed -= _maxTime;
+                _maxTime = _intervalTime.GetRandomValue();
                 return true;
             }
 
