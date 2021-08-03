@@ -21,18 +21,6 @@ namespace GameManagement
             moneyText.text = $"${MyStatistics.moneyEarned}";
             visitorsSavedText.text = $"{MyStatistics.visitorsSaved}";
             _deck = FindObjectOfType<Deck>();
-
-            // Achievements
-            if (!MyStatistics.wonLastGame) return;
-            // TODO: You have achievements already, this seems like a mistake
-            if (MyStatistics.moneyEarned >= 10) // TODO: Wrap this up in some kind of Achievements class
-            {
-                _deck.UnlockAttraction("ArrowPenPink");
-            }
-            if (MyStatistics.visitorsSaved >= 10) // TODO: Wrap this up in some kind of Achievements class
-            {
-                _deck.UnlockAttraction("ZombiePen");
-            }
         }
 
         public void PlayAgain()
