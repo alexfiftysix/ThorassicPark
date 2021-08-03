@@ -1,4 +1,5 @@
 using System;
+using Configuration;
 using GameManagement;
 using Phase_2.Player;
 using UnityEngine;
@@ -75,11 +76,11 @@ namespace Monsters.Zombie
 
         private void OnCollisionStay2D(Collision2D other)
         {
-            if (other.gameObject.layer == LayerMask.NameToLayer("Visitor")) // TODO: String comparison bad 
+            if (other.gameObject.layer == LayerMask.NameToLayer(Layers.layers[Layer.Visitor])) 
             {
                 Zombify(other.gameObject);
             }
-            else if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+            else if (other.gameObject.layer == LayerMask.NameToLayer(Layers.layers[Layer.Player]))
             {
                 Bite(other.gameObject.GetComponentInParent<PlayerController>());
             }
