@@ -43,6 +43,8 @@ namespace Visitors
         private bool _escaped;
         private GameObject _escapePoint;
 
+        public bool IsDestroyed { get; private set; }
+
         public void Start()
         {
             _chaseableManager = FindObjectOfType<ChaseableManager>();
@@ -52,9 +54,10 @@ namespace Visitors
             _enjoyingTimer = gameObject.AddTimer(EnjoyingTime, StartWandering);
             _wanderingTurnTimer = gameObject.AddTimer(WanderingTurnTime, ChooseDirection);
             SetState(VisitorState.Wandering);
-
             _gameManager = FindObjectOfType<GameManager>();
             _gameManager.OnParkBreaks += OnParkBreaks;
+
+            IsDestroyed = false;
         }
 
         private void OnParkBreaks(object sender, EventArgs args)
@@ -117,6 +120,11 @@ namespace Visitors
                 // TODO: string check bad
                 Escape();
             }
+        }
+
+        public void OnDestroy()
+        {
+            IsDestroyed = true;
         }
 
         private void Escape()

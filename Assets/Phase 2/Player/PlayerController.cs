@@ -22,6 +22,8 @@ namespace Phase_2.Player
 
         private Transform _transform;
 
+        public bool IsDestroyed { get; private set; }
+
         private void Start()
         {
             var chaseableManager = FindObjectOfType<ChaseableManager>();
@@ -45,6 +47,7 @@ namespace Phase_2.Player
                     helipadPointer.GetComponent<PointerPivot>().pointer.enabled = true;
                     _helipadSpawned = true;
                 }
+
                 MoveHelipadPointer();
             }
         }
@@ -57,12 +60,21 @@ namespace Phase_2.Player
             _transform.position = newPosition.ToVector3();
         }
 
+        public void OnDestroy()
+        {
+            IsDestroyed = true;
+        }
+
         private void MoveHelipadPointer()
         {
             var newDirection = helipad.transform.position - _transform.position;
             var angle = Mathf.Atan2(newDirection.y, newDirection.x) * Mathf.Rad2Deg - 90;
             var rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            helipadPointer.transform.rotation = Quaternion.Slerp(helipadPointer.transform.rotation, rotation, _helipadPointedSpeed * Time.deltaTime);
+            helipadPointer.transform.rotation = Quaternion.Slerp(
+                helipadPointer.transform.rotation,
+                rotation,
+                _helipadPointedSpeed * Time.deltaTime
+            );
         }
 
         public bool TakeDamage(int damage)

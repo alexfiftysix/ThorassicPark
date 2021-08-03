@@ -1,11 +1,10 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Utilities;
 using Utilities.Extensions;
 
 namespace Phase_2.Player
 {
-    public class Brain : MonoBehaviour
+    public class Wanderer : MonoBehaviour
     {
         private IMoveable _moveable;
         private Vector2 _direction;
@@ -13,7 +12,7 @@ namespace Phase_2.Player
         public void Start()
         {
             _moveable = GetComponent<IMoveable>();
-            _direction = Vector2.zero;
+            _direction = Directions.directions.RandomChoice();
             gameObject.AddTimer(new RangedFloat(1, 3), Turn);
         }
 

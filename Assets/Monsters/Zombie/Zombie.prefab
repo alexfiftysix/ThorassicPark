@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5343487537270438137}
   - component: {fileID: 802830357566553198}
   - component: {fileID: 3265939636158807633}
+  - component: {fileID: 1387343994270021516}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -154,7 +155,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 60f656168a945b3439de8d403a4345a5, type: 2}
   zombieBase: {fileID: 5343487538611026992}
-  biteSound: {fileID: 11400000, guid: 367c3b7b8aed01c46955c45f0aa458cb, type: 2}
 --- !u!82 &3265939636158807633
 AudioSource:
   m_ObjectHideFlags: 0
@@ -251,6 +251,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1387343994270021516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5343487537270438133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22280950a200460c87f58248818c46ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5343487538611026992
 GameObject:
   m_ObjectHideFlags: 0

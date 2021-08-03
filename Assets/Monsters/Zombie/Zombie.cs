@@ -7,17 +7,13 @@ using Visitors;
 
 namespace Monsters.Zombie
 {
-    public class Zombie : MonoBehaviour
+    public class Zombie : MonoBehaviour, IMoveable
     {
         public MonsterStats stats;
         public GameObject zombieBase;
 
-        private IChaseable _target;
-        private ChaseableManager _chaseableManager;
-        private Vector2 _direction = Vector2.up;
         private Transform _transform;
-
-        private bool _parkIsBroken = false;
+        private bool _parkIsBroken;
 
         // Biting
         private AudioSource _biteAudioSource;
@@ -27,13 +23,12 @@ namespace Monsters.Zombie
         // Start is called before the first frame update
         private void Start()
         {
-            _chaseableManager = FindObjectOfType<ChaseableManager>();
-            var gameManager = FindObjectOfType<GameManager>();
-            gameManager.OnParkBreaks += OnParkBreaks;
-            _parkIsBroken = gameManager.phase != Phase.Building;
-
             _transform = zombieBase.transform;
             _biteAudioSource = GetComponent<AudioSource>();
+            _parkIsBroken = false;
+            
+            var gameManager = FindObjectOfType<GameManager>();
+            gameManager.OnParkBreaks += OnParkBreaks;
         }
 
         private void Update()
@@ -41,35 +36,19 @@ namespace Monsters.Zombie
             if (!_parkIsBroken) return;
 
             _biteTimePassed += Time.deltaTime;
-
-            if (_target == null)
-            {
-                // TODO: If there are no visitors left, will this blow out?
-                FindTarget();
-                return;
-            }
-
-            TurnToPosition(_target.GetPosition());
-            Move();
         }
-
-        private void Move()
-        {
-            var oldPosition = (Vector2) _transform.position;
-            var movement = _direction * (stats.movementSpeed * Time.deltaTime);
-            var newPosition = new Vector3(oldPosition.x + movement.x, oldPosition.y + movement.y, -1f);
-            _transform.position = newPosition;
-        }
-
+        
         private void OnParkBreaks(object sender, EventArgs args)
         {
-            FindTarget();
             _parkIsBroken = true;
         }
 
-        private void FindTarget()
+        public void Move(Vector2 direction)
         {
-            _target = _chaseableManager.GetRandom();
+            var oldPosition = (Vector2) _transform.position;
+            var movement = direction * (stats.movementSpeed * Time.deltaTime);
+            var newPosition = new Vector3(oldPosition.x + movement.x, oldPosition.y + movement.y, -1f);
+            _transform.position = newPosition;
         }
 
         private void OnCollisionStay2D(Collision2D other)
@@ -94,18 +73,13 @@ namespace Monsters.Zombie
             Instantiate(zombieBase, position, Quaternion.identity);
         }
 
-        private void Bite(PlayerController player)
+        private void Bite(IChaseable player)
         {
             if (_biteTimePassed < _biteDelay) return;
 
             _biteTimePassed = 0;
             stats.meleeSound.Play(_biteAudioSource);
             player.TakeDamage(stats.meleeDamage);
-        }
-
-        private void TurnToPosition(Vector3 position)
-        {
-            _direction = (position - _transform.position).normalized;
         }
     }
 }

@@ -7,5 +7,6 @@ namespace Visitors
         bool TakeDamage(int damage);
         bool IsDead();
         Vector3 GetPosition();
+        bool IsDestroyed { get; }
     }
 }
