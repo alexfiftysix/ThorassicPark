@@ -10,8 +10,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Utilities;
-using Utilities.Extensions;
-using World;
+using Scene = Configuration.Scene;
 
 namespace GameManagement
 {
@@ -68,7 +67,7 @@ namespace GameManagement
         {
             phase = Phase.GameLost;
             MyStatistics.wonLastGame = false;
-            SceneManager.LoadScene(3); // TODO: Do this better
+            SceneManager.LoadScene(Configuration.Configuration.Scenes[Scene.PostGame]);
         }
 
         public void AddAttraction(Attraction attraction)

@@ -40,11 +40,11 @@ namespace Monsters.ArrowSaurMonster
 
         public void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.layer == LayerMask.NameToLayer(Layers.layers[Layer.Visitor])) 
+            if (other.gameObject.layer == LayerMask.NameToLayer(Configuration.Configuration.Layers[Layer.Visitor])) 
             {
                 Bite(other.gameObject.GetComponent<IChaseable>());
             }
-            else if (other.gameObject.layer == LayerMask.NameToLayer(Layers.layers[Layer.Player]))
+            else if (other.gameObject.layer == LayerMask.NameToLayer(Configuration.Configuration.Layers[Layer.Player]))
             {
                 Bite(other.gameObject.GetComponentInParent<IChaseable>());
             }

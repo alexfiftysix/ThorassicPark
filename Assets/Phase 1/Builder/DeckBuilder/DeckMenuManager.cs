@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Scene = Configuration.Scene;
 
 namespace Phase_1.Builder.DeckBuilder
 {
@@ -7,12 +8,12 @@ namespace Phase_1.Builder.DeckBuilder
     {
         public void Play()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); // TODO: Do this better
+            SceneManager.LoadScene(Configuration.Configuration.Scenes[Scene.Game]);
         }
 
         public void Back()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1); // TODO: Do this better
+            SceneManager.LoadScene(Configuration.Configuration.Scenes[Scene.MainMenu]);
         }
     }
 }

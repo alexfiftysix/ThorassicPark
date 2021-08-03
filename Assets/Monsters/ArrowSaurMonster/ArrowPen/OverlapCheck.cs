@@ -28,7 +28,7 @@ namespace Phase_1.Builder.Buildings.ArrowPen
         
         void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.layer == LayerMask.NameToLayer(Layers.layers[Layer.Building]))
+            if (other.gameObject.layer == LayerMask.NameToLayer(Configuration.Configuration.Layers[Layer.Building]))
             {
                 _overlappingBuildings.Add(other.gameObject);
             }
@@ -36,7 +36,7 @@ namespace Phase_1.Builder.Buildings.ArrowPen
         
         void OnTriggerExit2D(Collider2D other)
         {
-            if (other.gameObject.layer == LayerMask.NameToLayer(Layers.layers[Layer.Building]))
+            if (other.gameObject.layer == LayerMask.NameToLayer(Configuration.Configuration.Layers[Layer.Building]))
             {
                 _overlappingBuildings.Remove(other.gameObject);
             }

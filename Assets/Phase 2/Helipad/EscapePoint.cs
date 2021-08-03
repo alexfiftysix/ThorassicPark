@@ -11,7 +11,7 @@ namespace Phase_2.Helipad
         
         private void OnTriggerEnter2D(Collider2D col)
         {
-            if (col.gameObject.layer == LayerMask.NameToLayer(Layers.layers[Layer.Player]))
+            if (col.gameObject.layer == LayerMask.NameToLayer(Configuration.Configuration.Layers[Layer.Player]))
             {
                 manager.PlayerEscaped();
             }

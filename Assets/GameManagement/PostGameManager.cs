@@ -3,6 +3,7 @@ using Statistics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Scene = Configuration.Scene;
 
 namespace GameManagement
 {
@@ -23,6 +24,7 @@ namespace GameManagement
 
             // Achievements
             if (!MyStatistics.wonLastGame) return;
+            // TODO: You have achievements already, this seems like a mistake
             if (MyStatistics.moneyEarned >= 10) // TODO: Wrap this up in some kind of Achievements class
             {
                 _deck.UnlockAttraction("ArrowPenPink");
@@ -35,7 +37,7 @@ namespace GameManagement
 
         public void PlayAgain()
         {
-            SceneManager.LoadScene(1); // TODO: Don't use magic numbers
+            SceneManager.LoadScene(Configuration.Configuration.Scenes[Scene.DeckBuild]);
         }
 
         public void Quit()

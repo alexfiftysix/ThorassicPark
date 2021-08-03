@@ -63,8 +63,6 @@ namespace Monsters.Zombie
 
         private void OnParkBreaks(object sender, EventArgs args)
         {
-            // TODO: You could keep track of these in the gameManager, then you wouldn't need to do all this expensive find.
-            //       Or make a new "VisitorManager" which could take a bit of the code-load out of GameManager
             FindTarget();
             _parkIsBroken = true;
         }
@@ -76,11 +74,11 @@ namespace Monsters.Zombie
 
         private void OnCollisionStay2D(Collision2D other)
         {
-            if (other.gameObject.layer == LayerMask.NameToLayer(Layers.layers[Layer.Visitor])) 
+            if (other.gameObject.layer == LayerMask.NameToLayer(Configuration.Configuration.Layers[Layer.Visitor])) 
             {
                 Zombify(other.gameObject);
             }
-            else if (other.gameObject.layer == LayerMask.NameToLayer(Layers.layers[Layer.Player]))
+            else if (other.gameObject.layer == LayerMask.NameToLayer(Configuration.Configuration.Layers[Layer.Player]))
             {
                 Bite(other.gameObject.GetComponentInParent<PlayerController>());
             }

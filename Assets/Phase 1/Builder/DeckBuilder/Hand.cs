@@ -40,7 +40,7 @@ namespace Phase_1.Builder.DeckBuilder
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            if (scene.name == "Game") // TODO: String bad!
+            if (scene.buildIndex == Configuration.Configuration.Scenes[Configuration.Scene.Game])
             {
                 FillHandWithRandomAttractions();
             }
