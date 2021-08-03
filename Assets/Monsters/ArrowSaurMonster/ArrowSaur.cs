@@ -1,4 +1,4 @@
-using System.Linq;
+using GameManagement;
 using UnityEngine;
 using Utilities.Extensions;
 using Visitors;
@@ -10,15 +10,17 @@ namespace Monsters.ArrowSaurMonster
         public MonsterStats monsterStats;
 
         // Target
-        private Chaseable _target;
+        private IChaseable _target;
         private const float FindTargetMaxDelay = 2;
 
+        private ChaseableManager _chaseableManager;
         private Transform _transform;
         
         private AudioSource _biteAudioSource;
 
         private void Start()
         {
+            _chaseableManager = FindObjectOfType<ChaseableManager>();
             gameObject.AddTimer(FindTargetMaxDelay, FindTarget);
             _transform = transform;
             _biteAudioSource = GetComponent<AudioSource>();
@@ -30,7 +32,7 @@ namespace Monsters.ArrowSaurMonster
             if (_target != null)
             {
                 // You could have a "Died" event from the visitor which dinos subscribe to when they start chasing a visitor?
-                RotateTowardTarget(_target.transform.position);
+                RotateTowardTarget(_target.GetPosition());
                 MoveForwards();
             }
         }
@@ -39,15 +41,15 @@ namespace Monsters.ArrowSaurMonster
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("Visitor")) // TODO: String comparison bad 
             {
-                Bite(other.gameObject.GetComponent<Chaseable>());
+                Bite(other.gameObject.GetComponent<IChaseable>());
             }
             else if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
-                Bite(other.gameObject.GetComponentInParent<Chaseable>());
+                Bite(other.gameObject.GetComponentInParent<IChaseable>());
             }
         }
 
-        private void Bite(Chaseable biteTarget)
+        private void Bite(IChaseable biteTarget)
         {
             biteTarget.TakeDamage(monsterStats.meleeDamage);
             monsterStats.meleeSound.Play(_biteAudioSource);
@@ -69,7 +71,7 @@ namespace Monsters.ArrowSaurMonster
     
         private void FindTarget()
         {
-            _target = FindObjectsOfType<Chaseable>().Where(c => !c.IsDead()).RandomChoice();
+            _target = _chaseableManager.GetRandom();
         }
     }
 } 

@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using GameManagement;
 using Phase_1.Builder.Buildings;
@@ -10,7 +9,7 @@ using Utilities.Extensions;
 
 namespace Visitors
 {
-    public class Visitor : Chaseable
+    public class Visitor : MonoBehaviour, IChaseable
     {
         [SerializeField] private float speed = 1f;
         private Vector2 _direction = Vector2.down;
@@ -20,6 +19,7 @@ namespace Visitors
         private int _health = 10;
         private VisitorState _state;
         private GameManager _gameManager;
+        private ChaseableManager _chaseableManager;
 
         // Wandering
         private const int WanderingTime = 3;
@@ -43,9 +43,11 @@ namespace Visitors
         private bool _escaped;
         private GameObject _escapePoint;
 
-        private void Start()
+        public void Start()
         {
-            _transform = gameObject.transform;
+            _chaseableManager = FindObjectOfType<ChaseableManager>();
+            _chaseableManager.Add(this);
+            _transform = GetComponent<Transform>();
             _wanderingTimer = gameObject.AddTimer(WanderingTime, ChooseTarget);
             _enjoyingTimer = gameObject.AddTimer(EnjoyingTime, StartWandering);
             _wanderingTurnTimer = gameObject.AddTimer(WanderingTurnTime, ChooseDirection);
@@ -125,7 +127,7 @@ namespace Visitors
         }
 
         // Return true if the Visitor has died
-        public override bool TakeDamage(int damage)
+        public bool TakeDamage(int damage)
         {
             _health -= damage;
             if (_health <= 0)
@@ -137,9 +139,14 @@ namespace Visitors
             return false;
         }
 
-        public override bool IsDead()
+        public bool IsDead()
         {
             return _health < 0;
+        }
+
+        public Vector3 GetPosition()
+        {
+            return transform.position;
         }
 
         private void ChooseTarget()

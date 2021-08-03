@@ -8,7 +8,7 @@ using Visitors;
 
 namespace Phase_2.Player
 {
-    public class PlayerController : Chaseable
+    public class PlayerController : MonoBehaviour, IChaseable
     {
         [SerializeField] private float speed = 1f;
         [HideInInspector] public GameManager manager;
@@ -27,6 +27,9 @@ namespace Phase_2.Player
 
         private void Start()
         {
+            var chaseableManager = FindObjectOfType<ChaseableManager>();
+            chaseableManager.Add(this);
+
             _transform = transform;
 
             healthBar = Instantiate(healthBar, new Vector3(0, -20, 0), Quaternion.identity);
@@ -72,7 +75,7 @@ namespace Phase_2.Player
             helipadPointer.transform.rotation = Quaternion.Slerp(helipadPointer.transform.rotation, rotation, _helipadPointedSpeed * Time.deltaTime);
         }
 
-        public override bool TakeDamage(int damage)
+        public bool TakeDamage(int damage)
         {
             _health -= damage;
             healthBar.value = _health;
@@ -85,9 +88,14 @@ namespace Phase_2.Player
             return false;
         }
 
-        public override bool IsDead()
+        public bool IsDead()
         {
             return _health <= 0;
+        }
+
+        public Vector3 GetPosition()
+        {
+            return transform.position;
         }
 
         private void Die()

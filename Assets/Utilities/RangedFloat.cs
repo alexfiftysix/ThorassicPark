@@ -35,11 +35,5 @@ namespace Utilities
         {
             return $"[Class: {nameof(RangedFloat)}, Min: {min}, Max: {max}]";
         }
-
-        public static implicit operator float(RangedFloat someRangedFloat)
-        {
-            return someRangedFloat.GetRandomValue();
-        }
-
     }
 }

@@ -2,7 +2,6 @@ using System;
 using GameManagement;
 using Phase_2.Player;
 using UnityEngine;
-using Utilities.Extensions;
 using Visitors;
 
 namespace Monsters.Zombie
@@ -12,7 +11,8 @@ namespace Monsters.Zombie
         public MonsterStats stats;
         public GameObject zombieBase;
 
-        private Chaseable _target;
+        private IChaseable _target;
+        private ChaseableManager _chaseableManager;
         private Vector2 _direction = Vector2.up;
         private Transform _transform;
 
@@ -26,6 +26,7 @@ namespace Monsters.Zombie
         // Start is called before the first frame update
         private void Start()
         {
+            _chaseableManager = FindObjectOfType<ChaseableManager>();
             var gameManager = FindObjectOfType<GameManager>();
             gameManager.OnParkBreaks += OnParkBreaks;
             _parkIsBroken = gameManager.phase != Phase.Building;
@@ -47,7 +48,7 @@ namespace Monsters.Zombie
                 return;
             }
 
-            TurnToTarget(_target.transform);
+            TurnToPosition(_target.GetPosition());
             Move();
         }
 
@@ -69,7 +70,7 @@ namespace Monsters.Zombie
 
         private void FindTarget()
         {
-            _target = FindObjectsOfType<Chaseable>().RandomChoice();
+            _target = _chaseableManager.GetRandom();
         }
 
         private void OnCollisionStay2D(Collision2D other)
@@ -103,9 +104,9 @@ namespace Monsters.Zombie
             player.TakeDamage(stats.meleeDamage);
         }
 
-        private void TurnToTarget(Transform target)
+        private void TurnToPosition(Vector3 position)
         {
-            _direction = (target.position - _transform.position).normalized;
+            _direction = (position - _transform.position).normalized;
         }
     }
 }

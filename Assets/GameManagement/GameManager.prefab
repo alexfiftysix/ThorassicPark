@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -4699165534488121435}
   - component: {fileID: 2644001649830032285}
   - component: {fileID: 1585505421951865881}
+  - component: {fileID: 3580950104258421022}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -257,4 +258,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parkAreaPrefab: {fileID: 6475194721572806208, guid: 4056414609002f041bf6c64229275c28, type: 3}
   firstArea: {fileID: 0}
-  northArea: {fileID: 0}
+  parkExpansionMenu: {fileID: 0}
+--- !u!114 &3580950104258421022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8363036984877243614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba473cecb4adacb43bec1a1a121ca5de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
