@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 7201206678435542385}
   - component: {fileID: 2507995917580736991}
   - component: {fileID: 1322164968390626801}
+  - component: {fileID: 1980595507973513733}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -133,7 +134,6 @@ MonoBehaviour:
   healthBar: {fileID: 4758573952024336151, guid: 5b43c5e6dfe56c241b7e15da2ee3b8ef, type: 3}
   helipadPointer: {fileID: 8936074787334537035}
   helipad: {fileID: 0}
-  direction: {x: 0, y: 0}
 --- !u!114 &1322164968390626801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,6 +164,18 @@ MonoBehaviour:
   m_DefaultActionMap: PlayerActions
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1980595507973513733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7201206678435542381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff03fb43646b451f8530f89a2cb1e394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7492410962904441960
 GameObject:
   m_ObjectHideFlags: 0

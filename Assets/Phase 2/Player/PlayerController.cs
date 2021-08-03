@@ -1,14 +1,13 @@
 using GameManagement;
 using Phase_2.Helipad;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Utilities.Extensions;
 using Visitors;
 
 namespace Phase_2.Player
 {
-    public class PlayerController : MonoBehaviour, IChaseable
+    public class PlayerController : MonoBehaviour, IChaseable, IMoveable
     {
         [SerializeField] private float speed = 1f;
         [HideInInspector] public GameManager manager;
@@ -20,8 +19,6 @@ namespace Phase_2.Player
         [HideInInspector] public EscapePoint helipad;
         private float _helipadPointedSpeed = 15;
         private bool _helipadSpawned = false;
-        
-        [SerializeField] private Vector2 direction = Vector2.zero;
 
         private Transform _transform;
 
@@ -41,8 +38,6 @@ namespace Phase_2.Player
 
         void Update()
         {
-            Move();
-
             if (!(helipad is null))
             {
                 if (!_helipadSpawned)
@@ -53,18 +48,13 @@ namespace Phase_2.Player
                 MoveHelipadPointer();
             }
         }
-    
-        private void Move()
+
+        public void Move(Vector2 direction)
         {
             var oldPosition = (Vector2) _transform.position;
             var movement = direction * (speed * Time.deltaTime);
             var newPosition = new Vector2(oldPosition.x + movement.x, oldPosition.y + movement.y);
             _transform.position = newPosition.ToVector3();
-        }
-
-        private void OnMove(InputValue inputValue)
-        {
-            direction = inputValue.Get<Vector2>();
         }
 
         private void MoveHelipadPointer()
