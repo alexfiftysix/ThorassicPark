@@ -6,21 +6,19 @@ using Visitors;
 
 namespace Monsters.ArrowSaurMonster
 {
-    public class ArrowSaur : MonoBehaviour, IControllable
+    public class ArrowSaur : ControllableBase
     {
-        private Transform _transform;
         private AudioSource _biteAudioSource;
         private IChaseable _target;
         private ChaseableManager _chaseableManager;
 
         public Brain brain;
         public MonsterStats monsterStats;
-        public Vector3 EulerAngles => _transform.eulerAngles;
-        public Vector3 Position => _transform.position;
 
-        private void Start()
+        public override void Start()
         {
-            _transform = transform;
+            base.Start();
+            
             _biteAudioSource = GetComponent<AudioSource>();
             _chaseableManager = FindObjectOfType<ChaseableManager>();
         }
@@ -52,17 +50,6 @@ namespace Monsters.ArrowSaurMonster
         {
             biteTarget.TakeDamage(monsterStats.meleeDamage);
             monsterStats.meleeSound.Play(_biteAudioSource);
-        }
-
-        public void Move(Vector2 direction, float speed)
-        {
-            _transform.position += _transform.up * (direction.y * speed * Time.deltaTime)
-                                   + _transform.right * (direction.x * speed * Time.deltaTime);
-        }
-
-        public void Rotate(float degrees, float speed)
-        {
-            _transform.Rotate(Vector3.forward * (degrees * speed * Time.deltaTime));
         }
     }
 }
