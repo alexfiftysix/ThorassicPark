@@ -6,7 +6,7 @@ namespace Visitors
     {
         bool TakeDamage(int damage);
         bool IsDead();
-        Vector3 GetPosition();
+        Vector3 Position { get; }
         bool IsDestroyed { get; }
     }
 }

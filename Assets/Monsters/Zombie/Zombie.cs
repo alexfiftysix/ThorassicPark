@@ -1,6 +1,7 @@
 using System;
 using Configuration;
 using GameManagement;
+using Monsters.Brains;
 using Phase_2.Player;
 using UnityEngine;
 using Visitors;
@@ -43,7 +44,7 @@ namespace Monsters.Zombie
             _parkIsBroken = true;
         }
 
-        public void Move(Vector2 direction)
+        public void Move(Vector2 direction, float speed)
         {
             var oldPosition = (Vector2) _transform.position;
             var movement = direction * (stats.movementSpeed * Time.deltaTime);

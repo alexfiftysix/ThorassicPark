@@ -152,10 +152,7 @@ namespace Visitors
             return _health < 0;
         }
 
-        public Vector3 GetPosition()
-        {
-            return transform.position;
-        }
+        public Vector3 Position => transform.position;
 
         private void ChooseTarget()
         {

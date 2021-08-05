@@ -1,6 +1,6 @@
 ﻿using System;
 using GameManagement;
-using Phase_2.Player;
+using Monsters.Brains;
 using UnityEngine;
 using Visitors;
 
@@ -37,8 +37,8 @@ namespace Monsters.Zombie
                 FindTarget();
             }
 
-            TurnToPosition(_target.GetPosition());
-            _moveable.Move(_direction);
+            TurnToPosition(_target.Position);
+            _moveable.Move(_direction, 1);
         }
 
         private void TurnToPosition(Vector3 position)

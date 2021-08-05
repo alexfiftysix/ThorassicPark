@@ -1,4 +1,5 @@
 using GameManagement;
+using Monsters.Brains;
 using Phase_2.Helipad;
 using UnityEngine;
 using UnityEngine.UI;
@@ -52,7 +53,7 @@ namespace Phase_2.Player
             }
         }
 
-        public void Move(Vector2 direction)
+        public void Move(Vector2 direction, float speed)
         {
             var oldPosition = (Vector2) _transform.position;
             var movement = direction * (speed * Time.deltaTime);
@@ -95,10 +96,7 @@ namespace Phase_2.Player
             return _health <= 0;
         }
 
-        public Vector3 GetPosition()
-        {
-            return transform.position;
-        }
+        public Vector3 Position => transform.position;
 
         private void Die()
         {

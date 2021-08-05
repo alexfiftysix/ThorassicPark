@@ -1,6 +1,6 @@
 ﻿using Extensions;
 using GameManagement;
-using Phase_2.Player;
+using Monsters.Brains;
 using UnityEngine;
 using Utilities.Extensions;
 using Visitors;
@@ -34,12 +34,12 @@ namespace Monsters.ArrowSaurMonster
             
             // rotation
             var currentAngle = _transform.eulerAngles.z;
-            var targetAngle = _transform.position.ToVector2().AngleTo(_target.GetPosition());
+            var targetAngle = _transform.position.ToVector2().AngleTo(_target.Position);
             var rotationDegrees = Mathf.DeltaAngle(currentAngle, targetAngle);
-            _rotateable.Rotate(rotationDegrees);
+            _rotateable.Rotate(rotationDegrees, 1);
             
             // speed
-            _moveable.Move(Vector2.up);
+            _moveable.Move(Vector2.up, 1);
         }
         
         private void FindTarget()

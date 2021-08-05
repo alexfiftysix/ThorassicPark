@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Monsters.Brains;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Phase_2.Player
@@ -24,7 +25,7 @@ namespace Phase_2.Player
 
         public void Update()
         {
-            _moveable.Move(_direction);
+            _moveable.Move(_direction, 1);
         }
     }
 }
