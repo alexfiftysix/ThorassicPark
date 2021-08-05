@@ -3,14 +3,12 @@ using Monsters.Brains;
 using Phase_2.Helipad;
 using UnityEngine;
 using UnityEngine.UI;
-using Utilities.Extensions;
 using Visitors;
 
 namespace Phase_2.Player
 {
-    public class PlayerController : MonoBehaviour, IChaseable, IMoveable
+    public class PlayerController : ControllableBase, IChaseable
     {
-        [SerializeField] private float speed = 1f;
         [HideInInspector] public GameManager manager;
 
         [HideInInspector] public Slider healthBar;
@@ -21,16 +19,13 @@ namespace Phase_2.Player
         private float _helipadPointedSpeed = 15;
         private bool _helipadSpawned = false;
 
-        private Transform _transform;
-
         public bool IsDestroyed { get; private set; }
 
-        private void Start()
+        public override void Start()
         {
             var chaseableManager = FindObjectOfType<ChaseableManager>();
             chaseableManager.Add(this);
 
-            _transform = transform;
 
             healthBar = Instantiate(healthBar, new Vector3(0, -20, 0), Quaternion.identity);
             healthBar.maxValue = _health;
@@ -53,14 +48,6 @@ namespace Phase_2.Player
             }
         }
 
-        public void Move(Vector2 direction, float speed)
-        {
-            var oldPosition = (Vector2) _transform.position;
-            var movement = direction * (speed * Time.deltaTime);
-            var newPosition = new Vector2(oldPosition.x + movement.x, oldPosition.y + movement.y);
-            _transform.position = newPosition.ToVector3();
-        }
-
         public void OnDestroy()
         {
             IsDestroyed = true;
@@ -68,7 +55,7 @@ namespace Phase_2.Player
 
         private void MoveHelipadPointer()
         {
-            var newDirection = helipad.transform.position - _transform.position;
+            var newDirection = helipad.transform.position - transform.position;
             var angle = Mathf.Atan2(newDirection.y, newDirection.x) * Mathf.Rad2Deg - 90;
             var rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             helipadPointer.transform.rotation = Quaternion.Slerp(
@@ -95,8 +82,6 @@ namespace Phase_2.Player
         {
             return _health <= 0;
         }
-
-        public Vector3 Position => transform.position;
 
         private void Die()
         {

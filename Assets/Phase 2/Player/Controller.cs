@@ -6,6 +6,8 @@ namespace Phase_2.Player
 {
     public class Controller : MonoBehaviour
     {
+        public float speed;
+        
         private IMoveable _moveable;
         private Vector2 _direction;
 
@@ -25,7 +27,7 @@ namespace Phase_2.Player
 
         public void Update()
         {
-            _moveable.Move(_direction, 1);
+            _moveable.Move(_direction, speed);
         }
     }
 }

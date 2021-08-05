@@ -16,6 +16,7 @@ namespace Monsters.Brains
 
         public virtual void Move(Vector2 direction, float speed)
         {
+            if (_transform == null) _transform = transform;
             _transform.position += _transform.up * (direction.y * speed * Time.deltaTime)
                                    + _transform.right * (direction.x * speed * Time.deltaTime);
         }
