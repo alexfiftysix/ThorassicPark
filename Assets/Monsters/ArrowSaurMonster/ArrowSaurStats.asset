@@ -15,5 +15,5 @@ MonoBehaviour:
   maxHealth: 5
   meleeDamage: 1
   meleeSound: {fileID: 11400000, guid: 8a1ec240dcd686e44bfe9bebb45be507, type: 2}
-  movementSpeed: 1
-  turnSpeed: 5
+  movementSpeed: 1.38
+  turnSpeed: 3

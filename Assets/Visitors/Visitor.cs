@@ -169,7 +169,7 @@ namespace Visitors
             var oldPosition = (Vector2) transform.position;
             var movement = _direction * (speed * Time.deltaTime *
                                          (_state == VisitorState.FreakingOut ? RunningSpeedMultiplier : 1));
-            var newPosition = new Vector3(oldPosition.x + movement.x, oldPosition.y + movement.y, -1f);
+            var newPosition = new Vector3(oldPosition.x + movement.x, oldPosition.y + movement.y, 0);
             _transform.position = newPosition;
         }
 

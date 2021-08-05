@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5197838923960379251}
   - component: {fileID: 6614312581354730498}
   - component: {fileID: 1798298037465397058}
+  - component: {fileID: -1038659430793854541}
   m_Layer: 0
   m_Name: ArrowSaur
   m_TagString: Untagged
@@ -100,7 +101,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterStats: {fileID: 11400000, guid: 33aa4bc814814014993e121b44cecd92, type: 2}
-  target: {fileID: 0}
 --- !u!61 &7163406423809755086
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -274,3 +274,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-1038659430793854541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844796906014014963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9034846db8334213bdf7215bc929e3ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
