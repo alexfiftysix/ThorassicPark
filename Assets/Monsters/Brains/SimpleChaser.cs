@@ -20,9 +20,8 @@ namespace Monsters.Brains
         public override void Act(IControllable controllable, IChaseable target)
         {
             // TODO: Don't pass in target to Act() anymore
-            if (_target == null)
+            if ((Object)_target == null)
             {
-                // TODO  _target == null does not work?
                 FindTarget();
                 return;
             }

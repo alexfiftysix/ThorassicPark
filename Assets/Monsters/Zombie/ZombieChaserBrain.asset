@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0594c5db50ec4dcf8f2dfbaee9a60510, type: 3}
   m_Name: ZombieChaserBrain
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 1
