@@ -1,5 +1,4 @@
 using Configuration;
-using GameManagement;
 using Monsters.Brains;
 using UnityEngine;
 using Visitors;
@@ -9,29 +8,21 @@ namespace Monsters.ArrowSaurMonster
     public class ArrowSaur : ControllableBase
     {
         private AudioSource _biteAudioSource;
-        private IChaseable _target;
-        private ChaseableManager _chaseableManager;
 
         public Brain brain;
         public MonsterStats monsterStats;
 
         public override void Start()
         {
-            base.Start();
-            
             _biteAudioSource = GetComponent<AudioSource>();
-            _chaseableManager = FindObjectOfType<ChaseableManager>();
+            brain.Initialise();
+            
+            base.Start();
         }
 
         private void Update()
         {
-            if (_target == null)
-            {
-                _target = _chaseableManager.GetRandom();
-                return;
-            }
-
-            brain.Act(this, _target);
+            brain.Act(this);
         }
 
         private void OnCollisionEnter2D(Collision2D other)

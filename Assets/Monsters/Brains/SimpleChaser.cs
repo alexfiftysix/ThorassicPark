@@ -8,7 +8,7 @@ namespace Monsters.Brains
     public class SimpleChaser : Brain
     {
         public float speed;
-        
+
         private IChaseable _target;
         private ChaseableManager _chaseableManager;
 
@@ -17,22 +17,22 @@ namespace Monsters.Brains
             _chaseableManager = FindObjectOfType<ChaseableManager>();
         }
 
-        public override void Act(IControllable controllable, IChaseable target)
+        public override void Act(IControllable controllable)
         {
             // TODO: Don't pass in target to Act() anymore
-            if ((Object)_target == null)
+            if ((Object) _target == null)
             {
                 FindTarget();
                 return;
             }
-            
+
             var direction = (_target.Position - controllable.Position).normalized;
             controllable.Move(direction, speed);
         }
-        
+
         private void FindTarget()
         {
             _target = _chaseableManager.GetRandom();
-        } 
+        }
     }
 }

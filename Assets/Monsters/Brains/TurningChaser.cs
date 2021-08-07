@@ -1,4 +1,5 @@
 ﻿using Extensions;
+using GameManagement;
 using UnityEngine;
 using Utilities.Extensions;
 using Visitors;
@@ -11,21 +12,35 @@ namespace Monsters.Brains
         public float movementSpeed;
         public float rotationSpeed;
 
+        private IChaseable _target;
+        private ChaseableManager _chaseableManager;
+
         public override void Initialise()
         {
-            throw new System.NotImplementedException();
+            _chaseableManager = FindObjectOfType<ChaseableManager>();
         }
 
-        public override void Act(IControllable controllable, IChaseable target)
+        public override void Act(IControllable controllable)
         {
+            if ((Object) _target == null)
+            {
+                FindTarget();
+                return;
+            }
+
             // rotation
             var currentAngle = controllable.EulerAngles.z;
-            var targetAngle = controllable.Position.ToVector2().AngleTo(target.Position);
+            var targetAngle = controllable.Position.ToVector2().AngleTo(_target.Position);
             var rotationDegrees = Mathf.DeltaAngle(currentAngle, targetAngle);
             controllable.Rotate(rotationDegrees, rotationSpeed);
-            
+
             // speed
             controllable.Move(Vector2.up, movementSpeed);
+        }
+
+        private void FindTarget()
+        {
+            _target = _chaseableManager.GetRandom();
         }
     }
 }

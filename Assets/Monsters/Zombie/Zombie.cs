@@ -37,7 +37,7 @@ namespace Monsters.Zombie
 
         private void Update()
         {
-            brain.Act(this, null);
+            brain.Act(this);
 
             _biteTimePassed += Time.deltaTime;
         }
