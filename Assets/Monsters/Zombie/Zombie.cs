@@ -30,7 +30,7 @@ namespace Monsters.Zombie
             
             var gameManager = FindObjectOfType<GameManager>();
             gameManager.OnParkBreaks += OnParkBreaks;
-            brain.Initialise();
+            brain.Initialise(this);
 
             base.Start();
         }

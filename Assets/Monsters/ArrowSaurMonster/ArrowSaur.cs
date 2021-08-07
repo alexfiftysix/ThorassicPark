@@ -15,7 +15,7 @@ namespace Monsters.ArrowSaurMonster
         public override void Start()
         {
             _biteAudioSource = GetComponent<AudioSource>();
-            brain.Initialise();
+            brain.Initialise(this);
             
             base.Start();
         }

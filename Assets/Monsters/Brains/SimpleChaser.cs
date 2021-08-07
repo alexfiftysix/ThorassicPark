@@ -12,12 +12,12 @@ namespace Monsters.Brains
         private IChaseable _target;
         private ChaseableManager _chaseableManager;
 
-        public override void Initialise()
+        public override void Initialise(ControllableBase controllable)
         {
             _chaseableManager = FindObjectOfType<ChaseableManager>();
         }
 
-        public override void Act(IControllable controllable)
+        public override void Act(ControllableBase controllable)
         {
             // TODO: Don't pass in target to Act() anymore
             if ((Object) _target == null)

@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using GameManagement;
+using Monsters.Brains;
 using Phase_1.Builder.Buildings;
 using Phase_2.Player;
 using UnityEngine;
@@ -9,12 +10,11 @@ using Utilities.Extensions;
 
 namespace Visitors
 {
-    public class Visitor : MonoBehaviour, IChaseable
+    public class Visitor : ControllableBase, IChaseable
     {
         [SerializeField] private float speed = 1f;
         private Vector2 _direction = Vector2.down;
         private Attraction _target;
-        private Transform _transform;
 
         private int _health = 10;
         private VisitorState _state;
@@ -45,11 +45,10 @@ namespace Visitors
 
         public bool IsDestroyed { get; private set; }
 
-        public void Start()
+        public override void Start()
         {
             _chaseableManager = FindObjectOfType<ChaseableManager>();
             _chaseableManager.Add(this);
-            _transform = GetComponent<Transform>();
             _wanderingTimer = gameObject.AddTimer(WanderingTime, ChooseTarget);
             _enjoyingTimer = gameObject.AddTimer(EnjoyingTime, StartWandering);
             _wanderingTurnTimer = gameObject.AddTimer(WanderingTurnTime, ChooseDirection);
@@ -58,6 +57,8 @@ namespace Visitors
             _gameManager.OnParkBreaks += OnParkBreaks;
 
             IsDestroyed = false;
+            
+            base.Start();
         }
 
         private void OnParkBreaks(object sender, EventArgs args)
@@ -71,23 +72,24 @@ namespace Visitors
         }
 
         // Update is called once per frame
-        private void Update()
-        {
-            if (_state == VisitorState.FollowingPlayer)
-            {
-                TurnToTarget(_player.transform);
-            }
-            else if (_state == VisitorState.WalkingToAttraction)
-            {
-                TurnToTarget(_target.transform);
-            }
-            else if (_state == VisitorState.HeadingToEscapePoint)
-            {
-                TurnToTarget(_escapePoint.transform);
-            }
-
-            Move();
-        }
+        // private void Update()
+        // {
+        //     
+        //     // if (_state == VisitorState.FollowingPlayer)
+        //     // {
+        //     //     TurnToTarget(_player.transform);
+        //     // }
+        //     // else if (_state == VisitorState.WalkingToAttraction)
+        //     // {
+        //     //     TurnToTarget(_target.transform);
+        //     // }
+        //     // else if (_state == VisitorState.HeadingToEscapePoint)
+        //     // {
+        //     //     TurnToTarget(_escapePoint.transform);
+        //     // }
+        //     //
+        //     // Move();
+        // }
 
         public void OnTriggerStay2D(Collider2D other)
         {
@@ -97,16 +99,14 @@ namespace Visitors
             {
                 StartEnjoying();
             }
-            else if (_state == VisitorState.FreakingOut && other.gameObject.name == "VisitorCatchRadius")
+            else if (_state == VisitorState.FreakingOut && other.gameObject.name == "VisitorCatchRadius") // TODO: String check bad
             {
-                // TODO: String check bad
                 SetState(VisitorState.FollowingPlayer);
                 Destroy(_runningTurnTimer);
                 _player = FindObjectOfType<PlayerController>();
             }
-            else if (_state == VisitorState.FollowingPlayer && other.gameObject.name == "VisitorEscapePointRadius")
+            else if (_state == VisitorState.FollowingPlayer && other.gameObject.name == "VisitorEscapePointRadius") // TODO: String check bad
             {
-                // TODO: String check bad
                 SetState(VisitorState.HeadingToEscapePoint);
                 _escapePoint = other.gameObject.FindParent("VisitorEscapePoint");
             }
@@ -152,8 +152,6 @@ namespace Visitors
             return _health < 0;
         }
 
-        public Vector3 Position => transform.position;
-
         private void ChooseTarget()
         {
             _target = _gameManager.attractions.Where(a => !a.isGhost).RandomChoice();
@@ -167,7 +165,6 @@ namespace Visitors
             var movement = _direction * (speed * Time.deltaTime *
                                          (_state == VisitorState.FreakingOut ? RunningSpeedMultiplier : 1));
             var newPosition = new Vector3(oldPosition.x + movement.x, oldPosition.y + movement.y, 0);
-            _transform.position = newPosition;
         }
 
         private void ChooseDirection()
