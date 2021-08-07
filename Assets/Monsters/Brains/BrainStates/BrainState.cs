@@ -11,6 +11,7 @@ namespace Monsters.Brains.BrainStates
 
         public void Initialise(ControllableBase controllable)
         {
+            Debug.Log($"Initialise state: {name}");
             foreach (var brainAction in actions)
             {
                 brainAction.Initialise(controllable);

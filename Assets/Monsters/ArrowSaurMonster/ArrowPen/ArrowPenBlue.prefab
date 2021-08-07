@@ -195,6 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewRadius: {fileID: 4854321056862165918}
+  viewRadiusSize: 2
   moneyBag: {fileID: 0}
   overlapCheck: {fileID: 6285841201714611661}
   spriteRenderer: {fileID: 561439242017025395}
@@ -207,7 +208,6 @@ MonoBehaviour:
   - {fileID: 6612129230834086469}
   config: {fileID: 11400000, guid: 54ad2c82a346d7e46b8f362a870b2d02, type: 2}
   damagedMaterial: {fileID: 2100000, guid: 3e852c4efd4f1c842967162464726937, type: 2}
-  timeToBecomeDamaged: 5
   timeToBreak: 3
   prestige: 2
   moneyPerVisitorPerSecond: 1.2

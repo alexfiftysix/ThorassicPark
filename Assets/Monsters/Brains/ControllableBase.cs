@@ -1,4 +1,5 @@
 ﻿using Monsters.Brains.BrainStates;
+using Phase_1.Builder.Buildings;
 using UnityEngine;
 
 namespace Monsters.Brains
@@ -15,6 +16,8 @@ namespace Monsters.Brains
         public float MaxDecisionTime { get; set; }
         public float WaitTime { get; set; }
         public float MaxWaitTime { get; set; }
+        public Attraction Target { set; get; }
+        
         public BrainState state;
 
         public virtual void Start()
@@ -28,7 +31,7 @@ namespace Monsters.Brains
             state.DoActions(this);
         }
 
-        public void Move(Vector2 direction, float speed)
+        public void Move(Vector2 direction, float speed = 1)
         {
             if (_transform == null) _transform = transform;
             _transform.position += _transform.up * (direction.y * speed * Time.deltaTime)

@@ -1,10 +1,8 @@
-﻿using Monsters.Brains;
-using Monsters.Brains.BrainActions;
-using UnityEngine;
+﻿using UnityEngine;
 using Utilities;
 using Utilities.Extensions;
 
-namespace Visitors
+namespace Monsters.Brains.BrainActions
 {
     [CreateAssetMenu(menuName = "Brains/Actions/Wander")]
     public class Wander : BrainAction

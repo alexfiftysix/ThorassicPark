@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using GameManagement;
 using Phase_1.Builder.Buildings.ArrowPen;
 using UnityEngine;
@@ -11,6 +12,9 @@ namespace Phase_1.Builder.Buildings
     public abstract class Attraction : MonoBehaviour, IPointerClickHandler
     {
         public ViewRadius viewRadius;
+        public Vector2 Position => transform.position;
+        public float viewRadiusSize;
+        
         public MoneyBag moneyBag;
         public OverlapCheck overlapCheck;
 

@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b69d7025472e4ff4865a494459ff7dea, type: 3}
-  m_Name: WanderingState
+  m_Name: ViewingAttractionState
   m_EditorClassIdentifier: 
-  actions:
-  - {fileID: 11400000, guid: a467b8bca5a21b44bb922b9becc88200, type: 2}
+  actions: []
   transitions:
   - decision: {fileID: 11400000, guid: 9b8e201055000984898880236d3c0591, type: 2}
-    trueState: {fileID: 11400000, guid: 5a8e519b7b679544188a4d4ee33ad869, type: 2}
+    trueState: {fileID: 11400000, guid: cafa4999bf378f54b9c4a8ab57483393, type: 2}
     falseState: {fileID: 11400000}
