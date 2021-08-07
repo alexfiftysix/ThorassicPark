@@ -19,6 +19,11 @@ namespace GameManagement
             _chaseables.Add(chaseable);
         }
 
+        public void Remove(IChaseable chaseable)
+        {
+            _chaseables.Remove(chaseable);
+        }
+
         public IChaseable GetRandom()
         {
             return _chaseables.RandomChoice();

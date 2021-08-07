@@ -185,6 +185,7 @@ namespace Visitors
 
         private void Die()
         {
+            _chaseableManager.Remove(this);
             Destroy(gameObject);
         }
 

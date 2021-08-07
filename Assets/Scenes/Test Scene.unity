@@ -455,6 +455,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1798298037465397058, guid: a5ac019069d53254ca0690fe01f52a18, type: 3}
+      propertyPath: MaxDistance
+      value: 1.6790478
+      objectReference: {fileID: 0}
     - target: {fileID: 1844796906014014960, guid: a5ac019069d53254ca0690fe01f52a18, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -465,7 +469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1844796906014014960, guid: a5ac019069d53254ca0690fe01f52a18, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.398693
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 1844796906014014960, guid: a5ac019069d53254ca0690fe01f52a18, type: 3}
       propertyPath: m_LocalPosition.z
@@ -505,3 +509,125 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5ac019069d53254ca0690fe01f52a18, type: 3}
+--- !u!1001 &2071218447
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7243007372674161525, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+      propertyPath: m_Name
+      value: FruitHatWoman (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243007372674161527, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243007372674161527, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243007372674161527, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243007372674161527, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243007372674161527, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243007372674161527, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243007372674161527, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243007372674161527, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243007372674161527, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243007372674161527, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243007372674161527, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243007372674161528, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+      propertyPath: speed
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+--- !u!1001 &2091218529
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7243007372674161525, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+      propertyPath: m_Name
+      value: FruitHatWoman (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243007372674161527, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243007372674161527, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243007372674161527, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243007372674161527, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243007372674161527, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243007372674161527, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243007372674161527, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243007372674161527, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243007372674161527, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243007372674161527, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243007372674161527, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243007372674161528, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}
+      propertyPath: speed
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 42f0b6cc40686e64cb62499be59f0e8c, type: 3}

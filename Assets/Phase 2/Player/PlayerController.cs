@@ -21,10 +21,12 @@ namespace Phase_2.Player
 
         public bool IsDestroyed { get; private set; }
 
+        private ChaseableManager _chaseableManager;
+
         public override void Start()
         {
-            var chaseableManager = FindObjectOfType<ChaseableManager>();
-            chaseableManager.Add(this);
+            _chaseableManager = FindObjectOfType<ChaseableManager>();
+            _chaseableManager.Add(this);
 
 
             healthBar = Instantiate(healthBar, new Vector3(0, -20, 0), Quaternion.identity);
@@ -85,6 +87,7 @@ namespace Phase_2.Player
 
         private void Die()
         {
+            _chaseableManager.Remove(this);
             manager.GameOver();
             Destroy(gameObject);
         }
