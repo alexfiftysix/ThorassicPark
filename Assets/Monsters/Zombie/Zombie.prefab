@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8affa4cce7ad4354dbe962a76b9c4397, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  brain: {fileID: 11400000, guid: fb9d87248234f4f458bb65b550708f37, type: 2}
   stats: {fileID: 11400000, guid: 60f656168a945b3439de8d403a4345a5, type: 2}
   zombieBase: {fileID: 5343487538611026992}
 --- !u!82 &3265939636158807633

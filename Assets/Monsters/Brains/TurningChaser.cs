@@ -11,6 +11,11 @@ namespace Monsters.Brains
         public float movementSpeed;
         public float rotationSpeed;
 
+        public override void Initialise()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override void Act(IControllable controllable, IChaseable target)
         {
             // rotation

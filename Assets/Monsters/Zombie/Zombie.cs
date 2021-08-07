@@ -8,12 +8,13 @@ using Visitors;
 
 namespace Monsters.Zombie
 {
-    public class Zombie : MonoBehaviour, IMoveable
+    public class Zombie : ControllableBase
     {
+        public Brain brain;
+        
         public MonsterStats stats;
         public GameObject zombieBase;
 
-        private Transform _transform;
         private bool _parkIsBroken;
 
         // Biting
@@ -22,19 +23,21 @@ namespace Monsters.Zombie
         private float _biteTimePassed = 0;
 
         // Start is called before the first frame update
-        private void Start()
+        public override void Start()
         {
-            _transform = zombieBase.transform;
             _biteAudioSource = GetComponent<AudioSource>();
-            _parkIsBroken = false;
+            _parkIsBroken = true;
             
             var gameManager = FindObjectOfType<GameManager>();
             gameManager.OnParkBreaks += OnParkBreaks;
+            brain.Initialise();
+
+            base.Start();
         }
 
         private void Update()
         {
-            if (!_parkIsBroken) return;
+            brain.Act(this, null);
 
             _biteTimePassed += Time.deltaTime;
         }
@@ -42,14 +45,6 @@ namespace Monsters.Zombie
         private void OnParkBreaks(object sender, EventArgs args)
         {
             _parkIsBroken = true;
-        }
-
-        public void Move(Vector2 direction, float speed)
-        {
-            var oldPosition = (Vector2) _transform.position;
-            var movement = direction * (stats.movementSpeed * Time.deltaTime);
-            var newPosition = new Vector3(oldPosition.x + movement.x, oldPosition.y + movement.y, -1f);
-            _transform.position = newPosition;
         }
 
         private void OnCollisionStay2D(Collision2D other)
