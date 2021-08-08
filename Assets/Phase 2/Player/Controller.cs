@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace Phase_2.Player
 {
-    public class Controller : MonoBehaviour
+    public class Controller : MonoBehaviour // TODO: Change to a Brain.Action
     {
         public float speed;
         

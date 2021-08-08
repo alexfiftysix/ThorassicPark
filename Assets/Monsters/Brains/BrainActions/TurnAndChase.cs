@@ -10,8 +10,7 @@ namespace Monsters.Brains.BrainActions
     {
         public float movementSpeedMultiplier = 1;
         public float rotationSpeedMultiplier = 1;
-        
-        
+
         public override void Initialise(ControllableBase controllable)
         {
             if (controllable.ChaseableManager == null)

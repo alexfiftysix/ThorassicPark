@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0594c5db50ec4dcf8f2dfbaee9a60510, type: 3}
-  m_Name: ZombieChaserBrain
+  m_Script: {fileID: 11500000, guid: b69d7025472e4ff4865a494459ff7dea, type: 3}
+  m_Name: ZombieSimpleChaseState
   m_EditorClassIdentifier: 
-  speed: 1
+  actions: []
+  transitions: []
