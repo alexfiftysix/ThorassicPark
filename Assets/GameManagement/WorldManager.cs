@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
+using Common.Utilities;
+using Common.Utilities.Extensions;
 using UnityEngine;
-using Utilities;
-using Utilities.Extensions;
 using World;
 
 namespace GameManagement
@@ -24,7 +24,7 @@ namespace GameManagement
 
         public GameObject parkExpansionMenu;
 
-        private Camera _mainCamera;
+        private UnityEngine.Camera _mainCamera;
         private float _previousOrthographicSize;
 
         private int _areasCount = 1;
@@ -36,7 +36,7 @@ namespace GameManagement
             _parkExpansionTimer = gameObject.AddTimer(ParkExpansionTimeInSeconds, ShowParkExpansionMenu);
             _parkAreas[1, 1] = firstArea;
             parkExpansionMenu.SetActive(false);
-            _mainCamera = FindObjectOfType<Camera>();
+            _mainCamera = FindObjectOfType<UnityEngine.Camera>();
             gameObject.GetComponent<GameManager>().OnParkBreaks += (sender, args) => OnParkBreaks();
         }
 

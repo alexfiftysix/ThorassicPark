@@ -1,8 +1,9 @@
-using Phase_1.Builder.DeckBuilder;
+using Buildings.DeckBuilder;
 using Statistics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Scene = Configuration.Scene;
 
 namespace GameManagement
 {
@@ -20,22 +21,11 @@ namespace GameManagement
             moneyText.text = $"${MyStatistics.moneyEarned}";
             visitorsSavedText.text = $"{MyStatistics.visitorsSaved}";
             _deck = FindObjectOfType<Deck>();
-
-            // Achievements
-            if (!MyStatistics.wonLastGame) return;
-            if (MyStatistics.moneyEarned >= 10) // TODO: Wrap this up in some kind of Achievements class
-            {
-                _deck.UnlockAttraction("ArrowPenPink");
-            }
-            if (MyStatistics.visitorsSaved >= 10) // TODO: Wrap this up in some kind of Achievements class
-            {
-                _deck.UnlockAttraction("ZombiePen");
-            }
         }
 
         public void PlayAgain()
         {
-            SceneManager.LoadScene(1); // TODO: Don't use magic numbers
+            SceneManager.LoadScene(Configuration.Configuration.Scenes[Scene.DeckBuild]);
         }
 
         public void Quit()

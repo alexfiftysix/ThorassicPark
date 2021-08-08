@@ -1,17 +1,16 @@
 using System;
 using System.Collections.Generic;
-using Phase_1.Builder;
-using Phase_1.Builder.Buildings;
-using Phase_1.Camera;
-using Phase_2.Helipad;
-using Phase_2.Player;
+using Buildings;
+using Buildings.Builder;
+using Buildings.Helipad;
+using Characters.Player;
+using Common.Utilities;
+using GameManagement.Camera;
 using Statistics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Utilities;
-using Utilities.Extensions;
-using World;
+using Scene = Configuration.Scene;
 
 namespace GameManagement
 {
@@ -19,10 +18,11 @@ namespace GameManagement
     {
         public CameraController mainCamera;
         public GameObject playerPrefab;
-        private PlayerController _player;
+        private Player _player;
 
         public Text phaseText;
         public Phase phase = Phase.Building;
+        [HideInInspector] public bool parkIsBroken;
         public event EventHandler OnParkBreaks;
         public Builder builder;
 
@@ -46,6 +46,7 @@ namespace GameManagement
             _breakSound = GetComponent<AudioSource>();
             mainCamera = FindObjectOfType<CameraController>();
             MyStatistics.Reset();
+            OnParkBreaks += (sender, args) => parkIsBroken = true;
         }
 
         private void Update()
@@ -68,7 +69,7 @@ namespace GameManagement
         {
             phase = Phase.GameLost;
             MyStatistics.wonLastGame = false;
-            SceneManager.LoadScene(3); // TODO: Do this better
+            SceneManager.LoadScene(Configuration.Configuration.Scenes[Scene.PostGame]);
         }
 
         public void AddAttraction(Attraction attraction)
@@ -89,9 +90,8 @@ namespace GameManagement
 
             var player = ActivatePlayer();
             mainCamera.EnterEscapePhase(player);
-            _player = player.GetComponentInChildren<PlayerController>();
-            _player.manager = this;
-            _player.GetComponentInChildren<MouseWheelZoom>().myCamera = mainCamera.GetComponent<Camera>();
+            _player = player.GetComponentInChildren<Player>();
+            _player.GetComponentInChildren<MouseWheelZoom>().myCamera = mainCamera.GetComponent<UnityEngine.Camera>();
 
             phaseText.text = "Escape Phase";
 
