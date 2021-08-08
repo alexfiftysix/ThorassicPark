@@ -1,19 +1,18 @@
 ﻿```mermaid
 graph LR;
-    Wander -- time passed --> HeadToAttraction
-    HeadToAttraction -- found attraction --> LookAtAttraction
-    LookAtAttraction -- time passed --> Wander
+    Wandering -- time passed --> HeadingToAttraction
+    HeadingToAttraction -- found attraction --> LookingAtAttraction
+    LookingAtAttraction -- time passed --> Wandering
 
-    Wander -- park breaks --> RunAround
-    HeadToAttraction -- park breaks --> RunAround
-    LookAtAttraction -- park breaks --> RunAround
+    Wandering -- park breaks --> FreakingOut
+    HeadingToAttraction -- park breaks --> FreakingOut
+    LookingAtAttraction -- park breaks --> FreakingOut
     
-    RunAround -- see player --> FollowPlayer
-    style RunAround fill:#f00
+    FreakingOut -- see player --> FollowingPlayer
     
-    RunAround -- see escape --> Escape
-    FollowPlayer -- see escape --> Escape
-    style FollowPlayer fill:#f00
-    style Escape fill:#f00
+    FreakingOut -- see escape --> Escaping
+    FollowingPlayer -- see escape --> Escaping
+    style FollowingPlayer fill:#f00
+    style Escaping fill:#f00
 
 ```

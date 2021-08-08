@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c89c8aa4e7c04cd2bfa2f7095ea06066, type: 3}
-  m_Name: VisitorWander
+  m_Name: VisitorWanderAction
   m_EditorClassIdentifier: 
   turnAfter:
     min: 0.5

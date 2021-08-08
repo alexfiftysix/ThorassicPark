@@ -12,7 +12,7 @@ namespace Monsters.Zombie
     {
         public Brain brain;
         
-        public MonsterStats stats;
+        public CharacterStats stats;
         public GameObject zombieBase;
 
         private bool _parkIsBroken;

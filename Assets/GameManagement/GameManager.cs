@@ -22,6 +22,7 @@ namespace GameManagement
 
         public Text phaseText;
         public Phase phase = Phase.Building;
+        [HideInInspector] public bool parkIsBroken;
         public event EventHandler OnParkBreaks;
         public Builder builder;
 
@@ -45,6 +46,7 @@ namespace GameManagement
             _breakSound = GetComponent<AudioSource>();
             mainCamera = FindObjectOfType<CameraController>();
             MyStatistics.Reset();
+            OnParkBreaks += (sender, args) => parkIsBroken = true;
         }
 
         private void Update()

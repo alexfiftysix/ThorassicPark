@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Monsters
 {
-    [CreateAssetMenu(menuName = "Monsters/Stats")]
-    public class MonsterStats : ScriptableObject
+    [CreateAssetMenu(menuName = "Character/Stats")]
+    public class CharacterStats : ScriptableObject
     {
         public int maxHealth;
 

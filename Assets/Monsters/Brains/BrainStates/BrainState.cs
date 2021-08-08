@@ -37,10 +37,11 @@ namespace Monsters.Brains.BrainStates
             {
                 foreach (var transition in transitions)
                 {
-                    controllable.TransitionToState(transition.decision.Decide(controllable)
-                        ? transition.trueState
-                        : transition.falseState
-                    );
+                    if (transition.decision.Decide(controllable))
+                    {
+                        controllable.TransitionToState(transition.nextState);
+                        break;
+                    }
                 }
             }
         }

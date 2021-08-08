@@ -10,7 +10,7 @@ namespace Monsters.ArrowSaurMonster
         private AudioSource _biteAudioSource;
 
         public Brain brain;
-        public MonsterStats monsterStats;
+        public CharacterStats characterStats;
 
         public override void Start()
         {
@@ -39,8 +39,8 @@ namespace Monsters.ArrowSaurMonster
 
         private void Bite(IChaseable biteTarget)
         {
-            biteTarget.TakeDamage(monsterStats.meleeDamage);
-            monsterStats.meleeSound.Play(_biteAudioSource);
+            biteTarget.TakeDamage(characterStats.meleeDamage);
+            characterStats.meleeSound.Play(_biteAudioSource);
         }
     }
 }

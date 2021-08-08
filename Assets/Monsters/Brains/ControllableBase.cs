@@ -1,4 +1,5 @@
-﻿using Monsters.Brains.BrainStates;
+﻿using GameManagement;
+using Monsters.Brains.BrainStates;
 using Phase_1.Builder.Buildings;
 using UnityEngine;
 
@@ -6,19 +7,20 @@ namespace Monsters.Brains
 {
     public abstract class ControllableBase : MonoBehaviour
     {
+        public CharacterStats stats;
+        public BrainState state;
+
         private Transform _transform;
 
         public Vector3 EulerAngles => _transform.eulerAngles;
         public Vector3 Position => _transform.position;
         public Vector2 Direction { get; set; }
-        public MonsterStats stats;
         public float TimeSinceLastDecision { get; set; }
         public float MaxDecisionTime { get; set; }
         public float WaitTime { get; set; }
         public float MaxWaitTime { get; set; }
         public Attraction Target { set; get; }
-        
-        public BrainState state;
+        public GameManager GameManager { get; set; }
 
         public virtual void Start()
         {
@@ -31,16 +33,17 @@ namespace Monsters.Brains
             state.DoActions(this);
         }
 
-        public void Move(Vector2 direction, float speed = 1)
+        public void Move(Vector2 direction, float speedMultiplier = 1)
         {
             if (_transform == null) _transform = transform;
-            _transform.position += _transform.up * (direction.y * speed * Time.deltaTime)
-                                   + _transform.right * (direction.x * speed * Time.deltaTime);
+            _transform.position +=
+                _transform.up * (direction.y * stats.movementSpeed * speedMultiplier * Time.deltaTime)
+                + _transform.right * (direction.x * stats.movementSpeed * speedMultiplier * Time.deltaTime);
         }
 
-        public void Rotate(float degrees, float speed)
+        public void Rotate(float degrees, float speedMultiplier)
         {
-            _transform.Rotate(Vector3.forward * (degrees * speed * Time.deltaTime));
+            _transform.Rotate(Vector3.forward * (degrees * stats.turnSpeed * speedMultiplier * Time.deltaTime));
         }
 
         public void TransitionToState(BrainState nextState)

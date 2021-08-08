@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a870696b55d34bceb94e900f9ac348a8, type: 3}
-  m_Name: HeadToAttractionAction
+  m_Script: {fileID: 11500000, guid: 00888d6588084663a6ca0f23681981a3, type: 3}
+  m_Name: VisitorFoundAttractionDecision
   m_EditorClassIdentifier: 

@@ -7,18 +7,8 @@ namespace Monsters.Brains.BrainActions
     [CreateAssetMenu(menuName = "Brains/Actions/Wander")]
     public class Wander : BrainAction
     {
-        // TODO
-        // 1. Wandering
-        // 2. Heading to attractions
-        // 3. Running around scared
-        // 4. Following Player
-        // 5. Heading to Escape
-
-        // TODO questions:
-        // How to deal with move speed? Is it a property of the brain, the behaviour, the controllable (a combination?)
-        //      A property of the controllable
-
         public RangedFloat turnAfter;
+        public float moveSpeedMultiplier = 1;
 
         public override void Initialise(ControllableBase controllable)
         {
@@ -35,7 +25,7 @@ namespace Monsters.Brains.BrainActions
                 controllable.TimeSinceLastDecision -= controllable.MaxDecisionTime;
             }
 
-            controllable.Move(controllable.Direction, controllable.stats.movementSpeed);
+            controllable.Move(controllable.Direction, moveSpeedMultiplier);
         }
     }
 }

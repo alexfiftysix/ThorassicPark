@@ -7,7 +7,6 @@ namespace Monsters.Brains
     public class Transition
     {
         public BrainDecision decision;
-        public BrainState trueState;
-        public BrainState falseState;
+        public BrainState nextState;
     }
 }
