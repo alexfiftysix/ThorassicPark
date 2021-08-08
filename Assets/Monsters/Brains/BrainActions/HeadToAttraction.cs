@@ -1,5 +1,4 @@
-﻿using GameManagement;
-using Phase_1.Builder.Buildings;
+﻿using Phase_1.Builder.Buildings;
 using UnityEngine;
 using Utilities.Extensions;
 
@@ -20,8 +19,7 @@ namespace Monsters.Brains.BrainActions
                 controllable.Target = FindObjectsOfType<Attraction>().RandomChoice();
             }
             
-            var direction = (controllable.Target.transform.position - controllable.Position).normalized;
-            controllable.Move(direction);
+            controllable.MoveTowards(controllable.Target.Position);
         }
     }
 }

@@ -12,6 +12,7 @@ namespace Phase_2.Player
         [HideInInspector] public GameManager manager;
 
         [HideInInspector] public Slider healthBar;
+        [HideInInspector] public float viewRadiusSize = 1;
         private int _health = 10;
 
         public GameObject helipadPointer;

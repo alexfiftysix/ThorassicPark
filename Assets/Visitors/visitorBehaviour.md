@@ -12,7 +12,6 @@ graph LR;
     
     FreakingOut -- see escape --> Escaping
     FollowingPlayer -- see escape --> Escaping
-    style FollowingPlayer fill:#f00
     style Escaping fill:#f00
 
 ```

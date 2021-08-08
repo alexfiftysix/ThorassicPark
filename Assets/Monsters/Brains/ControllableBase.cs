@@ -1,6 +1,7 @@
 ﻿using GameManagement;
 using Monsters.Brains.BrainStates;
 using Phase_1.Builder.Buildings;
+using Phase_2.Player;
 using UnityEngine;
 
 namespace Monsters.Brains
@@ -20,6 +21,7 @@ namespace Monsters.Brains
         public float WaitTime { get; set; }
         public float MaxWaitTime { get; set; }
         public Attraction Target { set; get; }
+        public PlayerController Player { set; get; }
         public GameManager GameManager { get; set; }
 
         public virtual void Start()
@@ -41,7 +43,7 @@ namespace Monsters.Brains
                 + _transform.right * (direction.x * stats.movementSpeed * speedMultiplier * Time.deltaTime);
         }
 
-        public void Rotate(float degrees, float speedMultiplier)
+        public void Rotate(float degrees, float speedMultiplier = 1)
         {
             _transform.Rotate(Vector3.forward * (degrees * stats.turnSpeed * speedMultiplier * Time.deltaTime));
         }
