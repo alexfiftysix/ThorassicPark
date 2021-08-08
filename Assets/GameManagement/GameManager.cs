@@ -18,7 +18,7 @@ namespace GameManagement
     {
         public CameraController mainCamera;
         public GameObject playerPrefab;
-        private PlayerController _player;
+        private Player _player;
 
         public Text phaseText;
         public Phase phase = Phase.Building;
@@ -90,7 +90,7 @@ namespace GameManagement
 
             var player = ActivatePlayer();
             mainCamera.EnterEscapePhase(player);
-            _player = player.GetComponentInChildren<PlayerController>();
+            _player = player.GetComponentInChildren<Player>();
             _player.manager = this;
             _player.GetComponentInChildren<MouseWheelZoom>().myCamera = mainCamera.GetComponent<Camera>();
 

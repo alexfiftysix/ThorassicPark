@@ -37,7 +37,7 @@ namespace Visitors
         private Timer _runningTurnTimer;
 
         // Following Player
-        private PlayerController _player;
+        private Player _player;
         
         // Escaping
         private bool _escaped;
@@ -103,7 +103,7 @@ namespace Visitors
             {
                 SetState(VisitorState.FollowingPlayer);
                 Destroy(_runningTurnTimer);
-                _player = FindObjectOfType<PlayerController>();
+                _player = FindObjectOfType<Player>();
             }
             else if (_state == VisitorState.FollowingPlayer && other.gameObject.name == "VisitorEscapePointRadius") // TODO: String check bad
             {

@@ -39,7 +39,7 @@ namespace Monsters.Zombie
             }
             else if (other.gameObject.layer == LayerMask.NameToLayer(Configuration.Configuration.Layers[Layer.Player]))
             {
-                Bite(other.gameObject.GetComponentInParent<PlayerController>());
+                Bite(other.gameObject.GetComponentInParent<Player>());
             }
         }
 

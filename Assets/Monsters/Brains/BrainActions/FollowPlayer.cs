@@ -11,7 +11,7 @@ namespace Monsters.Brains.BrainActions
         
         public override void Initialise(ControllableBase controllable)
         {
-            if (controllable.Player == null) controllable.Player = FindObjectOfType<PlayerController>();
+            if (controllable.Player == null) controllable.Player = FindObjectOfType<Player>();
         }
 
         public override void Act(ControllableBase controllable)

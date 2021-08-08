@@ -1,33 +1,23 @@
 ﻿using Monsters.Brains;
+using Monsters.Brains.BrainActions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Phase_2.Player
 {
-    public class Controller : MonoBehaviour // TODO: Change to a Brain.Action
+    [CreateAssetMenu (menuName = "Brains/Actions/HumanController")]
+    public class Controller : BrainAction
     {
-        public float speed;
-        
-        private IMoveable _moveable;
-        private Vector2 _direction;
+        public InputActionAsset actions;
 
-        public void Start()
+        public override void Initialise(ControllableBase controllable)
         {
-            _moveable = GetComponent<IMoveable>();
-            _direction = Vector2.zero;
+            actions["Move"].Enable();
         }
 
-        /// <summary>
-        /// Called by a PlayerInput 
-        /// </summary>
-        public void OnMove(InputValue inputValue)
+        public override void Act(ControllableBase controllable)
         {
-            _direction = inputValue.Get<Vector2>();
-        }
-
-        public void Update()
-        {
-            _moveable.Move(_direction, speed);
+            controllable.Move(actions["Move"].ReadValue<Vector2>());
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Monsters.Brains
         public float MaxWaitTime { get; set; }
         public Attraction TargetAttraction { set; get; }
         public IChaseable TargetChaseable { set; get; }
-        public PlayerController Player { set; get; }
+        public Player Player { set; get; }
         
         public GameManager GameManager { get; private set; }
         public ChaseableManager ChaseableManager { get; set; }

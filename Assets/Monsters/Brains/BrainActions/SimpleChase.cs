@@ -17,7 +17,7 @@ namespace Monsters.Brains.BrainActions
 
         public override void Act(ControllableBase controllable)
         {
-            if ((UnityEngine.Object) controllable.TargetChaseable == null)
+            if ((Object) controllable.TargetChaseable == null)
             {
                 controllable.TargetChaseable = controllable.ChaseableManager.GetRandom();
                 return;

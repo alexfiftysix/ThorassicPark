@@ -7,7 +7,7 @@ using Visitors;
 
 namespace Phase_2.Player
 {
-    public class PlayerController : ControllableBase, IChaseable
+    public class Player : ControllableBase, IChaseable
     {
         [HideInInspector] public GameManager manager;
 
@@ -17,7 +17,7 @@ namespace Phase_2.Player
 
         public GameObject helipadPointer;
         [HideInInspector] public EscapePoint helipad;
-        private float _helipadPointedSpeed = 15;
+        private const float HelipadPointedSpeed = 15;
         private bool _helipadSpawned;
 
         public bool IsDestroyed { get; private set; }
@@ -35,6 +35,8 @@ namespace Phase_2.Player
             healthBar.value = _health;
 
             healthBar.transform.SetParent(GameObject.Find("Canvas").transform, false);
+            
+            base.Start();
         }
 
         public override void Update()
@@ -60,13 +62,14 @@ namespace Phase_2.Player
 
         private void MoveHelipadPointer()
         {
+            // TODO: This shouldn't be a part of the Player class
             var newDirection = helipad.transform.position - transform.position;
             var angle = Mathf.Atan2(newDirection.y, newDirection.x) * Mathf.Rad2Deg - 90;
             var rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             helipadPointer.transform.rotation = Quaternion.Slerp(
                 helipadPointer.transform.rotation,
                 rotation,
-                _helipadPointedSpeed * Time.deltaTime
+                HelipadPointedSpeed * Time.deltaTime
             );
         }
 
