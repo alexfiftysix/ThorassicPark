@@ -1,17 +1,20 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+namespace Main_Menu
 {
-    public static void GoToDeckBuilder()
+    public class MainMenu : MonoBehaviour
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
+        public static void GoToDeckBuilder()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
 
-    public static void QuitGame()
-    {
-        Debug.Log("QUIT");
-        Application.Quit();
-    }
+        public static void QuitGame()
+        {
+            Debug.Log("QUIT");
+            Application.Quit();
+        }
     
+    }
 }

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
+using Characters.Visitors;
+using Common.Utilities.Extensions;
 using UnityEngine;
-using Utilities.Extensions;
-using Visitors;
 
 namespace GameManagement
 {

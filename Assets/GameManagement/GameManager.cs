@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
-using Phase_1.Builder;
-using Phase_1.Builder.Buildings;
-using Phase_1.Camera;
-using Phase_2.Helipad;
-using Phase_2.Player;
+using Buildings;
+using Buildings.Builder;
+using Buildings.Helipad;
+using Characters.Player;
+using Common.Utilities;
+using GameManagement.Camera;
 using Statistics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Utilities;
 using Scene = Configuration.Scene;
 
 namespace GameManagement
@@ -91,7 +91,7 @@ namespace GameManagement
             var player = ActivatePlayer();
             mainCamera.EnterEscapePhase(player);
             _player = player.GetComponentInChildren<Player>();
-            _player.GetComponentInChildren<MouseWheelZoom>().myCamera = mainCamera.GetComponent<Camera>();
+            _player.GetComponentInChildren<MouseWheelZoom>().myCamera = mainCamera.GetComponent<UnityEngine.Camera>();
 
             phaseText.text = "Escape Phase";
 

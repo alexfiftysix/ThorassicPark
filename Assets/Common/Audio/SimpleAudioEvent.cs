@@ -1,6 +1,6 @@
+using Common.Utilities;
+using Common.Utilities.Extensions;
 using UnityEngine;
-using Utilities;
-using Utilities.Extensions;
 
 namespace Common.Audio
 {

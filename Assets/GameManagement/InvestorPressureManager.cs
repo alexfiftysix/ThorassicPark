@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Common.Utilities;
+using Common.Utilities.Extensions;
 using Statistics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Utilities;
-using Utilities.Extensions;
 
 namespace GameManagement
 {
