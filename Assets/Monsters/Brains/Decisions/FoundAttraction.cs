@@ -13,7 +13,7 @@ namespace Monsters.Brains.Decisions
 
         public override bool Decide(ControllableBase controllable)
         {
-            var colliders = Physics2D.OverlapCircleAll(controllable.Target.Position, controllable.Target.viewRadiusSize * 0.9f);
+            var colliders = Physics2D.OverlapCircleAll(controllable.TargetAttraction.Position, controllable.TargetAttraction.viewRadiusSize * 0.9f);
             return colliders.Any(collider => collider.gameObject == controllable.gameObject);
         }
         

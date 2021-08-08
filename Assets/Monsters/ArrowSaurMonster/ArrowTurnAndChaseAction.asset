@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a74de7a93b1142dfa08006d0d309a9a6, type: 3}
-  m_Name: ArrowSaurBlueBrain
+  m_Script: {fileID: 11500000, guid: 7a72130afa96444a8ec453b4933fbcf1, type: 3}
+  m_Name: ArrowTurnAndChaseAction
   m_EditorClassIdentifier: 
-  movementSpeed: 2
-  rotationSpeed: 5
+  movementSpeedMultiplier: 1
+  rotationSpeedMultiplier: 1

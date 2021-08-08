@@ -9,20 +9,10 @@ namespace Monsters.ArrowSaurMonster
     {
         private AudioSource _biteAudioSource;
 
-        public Brain brain;
-        public CharacterStats characterStats;
-
         public override void Start()
         {
             _biteAudioSource = GetComponent<AudioSource>();
-            brain.Initialise(this);
-            
             base.Start();
-        }
-
-        private void Update()
-        {
-            brain.Act(this);
         }
 
         private void OnCollisionEnter2D(Collision2D other)

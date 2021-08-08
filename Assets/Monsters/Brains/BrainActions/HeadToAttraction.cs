@@ -9,17 +9,17 @@ namespace Monsters.Brains.BrainActions
     {
         public override void Initialise(ControllableBase controllable)
         {
-            controllable.Target = FindObjectsOfType<Attraction>().RandomChoice();
+            controllable.TargetAttraction = FindObjectsOfType<Attraction>().RandomChoice();
         }
 
         public override void Act(ControllableBase controllable)
         {
-            if (controllable.Target == null)
+            if (controllable.TargetAttraction == null)
             {
-                controllable.Target = FindObjectsOfType<Attraction>().RandomChoice();
+                controllable.TargetAttraction = FindObjectsOfType<Attraction>().RandomChoice();
             }
             
-            controllable.MoveTowards(controllable.Target.Position);
+            controllable.MoveTowards(controllable.TargetAttraction.Position);
         }
     }
 }

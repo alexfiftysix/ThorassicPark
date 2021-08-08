@@ -1,6 +1,4 @@
-using System;
 using Configuration;
-using GameManagement;
 using Monsters.Brains;
 using Phase_2.Player;
 using UnityEngine;
@@ -10,43 +8,29 @@ namespace Monsters.Zombie
 {
     public class Zombie : ControllableBase
     {
-        public Brain brain;
-        
-        public CharacterStats stats;
         public GameObject zombieBase;
-
-        private bool _parkIsBroken;
 
         // Biting
         private AudioSource _biteAudioSource;
         private float _biteDelay = 1.5f;
-        private float _biteTimePassed = 0;
+        private float _biteTimePassed;
 
         // Start is called before the first frame update
         public override void Start()
         {
             _biteAudioSource = GetComponent<AudioSource>();
-            _parkIsBroken = true;
             
-            var gameManager = FindObjectOfType<GameManager>();
-            gameManager.OnParkBreaks += OnParkBreaks;
-            brain.Initialise(this);
-
             base.Start();
         }
 
-        private void Update()
+        public override void Update()
         {
-            brain.Act(this);
-
             _biteTimePassed += Time.deltaTime;
+            _biteTimePassed = 0;
+            
+            base.Update();
         }
         
-        private void OnParkBreaks(object sender, EventArgs args)
-        {
-            _parkIsBroken = true;
-        }
-
         private void OnCollisionStay2D(Collision2D other)
         {
             if (other.gameObject.layer == LayerMask.NameToLayer(Configuration.Configuration.Layers[Layer.Visitor])) 
@@ -74,8 +58,8 @@ namespace Monsters.Zombie
             if (_biteTimePassed < _biteDelay) return;
 
             _biteTimePassed = 0;
-            stats.meleeSound.Play(_biteAudioSource);
-            player.TakeDamage(stats.meleeDamage);
+            characterStats.meleeSound.Play(_biteAudioSource);
+            player.TakeDamage(characterStats.meleeDamage);
         }
     }
 }

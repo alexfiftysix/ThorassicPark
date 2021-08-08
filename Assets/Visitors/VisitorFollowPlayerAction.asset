@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3392365e89154c829925cd33592e0cb1, type: 3}
   m_Name: VisitorFollowPlayerAction
   m_EditorClassIdentifier: 
+  speedMultiplier: 1.5

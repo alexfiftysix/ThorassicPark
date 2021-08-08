@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: VisitorWanderingTimePassedDecision
   m_EditorClassIdentifier: 
   waitTime:
-    min: 3
-    max: 5
+    min: 1
+    max: 4

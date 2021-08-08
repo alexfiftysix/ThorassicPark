@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d3dafc02976be244846c4b3a262c937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brain: {fileID: 11400000, guid: c2340e797719dbc42b48e6933dff8045, type: 2}
-  monsterStats: {fileID: 11400000, guid: 33aa4bc814814014993e121b44cecd92, type: 2}
+  characterStats: {fileID: 11400000, guid: 33aa4bc814814014993e121b44cecd92, type: 2}
+  state: {fileID: 11400000, guid: 86cec91fcd4027141aea34bc2293fb90, type: 2}
 --- !u!61 &7163406423809755086
 BoxCollider2D:
   m_ObjectHideFlags: 0

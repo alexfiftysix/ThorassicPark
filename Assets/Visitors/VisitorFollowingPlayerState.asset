@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b69d7025472e4ff4865a494459ff7dea, type: 3}
   m_Name: VisitorFollowingPlayerState
   m_EditorClassIdentifier: 
-  actions: []
+  actions:
+  - {fileID: 11400000, guid: 3d65145793d94aa44a9d72bfbc73168d, type: 2}
   transitions: []

@@ -18,7 +18,7 @@ namespace Phase_2.Player
         public GameObject helipadPointer;
         [HideInInspector] public EscapePoint helipad;
         private float _helipadPointedSpeed = 15;
-        private bool _helipadSpawned = false;
+        private bool _helipadSpawned;
 
         public bool IsDestroyed { get; private set; }
 
@@ -28,7 +28,7 @@ namespace Phase_2.Player
         {
             _chaseableManager = FindObjectOfType<ChaseableManager>();
             _chaseableManager.Add(this);
-
+            _helipadSpawned = false;
 
             healthBar = Instantiate(healthBar, new Vector3(0, -20, 0), Quaternion.identity);
             healthBar.maxValue = _health;
@@ -37,7 +37,7 @@ namespace Phase_2.Player
             healthBar.transform.SetParent(GameObject.Find("Canvas").transform, false);
         }
 
-        void Update()
+        public override void Update()
         {
             if (!(helipad is null))
             {
@@ -49,6 +49,8 @@ namespace Phase_2.Player
 
                 MoveHelipadPointer();
             }
+            
+            base.Update();
         }
 
         public void OnDestroy()

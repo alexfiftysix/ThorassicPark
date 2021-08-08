@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b69d7025472e4ff4865a494459ff7dea, type: 3}
   m_Name: VisitorFreakingOutState
   m_EditorClassIdentifier: 
-  actions: []
-  transitions: []
+  actions:
+  - {fileID: 11400000, guid: 7a29a4d4a00eb4849a8b11ed7979dba5, type: 2}
+  transitions:
+  - decision: {fileID: 11400000, guid: ed281e2e97e41c549928da182a2f5b16, type: 2}
+    nextState: {fileID: 11400000, guid: 2ce15ce67f002bf448c4ef42db3594f2, type: 2}

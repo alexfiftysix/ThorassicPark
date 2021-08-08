@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: VisitorLookingAtAttractionTimePassedDecision
   m_EditorClassIdentifier: 
   waitTime:
-    min: 0
-    max: 1
+    min: 3
+    max: 5

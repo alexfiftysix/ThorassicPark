@@ -8,10 +8,6 @@ namespace Monsters.Brains.Decisions
     {
         public override void Initialise(ControllableBase controllable)
         {
-            if (controllable.GameManager == null)
-            {
-                controllable.GameManager = FindObjectOfType<GameManager>();
-            }
         }
 
         public override bool Decide(ControllableBase controllable)
