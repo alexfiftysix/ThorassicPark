@@ -91,7 +91,6 @@ namespace GameManagement
             var player = ActivatePlayer();
             mainCamera.EnterEscapePhase(player);
             _player = player.GetComponentInChildren<Player>();
-            _player.manager = this;
             _player.GetComponentInChildren<MouseWheelZoom>().myCamera = mainCamera.GetComponent<Camera>();
 
             phaseText.text = "Escape Phase";

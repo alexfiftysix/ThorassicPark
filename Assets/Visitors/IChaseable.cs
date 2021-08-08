@@ -4,9 +4,7 @@ namespace Visitors
 {
     public interface IChaseable
     {
-        bool TakeDamage(int damage);
-        bool IsDead();
+        void TakeDamage(int damage);
         Vector3 Position { get; }
-        bool IsDestroyed { get; }
     }
 }

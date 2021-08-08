@@ -1,4 +1,3 @@
-using GameManagement;
 using Monsters.Brains;
 using Phase_2.Helipad;
 using UnityEngine;
@@ -9,8 +8,6 @@ namespace Phase_2.Player
 {
     public class Player : ControllableBase, IChaseable
     {
-        [HideInInspector] public GameManager manager;
-
         [HideInInspector] public Slider healthBar;
         [HideInInspector] public float viewRadiusSize = 1;
         private int _health = 10;
@@ -20,14 +17,11 @@ namespace Phase_2.Player
         private const float HelipadPointedSpeed = 15;
         private bool _helipadSpawned;
 
-        public bool IsDestroyed { get; private set; }
-
-        private ChaseableManager _chaseableManager;
-
         public override void Start()
         {
-            _chaseableManager = FindObjectOfType<ChaseableManager>();
-            _chaseableManager.Add(this);
+            base.Start();
+            
+            ChaseableManager.Add(this);
             _helipadSpawned = false;
 
             healthBar = Instantiate(healthBar, new Vector3(0, -20, 0), Quaternion.identity);
@@ -35,8 +29,6 @@ namespace Phase_2.Player
             healthBar.value = _health;
 
             healthBar.transform.SetParent(GameObject.Find("Canvas").transform, false);
-            
-            base.Start();
         }
 
         public override void Update()
@@ -57,7 +49,7 @@ namespace Phase_2.Player
 
         public void OnDestroy()
         {
-            IsDestroyed = true;
+            ChaseableManager.Remove(this);
         }
 
         private void MoveHelipadPointer()
@@ -73,28 +65,20 @@ namespace Phase_2.Player
             );
         }
 
-        public bool TakeDamage(int damage)
+        public void TakeDamage(int damage)
         {
             _health -= damage;
             healthBar.value = _health;
             if (_health <= 0)
             {
                 Die();
-                return true;
             }
-
-            return false;
-        }
-
-        public bool IsDead()
-        {
-            return _health <= 0;
         }
 
         private void Die()
         {
-            _chaseableManager.Remove(this);
-            manager.GameOver();
+            ChaseableManager.Remove(this);
+            GameManager.GameOver();
             Destroy(gameObject);
         }
     }
