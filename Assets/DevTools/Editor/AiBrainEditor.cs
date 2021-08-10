@@ -32,6 +32,8 @@ public class AiBrainEditor : EditorWindow
 
         brainView = root.Q<AiBrainView>();
         inspectorView = root.Q<InspectorView>();
+        
+        OnSelectionChange();
     }
 
     private void OnSelectionChange()

@@ -15,6 +15,7 @@ MonoBehaviour:
   actions: []
   transitions: []
   guid: 99d92f1a25af1e043a9b1920b7660a63
+  position: {x: 0, y: 0}
 --- !u!114 &-7683673640608104428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30,6 +31,23 @@ MonoBehaviour:
   actions: []
   transitions: []
   guid: 1973c8e0db0f7d047a11d0dc09e34e40
+  position: {x: 0, y: 0}
+--- !u!114 &-7640394140766775915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b69d7025472e4ff4865a494459ff7dea, type: 3}
+  m_Name: new state
+  m_EditorClassIdentifier: 
+  actions: []
+  transitions: []
+  guid: 07216ec2e68d02047bbaf64dfe294f72
+  position: {x: 0, y: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43,4 +61,39 @@ MonoBehaviour:
   m_Name: SampleBrain
   m_EditorClassIdentifier: 
   initialState: {fileID: 0}
-  states: []
+  states:
+  - {fileID: 7904201726741101473}
+  - {fileID: 5642409419380926710}
+  - {fileID: -7640394140766775915}
+--- !u!114 &5642409419380926710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b69d7025472e4ff4865a494459ff7dea, type: 3}
+  m_Name: new state
+  m_EditorClassIdentifier: 
+  actions: []
+  transitions: []
+  guid: faf538413b3f50742ac96bb9d856ff34
+  position: {x: 205.86241, y: -282.19348}
+--- !u!114 &7904201726741101473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b69d7025472e4ff4865a494459ff7dea, type: 3}
+  m_Name: new state
+  m_EditorClassIdentifier: 
+  actions: []
+  transitions: []
+  guid: 854e6fbe6279f2f45acbf6c1e910c929
+  position: {x: 30.000011, y: 10.000011}

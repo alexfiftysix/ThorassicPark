@@ -9,8 +9,10 @@ namespace Characters.Brains.BrainStates
     {
         public BrainAction[] actions;
         public Transition[] transitions;
-        public string guid;
-        
+
+        // editor
+        [HideInInspector] public string guid;
+        [HideInInspector] public Vector2 position;
 
         public void Initialise(ControllableBase controllable)
         {
