@@ -9,6 +9,8 @@ namespace Characters.Brains.BrainStates
     {
         public BrainAction[] actions;
         public Transition[] transitions;
+        public string guid;
+        
 
         public void Initialise(ControllableBase controllable)
         {
