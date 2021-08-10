@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Characters.Brains;
@@ -11,6 +12,7 @@ using UnityEngine.UIElements;
 public class AiBrainView : GraphView
 {
     private Brain _brain;
+    public Action<NodeView> onNodeSelected;
 
     public new class UxmlFactory : UxmlFactory<AiBrainView, UxmlTraits>
     {
@@ -83,6 +85,7 @@ public class AiBrainView : GraphView
     private void CreateNodeView(BrainState state)
     {
         var nodeView = new NodeView(state);
+        nodeView.onNodeSelected = onNodeSelected;
         AddElement(nodeView);
     }
 }

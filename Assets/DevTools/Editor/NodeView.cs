@@ -1,3 +1,4 @@
+using System;
 using Characters.Brains.BrainStates;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -7,6 +8,7 @@ public sealed class NodeView : Node
     public BrainState state;
     public Port input;
     public Port output;
+    public Action<NodeView> onNodeSelected;
 
     public NodeView(BrainState state)
     {
@@ -26,6 +28,16 @@ public sealed class NodeView : Node
         base.SetPosition(newPos);
         state.position.x = newPos.xMin;
         state.position.y = newPos.yMin;
+    }
+
+    public override void OnSelected()
+    {
+        base.OnSelected();
+
+        if (onNodeSelected != null)
+        {
+            onNodeSelected.Invoke(this);
+        }
     }
 
     private void CreateInputPorts()

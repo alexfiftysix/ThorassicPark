@@ -32,16 +32,22 @@ public class AiBrainEditor : EditorWindow
 
         brainView = root.Q<AiBrainView>();
         inspectorView = root.Q<InspectorView>();
-        
-        OnSelectionChange();
+        brainView.onNodeSelected = OnNodeSelectionChanged;
+
+        OnSelectionChanged();
     }
 
-    private void OnSelectionChange()
+    private void OnSelectionChanged()
     {
         var brain = Selection.activeObject as Brain;
         if (brain)
         {
             brainView.PopulateView(brain);
         }
+    }
+
+    private void OnNodeSelectionChanged(NodeView nodeView)
+    {
+        inspectorView.UpdateSelection(nodeView);
     }
 }
