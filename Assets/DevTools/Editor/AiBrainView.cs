@@ -1,9 +1,9 @@
-using System;
+using System.Collections.Generic;
+using System.Linq;
 using Characters.Brains;
 using Characters.Brains.BrainStates;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 // ReSharper disable once CheckNamespace
@@ -59,12 +59,19 @@ public class AiBrainView : GraphView
         return graphviewchange;
     }
 
-
     public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
     {
         // Don't need any subtypes here - Actions and Decisions are added to a State, which is just a container 
         evt.menu.AppendAction("State", action => CreateState());
         // TODO: They don't get created at the mouse pos, which is a bit of a problem
+    }
+
+    public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
+    {
+        return ports
+            .Where(endPort => endPort.direction != startPort.direction
+                              && endPort.node != startPort.node)
+            .ToList();
     }
 
     private void CreateState()
