@@ -11,7 +11,7 @@ namespace Characters.Brains
     [CreateAssetMenu(menuName = "Brains/Brain")]
     public class Brain : ScriptableObject
     {
-        public BrainNode initialState;
+        public RootNode rootNode;
 
         // Needed because nodes can be detached
         public List<BrainNode> states;
@@ -36,7 +36,7 @@ namespace Characters.Brains
             AssetDatabase.SaveAssets();
         }
 
-        public void AddChild(BrainNode parent, BrainNode child)
+        public static void AddChild(BrainNode parent, BrainNode child)
         {
             switch (parent)
             {
@@ -46,10 +46,13 @@ namespace Characters.Brains
                 case BrainTransition transition when child is BrainState brainState:
                     transition.SetNextState(brainState);
                     break;
+                case RootNode rootNode when child is BrainState brainState:
+                    rootNode.SetStartState(brainState);
+                    break;
             }
         }
 
-        public void RemoveChild(BrainNode parent, BrainNode child)
+        public static void RemoveChild(BrainNode parent, BrainNode child)
         {
             switch (parent)
             {
@@ -59,17 +62,21 @@ namespace Characters.Brains
                 case BrainTransition transition when child is BrainState brainState:
                     transition.SetNextState(null);
                     break;
+                case RootNode rootNode when child is BrainState:
+                    rootNode.SetStartState(null);
+                    break;
             }
         }
 
-        public List<BrainNode> GetChildren(BrainNode parent)
+        public static List<BrainNode> GetChildren(BrainNode parent)
         {
             return parent switch
             {
                 BrainState brainState => brainState.GetTransitions(),
-                BrainTransition transition => new List<BrainNode>() {transition.nextState},
+                BrainTransition transition => new List<BrainNode> {transition.nextState},
+                RootNode rootNode => new List<BrainNode> {rootNode.startState},
                 _ => throw new NotSupportedException(
-                    "GetChildren only supports BrainState and BrainTransition right now")
+                    $"GetChildren does not support node {parent.GetType()}")
             };
         }
     }

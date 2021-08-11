@@ -12,5 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73e6bd83aef542d0b0c60157a8aeda9f, type: 3}
   m_Name: Brain2
   m_EditorClassIdentifier: 
-  initialState: {fileID: 0}
-  states: []
+  rootNode: {fileID: 5349925905198624641}
+  states:
+  - {fileID: 5349925905198624641}
+--- !u!114 &5349925905198624641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a4fccf52fb44b02b68ed046d613f652, type: 3}
+  m_Name: New RootNode
+  m_EditorClassIdentifier: 
+  guid: b46b41588d5adcf4db93954fca91e69f
+  position: {x: 0, y: 0}
+  startState: {fileID: 0}

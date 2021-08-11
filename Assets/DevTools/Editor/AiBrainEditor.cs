@@ -7,7 +7,7 @@ public class AiBrainEditor : EditorWindow
 {
     private AiBrainView _brainView;
     private InspectorView _inspectorView;
-    
+
     [MenuItem("Brains/AiBrainEditor")]
     public static void OpenWindow()
     {
@@ -34,12 +34,13 @@ public class AiBrainEditor : EditorWindow
         _brainView.onNodeSelected = OnNodeSelectionChanged;
 
         OnSelectionChange();
-    } 
+    }
 
     private void OnSelectionChange()
     {
-        var brain = Selection.activeObject as Brain;
-        if (brain)
+        // TODO: In v2021, can add && AssetDatabase.CanOpenAssetInEditor(brain.GetInstanceId())
+        // Doesn't exist in this version, so we're getting pesky errors.
+        if (Selection.activeObject is Brain brain)
         {
             _brainView.PopulateView(brain);
         }

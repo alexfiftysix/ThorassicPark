@@ -13,9 +13,26 @@ MonoBehaviour:
   m_Name: New BrainState
   m_EditorClassIdentifier: 
   guid: a937aa50c4fee57488ef02b04326611a
-  position: {x: 0, y: 0}
+  position: {x: 222.15636, y: 185.56406}
   actions: []
-  transitions: []
+  transitions:
+  - {fileID: 317300113293273637}
+  - {fileID: 5084073294868737782}
+--- !u!114 &-4477019661418577940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a4fccf52fb44b02b68ed046d613f652, type: 3}
+  m_Name: New RootNode
+  m_EditorClassIdentifier: 
+  guid: d1dd96ec1c2e4c245876b5c1e01493f1
+  position: {x: 0, y: 0}
+  startState: {fileID: 0}
 --- !u!114 &-1781003496181320522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29,7 +46,7 @@ MonoBehaviour:
   m_Name: New BrainState
   m_EditorClassIdentifier: 
   guid: 6aa45941108aad04389251ff1f63b955
-  position: {x: 0, y: 0}
+  position: {x: 760.6575, y: 262.4}
   actions: []
   transitions: []
 --- !u!114 &11400000
@@ -44,12 +61,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73e6bd83aef542d0b0c60157a8aeda9f, type: 3}
   m_Name: SampleBrain
   m_EditorClassIdentifier: 
-  initialState: {fileID: 0}
+  rootNode: {fileID: -4477019661418577940}
   states:
   - {fileID: -7443357971591695952}
   - {fileID: 5084073294868737782}
   - {fileID: -1781003496181320522}
   - {fileID: 317300113293273637}
+  - {fileID: -4477019661418577940}
 --- !u!114 &317300113293273637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,9 +81,9 @@ MonoBehaviour:
   m_Name: New BrainTransition
   m_EditorClassIdentifier: 
   guid: 1b5e146e3bf2f404dae618b9f9f8fcb4
-  position: {x: 0, y: 0}
+  position: {x: 488.015, y: 147.19997}
   decision: {fileID: 0}
-  nextState: {fileID: 0}
+  nextState: {fileID: -1781003496181320522}
 --- !u!114 &5084073294868737782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,6 +97,6 @@ MonoBehaviour:
   m_Name: New BrainTransition
   m_EditorClassIdentifier: 
   guid: c50aa5f1cc20c5a40bafe88246bf9dbc
-  position: {x: 33, y: 211}
+  position: {x: 377.15247, y: 397.80252}
   decision: {fileID: 0}
-  nextState: {fileID: 0}
+  nextState: {fileID: -1781003496181320522}

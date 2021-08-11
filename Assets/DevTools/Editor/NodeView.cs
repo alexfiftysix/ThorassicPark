@@ -46,9 +46,16 @@ public sealed class NodeView : Node
     private void CreateInputPorts()
     {
         // bool not used, is a placeholder for nothing (void not allowed)
-        input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Multi, typeof(bool));
-        input.portName = string.Empty;
-        inputContainer.Add(input);
+        if (!(node is RootNode))
+        {
+            input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Multi, typeof(bool));    
+        }
+
+        if (input != null)
+        {
+            input.portName = string.Empty;
+            inputContainer.Add(input);
+        }
     }
 
     private void CreateOutputPorts()
@@ -60,7 +67,13 @@ public sealed class NodeView : Node
                 Direction.Output,
                 Port.Capacity.Multi,
                 typeof(bool)),
-            BrainTransition _ => InstantiatePort(Orientation.Horizontal,
+            BrainTransition _ => InstantiatePort(
+                Orientation.Horizontal,
+                Direction.Output,
+                Port.Capacity.Single,
+                typeof(bool)),
+            RootNode _ => InstantiatePort(
+                Orientation.Horizontal,
                 Direction.Output,
                 Port.Capacity.Single,
                 typeof(bool)),

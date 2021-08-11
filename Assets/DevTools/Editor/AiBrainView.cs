@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using Characters.Brains;
 using Characters.Brains.BrainStates;
 using Characters.Brains.Transitions;
@@ -42,6 +41,13 @@ public class AiBrainView : GraphView
         DeleteElements(graphElements);
         graphViewChanged += OnGraphViewChanged;
 
+        if (brain.rootNode == null)
+        {
+            brain.rootNode = brain.CreateNode<RootNode>() as RootNode;
+            EditorUtility.SetDirty(brain);
+            AssetDatabase.SaveAssets();
+        }
+
         // Load nodes
         foreach (var brainState in _brain.states)
         {
@@ -51,7 +57,7 @@ public class AiBrainView : GraphView
         // Load edges 
         foreach (var parentNode in _brain.states)
         {
-            var children = _brain.GetChildren(parentNode);
+            var children = Brain.GetChildren(parentNode);
             foreach (var childNode in children)
             {
                 var parentView = FindNodeView(parentNode);
@@ -82,7 +88,7 @@ public class AiBrainView : GraphView
                 if (element is Edge edge)
                 {
                     if (edge.output.node is NodeView parentView && edge.input.node is NodeView childView)
-                        _brain.RemoveChild(parentView.node, childView.node);
+                        Brain.RemoveChild(parentView.node, childView.node);
                 }
             }
         }
@@ -92,7 +98,7 @@ public class AiBrainView : GraphView
             foreach (var edge in graphviewchange.edgesToCreate)
             {
                 if (edge.output.node is NodeView parentView && edge.input.node is NodeView childView)
-                    _brain.AddChild(parentView.node, childView.node);
+                    Brain.AddChild(parentView.node, childView.node);
             }
         }
 
@@ -120,7 +126,8 @@ public class AiBrainView : GraphView
                         return endPort.direction != startPort.direction
                                && endPort.node != startPort.node
                                && (startNodeView.node is BrainState && endNodeView.node is BrainTransition
-                                   || startNodeView.node is BrainTransition && endNodeView.node is BrainState);
+                                   || startNodeView.node is BrainTransition && endNodeView.node is BrainState
+                                   || startNodeView.node is RootNode && endNodeView.node is BrainState);
                     }
 
                     return true;
