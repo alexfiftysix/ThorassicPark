@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using Characters.Brains;
 using Characters.Brains.BrainStates;
 using Characters.Brains.Transitions;
@@ -73,9 +74,22 @@ public class AiBrainView : GraphView
 
     public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
     {
+        // TODO: Ugly
         return ports
-            .Where(endPort => endPort.direction != startPort.direction
-                              && endPort.node != startPort.node)
+            .Where(endPort =>
+                {
+                    if (startPort.node is NodeView startNodeView
+                        && endPort.node is NodeView endNodeView
+                    )
+                    {
+                        return endPort.direction != startPort.direction
+                               && endPort.node != startPort.node
+                               && (startNodeView.node is BrainState && endNodeView.node is BrainTransition
+                                   || startNodeView.node is BrainTransition && endNodeView.node is BrainState);
+                    }
+                    return true;
+                }
+            )
             .ToList();
     }
 

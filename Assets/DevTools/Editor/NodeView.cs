@@ -1,5 +1,8 @@
 using System;
 using Characters.Brains;
+using Characters.Brains.BrainStates;
+using Characters.Brains.Decisions;
+using Characters.Brains.Transitions;
 using DevTools.Editor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -19,7 +22,7 @@ public sealed class NodeView : Node
 
         CreateInputPorts();
         CreateOutputPorts();
-        
+
         style.left = node.position.x;
         style.top = node.position.y;
     }
@@ -47,11 +50,23 @@ public sealed class NodeView : Node
         input.portName = string.Empty;
         inputContainer.Add(input);
     }
-    
+
     private void CreateOutputPorts()
     {
-        // bool not used, is a placeholder for nothing (void not allowed)
-        output = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Multi, typeof(bool));
+        output = node switch
+        {
+            BrainState _ => InstantiatePort(
+                Orientation.Horizontal,
+                Direction.Output,
+                Port.Capacity.Multi,
+                typeof(bool)),
+            BrainTransition _ => InstantiatePort(Orientation.Horizontal,
+                Direction.Output,
+                Port.Capacity.Single,
+                typeof(bool)),
+            _ => output
+        };
+
         output.portName = string.Empty;
         outputContainer.Add(output);
     }

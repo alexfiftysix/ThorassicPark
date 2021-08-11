@@ -38,7 +38,6 @@ public class AiBrainEditor : EditorWindow
 
     private void OnSelectionChange()
     {
-        Debug.Log($"Selection changed! ${Selection.activeObject}");
         var brain = Selection.activeObject as Brain;
         if (brain)
         {

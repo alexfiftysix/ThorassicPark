@@ -49,6 +49,23 @@ MonoBehaviour:
   - {fileID: -7443357971591695952}
   - {fileID: 5084073294868737782}
   - {fileID: -1781003496181320522}
+  - {fileID: 317300113293273637}
+--- !u!114 &317300113293273637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91081426a57d47e3844e8785fdc7e47d, type: 3}
+  m_Name: New BrainTransition
+  m_EditorClassIdentifier: 
+  guid: 1b5e146e3bf2f404dae618b9f9f8fcb4
+  position: {x: 0, y: 0}
+  decision: {fileID: 0}
+  nextState: {fileID: 0}
 --- !u!114 &5084073294868737782
 MonoBehaviour:
   m_ObjectHideFlags: 0
