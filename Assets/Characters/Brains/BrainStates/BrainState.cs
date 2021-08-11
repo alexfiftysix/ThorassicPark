@@ -5,18 +5,13 @@ using UnityEngine;
 namespace Characters.Brains.BrainStates
 {
     [CreateAssetMenu(menuName = "Brains/State")]
-    public class BrainState : ScriptableObject
+    public class BrainState : BrainNode
     {
         public BrainAction[] actions;
-        public Transition[] transitions;
-
-        // editor
-        [HideInInspector] public string guid;
-        [HideInInspector] public Vector2 position;
+        public BrainTransition[] transitions;
 
         public void Initialise(ControllableBase controllable)
         {
-            Debug.Log($"Initialise state: {name}");
             foreach (var brainAction in actions)
             {
                 brainAction.Initialise(controllable);

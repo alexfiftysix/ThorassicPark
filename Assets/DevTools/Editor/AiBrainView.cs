@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Characters.Brains;
 using Characters.Brains.BrainStates;
+using Characters.Brains.Transitions;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
@@ -11,6 +12,7 @@ using UnityEngine.UIElements;
 // Don't want the nesting in the editor that the namespace brings
 public class AiBrainView : GraphView
 {
+    // TODO: Need a RootNode as an entry point to the graph
     private Brain _brain;
     public Action<NodeView> onNodeSelected;
 
@@ -22,7 +24,7 @@ public class AiBrainView : GraphView
     {
         Insert(0, new GridBackground());
 
-        this.AddManipulator(new ContentZoomer() {maxScale = 10000, minScale = 0.1f});
+        this.AddManipulator(new ContentZoomer {maxScale = 10000, minScale = 0.1f});
         this.AddManipulator(new ContentDragger());
         this.AddManipulator(new SelectionDragger());
         this.AddManipulator(new RectangleSelector());
@@ -42,7 +44,6 @@ public class AiBrainView : GraphView
         foreach (var brainState in _brain.states)
         {
             CreateNodeView(brainState);
-            // TODO: Nodes don't remember their position!
         }
     }
 
@@ -54,17 +55,19 @@ public class AiBrainView : GraphView
             {
                 if (e is NodeView nodeView)
                 {
-                    _brain.DeleteState(nodeView.state);
+                    _brain.DeleteNode(nodeView.node);
                 }
             });
         }
+
         return graphviewchange;
     }
 
     public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
     {
-        // Don't need any subtypes here - Actions and Decisions are added to a State, which is just a container 
-        evt.menu.AppendAction("State", action => CreateState());
+        // Don't need any subtypes here - States and Decisions are just containers 
+        evt.menu.AppendAction("State", action => CreateNode<BrainState>());
+        evt.menu.AppendAction("Transition", action => CreateNode<BrainTransition>());
         // TODO: They don't get created at the mouse pos, which is a bit of a problem
     }
 
@@ -76,13 +79,13 @@ public class AiBrainView : GraphView
             .ToList();
     }
 
-    private void CreateState()
+    private void CreateNode<T>() where T : BrainNode
     {
-        var state = _brain.CreateState();
-        CreateNodeView(state);
+        var node = _brain.CreateNode<T>();
+        CreateNodeView(node);
     }
 
-    private void CreateNodeView(BrainState state)
+    private void CreateNodeView(BrainNode state)
     {
         var nodeView = new NodeView(state);
         nodeView.onNodeSelected = onNodeSelected;

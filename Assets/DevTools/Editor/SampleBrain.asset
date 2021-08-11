@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8411455734756237955
+--- !u!114 &-7443357971591695952
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,44 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b69d7025472e4ff4865a494459ff7dea, type: 3}
-  m_Name: new state
+  m_Name: New BrainState
   m_EditorClassIdentifier: 
-  actions: []
-  transitions: []
-  guid: 99d92f1a25af1e043a9b1920b7660a63
+  guid: a937aa50c4fee57488ef02b04326611a
   position: {x: 0, y: 0}
---- !u!114 &-7683673640608104428
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b69d7025472e4ff4865a494459ff7dea, type: 3}
-  m_Name: new state
-  m_EditorClassIdentifier: 
   actions: []
   transitions: []
-  guid: 1973c8e0db0f7d047a11d0dc09e34e40
-  position: {x: 0, y: 0}
---- !u!114 &-7640394140766775915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b69d7025472e4ff4865a494459ff7dea, type: 3}
-  m_Name: new state
-  m_EditorClassIdentifier: 
-  actions: []
-  transitions: []
-  guid: 07216ec2e68d02047bbaf64dfe294f72
-  position: {x: 30, y: -66.79999}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,11 +30,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialState: {fileID: 0}
   states:
-  - {fileID: 7904201726741101473}
-  - {fileID: 5642409419380926710}
-  - {fileID: -7640394140766775915}
-  - {fileID: 6285965577394447629}
---- !u!114 &5642409419380926710
+  - {fileID: -7443357971591695952}
+  - {fileID: 5084073294868737782}
+--- !u!114 &5084073294868737782
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -75,42 +41,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b69d7025472e4ff4865a494459ff7dea, type: 3}
-  m_Name: new state
+  m_Script: {fileID: 11500000, guid: 91081426a57d47e3844e8785fdc7e47d, type: 3}
+  m_Name: New BrainTransition
   m_EditorClassIdentifier: 
-  actions: []
-  transitions: []
-  guid: faf538413b3f50742ac96bb9d856ff34
-  position: {x: 132, y: 10}
---- !u!114 &6285965577394447629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b69d7025472e4ff4865a494459ff7dea, type: 3}
-  m_Name: new state
-  m_EditorClassIdentifier: 
-  actions: []
-  transitions: []
-  guid: 61f8dc02667361247b97d104fa16455b
+  guid: c50aa5f1cc20c5a40bafe88246bf9dbc
   position: {x: 0, y: 0}
---- !u!114 &7904201726741101473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b69d7025472e4ff4865a494459ff7dea, type: 3}
-  m_Name: new state
-  m_EditorClassIdentifier: 
-  actions: []
-  transitions: []
-  guid: 854e6fbe6279f2f45acbf6c1e910c929
-  position: {x: 30.000011, y: 10.000011}
+  decision: {fileID: 0}
+  nextState: {fileID: 0}

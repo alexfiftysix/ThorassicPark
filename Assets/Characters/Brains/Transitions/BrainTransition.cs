@@ -4,7 +4,7 @@ using Characters.Brains.Decisions;
 namespace Characters.Brains.Transitions
 {
     [System.Serializable]
-    public class Transition
+    public class BrainTransition : BrainNode
     {
         public BrainDecision decision;
         public BrainState nextState;

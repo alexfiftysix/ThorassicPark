@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Characters.Brains.BrainStates;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,28 +8,27 @@ namespace Characters.Brains
     [CreateAssetMenu(menuName = "Brains/Brain")]
     public class Brain : ScriptableObject
     {
-        public BrainState initialState;
-
+        public BrainNode initialState;
         // Needed because nodes can be detached
-        public List<BrainState> states;
+        public List<BrainNode> states;
 
-        public BrainState CreateState()
+        public BrainNode CreateNode<T>() where T : BrainNode
         {
-            var newState = CreateInstance(typeof(BrainState)) as BrainState;
-            newState.name = "new state";
-            newState.guid = GUID.Generate().ToString();
-            states.Add(newState);
+            var newNode = CreateInstance(typeof(T)) as T;
+            newNode.name = $"New {typeof(T).ToString().Split('.').Last()}";
+            newNode.guid = GUID.Generate().ToString();
+            states.Add(newNode);
 
-            AssetDatabase.AddObjectToAsset(newState, this);
+            AssetDatabase.AddObjectToAsset(newNode, this);
             AssetDatabase.SaveAssets();
 
-            return newState;
+            return newNode;
         }
 
-        public void DeleteState(BrainState state)
+        public void DeleteNode(BrainNode node)
         {
-            states.Remove(state);
-            AssetDatabase.RemoveObjectFromAsset(state);
+            states.Remove(node);
+            AssetDatabase.RemoveObjectFromAsset(node);
             AssetDatabase.SaveAssets();
         }
     }

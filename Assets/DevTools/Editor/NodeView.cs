@@ -1,33 +1,33 @@
 using System;
-using Characters.Brains.BrainStates;
+using Characters.Brains;
+using DevTools.Editor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public sealed class NodeView : Node
 {
-    public BrainState state;
+    public BrainNode node;
     public Port input;
     public Port output;
     public Action<NodeView> onNodeSelected;
 
-    public NodeView(BrainState state)
+    public NodeView(BrainNode node)
     {
-        this.state = state;
-        title = state.name;
-        viewDataKey = state.guid;
+        this.node = node;
+        title = node.name;
+        viewDataKey = node.guid;
 
         CreateInputPorts();
         CreateOutputPorts();
         
-        style.left = state.position.x;
-        style.top = state.position.y;
+        style.left = node.position.x;
+        style.top = node.position.y;
     }
 
     public override void SetPosition(Rect newPos)
     {
         base.SetPosition(newPos);
-        state.position.x = newPos.xMin;
-        state.position.y = newPos.yMin;
+        node.position = new Vector2(newPos.xMin, newPos.yMin);
     }
 
     public override void OnSelected()

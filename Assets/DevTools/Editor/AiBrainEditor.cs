@@ -1,4 +1,3 @@
-using System;
 using Characters.Brains;
 using UnityEditor;
 using UnityEngine;
@@ -6,8 +5,8 @@ using UnityEngine.UIElements;
 
 public class AiBrainEditor : EditorWindow
 {
-    private AiBrainView brainView;
-    private InspectorView inspectorView;
+    private AiBrainView _brainView;
+    private InspectorView _inspectorView;
     
     [MenuItem("Brains/AiBrainEditor")]
     public static void OpenWindow()
@@ -30,9 +29,9 @@ public class AiBrainEditor : EditorWindow
         var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/DevTools/Editor/AiBrainEditor.uss");
         root.styleSheets.Add(styleSheet);
 
-        brainView = root.Q<AiBrainView>();
-        inspectorView = root.Q<InspectorView>();
-        brainView.onNodeSelected = OnNodeSelectionChanged;
+        _brainView = root.Q<AiBrainView>();
+        _inspectorView = root.Q<InspectorView>();
+        _brainView.onNodeSelected = OnNodeSelectionChanged;
 
         OnSelectionChanged();
     }
@@ -42,12 +41,12 @@ public class AiBrainEditor : EditorWindow
         var brain = Selection.activeObject as Brain;
         if (brain)
         {
-            brainView.PopulateView(brain);
+            _brainView.PopulateView(brain);
         }
     }
 
     private void OnNodeSelectionChanged(NodeView nodeView)
     {
-        inspectorView.UpdateSelection(nodeView);
+        _inspectorView.UpdateSelection(nodeView);
     }
 }
