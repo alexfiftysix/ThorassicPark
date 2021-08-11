@@ -8,5 +8,10 @@ namespace Characters.Brains.Transitions
     {
         public BrainDecision decision;
         public BrainState nextState;
+        
+        public void SetNextState(BrainState brainState)
+        {
+            nextState = brainState;
+        }
     }
 }

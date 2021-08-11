@@ -1,4 +1,6 @@
-﻿using Characters.Brains.BrainActions;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Characters.Brains.BrainActions;
 using Characters.Brains.Transitions;
 using UnityEngine;
 
@@ -7,8 +9,8 @@ namespace Characters.Brains.BrainStates
     [CreateAssetMenu(menuName = "Brains/State")]
     public class BrainState : BrainNode
     {
-        public BrainAction[] actions;
-        public BrainTransition[] transitions;
+        public List<BrainAction> actions = new List<BrainAction>();
+        public List<BrainTransition> transitions = new List<BrainTransition>();
 
         public void Initialise(ControllableBase controllable)
         {
@@ -25,7 +27,7 @@ namespace Characters.Brains.BrainStates
 
         public void DoActions(ControllableBase controllable)
         {
-            if (actions.Length > 0)
+            if (actions.Count > 0)
             {
                 foreach (var brainAction in actions)
                 {
@@ -33,7 +35,7 @@ namespace Characters.Brains.BrainStates
                 }
             }
 
-            if (transitions.Length > 0)
+            if (transitions.Count > 0)
             {
                 foreach (var transition in transitions)
                 {
@@ -44,6 +46,21 @@ namespace Characters.Brains.BrainStates
                     }
                 }
             }
+        }
+
+        public void AddTransition(BrainTransition transition)
+        {
+            transitions.Add(transition);
+        }
+
+        public void RemoveTransition(BrainTransition transition)
+        {
+            transitions.Remove(transition);
+        }
+
+        public List<BrainNode> GetTransitions()
+        {
+            return transitions.Select(t => t as BrainNode).ToList();
         }
     }
 }

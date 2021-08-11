@@ -42,23 +42,58 @@ public class AiBrainView : GraphView
         DeleteElements(graphElements);
         graphViewChanged += OnGraphViewChanged;
 
+        // Load nodes
         foreach (var brainState in _brain.states)
         {
             CreateNodeView(brainState);
         }
+        
+        // Load edges 
+        foreach (var parentNode in _brain.states)
+        {
+            var children = _brain.GetChildren(parentNode);
+            foreach (var childNode in children)
+            {
+                var parentView = FindNodeView(parentNode);
+                var childView = FindNodeView(childNode);
+
+                var edge = parentView.output.ConnectTo(childView.input);
+                AddElement(edge);
+            }
+        }
+    }
+
+    private NodeView FindNodeView(BrainNode node)
+    {
+        return GetNodeByGuid(node.guid) as NodeView;
     }
 
     private GraphViewChange OnGraphViewChanged(GraphViewChange graphviewchange)
     {
         if (graphviewchange.elementsToRemove != null)
         {
-            graphviewchange.elementsToRemove.ForEach(e =>
+            foreach (var element in graphviewchange.elementsToRemove)
             {
-                if (e is NodeView nodeView)
+                if (element is NodeView nodeView)
                 {
                     _brain.DeleteNode(nodeView.node);
                 }
-            });
+
+                if (element is Edge edge)
+                {
+                    if (edge.output.node is NodeView parentView && edge.input.node is NodeView childView)
+                        _brain.RemoveChild(parentView.node, childView.node);
+                }
+            }
+        }
+
+        if (graphviewchange.edgesToCreate != null)
+        {
+            foreach (var edge in graphviewchange.edgesToCreate)
+            {
+                if (edge.output.node is NodeView parentView && edge.input.node is NodeView childView)
+                    _brain.AddChild(parentView.node, childView.node);
+            }
         }
 
         return graphviewchange;
@@ -87,6 +122,7 @@ public class AiBrainView : GraphView
                                && (startNodeView.node is BrainState && endNodeView.node is BrainTransition
                                    || startNodeView.node is BrainTransition && endNodeView.node is BrainState);
                     }
+
                     return true;
                 }
             )
