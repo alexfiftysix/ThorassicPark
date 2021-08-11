@@ -10,7 +10,8 @@ namespace Characters.Brains
     public abstract class ControllableBase : MonoBehaviour
     {
         public CharacterStats characterStats;
-        public BrainState state;
+        public Brain brain;
+        private BrainState _state;
 
         private Transform _transform;
 
@@ -31,14 +32,15 @@ namespace Characters.Brains
         public virtual void Start()
         {
             _transform = transform;
-            state.Initialise(this);
+            _state = brain.rootNode.startState;
+            _state.Initialise(this);
             GameManager = FindObjectOfType<GameManager>();
             ChaseableManager = FindObjectOfType<ChaseableManager>();
         }
 
         public virtual void Update()
         {
-            state.DoActions(this);
+            _state.DoActions(this);
         }
 
         public void Move(Vector2 direction, float speedMultiplier = 1)
@@ -56,10 +58,10 @@ namespace Characters.Brains
 
         public void TransitionToState(BrainState nextState)
         {
-            if (nextState == state) return;
+            if (nextState == _state) return;
 
-            state = nextState;
-            state.Initialise(this);
+            _state = nextState;
+            _state.Initialise(this);
         }
     }
 }

@@ -39,7 +39,8 @@ public class AiBrainEditor : EditorWindow
     private void OnSelectionChange()
     {
         // TODO: In v2021, can add && AssetDatabase.CanOpenAssetInEditor(brain.GetInstanceId())
-        // Doesn't exist in this version, so we're getting pesky errors.
+        // Then add code up AiBrainView.PopulateView() to create a root node if one doesn't exist already
+        // Doesn't exist in this version, so we can't add root node on open without errors
         if (Selection.activeObject is Brain brain)
         {
             _brainView.PopulateView(brain);

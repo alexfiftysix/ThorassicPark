@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3447637711882773985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b69d7025472e4ff4865a494459ff7dea, type: 3}
+  m_Name: New BrainState
+  m_EditorClassIdentifier: 
+  guid: 30d1cab6bef3cb84499cd69c2d5106de
+  position: {x: 377.6, y: 265.83444}
+  actions:
+  - {fileID: 11400000, guid: 7a29a4d4a00eb4849a8b11ed7979dba5, type: 2}
+  transitions: []
+--- !u!114 &-1846794489290875434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91081426a57d47e3844e8785fdc7e47d, type: 3}
+  m_Name: New BrainTransition
+  m_EditorClassIdentifier: 
+  guid: 451a438e087bb1e428f101d3ef67586c
+  position: {x: 377.63907, y: 73.20004}
+  decision: {fileID: 11400000, guid: 9b8e201055000984898880236d3c0591, type: 2}
+  nextState: {fileID: -3447637711882773985}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73e6bd83aef542d0b0c60157a8aeda9f, type: 3}
+  m_Name: VisitorBrain
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: 0}
+  states:
+  - {fileID: 245091731787907716}
+  - {fileID: 8236903006489943492}
+  - {fileID: -1846794489290875434}
+  - {fileID: -3447637711882773985}
+  - {fileID: 2028676214889964839}
+--- !u!114 &245091731787907716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a4fccf52fb44b02b68ed046d613f652, type: 3}
+  m_Name: New RootNode
+  m_EditorClassIdentifier: 
+  guid: 0974131ade407944099b94cd6c4b3291
+  position: {x: -10.258621, y: 73.4735}
+  startState: {fileID: 8236903006489943492}
+--- !u!114 &2028676214889964839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91081426a57d47e3844e8785fdc7e47d, type: 3}
+  m_Name: New BrainTransition
+  m_EditorClassIdentifier: 
+  guid: 72312eb5312d5a24484ffae28ee14750
+  position: {x: 0, y: 0}
+  decision: {fileID: 0}
+  nextState: {fileID: 0}
+--- !u!114 &8236903006489943492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b69d7025472e4ff4865a494459ff7dea, type: 3}
+  m_Name: New BrainState
+  m_EditorClassIdentifier: 
+  guid: af1796f7121a64b41a7539999ee3acc7
+  position: {x: 194.29799, y: 73.20004}
+  actions:
+  - {fileID: 11400000, guid: a467b8bca5a21b44bb922b9becc88200, type: 2}
+  transitions:
+  - {fileID: 0}
+  - {fileID: -1846794489290875434}

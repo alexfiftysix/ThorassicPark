@@ -98,8 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterStats: {fileID: 11400000, guid: a60583f7055d4d449b434fdec65801ed, type: 2}
-  state: {fileID: 11400000, guid: cafa4999bf378f54b9c4a8ab57483393, type: 2}
-  speed: 1
+  brain: {fileID: 11400000, guid: 3eda9ad096244d94298d6fc087d2320b, type: 2}
 --- !u!50 &5432547857941296053
 Rigidbody2D:
   serializedVersion: 4

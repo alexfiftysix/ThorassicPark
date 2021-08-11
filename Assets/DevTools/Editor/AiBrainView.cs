@@ -4,6 +4,7 @@ using System.Linq;
 using Characters.Brains;
 using Characters.Brains.BrainStates;
 using Characters.Brains.Transitions;
+using JetBrains.Annotations;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
@@ -41,13 +42,6 @@ public class AiBrainView : GraphView
         DeleteElements(graphElements);
         graphViewChanged += OnGraphViewChanged;
 
-        if (brain.rootNode == null)
-        {
-            brain.rootNode = brain.CreateNode<RootNode>() as RootNode;
-            EditorUtility.SetDirty(brain);
-            AssetDatabase.SaveAssets();
-        }
-
         // Load nodes
         foreach (var brainState in _brain.states)
         {
@@ -62,15 +56,20 @@ public class AiBrainView : GraphView
             {
                 var parentView = FindNodeView(parentNode);
                 var childView = FindNodeView(childNode);
-
-                var edge = parentView.output.ConnectTo(childView.input);
-                AddElement(edge);
+                
+                if (parentView != null && childView != null)
+                {
+                    var edge = parentView.output.ConnectTo(childView.input);
+                    AddElement(edge);
+                }
             }
         }
     }
 
-    private NodeView FindNodeView(BrainNode node)
+    [CanBeNull]
+    private NodeView FindNodeView([CanBeNull] BrainNode node)
     {
+        if (node is null) return null;
         return GetNodeByGuid(node.guid) as NodeView;
     }
 
@@ -107,9 +106,11 @@ public class AiBrainView : GraphView
 
     public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
     {
-        // Don't need any subtypes here - States and Decisions are just containers 
+        // Don't need any subtypes here - States and Decisions are just containers
+        // If you want subtypes, consider TypeCache.GetTypesDerivedFrom<BrainNode>(), to get all types.
         evt.menu.AppendAction("State", action => CreateNode<BrainState>());
         evt.menu.AppendAction("Transition", action => CreateNode<BrainTransition>());
+        evt.menu.AppendAction("Root", action => CreateNode<RootNode>());
         // TODO: They don't get created at the mouse pos, which is a bit of a problem
     }
 
