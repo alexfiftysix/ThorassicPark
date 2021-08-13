@@ -7,6 +7,6 @@ namespace Characters.Brains
         // Only used in the graph editor
         [HideInInspector] public string guid;
         [HideInInspector] public Vector2 position;
-        // [TextField] public string description;
+        [TextArea] public string description;
     }
 }

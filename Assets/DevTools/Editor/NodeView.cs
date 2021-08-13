@@ -21,17 +21,18 @@ public sealed class NodeView : Node
         title = node.name;
         viewDataKey = node.guid;
 
-        CreateInputPorts();
-        CreateOutputPorts();
-
         style.left = node.position.x;
         style.top = node.position.y;
 
+        CreateInputPorts();
+        CreateOutputPorts();
+        SetupClasses();
+
         // Bind description tag
-        // var descriptionLabel = this.Q<Label>("description"); // name of UI element
-        // descriptionLabel.bindingPath = "description";  // name of property on BrainNode class
-        // if (node.description == string.Empty) node.description = "new description";
-        // descriptionLabel.Bind(new SerializedObject(node));
+        var descriptionLabel = this.Q<Label>("description"); // name of UI element
+        descriptionLabel.bindingPath = "description";  // name of property on BrainNode class
+        if (node.description == string.Empty) node.description = "description";
+        descriptionLabel.Bind(new SerializedObject(node));
     }
 
     public override void SetPosition(Rect newPos)
@@ -47,6 +48,22 @@ public sealed class NodeView : Node
         if (onNodeSelected != null)
         {
             onNodeSelected.Invoke(this);
+        }
+    }
+
+    private void SetupClasses()
+    {
+        if (node is RootNode)
+        {
+            AddToClassList("root");
+        }
+        else if (node is BrainState)
+        {
+            AddToClassList("state");
+        }
+        else if (node is BrainTransition)
+        {
+            AddToClassList("transition");
         }
     }
 

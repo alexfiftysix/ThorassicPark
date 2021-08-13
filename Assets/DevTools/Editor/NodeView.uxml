@@ -2,16 +2,16 @@
     <Style src="/Assets/NodeView.uss" />
     <ui:VisualElement name="node-border">
         <ui:VisualElement name="title">
-            <ui:TextField picking-mode="Ignore" label="Text Field" value="filler text" text="filler text" name="description" />
             <ui:Label name="title-label" text="New BrainState" class="unity-text-element unity-label" />
+            <ui:Label text="Label" display-tooltip-when-elided="true" name="description" focusable="true" binding-path="description" />
             <ui:VisualElement name="title-button-container">
                 <ui:VisualElement name="collapse-button">
                     <ui:VisualElement name="icon" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
+        <ui:VisualElement name="divider" class="horizontal" />
         <ui:VisualElement name="contents">
-            <ui:VisualElement name="divider" class="horizontal" />
             <ui:VisualElement name="top">
                 <ui:VisualElement name="input" />
                 <ui:VisualElement name="divider" class="vertical" />
@@ -19,5 +19,5 @@
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement name="selection-border" style="border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;" />
+    <ui:VisualElement name="selection-border" picking-mode="Ignore" />
 </ui:UXML>

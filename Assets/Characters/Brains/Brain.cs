@@ -16,12 +16,13 @@ namespace Characters.Brains
         // Needed because nodes can be detached
         public List<BrainNode> states;
 
-        public BrainNode CreateNode<T>() where T : BrainNode
+        public BrainNode CreateNode<T>(Vector2 mousePos) where T : BrainNode
         {
             if (CreateInstance(typeof(T)) is T newNode)
             {
-                newNode.name = $"New {typeof(T).ToString().Split('.').Last()}";
+                newNode.name = $"{typeof(T).ToString().Split('.').Last()}";
                 newNode.guid = GUID.Generate().ToString();
+                newNode.position = mousePos;
                 states.Add(newNode);
 
                 AssetDatabase.AddObjectToAsset(newNode, this);

@@ -7,6 +7,7 @@ using Characters.Brains.Transitions;
 using JetBrains.Annotations;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 // ReSharper disable once CheckNamespace
@@ -106,12 +107,13 @@ public class AiBrainView : GraphView
 
     public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
     {
+        var mousePos = evt.localMousePosition; // TODO: This isn't quite right. With a reference to the editor window you should be able to convert mousePosition into a relative position
+        
         // Don't need any subtypes here - States and Decisions are just containers
         // If you want subtypes, consider TypeCache.GetTypesDerivedFrom<BrainNode>(), to get all types.
-        evt.menu.AppendAction("State", action => CreateNode<BrainState>());
-        evt.menu.AppendAction("Transition", action => CreateNode<BrainTransition>());
-        evt.menu.AppendAction("Root", action => CreateNode<RootNode>());
-        // TODO: They don't get created at the mouse pos, which is a bit of a problem
+        evt.menu.AppendAction("State", action => CreateNode<BrainState>(mousePos));
+        evt.menu.AppendAction("Transition", action => CreateNode<BrainTransition>(mousePos));
+        evt.menu.AppendAction("Root", action => CreateNode<RootNode>(mousePos));
     }
 
     public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
@@ -137,9 +139,9 @@ public class AiBrainView : GraphView
             .ToList();
     }
 
-    private void CreateNode<T>() where T : BrainNode
+    private void CreateNode<T>(Vector2 mousePos) where T : BrainNode
     {
-        var node = _brain.CreateNode<T>();
+        var node = _brain.CreateNode<T>(mousePos);
         CreateNodeView(node);
     }
 
