@@ -84,6 +84,7 @@
     padding-right: 3px;
     padding-top: 3px;
     padding-bottom: 3px;
+    font-size: 10px;
 }
 
 .root #title {
@@ -96,4 +97,13 @@
 
 .transition #title {
     background-color: rgba(170, 68, 101, 255);
+}
+
+.action #title {
+    background-color: rgba(178, 95, 43, 255);
+}
+
+#description {
+    -unity-font-style: bold;
+    font-size: 12px;
 }

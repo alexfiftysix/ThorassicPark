@@ -33,7 +33,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guid: 6bb2e448f449d2245a31885d2fe1e43d
   position: {x: 68.999985, y: 243.99998}
-  description: 
+  description: description
   startState: {fileID: -7940681788709237154}
 --- !u!114 &-6361383981204016169
 MonoBehaviour:

@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Characters.Brains;
+using Characters.Brains.BrainActions;
 using Characters.Brains.BrainStates;
 using Characters.Brains.Transitions;
 using JetBrains.Annotations;
@@ -114,6 +116,16 @@ public class AiBrainView : GraphView
         evt.menu.AppendAction("State", action => CreateNode<BrainState>(mousePos));
         evt.menu.AppendAction("Transition", action => CreateNode<BrainTransition>(mousePos));
         evt.menu.AppendAction("Root", action => CreateNode<RootNode>(mousePos));
+
+        foreach (var type in TypeCache.GetTypesDerivedFrom<BrainAction>())
+        {
+            // TODO: Blarg
+            var method = typeof(AiBrainView).GetMethod("CreateNode");
+            var genericMethod = method.MakeGenericMethod(type);
+            
+            evt.menu.AppendAction($"Actions/{type.Name}", action => genericMethod.Invoke(this, new object[]{mousePos}));
+        }
+        
     }
 
     public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
@@ -126,20 +138,28 @@ public class AiBrainView : GraphView
                         && endPort.node is NodeView endNodeView
                     )
                     {
-                        return endPort.direction != startPort.direction
-                               && endPort.node != startPort.node
-                               && (startNodeView.node is BrainState && endNodeView.node is BrainTransition
-                                   || startNodeView.node is BrainTransition && endNodeView.node is BrainState
-                                   || startNodeView.node is RootNode && endNodeView.node is BrainState);
+                        if (endPort.direction == startPort.direction
+                              || endPort.node == startPort.node)
+                        {
+                            return false;
+                        }
+
+                        return startNodeView.node switch
+                        {
+                            RootNode _ => endNodeView.node is BrainState,
+                            BrainState _ => endNodeView.node is BrainTransition || endNodeView.node is BrainAction,
+                            BrainTransition _ => endNodeView.node is BrainState,
+                            _ => false
+                        };
                     }
 
-                    return true;
+                    return false;
                 }
             )
             .ToList();
     }
 
-    private void CreateNode<T>(Vector2 mousePos) where T : BrainNode
+    public void CreateNode<T>(Vector2 mousePos) where T : BrainNode
     {
         var node = _brain.CreateNode<T>(mousePos);
         CreateNodeView(node);

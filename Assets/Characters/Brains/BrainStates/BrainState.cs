@@ -62,5 +62,23 @@ namespace Characters.Brains.BrainStates
         {
             return transitions.Select(t => t as BrainNode).ToList();
         }
+
+        public void AddAction(BrainAction action)
+        {
+            actions.Add(action);
+        }
+
+        public void RemoveAction(BrainAction action)
+        {
+            actions.Remove(action);
+        }
+
+        public List<BrainNode> GetChildren()
+        {
+            return transitions
+                .Select(t => t as BrainNode)
+                .Union(actions.Select(a => a as BrainNode))
+                .ToList();
+        }
     }
 }

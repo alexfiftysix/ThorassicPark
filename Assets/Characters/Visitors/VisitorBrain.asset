@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: New BrainState
   m_EditorClassIdentifier: 
   guid: 30d1cab6bef3cb84499cd69c2d5106de
-  position: {x: 194.39995, y: 266}
+  position: {x: 126, y: 265.40002}
+  description: description
   actions:
-  - {fileID: 11400000, guid: 7a29a4d4a00eb4849a8b11ed7979dba5, type: 2}
+  - {fileID: -1555056777416389461}
+  - {fileID: -1555056777416389461}
+  - {fileID: -1555056777416389461}
   transitions:
   - {fileID: 2028676214889964839}
 --- !u!114 &-1846794489290875434
@@ -31,9 +34,29 @@ MonoBehaviour:
   m_Name: New BrainTransition
   m_EditorClassIdentifier: 
   guid: 451a438e087bb1e428f101d3ef67586c
-  position: {x: 377.63907, y: 73.20004}
+  position: {x: 342.00003, y: 88.66666}
+  description: WanderingTimePassed
   decision: {fileID: 11400000, guid: 9b8e201055000984898880236d3c0591, type: 2}
   nextState: {fileID: -3447637711882773985}
+--- !u!114 &-1555056777416389461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c89c8aa4e7c04cd2bfa2f7095ea06066, type: 3}
+  m_Name: Wander
+  m_EditorClassIdentifier: 
+  guid: 9d8ff7baf97df9a4d91c68c4ae91a873
+  position: {x: 232.66669, y: 340}
+  description: Freak Out
+  turnAfter:
+    min: 0.2
+    max: 1
+  moveSpeedMultiplier: 3
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53,6 +76,8 @@ MonoBehaviour:
   - {fileID: -1846794489290875434}
   - {fileID: -3447637711882773985}
   - {fileID: 2028676214889964839}
+  - {fileID: 4931163316469938366}
+  - {fileID: -1555056777416389461}
 --- !u!114 &245091731787907716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,7 +91,8 @@ MonoBehaviour:
   m_Name: New RootNode
   m_EditorClassIdentifier: 
   guid: 0974131ade407944099b94cd6c4b3291
-  position: {x: -10.258621, y: 73.4735}
+  position: {x: -100.53161, y: 80.66668}
+  description: ' '
   startState: {fileID: 8236903006489943492}
 --- !u!114 &2028676214889964839
 MonoBehaviour:
@@ -82,8 +108,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guid: 72312eb5312d5a24484ffae28ee14750
   position: {x: 377.6, y: 266}
+  description: description
   decision: {fileID: 11400000, guid: 9b8e201055000984898880236d3c0591, type: 2}
   nextState: {fileID: 8236903006489943492}
+--- !u!114 &4931163316469938366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c89c8aa4e7c04cd2bfa2f7095ea06066, type: 3}
+  m_Name: Wander
+  m_EditorClassIdentifier: 
+  guid: a1b6477341cacc5489ae6d10eabc7ad9
+  position: {x: 224.66673, y: 0.1841507}
+  description: Wander
+  turnAfter:
+    min: 0
+    max: 1
+  moveSpeedMultiplier: 1
 --- !u!114 &8236903006489943492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,8 +143,11 @@ MonoBehaviour:
   m_Name: New BrainState
   m_EditorClassIdentifier: 
   guid: af1796f7121a64b41a7539999ee3acc7
-  position: {x: 194.29799, y: 73.20004}
+  position: {x: 134.00009, y: 88.66666}
+  description: Wander
   actions:
-  - {fileID: 11400000, guid: a467b8bca5a21b44bb922b9becc88200, type: 2}
+  - {fileID: 4931163316469938366}
+  - {fileID: 4931163316469938366}
+  - {fileID: 4931163316469938366}
   transitions:
   - {fileID: -1846794489290875434}

@@ -1,5 +1,6 @@
 using System;
 using Characters.Brains;
+using Characters.Brains.BrainActions;
 using Characters.Brains.BrainStates;
 using Characters.Brains.Transitions;
 using UnityEditor;
@@ -18,7 +19,7 @@ public sealed class NodeView : Node
     public NodeView(BrainNode node) : base("Assets/DevTools/Editor/NodeView.uxml")
     {
         this.node = node;
-        title = node.name;
+        title = GetName(node);
         viewDataKey = node.guid;
 
         style.left = node.position.x;
@@ -34,6 +35,8 @@ public sealed class NodeView : Node
         if (node.description == string.Empty) node.description = "description";
         descriptionLabel.Bind(new SerializedObject(node));
     }
+
+    
 
     public override void SetPosition(Rect newPos)
     {
@@ -53,17 +56,20 @@ public sealed class NodeView : Node
 
     private void SetupClasses()
     {
-        if (node is RootNode)
+        switch (node)
         {
-            AddToClassList("root");
-        }
-        else if (node is BrainState)
-        {
-            AddToClassList("state");
-        }
-        else if (node is BrainTransition)
-        {
-            AddToClassList("transition");
+            case RootNode _:
+                AddToClassList("root");
+                break;
+            case BrainState _:
+                AddToClassList("state");
+                break;
+            case BrainTransition _:
+                AddToClassList("transition");
+                break;
+            case BrainAction _:
+                AddToClassList("action");
+                break;
         }
     }
 
@@ -84,6 +90,11 @@ public sealed class NodeView : Node
 
     private void CreateOutputPorts()
     {
+        if (node is BrainAction)
+        {
+            return;
+        }
+        
         output = node switch
         {
             BrainState _ => InstantiatePort(
@@ -106,5 +117,17 @@ public sealed class NodeView : Node
 
         output.portName = string.Empty;
         outputContainer.Add(output);
+    }
+
+    private static string GetName(BrainNode aNode)
+    {
+        return aNode switch
+        {
+            BrainState _ => "State",
+            BrainAction _ => "Action",
+            BrainTransition _ => "Transition",
+            RootNode _ => "Root",
+            _ => "No Name"
+        };
     }
 }
