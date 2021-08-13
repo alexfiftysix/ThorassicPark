@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: New BrainState
   m_EditorClassIdentifier: 
   guid: 30d1cab6bef3cb84499cd69c2d5106de
-  position: {x: 377.6, y: 265.83444}
+  position: {x: 194.39995, y: 266}
   actions:
   - {fileID: 11400000, guid: 7a29a4d4a00eb4849a8b11ed7979dba5, type: 2}
-  transitions: []
+  transitions:
+  - {fileID: 2028676214889964839}
 --- !u!114 &-1846794489290875434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73e6bd83aef542d0b0c60157a8aeda9f, type: 3}
   m_Name: VisitorBrain
   m_EditorClassIdentifier: 
-  rootNode: {fileID: 0}
+  rootNode: {fileID: 245091731787907716}
   states:
   - {fileID: 245091731787907716}
   - {fileID: 8236903006489943492}
@@ -80,9 +81,9 @@ MonoBehaviour:
   m_Name: New BrainTransition
   m_EditorClassIdentifier: 
   guid: 72312eb5312d5a24484ffae28ee14750
-  position: {x: 0, y: 0}
-  decision: {fileID: 0}
-  nextState: {fileID: 0}
+  position: {x: 377.6, y: 266}
+  decision: {fileID: 11400000, guid: 9b8e201055000984898880236d3c0591, type: 2}
+  nextState: {fileID: 8236903006489943492}
 --- !u!114 &8236903006489943492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,5 +101,4 @@ MonoBehaviour:
   actions:
   - {fileID: 11400000, guid: a467b8bca5a21b44bb922b9becc88200, type: 2}
   transitions:
-  - {fileID: 0}
   - {fileID: -1846794489290875434}

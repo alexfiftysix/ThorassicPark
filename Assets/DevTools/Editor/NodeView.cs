@@ -1,11 +1,12 @@
 using System;
 using Characters.Brains;
 using Characters.Brains.BrainStates;
-using Characters.Brains.Decisions;
 using Characters.Brains.Transitions;
-using DevTools.Editor;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public sealed class NodeView : Node
 {
@@ -14,7 +15,7 @@ public sealed class NodeView : Node
     public Port output;
     public Action<NodeView> onNodeSelected;
 
-    public NodeView(BrainNode node)
+    public NodeView(BrainNode node) : base("Assets/DevTools/Editor/NodeView.uxml")
     {
         this.node = node;
         title = node.name;
@@ -25,6 +26,12 @@ public sealed class NodeView : Node
 
         style.left = node.position.x;
         style.top = node.position.y;
+
+        // Bind description tag
+        // var descriptionLabel = this.Q<Label>("description"); // name of UI element
+        // descriptionLabel.bindingPath = "description";  // name of property on BrainNode class
+        // if (node.description == string.Empty) node.description = "new description";
+        // descriptionLabel.Bind(new SerializedObject(node));
     }
 
     public override void SetPosition(Rect newPos)

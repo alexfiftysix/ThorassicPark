@@ -18,15 +18,19 @@ namespace Characters.Brains
 
         public BrainNode CreateNode<T>() where T : BrainNode
         {
-            var newNode = CreateInstance(typeof(T)) as T;
-            newNode.name = $"New {typeof(T).ToString().Split('.').Last()}";
-            newNode.guid = GUID.Generate().ToString();
-            states.Add(newNode);
+            if (CreateInstance(typeof(T)) is T newNode)
+            {
+                newNode.name = $"New {typeof(T).ToString().Split('.').Last()}";
+                newNode.guid = GUID.Generate().ToString();
+                states.Add(newNode);
 
-            AssetDatabase.AddObjectToAsset(newNode, this);
-            AssetDatabase.SaveAssets();
+                AssetDatabase.AddObjectToAsset(newNode, this);
+                AssetDatabase.SaveAssets();
 
-            return newNode;
+                return newNode;
+            }
+
+            throw new NullReferenceException("Node not created");
         }
 
         public void DeleteNode(BrainNode node)

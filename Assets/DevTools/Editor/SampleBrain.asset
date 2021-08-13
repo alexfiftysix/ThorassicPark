@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guid: a937aa50c4fee57488ef02b04326611a
   position: {x: 222.15636, y: 185.56406}
+  description: 
   actions: []
   transitions:
   - {fileID: 317300113293273637}
@@ -32,6 +33,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guid: d1dd96ec1c2e4c245876b5c1e01493f1
   position: {x: 0, y: 0}
+  description: 
   startState: {fileID: 0}
 --- !u!114 &-1781003496181320522
 MonoBehaviour:
@@ -47,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guid: 6aa45941108aad04389251ff1f63b955
   position: {x: 760.6575, y: 262.4}
+  description: TITLE
   actions: []
   transitions: []
 --- !u!114 &11400000
@@ -82,6 +85,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guid: 1b5e146e3bf2f404dae618b9f9f8fcb4
   position: {x: 488.015, y: 147.19997}
+  description: 
   decision: {fileID: 0}
   nextState: {fileID: -1781003496181320522}
 --- !u!114 &5084073294868737782
@@ -98,5 +102,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guid: c50aa5f1cc20c5a40bafe88246bf9dbc
   position: {x: 377.15247, y: 397.80252}
+  description: 
   decision: {fileID: 0}
   nextState: {fileID: -1781003496181320522}
