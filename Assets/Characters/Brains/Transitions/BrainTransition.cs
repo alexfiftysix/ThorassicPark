@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Characters.Brains.BrainStates;
 using Characters.Brains.Decisions;
+using UnityEditor.UIElements;
+using UnityEngine.UIElements;
 
 namespace Characters.Brains.Transitions
 {
@@ -23,6 +25,22 @@ namespace Characters.Brains.Transitions
         public override bool CanConnectTo(BrainNode other)
         {
             return other is BrainState;
+        }
+
+        public override Button GetAddButton(IMGUIContainer addContainer)
+        {
+            return new Button(() =>
+            {
+                var field = new ObjectField
+                {
+                    objectType = typeof(BrainDecision),
+                    name = string.Empty,
+                };
+                addContainer.Add(field);
+            })
+            {
+                text = "+"
+            };
         }
     }
 }

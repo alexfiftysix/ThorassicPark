@@ -34,7 +34,6 @@ MonoBehaviour:
   - {fileID: 245091731787907716}
   - {fileID: 8236903006489943492}
   - {fileID: -1846794489290875434}
-  - {fileID: 4931163316469938366}
   - {fileID: 3301366181930614965}
   - {fileID: 4034508893618728738}
 --- !u!114 &245091731787907716
@@ -88,25 +87,6 @@ MonoBehaviour:
   guid: 0f0f77c2af19890419b097649c6429cf
   position: {x: 696.15015, y: 8.000011}
   description: Head To Attraction
---- !u!114 &4931163316469938366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c89c8aa4e7c04cd2bfa2f7095ea06066, type: 3}
-  m_Name: Wander
-  m_EditorClassIdentifier: 
-  guid: a1b6477341cacc5489ae6d10eabc7ad9
-  position: {x: 224.66673, y: 0.1841507}
-  description: Wander
-  turnAfter:
-    min: 0
-    max: 1
-  moveSpeedMultiplier: 1
 --- !u!114 &8236903006489943492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,8 +103,6 @@ MonoBehaviour:
   position: {x: 134.00009, y: 88.66666}
   description: Wander
   actions:
-  - {fileID: 4931163316469938366}
-  - {fileID: 4931163316469938366}
-  - {fileID: 4931163316469938366}
+  - {fileID: 11400000, guid: a467b8bca5a21b44bb922b9becc88200, type: 2}
   transitions:
   - {fileID: -1846794489290875434}

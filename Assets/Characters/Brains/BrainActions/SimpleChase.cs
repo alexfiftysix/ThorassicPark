@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Characters.Brains.BrainActions
 {
-    [CreateAssetMenu (menuName = "Brains/Actions/SimpleChase")]
+    [CreateAssetMenu(menuName = "Brains/Actions/SimpleChase")]
     public class SimpleChase : BrainAction
     {
         public float movementSpeedMultiplier = 1;
@@ -11,13 +11,13 @@ namespace Characters.Brains.BrainActions
         public override void Initialise(ControllableBase controllable)
         {
             if (controllable.ChaseableManager == null)
-                controllable.ChaseableManager = FindObjectOfType<ChaseableManager>(); 
+                controllable.ChaseableManager = FindObjectOfType<ChaseableManager>();
             controllable.TargetChaseable = controllable.ChaseableManager.GetRandom();
         }
 
         public override void Act(ControllableBase controllable)
         {
-            if ((Object) controllable.TargetChaseable == null)
+            if ((Object)controllable.TargetChaseable == null)
             {
                 controllable.TargetChaseable = controllable.ChaseableManager.GetRandom();
                 return;

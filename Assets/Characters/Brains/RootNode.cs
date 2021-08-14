@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Characters.Brains.BrainStates;
+using UnityEngine.UIElements;
 
 namespace Characters.Brains
 {
@@ -20,6 +21,11 @@ namespace Characters.Brains
         public override bool CanConnectTo(BrainNode other)
         {
             return other is BrainState;
+        }
+
+        public override Button GetAddButton(IMGUIContainer addContainer)
+        {
+            return null;
         }
     }
 }

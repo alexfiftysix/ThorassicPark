@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine.UIElements;
 
 namespace Characters.Brains.BrainActions
 {
@@ -15,6 +16,11 @@ namespace Characters.Brains.BrainActions
         public override bool CanConnectTo(BrainNode other)
         {
             return false;
+        }
+
+        public override Button GetAddButton(IMGUIContainer addContainer)
+        {
+            return null;
         }
     }
 }

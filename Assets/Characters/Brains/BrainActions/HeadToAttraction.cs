@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Characters.Brains.BrainActions
 {
-    [CreateAssetMenu (menuName = "Brains/Actions/HeadToAttraction")]
+    [CreateAssetMenu(menuName = "Brains/Actions/HeadToAttraction")]
     public class HeadToAttraction : BrainAction
     {
         public override void Initialise(ControllableBase controllable)
@@ -18,7 +18,7 @@ namespace Characters.Brains.BrainActions
             {
                 controllable.TargetAttraction = FindObjectsOfType<Attraction>().RandomChoice();
             }
-            
+
             controllable.MoveTowards(controllable.TargetAttraction.Position);
         }
     }

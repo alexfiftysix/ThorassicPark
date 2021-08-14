@@ -34,9 +34,11 @@ public sealed class NodeView : Node
         descriptionLabel.bindingPath = "description";  // name of property on BrainNode class
         if (node.description == string.Empty) node.description = "description";
         descriptionLabel.Bind(new SerializedObject(node));
+        
+        // Add + button
+        var buttonContainer = this.Q<IMGUIContainer>("button-container");
+        buttonContainer.Add(node.GetAddButton(buttonContainer));
     }
-
-    
 
     public override void SetPosition(Rect newPos)
     {
@@ -47,11 +49,7 @@ public sealed class NodeView : Node
     public override void OnSelected()
     {
         base.OnSelected();
-
-        if (onNodeSelected != null)
-        {
-            onNodeSelected.Invoke(this);
-        }
+        onNodeSelected?.Invoke(this);
     }
 
     private void SetupClasses()

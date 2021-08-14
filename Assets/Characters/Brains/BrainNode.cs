@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Characters.Brains
 {
@@ -11,6 +13,10 @@ namespace Characters.Brains
         [TextArea] public string description;
 
         public abstract List<BrainNode> GetChildren();
+
         public abstract bool CanConnectTo(BrainNode other);
+
+        [CanBeNull]
+        public abstract Button GetAddButton(IMGUIContainer addContainer);
     }
 }

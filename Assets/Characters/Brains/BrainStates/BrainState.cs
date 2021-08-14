@@ -2,7 +2,9 @@
 using System.Linq;
 using Characters.Brains.BrainActions;
 using Characters.Brains.Transitions;
+using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Characters.Brains.BrainStates
 {
@@ -79,6 +81,22 @@ namespace Characters.Brains.BrainStates
         public override bool CanConnectTo(BrainNode other)
         {
             return other is BrainTransition || other is BrainAction;
+        }
+
+        public override Button GetAddButton(IMGUIContainer addContainer)
+        {
+            return new Button(() =>
+            {
+                var field = new ObjectField
+                {
+                    objectType = typeof(BrainAction),
+                    name = string.Empty,
+                };
+                addContainer.Add(field);
+            })
+            {
+                text = "+"
+            };
         }
     }
 }
