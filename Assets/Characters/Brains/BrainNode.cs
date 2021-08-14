@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Characters.Brains
 {
@@ -8,5 +9,8 @@ namespace Characters.Brains
         [HideInInspector] public string guid;
         [HideInInspector] public Vector2 position;
         [TextArea] public string description;
+
+        public abstract List<BrainNode> GetChildren();
+        public abstract bool CanConnectTo(BrainNode other);
     }
 }

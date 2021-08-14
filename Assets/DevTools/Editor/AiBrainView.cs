@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using Characters.Brains;
 using Characters.Brains.BrainActions;
 using Characters.Brains.BrainStates;
@@ -28,7 +27,7 @@ public class AiBrainView : GraphView
     {
         Insert(0, new GridBackground());
 
-        this.AddManipulator(new ContentZoomer {maxScale = 10000, minScale = 0.1f});
+        this.AddManipulator(new ContentZoomer { maxScale = 10000, minScale = 0.1f });
         this.AddManipulator(new ContentDragger());
         this.AddManipulator(new SelectionDragger());
         this.AddManipulator(new RectangleSelector());
@@ -50,7 +49,7 @@ public class AiBrainView : GraphView
         {
             CreateNodeView(brainState);
         }
-        
+
         // Load edges 
         foreach (var parentNode in _brain.states)
         {
@@ -59,7 +58,7 @@ public class AiBrainView : GraphView
             {
                 var parentView = FindNodeView(parentNode);
                 var childView = FindNodeView(childNode);
-                
+
                 if (parentView != null && childView != null)
                 {
                     var edge = parentView.output.ConnectTo(childView.input);
@@ -109,8 +108,9 @@ public class AiBrainView : GraphView
 
     public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
     {
-        var mousePos = evt.localMousePosition; // TODO: This isn't quite right. With a reference to the editor window you should be able to convert mousePosition into a relative position
-        
+        // TODO: This isn't quite right. With a reference to the editor window you should be able to convert mousePosition into a relative position
+        var mousePos = evt.localMousePosition;
+
         // Don't need any subtypes here - States and Decisions are just containers
         // If you want subtypes, consider TypeCache.GetTypesDerivedFrom<BrainNode>(), to get all types.
         evt.menu.AppendAction("State", action => CreateNode<BrainState>(mousePos));
@@ -119,38 +119,28 @@ public class AiBrainView : GraphView
 
         foreach (var type in TypeCache.GetTypesDerivedFrom<BrainAction>())
         {
-            // TODO: Blarg
+            // TODO: Can we do this without reflection?
             var method = typeof(AiBrainView).GetMethod("CreateNode");
             var genericMethod = method.MakeGenericMethod(type);
-            
-            evt.menu.AppendAction($"Actions/{type.Name}", action => genericMethod.Invoke(this, new object[]{mousePos}));
+
+            evt.menu.AppendAction(
+                $"Actions/{type.Name}",
+                action => genericMethod.Invoke(this, new object[] { mousePos })
+            );
         }
-        
     }
 
     public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
     {
-        // TODO: Ugly
         return ports
             .Where(endPort =>
                 {
                     if (startPort.node is NodeView startNodeView
                         && endPort.node is NodeView endNodeView
-                    )
+                        && endPort.direction != startPort.direction
+                        && endPort.node != startPort.node)
                     {
-                        if (endPort.direction == startPort.direction
-                              || endPort.node == startPort.node)
-                        {
-                            return false;
-                        }
-
-                        return startNodeView.node switch
-                        {
-                            RootNode _ => endNodeView.node is BrainState,
-                            BrainState _ => endNodeView.node is BrainTransition || endNodeView.node is BrainAction,
-                            BrainTransition _ => endNodeView.node is BrainState,
-                            _ => false
-                        };
+                        return startNodeView.node.CanConnectTo(endNodeView.node);
                     }
 
                     return false;
@@ -159,6 +149,8 @@ public class AiBrainView : GraphView
             .ToList();
     }
 
+    // ReSharper disable once MemberCanBePrivate.Global
+    // Keeping this public because there's some reflection using it in 'BuildContextualMenu,' and I don't understand that well enough to keep this private  
     public void CreateNode<T>(Vector2 mousePos) where T : BrainNode
     {
         var node = _brain.CreateNode<T>(mousePos);

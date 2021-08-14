@@ -4,10 +4,10 @@
     border-right-width: 1px;
     border-top-width: 1px;
     border-bottom-width: 1px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
     border-left-color: rgba(0, 0, 0, 0.74);
     border-right-color: rgba(0, 0, 0, 0.74);
     border-top-color: rgba(0, 0, 0, 0.74);
@@ -18,7 +18,7 @@
     padding-bottom: 0;
 }
 
-#top {
+#contents {
     flex-direction: row;
     flex-grow: 1;
 }
@@ -88,22 +88,33 @@
 }
 
 .root #title {
-    background-color: rgba(73, 111, 93, 255);
+    background-color: rgb(73, 111, 93);
 }
 
 .state #title {
-    background-color: rgba(43, 80, 170, 255);
+    background-color: rgb(43, 80, 170);
 }
 
 .transition #title {
-    background-color: rgba(170, 68, 101, 255);
+    background-color: rgb(170, 68, 101);
 }
 
 .action #title {
-    background-color: rgba(178, 95, 43, 255);
+    background-color: rgb(178, 95, 43);
 }
 
 #description {
     -unity-font-style: bold;
     font-size: 12px;
+}
+
+.transition #node-border {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-left-color: rgba(0, 74, 99, 255);
+    border-right-color: rgba(0, 74, 99, 255);
+    border-top-color: rgba(0, 74, 99, 255);
+    border-bottom-color: rgba(0, 74, 99, 255);
 }

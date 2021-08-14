@@ -58,11 +58,6 @@ namespace Characters.Brains.BrainStates
             transitions.Remove(transition);
         }
 
-        public List<BrainNode> GetTransitions()
-        {
-            return transitions.Select(t => t as BrainNode).ToList();
-        }
-
         public void AddAction(BrainAction action)
         {
             actions.Add(action);
@@ -73,12 +68,17 @@ namespace Characters.Brains.BrainStates
             actions.Remove(action);
         }
 
-        public List<BrainNode> GetChildren()
+        public override List<BrainNode> GetChildren()
         {
             return transitions
                 .Select(t => t as BrainNode)
                 .Union(actions.Select(a => a as BrainNode))
                 .ToList();
+        }
+
+        public override bool CanConnectTo(BrainNode other)
+        {
+            return other is BrainTransition || other is BrainAction;
         }
     }
 }

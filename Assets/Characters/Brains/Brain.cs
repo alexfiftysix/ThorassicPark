@@ -83,14 +83,7 @@ namespace Characters.Brains
         public static List<BrainNode> GetChildren(BrainNode parent)
         {
             // TODO: Something's going wrong here
-            return parent switch
-            {
-                BrainState brainState => brainState.GetChildren(),
-                BrainTransition transition => new List<BrainNode> {transition.nextState},
-                RootNode rootNode => new List<BrainNode> {rootNode.startState},
-                _ => throw new NotSupportedException(
-                    $"GetChildren does not support node {parent.GetType()}")
-            };
+            return parent.GetChildren();
         }
     }
 }
