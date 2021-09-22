@@ -1,4 +1,6 @@
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using Characters.Brains;
 using Characters.Brains.BrainStates;
 using Characters.Brains.Transitions;
@@ -35,10 +37,27 @@ public sealed class NodeView : Node
         descriptionLabel.bindingPath = "description";  // name of property on BrainNode class
         if (node.description == string.Empty) node.description = "description";
         descriptionLabel.Bind(new SerializedObject(node));
-        
-        // Add + button
+
+        async void Callback(ChangeEvent<string> evt) => await UpdateName(evt.newValue);
+        descriptionLabel.RegisterValueChangedCallback(Callback);
+
         var extrasContainer = this.Q<IMGUIContainer>("button-container");
         node.AddExtras(extrasContainer);
+    }
+
+    private DateTime _lastPressed = DateTime.MinValue;
+    private async Task UpdateName(string newName)
+    {
+        var myStartTime = DateTime.Now;
+        _lastPressed = myStartTime;
+
+        // We want to debounce the input, because SaveAssetIfDirty is intensive and can hang the UI if called to frequently
+        await Task.Delay(500);
+
+        if (_lastPressed != myStartTime) return;
+
+        node.name = newName;
+        AssetDatabase.SaveAssetIfDirty(node);
     }
 
     public override void SetPosition(Rect newPos)

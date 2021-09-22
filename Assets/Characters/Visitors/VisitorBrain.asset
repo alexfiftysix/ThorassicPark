@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b69d7025472e4ff4865a494459ff7dea, type: 3}
-  m_Name: BrainState
+  m_Name: Follow Player
   m_EditorClassIdentifier: 
   guid: cd20ba365e7013542aa1192452a654f5
   position: {x: 1842.6666, y: -235.729}
-  description: Follow PlaYer
+  description: Follow Player
   actions:
   - {fileID: 11400000, guid: 3d65145793d94aa44a9d72bfbc73168d, type: 2}
   transitions:
@@ -29,7 +29,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91081426a57d47e3844e8785fdc7e47d, type: 3}
-  m_Name: BrainTransition
+  m_Name: See Player
   m_EditorClassIdentifier: 
   guid: 444770e3efdd80c47bead633c51d17e0
   position: {x: 1560.8939, y: -229.04175}
@@ -47,10 +47,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b69d7025472e4ff4865a494459ff7dea, type: 3}
-  m_Name: BrainState
+  m_Name: Looking At Attraction
   m_EditorClassIdentifier: 
   guid: 28d677d76ab5e68459cd9862bb9b122e
-  position: {x: 1166.9718, y: 143.33324}
+  position: {x: 1246.6667, y: 118.666695}
   description: Looking At Attraction
   actions:
   - {fileID: 11400000, guid: a467b8bca5a21b44bb922b9becc88200, type: 2}
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91081426a57d47e3844e8785fdc7e47d, type: 3}
-  m_Name: BrainTransition
+  m_Name: See Escape
   m_EditorClassIdentifier: 
   guid: 17336f7e731138d4fb836f5331b8ac40
   position: {x: 1971.1841, y: 20.66663}
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91081426a57d47e3844e8785fdc7e47d, type: 3}
-  m_Name: New BrainTransition
+  m_Name: Wandering Time Passed
   m_EditorClassIdentifier: 
   guid: 451a438e087bb1e428f101d3ef67586c
   position: {x: 262.06134, y: 275.3333}
@@ -129,10 +129,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a4fccf52fb44b02b68ed046d613f652, type: 3}
-  m_Name: New RootNode
+  m_Name: Root
   m_EditorClassIdentifier: 
   guid: 0974131ade407944099b94cd6c4b3291
-  position: {x: 22.292917, y: 84.6667}
+  position: {x: 14.273689, y: 85.33339}
   description: Root
   startState: {fileID: 8236903006489943492}
 --- !u!114 &377063233275512227
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91081426a57d47e3844e8785fdc7e47d, type: 3}
-  m_Name: BrainTransition
+  m_Name: Park Breaks
   m_EditorClassIdentifier: 
   guid: 943a259e07065cf43a77b20d0ab567e7
   position: {x: 990.5701, y: -347.10156}
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b69d7025472e4ff4865a494459ff7dea, type: 3}
-  m_Name: BrainState
+  m_Name: Freaking Out
   m_EditorClassIdentifier: 
   guid: dab4eeaecd3419d4a91712d670394312
   position: {x: 1463.3333, y: 11.999985}
@@ -183,10 +183,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91081426a57d47e3844e8785fdc7e47d, type: 3}
-  m_Name: BrainTransition
+  m_Name: Time Passed
   m_EditorClassIdentifier: 
   guid: ba4469870ef36f940b9ae02eb3d8fd9b
-  position: {x: 705.9999, y: -48.52243}
+  position: {x: 296.89532, y: -326.2711}
   description: Time Passed
   decisions:
   - {fileID: 11400000, guid: ea2836ad313908f4290c4b79db00d44d, type: 2}
@@ -201,13 +201,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b69d7025472e4ff4865a494459ff7dea, type: 3}
-  m_Name: BrainState
+  m_Name: Heading To Attraction
   m_EditorClassIdentifier: 
   guid: 4ce942c57cbf233488bc44552f35a38b
   position: {x: 509.58096, y: 120.33331}
-  description: 'Heading To Attraction
-
-'
+  description: Heading To Attraction
   actions:
   - {fileID: 11400000, guid: ed8f6e705dac9aa45871e60824a9a51d, type: 2}
   transitions:
@@ -223,11 +221,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91081426a57d47e3844e8785fdc7e47d, type: 3}
-  m_Name: BrainTransition
+  m_Name: Attraction Found
   m_EditorClassIdentifier: 
   guid: 26ea39bc88577464aa86f5e7139b20e6
-  position: {x: 839.10046, y: 257.33325}
-  description: Found Attraction
+  position: {x: 907.99994, y: 254.68726}
+  description: Attraction Found
   decisions:
   - {fileID: 11400000, guid: 6374f8eda25775c48b12ac37666ab670, type: 2}
   nextState: {fileID: -3900103699817070936}
@@ -241,7 +239,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b69d7025472e4ff4865a494459ff7dea, type: 3}
-  m_Name: BrainState
+  m_Name: Escape
   m_EditorClassIdentifier: 
   guid: 1cd0915c6e85de848a02bdfd16814c8b
   position: {x: 2103.8508, y: 20.66663}
@@ -258,7 +256,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b69d7025472e4ff4865a494459ff7dea, type: 3}
-  m_Name: New BrainState
+  m_Name: Wandering
   m_EditorClassIdentifier: 
   guid: af1796f7121a64b41a7539999ee3acc7
   position: {x: 102.1259, y: 78.66663}

@@ -93,7 +93,7 @@ namespace Characters.Brains.BrainStates
                 AddAction(newBrainAction);
             }
         }
-        
+
         public override void AddExtras(IMGUIContainer addContainer)
         {
             // BUG: After adding this, I'm seeing that some letters can't be rendered sometimes in the editor.
@@ -110,7 +110,7 @@ namespace Characters.Brains.BrainStates
                 };
 
                 field.RegisterValueChangedCallback(ActionChangedCallback);
-            
+
                 addContainer.Add(field);
             }
 

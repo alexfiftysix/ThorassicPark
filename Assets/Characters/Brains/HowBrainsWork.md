@@ -2,6 +2,7 @@
 - States + Action + Transitions
 
 Every State is related to one or more actions that are done every frame.
-A if a transition is true, progresses to the next state
+Each Transition contains 1 or more Decisions. If any decision is true, progress to the next state
 
 Brain gets plugged into an agent (brain can be AI or player)
+Actions use the delegate pattern to affect the Controllable agent
