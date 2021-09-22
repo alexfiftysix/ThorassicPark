@@ -14,9 +14,6 @@ namespace Characters.Brains.BrainStates
         public List<BrainAction> actions = new List<BrainAction>();
         public List<BrainTransition> transitions = new List<BrainTransition>();
 
-        public BrainAction action1;
-        public BrainAction action2;
-        
         public void Initialise(ControllableBase controllable)
         {
             foreach (var brainAction in actions)
@@ -24,9 +21,9 @@ namespace Characters.Brains.BrainStates
                 brainAction.Initialise(controllable);
             }
 
-            foreach (var transition in transitions)
+            foreach (var decision in transitions.SelectMany(transition => transition.decisions))
             {
-                transition.decision.Initialise(controllable);
+                decision.Initialise(controllable);
             }
         }
 
@@ -44,10 +41,9 @@ namespace Characters.Brains.BrainStates
             {
                 foreach (var transition in transitions)
                 {
-                    if (transition.decision.Decide(controllable))
+                    if (transition.decisions.Any(decision => decision.Decide(controllable)))
                     {
                         controllable.TransitionToState(transition.nextState);
-                        break;
                     }
                 }
             }
@@ -100,6 +96,10 @@ namespace Characters.Brains.BrainStates
         
         public override void AddExtras(IMGUIContainer addContainer)
         {
+            // BUG: After adding this, I'm seeing that some letters can't be rendered sometimes in the editor.
+            //  The package cache was invalidated and rebuilt because the following immutable asset(s) were unexpectedly altered:
+            //      Packages/com.unity.ui/PackageResources/Fonts/Inter/Inter-SemiBold SDF.asset
+            //      Packages/com.unity.ui/PackageResources/Fonts/Inter/Inter-Regular SDF.asset
             foreach (var action in actions)
             {
                 var field = new ObjectField
