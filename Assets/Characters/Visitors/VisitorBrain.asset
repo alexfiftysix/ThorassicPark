@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: New BrainTransition
   m_EditorClassIdentifier: 
   guid: 451a438e087bb1e428f101d3ef67586c
-  position: {x: 296.6667, y: 85.09999}
+  position: {x: 213.4142, y: -14.648811}
   description: Wandering Time Passed
   decision: {fileID: 11400000, guid: 9b8e201055000984898880236d3c0591, type: 2}
   nextState: {fileID: 3301366181930614965}
@@ -35,7 +35,6 @@ MonoBehaviour:
   - {fileID: 8236903006489943492}
   - {fileID: -1846794489290875434}
   - {fileID: 3301366181930614965}
-  - {fileID: 4034508893618728738}
 --- !u!114 &245091731787907716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guid: 0974131ade407944099b94cd6c4b3291
   position: {x: -31.399994, y: 86.66664}
-  description: ' '
+  description: Root
   startState: {fileID: 8236903006489943492}
 --- !u!114 &3301366181930614965
 MonoBehaviour:
@@ -65,28 +64,15 @@ MonoBehaviour:
   m_Name: BrainState
   m_EditorClassIdentifier: 
   guid: 4ce942c57cbf233488bc44552f35a38b
-  position: {x: 518.0167, y: 74.66668}
+  position: {x: 419.53876, y: -158.13855}
   description: 'Heading To Attraction
 
 '
   actions:
-  - {fileID: 4034508893618728738}
+  - {fileID: 11400000, guid: ed8f6e705dac9aa45871e60824a9a51d, type: 2}
   transitions: []
---- !u!114 &4034508893618728738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a870696b55d34bceb94e900f9ac348a8, type: 3}
-  m_Name: HeadToAttraction
-  m_EditorClassIdentifier: 
-  guid: 0f0f77c2af19890419b097649c6429cf
-  position: {x: 696.15015, y: 8.000011}
-  description: Head To Attraction
+  action1: {fileID: 0}
+  action2: {fileID: 0}
 --- !u!114 &8236903006489943492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,9 +86,11 @@ MonoBehaviour:
   m_Name: New BrainState
   m_EditorClassIdentifier: 
   guid: af1796f7121a64b41a7539999ee3acc7
-  position: {x: 134.00009, y: 88.66666}
+  position: {x: 61.33333, y: 180.66666}
   description: Wander
   actions:
   - {fileID: 11400000, guid: a467b8bca5a21b44bb922b9becc88200, type: 2}
   transitions:
   - {fileID: -1846794489290875434}
+  action1: {fileID: 0}
+  action2: {fileID: 0}

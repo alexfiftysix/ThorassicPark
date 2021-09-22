@@ -1,6 +1,5 @@
 using System;
 using Characters.Brains;
-using Characters.Brains.BrainActions;
 using Characters.Brains.BrainStates;
 using Characters.Brains.Transitions;
 using UnityEditor;
@@ -9,6 +8,8 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+// ReSharper disable once CheckNamespace
+// Namespaces don't play nice with the UI editor
 public sealed class NodeView : Node
 {
     public BrainNode node;
@@ -36,8 +37,8 @@ public sealed class NodeView : Node
         descriptionLabel.Bind(new SerializedObject(node));
         
         // Add + button
-        var buttonContainer = this.Q<IMGUIContainer>("button-container");
-        buttonContainer.Add(node.GetAddButton(buttonContainer));
+        var extrasContainer = this.Q<IMGUIContainer>("button-container");
+        node.AddExtras(extrasContainer);
     }
 
     public override void SetPosition(Rect newPos)
@@ -65,9 +66,6 @@ public sealed class NodeView : Node
             case BrainTransition _:
                 AddToClassList("transition");
                 break;
-            case BrainAction _:
-                AddToClassList("action");
-                break;
         }
     }
 
@@ -88,11 +86,6 @@ public sealed class NodeView : Node
 
     private void CreateOutputPorts()
     {
-        if (node is BrainAction)
-        {
-            return;
-        }
-        
         output = node switch
         {
             BrainState _ => InstantiatePort(
@@ -122,7 +115,6 @@ public sealed class NodeView : Node
         return aNode switch
         {
             BrainState _ => "State",
-            BrainAction _ => "Action",
             BrainTransition _ => "Transition",
             RootNode _ => "Root",
             _ => "No Name"

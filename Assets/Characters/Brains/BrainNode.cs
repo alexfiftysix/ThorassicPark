@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -16,7 +15,6 @@ namespace Characters.Brains
 
         public abstract bool CanConnectTo(BrainNode other);
 
-        [CanBeNull]
-        public abstract Button GetAddButton(IMGUIContainer addContainer);
+        public abstract void AddExtras(IMGUIContainer addContainer);
     }
 }

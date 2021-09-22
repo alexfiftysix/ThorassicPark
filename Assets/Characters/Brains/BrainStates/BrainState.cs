@@ -14,6 +14,9 @@ namespace Characters.Brains.BrainStates
         public List<BrainAction> actions = new List<BrainAction>();
         public List<BrainTransition> transitions = new List<BrainTransition>();
 
+        public BrainAction action1;
+        public BrainAction action2;
+        
         public void Initialise(ControllableBase controllable)
         {
             foreach (var brainAction in actions)
@@ -74,29 +77,60 @@ namespace Characters.Brains.BrainStates
         {
             return transitions
                 .Select(t => t as BrainNode)
-                .Union(actions.Select(a => a as BrainNode))
                 .ToList();
         }
 
         public override bool CanConnectTo(BrainNode other)
         {
-            return other is BrainTransition || other is BrainAction;
+            return other is BrainTransition;
         }
 
-        public override Button GetAddButton(IMGUIContainer addContainer)
+        private void ActionChangedCallback(ChangeEvent<Object> evt)
         {
-            return new Button(() =>
+            if (evt.previousValue != null && evt.previousValue is BrainAction previousBrainAction)
+            {
+                RemoveAction(previousBrainAction);
+            }
+
+            if (evt.newValue != null && evt.newValue is BrainAction newBrainAction && !actions.Contains(newBrainAction))
+            {
+                AddAction(newBrainAction);
+            }
+        }
+        
+        public override void AddExtras(IMGUIContainer addContainer)
+        {
+            foreach (var action in actions)
+            {
+                var field = new ObjectField
+                {
+                    objectType = typeof(BrainAction),
+                    name = string.Empty,
+                    value = action
+                };
+
+                field.RegisterValueChangedCallback(ActionChangedCallback);
+            
+                addContainer.Add(field);
+            }
+
+            var button = new Button(() =>
             {
                 var field = new ObjectField
                 {
                     objectType = typeof(BrainAction),
                     name = string.Empty,
                 };
+                field.RegisterValueChangedCallback(ActionChangedCallback);
+                var addButton = addContainer.Children().Last();
                 addContainer.Add(field);
+                field.PlaceBehind(addButton);
             })
             {
                 text = "+"
             };
+
+            addContainer.Add(button);
         }
     }
 }

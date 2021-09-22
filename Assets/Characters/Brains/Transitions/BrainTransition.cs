@@ -27,20 +27,21 @@ namespace Characters.Brains.Transitions
             return other is BrainState;
         }
 
-        public override Button GetAddButton(IMGUIContainer addContainer)
+        public override void AddExtras(IMGUIContainer addContainer)
         {
-            return new Button(() =>
-            {
-                var field = new ObjectField
+            addContainer.Add(
+                new Button(() =>
                 {
-                    objectType = typeof(BrainDecision),
-                    name = string.Empty,
-                };
-                addContainer.Add(field);
-            })
-            {
-                text = "+"
-            };
+                    var field = new ObjectField
+                    {
+                        objectType = typeof(BrainDecision),
+                        name = string.Empty,
+                    };
+                    addContainer.Add(field);
+                })
+                {
+                    text = "+"
+                });
         }
     }
 }

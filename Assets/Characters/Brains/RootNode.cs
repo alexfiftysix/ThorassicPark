@@ -23,9 +23,8 @@ namespace Characters.Brains
             return other is BrainState;
         }
 
-        public override Button GetAddButton(IMGUIContainer addContainer)
+        public override void AddExtras(IMGUIContainer addContainer)
         {
-            return null;
         }
     }
 }

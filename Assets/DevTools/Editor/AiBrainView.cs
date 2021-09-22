@@ -41,7 +41,7 @@ public class AiBrainView : GraphView
         _brain = brain;
 
         graphViewChanged -= OnGraphViewChanged;
-        DeleteElements(graphElements);
+        DeleteElements(graphElements.ToList()); // The Queryable doesn't contain a definition for Where() apparently
         graphViewChanged += OnGraphViewChanged;
 
         // Load nodes
@@ -75,11 +75,11 @@ public class AiBrainView : GraphView
         return GetNodeByGuid(node.guid) as NodeView;
     }
 
-    private GraphViewChange OnGraphViewChanged(GraphViewChange graphviewchange)
+    private GraphViewChange OnGraphViewChanged(GraphViewChange graphViewChange)
     {
-        if (graphviewchange.elementsToRemove != null)
+        if (graphViewChange.elementsToRemove != null)
         {
-            foreach (var element in graphviewchange.elementsToRemove)
+            foreach (var element in graphViewChange.elementsToRemove)
             {
                 if (element is NodeView nodeView)
                 {
@@ -94,16 +94,16 @@ public class AiBrainView : GraphView
             }
         }
 
-        if (graphviewchange.edgesToCreate != null)
+        if (graphViewChange.edgesToCreate != null)
         {
-            foreach (var edge in graphviewchange.edgesToCreate)
+            foreach (var edge in graphViewChange.edgesToCreate)
             {
                 if (edge.output.node is NodeView parentView && edge.input.node is NodeView childView)
                     Brain.AddChild(parentView.node, childView.node);
             }
         }
 
-        return graphviewchange;
+        return graphViewChange;
     }
 
     public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
@@ -116,23 +116,12 @@ public class AiBrainView : GraphView
         evt.menu.AppendAction("State", action => CreateNode<BrainState>(mousePos));
         evt.menu.AppendAction("Transition", action => CreateNode<BrainTransition>(mousePos));
         evt.menu.AppendAction("Root", action => CreateNode<RootNode>(mousePos));
-
-        foreach (var type in TypeCache.GetTypesDerivedFrom<BrainAction>())
-        {
-            // TODO: Can we do this without reflection?
-            var method = typeof(AiBrainView).GetMethod("CreateNode");
-            var genericMethod = method.MakeGenericMethod(type);
-
-            evt.menu.AppendAction(
-                $"Actions/{type.Name}",
-                action => genericMethod.Invoke(this, new object[] { mousePos })
-            );
-        }
     }
 
     public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
     {
         return ports
+            .ToList() // Unity claims that UQueryState doesn't support Where()
             .Where(endPort =>
                 {
                     if (startPort.node is NodeView startNodeView

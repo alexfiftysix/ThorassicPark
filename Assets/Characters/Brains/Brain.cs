@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Characters.Brains.BrainActions;
 using Characters.Brains.BrainStates;
 using Characters.Brains.Transitions;
 using UnityEditor;
@@ -49,9 +48,6 @@ namespace Characters.Brains
                 case BrainState brainState when child is BrainTransition transition:
                     brainState.AddTransition(transition);
                     break;
-                case BrainState brainState when child is BrainAction action:
-                    brainState.AddAction(action);
-                    break;
                 case BrainTransition transition when child is BrainState brainState:
                     transition.SetNextState(brainState);
                     break;
@@ -68,10 +64,7 @@ namespace Characters.Brains
                 case BrainState brainState when child is BrainTransition transition:
                     brainState.RemoveTransition(transition);
                     break;
-                case BrainState brainState when child is BrainAction action:
-                    brainState.RemoveAction(action);
-                    break;
-                case BrainTransition transition when child is BrainState brainState:
+                case BrainTransition transition when child is BrainState:
                     transition.SetNextState(null);
                     break;
                 case RootNode rootNode when child is BrainState:
