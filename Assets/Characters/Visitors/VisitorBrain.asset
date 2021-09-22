@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BrainState
   m_EditorClassIdentifier: 
   guid: cd20ba365e7013542aa1192452a654f5
-  position: {x: 1959.5006, y: -255.99998}
+  position: {x: 1842.6666, y: -235.729}
   description: Follow PlaYer
   actions:
   - {fileID: 11400000, guid: 3d65145793d94aa44a9d72bfbc73168d, type: 2}
@@ -32,8 +32,8 @@ MonoBehaviour:
   m_Name: BrainTransition
   m_EditorClassIdentifier: 
   guid: 444770e3efdd80c47bead633c51d17e0
-  position: {x: 1621.5004, y: -234.00002}
-  description: see PlaYer
+  position: {x: 1560.8939, y: -229.04175}
+  description: See Player
   decisions:
   - {fileID: 11400000, guid: ed281e2e97e41c549928da182a2f5b16, type: 2}
   nextState: {fileID: -7797241336338706012}
@@ -70,8 +70,8 @@ MonoBehaviour:
   m_Name: BrainTransition
   m_EditorClassIdentifier: 
   guid: 17336f7e731138d4fb836f5331b8ac40
-  position: {x: 2137.6448, y: 102.66666}
-  description: see escaPe
+  position: {x: 1971.1841, y: 20.66663}
+  description: See Escape
   decisions: []
   nextState: {fileID: 6524773421112526603}
 --- !u!114 &-1846794489290875434
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: New RootNode
   m_EditorClassIdentifier: 
   guid: 0974131ade407944099b94cd6c4b3291
-  position: {x: -31.399994, y: 86.66664}
+  position: {x: 22.292917, y: 84.6667}
   description: Root
   startState: {fileID: 8236903006489943492}
 --- !u!114 &377063233275512227
@@ -244,8 +244,8 @@ MonoBehaviour:
   m_Name: BrainState
   m_EditorClassIdentifier: 
   guid: 1cd0915c6e85de848a02bdfd16814c8b
-  position: {x: 2427.4878, y: 118.33339}
-  description: escaPe
+  position: {x: 2103.8508, y: 20.66663}
+  description: Escape
   actions: []
   transitions: []
 --- !u!114 &8236903006489943492
