@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Follow Player
   m_EditorClassIdentifier: 
   guid: cd20ba365e7013542aa1192452a654f5
-  position: {x: 1842.6666, y: -235.729}
+  position: {x: 1843.9163, y: -140.00002}
   description: Follow Player
   actions:
   - {fileID: 11400000, guid: 3d65145793d94aa44a9d72bfbc73168d, type: 2}
@@ -32,7 +32,7 @@ MonoBehaviour:
   m_Name: See Player
   m_EditorClassIdentifier: 
   guid: 444770e3efdd80c47bead633c51d17e0
-  position: {x: 1560.8939, y: -229.04175}
+  position: {x: 1562.5833, y: -133.33337}
   description: See Player
   decisions:
   - {fileID: 11400000, guid: ed281e2e97e41c549928da182a2f5b16, type: 2}
@@ -50,10 +50,9 @@ MonoBehaviour:
   m_Name: Looking At Attraction
   m_EditorClassIdentifier: 
   guid: 28d677d76ab5e68459cd9862bb9b122e
-  position: {x: 1246.6667, y: 118.666695}
+  position: {x: 1220.2817, y: 118.33329}
   description: Looking At Attraction
-  actions:
-  - {fileID: 11400000, guid: a467b8bca5a21b44bb922b9becc88200, type: 2}
+  actions: []
   transitions:
   - {fileID: 377063233275512227}
   - {fileID: 2962517793989898899}
@@ -148,7 +147,7 @@ MonoBehaviour:
   m_Name: Park Breaks
   m_EditorClassIdentifier: 
   guid: 943a259e07065cf43a77b20d0ab567e7
-  position: {x: 990.5701, y: -347.10156}
+  position: {x: 988.74255, y: -155.50594}
   description: Park Breaks
   decisions:
   - {fileID: 11400000, guid: f03d73abeccad2c409a38c5721cbc848, type: 2}
@@ -183,11 +182,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91081426a57d47e3844e8785fdc7e47d, type: 3}
-  m_Name: Time Passed
+  m_Name: Looking Time Passed
   m_EditorClassIdentifier: 
   guid: ba4469870ef36f940b9ae02eb3d8fd9b
-  position: {x: 296.89532, y: -326.2711}
-  description: Time Passed
+  position: {x: 300.69916, y: -147.33337}
+  description: Looking Time Passed
   decisions:
   - {fileID: 11400000, guid: ea2836ad313908f4290c4b79db00d44d, type: 2}
   nextState: {fileID: 8236903006489943492}
@@ -224,7 +223,7 @@ MonoBehaviour:
   m_Name: Attraction Found
   m_EditorClassIdentifier: 
   guid: 26ea39bc88577464aa86f5e7139b20e6
-  position: {x: 907.99994, y: 254.68726}
+  position: {x: 878.9701, y: 241.66667}
   description: Attraction Found
   decisions:
   - {fileID: 11400000, guid: 6374f8eda25775c48b12ac37666ab670, type: 2}

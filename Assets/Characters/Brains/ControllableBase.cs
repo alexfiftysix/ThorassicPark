@@ -11,7 +11,7 @@ namespace Characters.Brains
     {
         public CharacterStats characterStats;
         public Brain brain;
-        private BrainState _state;
+        [SerializeField] private BrainState state;
 
         private Transform _transform;
 
@@ -32,15 +32,15 @@ namespace Characters.Brains
         public virtual void Start()
         {
             _transform = transform;
-            _state = brain.rootNode.startState;
-            _state.Initialise(this);
+            state = brain.rootNode.startState;
+            state.Initialise(this);
             GameManager = FindObjectOfType<GameManager>();
             ChaseableManager = FindObjectOfType<ChaseableManager>();
         }
 
         public virtual void Update()
         {
-            _state.DoActions(this);
+            state.DoActions(this);
         }
 
         public void Move(Vector2 direction, float speedMultiplier = 1)
@@ -58,10 +58,10 @@ namespace Characters.Brains
 
         public void TransitionToState(BrainState nextState)
         {
-            if (nextState == _state) return;
+            if (nextState == state) return;
 
-            _state = nextState;
-            _state.Initialise(this);
+            state = nextState;
+            state.Initialise(this);
         }
     }
 }
