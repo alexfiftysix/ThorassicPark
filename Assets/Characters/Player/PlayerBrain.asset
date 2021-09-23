@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-521928098920011479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a4fccf52fb44b02b68ed046d613f652, type: 3}
+  m_Name: Root
+  m_EditorClassIdentifier: 
+  guid: 708e57c07eafa1249b2eb38f59bc7c3a
+  position: {x: 244.66669, y: 294.6667}
+  description: Root
+  startState: {fileID: 2652811839550329148}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73e6bd83aef542d0b0c60157a8aeda9f, type: 3}
+  m_Name: PlayerBrain
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: -521928098920011479}
+  states:
+  - {fileID: -521928098920011479}
+  - {fileID: 2652811839550329148}
+--- !u!114 &2652811839550329148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b69d7025472e4ff4865a494459ff7dea, type: 3}
+  m_Name: Human Controlled
+  m_EditorClassIdentifier: 
+  guid: 97cbb90f72c56fe479809a5d9ca99dfb
+  position: {x: 355.7334, y: 286.6668}
+  description: Human Controlled
+  actions:
+  - {fileID: 11400000, guid: 22037fbc9b1978647bb99021afffb6f5, type: 2}
+  transitions: []

@@ -13,6 +13,7 @@ namespace Characters.Brains.Decisions
 
         public override bool Decide(ControllableBase controllable)
         {
+            // TODO: This should work fine, but seems all backwards. Use the visitors view radius and position?
             var colliders = Physics2D.OverlapCircleAll(controllable.Player.transform.position, controllable.Player.viewRadiusSize);
             return colliders.Any(collider => collider.gameObject == controllable.gameObject);
         }

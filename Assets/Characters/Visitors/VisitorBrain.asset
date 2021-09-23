@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Follow Player
   m_EditorClassIdentifier: 
   guid: cd20ba365e7013542aa1192452a654f5
-  position: {x: 1843.9163, y: -140.00002}
+  position: {x: 1891.9674, y: -135.92415}
   description: Follow Player
   actions:
   - {fileID: 11400000, guid: 3d65145793d94aa44a9d72bfbc73168d, type: 2}
@@ -32,7 +32,7 @@ MonoBehaviour:
   m_Name: See Player
   m_EditorClassIdentifier: 
   guid: 444770e3efdd80c47bead633c51d17e0
-  position: {x: 1562.5833, y: -133.33337}
+  position: {x: 1599.095, y: -127.97833}
   description: See Player
   decisions:
   - {fileID: 11400000, guid: ed281e2e97e41c549928da182a2f5b16, type: 2}
@@ -66,12 +66,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91081426a57d47e3844e8785fdc7e47d, type: 3}
-  m_Name: See Escape
+  m_Name: Found Exit
   m_EditorClassIdentifier: 
   guid: 17336f7e731138d4fb836f5331b8ac40
-  position: {x: 1971.1841, y: 20.66663}
-  description: See Escape
-  decisions: []
+  position: {x: 2023.6666, y: 34.333344}
+  description: Found Exit
+  decisions:
+  - {fileID: 11400000, guid: 60145907cfa87f347802ed51b32a50dd, type: 2}
   nextState: {fileID: 6524773421112526603}
 --- !u!114 &-1846794489290875434
 MonoBehaviour:
@@ -118,6 +119,8 @@ MonoBehaviour:
   - {fileID: -7797241336338706012}
   - {fileID: -3071525013939421906}
   - {fileID: 6524773421112526603}
+  - {fileID: 3854646016163602601}
+  - {fileID: 9112104163134523354}
 --- !u!114 &245091731787907716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +213,24 @@ MonoBehaviour:
   transitions:
   - {fileID: 377063233275512227}
   - {fileID: 3999779908860392882}
+--- !u!114 &3854646016163602601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91081426a57d47e3844e8785fdc7e47d, type: 3}
+  m_Name: Touched Exit
+  m_EditorClassIdentifier: 
+  guid: bf5871ba9c1493d4e96214b537b94ad5
+  position: {x: 2684.667, y: 42.666664}
+  description: Touched Exit
+  decisions:
+  - {fileID: 11400000, guid: 63029766eaa6f51469ad5e2f37bd1ca9, type: 2}
+  nextState: {fileID: 9112104163134523354}
 --- !u!114 &3999779908860392882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,13 +259,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b69d7025472e4ff4865a494459ff7dea, type: 3}
-  m_Name: Escape
+  m_Name: Head To Exit
   m_EditorClassIdentifier: 
   guid: 1cd0915c6e85de848a02bdfd16814c8b
-  position: {x: 2103.8508, y: 20.66663}
-  description: Escape
-  actions: []
-  transitions: []
+  position: {x: 2311.3335, y: 34.666687}
+  description: Head To Exit
+  actions:
+  - {fileID: 11400000, guid: 1a60ce018649f534188e71984d90738a, type: 2}
+  transitions:
+  - {fileID: 3854646016163602601}
 --- !u!114 &8236903006489943492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,3 +288,21 @@ MonoBehaviour:
   transitions:
   - {fileID: -1846794489290875434}
   - {fileID: 377063233275512227}
+--- !u!114 &9112104163134523354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b69d7025472e4ff4865a494459ff7dea, type: 3}
+  m_Name: Escape
+  m_EditorClassIdentifier: 
+  guid: 32b1c8e1d2ffde64f87b6d05b88c0e44
+  position: {x: 2990.8396, y: 42.66665}
+  description: Escape
+  actions:
+  - {fileID: 11400000, guid: 8dc6312f3bb6471438fd534b6f994a26, type: 2}
+  transitions: []

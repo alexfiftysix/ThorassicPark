@@ -24,7 +24,10 @@ namespace Characters.Brains
         public float MaxWaitTime { get; set; }
         public Attraction TargetAttraction { set; get; }
         public IChaseable TargetChaseable { set; get; }
+        public GameObject TargetGameObject { get; set; }
         public Player.Player Player { set; get; }
+        public float ViewRadiusSize { get; set; } = 1;
+        public float touchRadius;
         
         public GameManager GameManager { get; private set; }
         public ChaseableManager ChaseableManager { get; set; }

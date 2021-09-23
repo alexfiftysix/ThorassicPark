@@ -99,6 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterStats: {fileID: 11400000, guid: a60583f7055d4d449b434fdec65801ed, type: 2}
   brain: {fileID: 11400000, guid: 3eda9ad096244d94298d6fc087d2320b, type: 2}
+  state: {fileID: 0}
+  touchRadius: 0.25
 --- !u!50 &5432547857941296053
 Rigidbody2D:
   serializedVersion: 4

@@ -39,6 +39,10 @@ public class AiBrainView : GraphView
     public void PopulateView(Brain brain)
     {
         _brain = brain;
+        if (brain.rootNode == null)
+        {
+            brain.rootNode = brain.CreateNode<RootNode>(Vector2.zero);
+        }
 
         graphViewChanged -= OnGraphViewChanged;
         DeleteElements(graphElements.ToList()); // The Queryable doesn't contain a definition for Where() apparently

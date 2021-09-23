@@ -1,3 +1,4 @@
+using System;
 using Characters.Brains;
 using UnityEngine;
 
@@ -6,20 +7,6 @@ namespace Characters.Visitors
     public class Visitor : ControllableBase, IChaseable
     {
         private int _health = 10;
-
-        public void OnCollisionEnter2D(Collision2D other)
-        {
-            if (GameManager.parkIsBroken && other.gameObject.name == "VisitorEscapePointBuilding")
-            {
-                Escape();
-            }
-        }
-
-        private void Escape()
-        {
-            GameManager.VisitorEscaped();
-            Destroy(gameObject);
-        }
 
         public void TakeDamage(int damage)
         {
@@ -33,6 +20,12 @@ namespace Characters.Visitors
         private void OnDestroy()
         {
             ChaseableManager.Remove(this);
+        }
+
+        public void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, touchRadius);
         }
     }
 }

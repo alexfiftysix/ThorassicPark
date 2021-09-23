@@ -16,7 +16,7 @@ namespace Characters.Brains
         // Needed because nodes can be detached
         public List<BrainNode> states;
 
-        public BrainNode CreateNode<T>(Vector2 mousePos) where T : BrainNode
+        public T CreateNode<T>(Vector2 mousePos) where T : BrainNode
         {
             if (CreateInstance(typeof(T)) is T newNode)
             {
