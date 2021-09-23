@@ -1,9 +1,11 @@
-﻿using Buildings;
+﻿using System;
+using Buildings;
 using Characters.Brains.BrainStates;
 using Characters.Monsters;
 using Characters.Visitors;
 using GameManagement;
 using UnityEngine;
+using Random = Unity.Mathematics.Random;
 
 namespace Characters.Brains
 {
@@ -26,8 +28,9 @@ namespace Characters.Brains
         public IChaseable TargetChaseable { set; get; }
         public GameObject TargetGameObject { get; set; }
         public Player.Player Player { set; get; }
-        public float ViewRadiusSize { get; set; } = 1;
-        public float touchRadius;
+        public float viewRadius = 1;
+        public float touchRadius = 0.25f;
+        public Random random { get; private set; }
         
         public GameManager GameManager { get; private set; }
         public ChaseableManager ChaseableManager { get; set; }
@@ -39,6 +42,7 @@ namespace Characters.Brains
             state.Initialise(this);
             GameManager = FindObjectOfType<GameManager>();
             ChaseableManager = FindObjectOfType<ChaseableManager>();
+            random = new Random();
         }
 
         public virtual void Update()
@@ -65,6 +69,17 @@ namespace Characters.Brains
 
             state = nextState;
             state.Initialise(this);
+        }
+
+        public void OnDrawGizmos()
+        {
+            var position = transform.position;
+
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(position, viewRadius);
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(position, touchRadius);
         }
     }
 }

@@ -1,6 +1,4 @@
-using System;
 using Characters.Brains;
-using UnityEngine;
 
 namespace Characters.Visitors
 {
@@ -20,12 +18,6 @@ namespace Characters.Visitors
         private void OnDestroy()
         {
             ChaseableManager.Remove(this);
-        }
-
-        public void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, touchRadius);
         }
     }
 }

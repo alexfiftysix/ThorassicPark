@@ -146,6 +146,7 @@ public class AiBrainView : GraphView
     // Keeping this public because there's some reflection using it in 'BuildContextualMenu,' and I don't understand that well enough to keep this private  
     public void CreateNode<T>(Vector2 mousePos) where T : BrainNode
     {
+        // TODO: Focus node after create. Focus description field.
         var node = _brain.CreateNode<T>(mousePos);
         CreateNodeView(node);
     }

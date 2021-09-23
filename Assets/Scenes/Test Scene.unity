@@ -123,6 +123,67 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &852114576
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1798298037465397058, guid: a5ac019069d53254ca0690fe01f52a18, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1844796906014014960, guid: a5ac019069d53254ca0690fe01f52a18, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1844796906014014960, guid: a5ac019069d53254ca0690fe01f52a18, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.0918813
+      objectReference: {fileID: 0}
+    - target: {fileID: 1844796906014014960, guid: a5ac019069d53254ca0690fe01f52a18, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.180213
+      objectReference: {fileID: 0}
+    - target: {fileID: 1844796906014014960, guid: a5ac019069d53254ca0690fe01f52a18, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1844796906014014960, guid: a5ac019069d53254ca0690fe01f52a18, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1844796906014014960, guid: a5ac019069d53254ca0690fe01f52a18, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1844796906014014960, guid: a5ac019069d53254ca0690fe01f52a18, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1844796906014014960, guid: a5ac019069d53254ca0690fe01f52a18, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1844796906014014960, guid: a5ac019069d53254ca0690fe01f52a18, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1844796906014014960, guid: a5ac019069d53254ca0690fe01f52a18, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1844796906014014960, guid: a5ac019069d53254ca0690fe01f52a18, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1844796906014014963, guid: a5ac019069d53254ca0690fe01f52a18, type: 3}
+      propertyPath: m_Name
+      value: ArrowSaur
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a5ac019069d53254ca0690fe01f52a18, type: 3}
 --- !u!1001 &878533889
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -136,7 +197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8791916941129031653, guid: 2ca5568e94dc33547badc5da1c14d3ef, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8791916941129031653, guid: 2ca5568e94dc33547badc5da1c14d3ef, type: 3}
       propertyPath: m_LocalPosition.x
@@ -248,6 +309,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FruitHatWoman
       objectReference: {fileID: 0}
+    - target: {fileID: 3643372832463950900, guid: 3b7d947e6ee663e4ea9b4bb0a6639097, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3643372832463950902, guid: 3b7d947e6ee663e4ea9b4bb0a6639097, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -348,7 +413,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.47
+  orthographic size: 13.29
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -376,7 +441,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1256602101
 MonoBehaviour:

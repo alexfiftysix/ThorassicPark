@@ -100,7 +100,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterStats: {fileID: 11400000, guid: 927a654169a7caa4c82455b10834ad73, type: 2}
+  brain: {fileID: 11400000, guid: 192b3be0b90dcab469cc7e3b597ae562, type: 2}
   state: {fileID: 11400000, guid: 86cec91fcd4027141aea34bc2293fb90, type: 2}
+  viewRadius: 1
+  touchRadius: 0
 --- !u!61 &6157671801932397459
 BoxCollider2D:
   m_ObjectHideFlags: 0

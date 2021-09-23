@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Random = System.Random;
@@ -10,7 +11,12 @@ namespace Common.Utilities.Extensions
 
         public static T RandomChoice<T>(this IEnumerable<T> collection)
         {
-            var array = collection.ToArray();
+            return collection.RandomChoice(arg => true);
+        }
+
+        public static T RandomChoice<T>(this IEnumerable<T> collection, Func<T, bool> func)
+        {
+            var array = collection.Where(func).ToArray();
             if (array.Length == 0)
             {
                 return default;
