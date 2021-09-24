@@ -1,0 +1,21 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="/Assets/NodeView.uss" />
+    <ui:VisualElement name="node-border">
+        <ui:VisualElement name="title">
+            <ui:Label name="title-label" text="New BrainState" class="unity-text-element unity-label" />
+            <ui:Label text="Label" display-tooltip-when-elided="true" name="description" focusable="true" binding-path="description" />
+            <ui:VisualElement name="title-button-container">
+                <ui:VisualElement name="collapse-button">
+                    <ui:VisualElement name="icon" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="divider" class="horizontal" />
+        <ui:VisualElement name="contents">
+            <ui:VisualElement name="input" />
+            <ui:IMGUIContainer name="extras-container" />
+            <ui:VisualElement name="output" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="selection-border" picking-mode="Ignore" />
+</ui:UXML>

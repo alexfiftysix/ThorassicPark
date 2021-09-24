@@ -2,7 +2,7 @@
 
 namespace Characters.Brains.BrainActions
 {
-    [CreateAssetMenu (menuName = "Brains/Actions/FollowPlayer")]
+    [CreateAssetMenu(menuName = "Brains/Actions/FollowPlayer")]
     public class FollowPlayer : BrainAction
     {
         public float speedMultiplier;

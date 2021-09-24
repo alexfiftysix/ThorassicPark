@@ -128,8 +128,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterStats: {fileID: 11400000, guid: 6cea123e387ddbe458cbdb7a7f7a6870, type: 2}
+  brain: {fileID: 11400000, guid: 62f37f49399fc7e4f91730f838058aa7, type: 2}
   state: {fileID: 11400000, guid: 0cf9226cc5ccaf847b99a78cde3b25ca, type: 2}
-  manager: {fileID: 0}
+  touchRadius: 1
   healthBar: {fileID: 4758573952024336151, guid: 5b43c5e6dfe56c241b7e15da2ee3b8ef, type: 3}
   viewRadiusSize: 1
   helipadPointer: {fileID: 8936074787334537035}

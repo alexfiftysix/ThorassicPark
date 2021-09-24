@@ -43,9 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d47a29b0def0ade46b193740d49658ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unlockedByDefault:
+  - {fileID: 11400000, guid: 7163d12743c32a341a53caf36cbaa143, type: 2}
+  - {fileID: 11400000, guid: cb5c5baf453883c4dac4f4ceb58d5e87, type: 2}
   lockedByDefault:
   - {fileID: 11400000, guid: 6d83980686dcb6f4c99ae58557edf498, type: 2}
-  - {fileID: 11400000, guid: cb5c5baf453883c4dac4f4ceb58d5e87, type: 2}
-  unlockedByDefault:
   - {fileID: 11400000, guid: c9d3235ee7a045e4398906202ec5be19, type: 2}
-  - {fileID: 11400000, guid: 7163d12743c32a341a53caf36cbaa143, type: 2}
