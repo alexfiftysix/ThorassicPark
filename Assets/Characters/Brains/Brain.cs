@@ -14,7 +14,7 @@ namespace Characters.Brains
         public RootNode rootNode;
 
         // Needed because nodes can be detached
-        public List<BrainNode> states;
+        public List<BrainNode> states = new List<BrainNode>();
 
         public T CreateNode<T>(Vector2 mousePos) where T : BrainNode
         {

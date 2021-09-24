@@ -42,6 +42,7 @@ public class AiBrainEditor : EditorWindow
     {
         // TODO: In v2021, can add && AssetDatabase.CanOpenAssetInEditor(brain.GetInstanceId())
         // Then add code up AiBrainView.PopulateView() to create a root node if one doesn't exist already
+        // Then get rid of RootNode from the context menu. 
         // Doesn't exist in this version, so we can't add root node on open without errors
         if (Selection.activeObject is Brain brain)
         {

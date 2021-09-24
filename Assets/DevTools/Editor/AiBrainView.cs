@@ -9,6 +9,7 @@ using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Object = System.Object;
 
 // ReSharper disable once CheckNamespace
 // Don't want the nesting in the editor that the namespace brings
@@ -37,10 +38,6 @@ public class AiBrainView : GraphView
     public void PopulateView(Brain brain)
     {
         _brain = brain;
-        if (brain.rootNode == null)
-        {
-            brain.rootNode = brain.CreateNode<RootNode>(Vector2.zero);
-        }
 
         graphViewChanged -= OnGraphViewChanged;
         DeleteElements(graphElements.ToList()); // The Queryable doesn't contain a definition for Where() apparently
