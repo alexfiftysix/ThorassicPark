@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Characters.Brains;
-using Characters.Brains.BrainActions;
 using Characters.Brains.BrainStates;
 using Characters.Brains.Transitions;
 using JetBrains.Annotations;
@@ -15,7 +14,6 @@ using UnityEngine.UIElements;
 // Don't want the nesting in the editor that the namespace brings
 public class AiBrainView : GraphView
 {
-    // TODO: Need a RootNode as an entry point to the graph
     private Brain _brain;
     public Action<NodeView> onNodeSelected;
 
@@ -112,14 +110,15 @@ public class AiBrainView : GraphView
 
     public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
     {
-        // TODO: This isn't quite right. With a reference to the editor window you should be able to convert mousePosition into a relative position
-        var mousePos = evt.localMousePosition;
+        Vector3 screenMousePosition = evt.localMousePosition;
+        Vector2 worldMousePosition = (screenMousePosition - contentViewContainer.transform.position) *
+                                     (1 / contentViewContainer.transform.scale.x);
 
         // Don't need any subtypes here - States and Decisions are just containers
         // If you want subtypes, consider TypeCache.GetTypesDerivedFrom<BrainNode>(), to get all types.
-        evt.menu.AppendAction("State", action => CreateNode<BrainState>(mousePos));
-        evt.menu.AppendAction("Transition", action => CreateNode<BrainTransition>(mousePos));
-        evt.menu.AppendAction("Root", action => CreateNode<RootNode>(mousePos));
+        evt.menu.AppendAction("State", action => CreateNode<BrainState>(worldMousePosition));
+        evt.menu.AppendAction("Transition", action => CreateNode<BrainTransition>(worldMousePosition));
+        evt.menu.AppendAction("Root", action => CreateNode<RootNode>(worldMousePosition));
     }
 
     public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
