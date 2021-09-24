@@ -13,7 +13,7 @@
         <ui:VisualElement name="divider" class="horizontal" />
         <ui:VisualElement name="contents">
             <ui:VisualElement name="input" />
-            <ui:IMGUIContainer name="button-container" />
+            <ui:IMGUIContainer name="extras-container" />
             <ui:VisualElement name="output" />
         </ui:VisualElement>
     </ui:VisualElement>

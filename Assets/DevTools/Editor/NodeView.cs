@@ -1,5 +1,4 @@
 using System;
-using System.Threading;
 using System.Threading.Tasks;
 using Characters.Brains;
 using Characters.Brains.BrainStates;
@@ -41,20 +40,20 @@ public sealed class NodeView : Node
         async void Callback(ChangeEvent<string> evt) => await UpdateName(evt.newValue);
         descriptionLabel.RegisterValueChangedCallback(Callback);
 
-        var extrasContainer = this.Q<IMGUIContainer>("button-container");
+        var extrasContainer = this.Q<IMGUIContainer>("extras-container");
         node.AddExtras(extrasContainer);
     }
 
-    private DateTime _lastPressed = DateTime.MinValue;
+    private DateTime _lastTyped = DateTime.MinValue;
     private async Task UpdateName(string newName)
     {
         var myStartTime = DateTime.Now;
-        _lastPressed = myStartTime;
+        _lastTyped = myStartTime;
 
         // We want to debounce the input, because SaveAssetIfDirty is intensive and can hang the UI if called to frequently
         await Task.Delay(500);
 
-        if (_lastPressed != myStartTime) return;
+        if (_lastTyped != myStartTime) return;
 
         node.name = newName;
         AssetDatabase.SaveAssetIfDirty(node);
@@ -90,9 +89,9 @@ public sealed class NodeView : Node
 
     private void CreateInputPorts()
     {
-        // bool not used, is a placeholder for nothing (void not allowed)
         if (!(node is RootNode))
         {
+            // typeof(bool) is not used. It's a placeholder for nothing (unfortunately void/null is not allowed)
             input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Multi, typeof(bool));    
         }
 
@@ -105,6 +104,7 @@ public sealed class NodeView : Node
 
     private void CreateOutputPorts()
     {
+        // typeof(bool) is not used. It's a placeholder for nothing (unfortunately void/null is not allowed)
         output = node switch
         {
             BrainState _ => InstantiatePort(
@@ -125,7 +125,7 @@ public sealed class NodeView : Node
             _ => output
         };
 
-        output.portName = string.Empty;
+        output.portName = string.Empty; // otherwise name is "Boolean", which takes up space and is misleading
         outputContainer.Add(output);
     }
 

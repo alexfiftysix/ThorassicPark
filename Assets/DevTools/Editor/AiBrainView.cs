@@ -152,8 +152,10 @@ public class AiBrainView : GraphView
 
     private void CreateNodeView(BrainNode state)
     {
-        var nodeView = new NodeView(state);
-        nodeView.onNodeSelected = onNodeSelected;
+        var nodeView = new NodeView(state)
+        {
+            onNodeSelected = onNodeSelected
+        };
         AddElement(nodeView);
     }
 }

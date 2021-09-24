@@ -14,6 +14,7 @@ namespace Characters.Brains.Decisions
 
         public override bool Decide(ControllableBase controllable)
         {
+            // TODO: Change this to OverlapCircle. Use the returned Collider as the new target
             var colliders = Physics2D.OverlapCircleAll(controllable.transform.position, controllable.viewRadius);
             if (colliders.Any(collider => collider.GetComponents<IChaseable>().Any()))
             {

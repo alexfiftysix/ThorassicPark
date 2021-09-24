@@ -31,7 +31,8 @@ namespace Characters.Brains.Transitions
 
         private void DecisionChangedCallback(ChangeEvent<Object> evt)
         {
-            if (evt.previousValue != null && evt.previousValue is BrainDecision previousDecision && decisions.Contains(previousDecision))
+            if (evt.previousValue != null && evt.previousValue is BrainDecision previousDecision &&
+                decisions.Contains(previousDecision))
             {
                 decisions.Remove(previousDecision);
             }
@@ -54,10 +55,10 @@ namespace Characters.Brains.Transitions
                 };
 
                 field.RegisterValueChangedCallback(DecisionChangedCallback);
-            
+
                 addContainer.Add(field);
             }
-            
+
             addContainer.Add(
                 new Button(() =>
                 {

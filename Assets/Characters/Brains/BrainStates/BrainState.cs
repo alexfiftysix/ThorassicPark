@@ -29,22 +29,16 @@ namespace Characters.Brains.BrainStates
 
         public void DoActions(ControllableBase controllable)
         {
-            if (actions.Count > 0)
+            foreach (var brainAction in actions)
             {
-                foreach (var brainAction in actions)
-                {
-                    brainAction.Act(controllable);
-                }
+                brainAction.Act(controllable);
             }
 
-            if (transitions.Count > 0)
+            foreach (var transition in transitions)
             {
-                foreach (var transition in transitions)
+                if (transition.decisions.Any(decision => decision.Decide(controllable)))
                 {
-                    if (transition.decisions.Any(decision => decision.Decide(controllable)))
-                    {
-                        controllable.TransitionToState(transition.nextState);
-                    }
+                    controllable.TransitionToState(transition.nextState);
                 }
             }
         }
@@ -57,16 +51,6 @@ namespace Characters.Brains.BrainStates
         public void RemoveTransition(BrainTransition transition)
         {
             transitions.Remove(transition);
-        }
-
-        public void AddAction(BrainAction action)
-        {
-            actions.Add(action);
-        }
-
-        public void RemoveAction(BrainAction action)
-        {
-            actions.Remove(action);
         }
 
         public override List<BrainNode> GetChildren()
@@ -85,21 +69,17 @@ namespace Characters.Brains.BrainStates
         {
             if (evt.previousValue != null && evt.previousValue is BrainAction previousBrainAction)
             {
-                RemoveAction(previousBrainAction);
+                actions.Remove(previousBrainAction);
             }
 
             if (evt.newValue != null && evt.newValue is BrainAction newBrainAction && !actions.Contains(newBrainAction))
             {
-                AddAction(newBrainAction);
+                actions.Add(newBrainAction);
             }
         }
 
         public override void AddExtras(IMGUIContainer addContainer)
         {
-            // BUG: After adding this, I'm seeing that some letters can't be rendered sometimes in the editor.
-            //  The package cache was invalidated and rebuilt because the following immutable asset(s) were unexpectedly altered:
-            //      Packages/com.unity.ui/PackageResources/Fonts/Inter/Inter-SemiBold SDF.asset
-            //      Packages/com.unity.ui/PackageResources/Fonts/Inter/Inter-Regular SDF.asset
             foreach (var action in actions)
             {
                 var field = new ObjectField

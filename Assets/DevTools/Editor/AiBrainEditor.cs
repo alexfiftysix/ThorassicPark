@@ -3,6 +3,8 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+// For unity reasons
+// ReSharper disable once CheckNamespace
 public class AiBrainEditor : EditorWindow
 {
     private AiBrainView _brainView;

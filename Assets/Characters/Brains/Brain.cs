@@ -21,6 +21,7 @@ namespace Characters.Brains
             if (CreateInstance(typeof(T)) is T newNode)
             {
                 newNode.name = $"{typeof(T).ToString().Split('.').Last()}";
+                newNode.description = newNode.name;
                 newNode.guid = GUID.Generate().ToString();
                 newNode.position = mousePos;
                 states.Add(newNode);
@@ -75,7 +76,6 @@ namespace Characters.Brains
 
         public static List<BrainNode> GetChildren(BrainNode parent)
         {
-            // TODO: Something's going wrong here
             return parent.GetChildren();
         }
     }

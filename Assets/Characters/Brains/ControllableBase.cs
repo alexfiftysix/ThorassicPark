@@ -1,5 +1,4 @@
-﻿using System;
-using Buildings;
+﻿using Buildings;
 using Characters.Brains.BrainStates;
 using Characters.Monsters;
 using Characters.Visitors;
@@ -30,7 +29,7 @@ namespace Characters.Brains
         public Player.Player Player { set; get; }
         public float viewRadius = 1;
         public float touchRadius = 0.25f;
-        public Random random { get; private set; }
+        public Random Random { get; private set; }
         
         public GameManager GameManager { get; private set; }
         public ChaseableManager ChaseableManager { get; set; }
@@ -42,7 +41,7 @@ namespace Characters.Brains
             state.Initialise(this);
             GameManager = FindObjectOfType<GameManager>();
             ChaseableManager = FindObjectOfType<ChaseableManager>();
-            random = new Random();
+            Random = new Random();
         }
 
         public virtual void Update()

@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Name: Root
   m_EditorClassIdentifier: 
   guid: 00b321f85facb6348a1efaab0a572948
-  position: {x: -56.208496, y: 384.0001}
+  position: {x: -51.49787, y: 365}
   description: Root
   startState: {fileID: 7091039970881825952}
 --- !u!114 &5619014139281395560
