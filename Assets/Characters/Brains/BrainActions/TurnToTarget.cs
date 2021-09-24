@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Characters.Brains.BrainActions
 {
     [CreateAssetMenu(menuName = "Brains/Actions/TurnToTarget")]
-    public class TurnAndChase : BrainAction
+    public class TurnToTarget : BrainAction
     {
         public float rotationSpeedMultiplier = 1;
 

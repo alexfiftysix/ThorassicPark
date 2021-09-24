@@ -5,6 +5,7 @@ using Characters.Brains.BrainStates;
 using Characters.Brains.Transitions;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Characters.Brains
 {
@@ -14,7 +15,7 @@ namespace Characters.Brains
         public RootNode rootNode;
 
         // Needed because nodes can be detached
-        public List<BrainNode> states = new List<BrainNode>();
+        [FormerlySerializedAs("states")] public List<BrainNode> nodes = new List<BrainNode>();
 
         public T CreateNode<T>(Vector2 mousePos) where T : BrainNode
         {
@@ -24,7 +25,8 @@ namespace Characters.Brains
                 newNode.description = newNode.name;
                 newNode.guid = GUID.Generate().ToString();
                 newNode.position = mousePos;
-                states.Add(newNode);
+                nodes.Add(newNode);
+                if (newNode is RootNode newRootNode) rootNode = newRootNode;
 
                 AssetDatabase.AddObjectToAsset(newNode, this);
                 AssetDatabase.SaveAssets();
@@ -37,7 +39,8 @@ namespace Characters.Brains
 
         public void DeleteNode(BrainNode node)
         {
-            states.Remove(node);
+            nodes.Remove(node);
+            if (node is RootNode) rootNode = null;
             AssetDatabase.RemoveObjectFromAsset(node);
             AssetDatabase.SaveAssets();
         }

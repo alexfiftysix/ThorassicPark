@@ -153,7 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterStats: {fileID: 11400000, guid: 60f656168a945b3439de8d403a4345a5, type: 2}
-  state: {fileID: 11400000, guid: 578ccc761220e3e4b907663cdbc8943e, type: 2}
+  brain: {fileID: 11400000, guid: 786c0e992bdc94b4a85f3caeaf97b000, type: 2}
+  state: {fileID: 0}
   zombieBase: {fileID: 5343487538611026992}
 --- !u!82 &3265939636158807633
 AudioSource:

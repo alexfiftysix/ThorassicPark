@@ -14,7 +14,7 @@ namespace Characters.Brains.Decisions
         {
             var exit = GameObject.Find("VisitorEscapePointBuilding"); // TODO: That's gonna be slow
 
-            var colliders = Physics2D.OverlapCircleAll(controllable.transform.position, controllable.touchRadius);
+            var colliders = Physics2D.OverlapCircleAll(controllable.transform.position, controllable.characterStats.touchRadius);
             return colliders.Any(collider => collider.gameObject == exit.gameObject);
         }
     }

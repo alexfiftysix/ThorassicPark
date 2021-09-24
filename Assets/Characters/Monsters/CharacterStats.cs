@@ -13,5 +13,8 @@ namespace Characters.Monsters
 
         public float movementSpeed;
         public float turnSpeed;
+
+        public float viewRadius = 1;
+        public float touchRadius = 0.25f;
     }
 }

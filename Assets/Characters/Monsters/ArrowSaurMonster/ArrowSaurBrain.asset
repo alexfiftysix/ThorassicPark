@@ -92,7 +92,7 @@ MonoBehaviour:
   description: Chase target
   actions:
   - {fileID: 11400000, guid: 971e203754e322f4d8661ca34efb29ed, type: 2}
-  - {fileID: 11400000, guid: 6dec90d2f98db1043849e313e25e62b0, type: 2}
+  - {fileID: 0}
   transitions:
   - {fileID: -1918178541607362737}
 --- !u!114 &11400000

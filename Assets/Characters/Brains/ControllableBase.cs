@@ -27,10 +27,8 @@ namespace Characters.Brains
         public IChaseable TargetChaseable { set; get; }
         public GameObject TargetGameObject { get; set; }
         public Player.Player Player { set; get; }
-        public float viewRadius = 1;
-        public float touchRadius = 0.25f;
         public Random Random { get; private set; }
-        
+
         public GameManager GameManager { get; private set; }
         public ChaseableManager ChaseableManager { get; set; }
 
@@ -59,7 +57,8 @@ namespace Characters.Brains
 
         public void Rotate(float degrees, float speedMultiplier = 1)
         {
-            _transform.Rotate(Vector3.forward * (degrees * characterStats.turnSpeed * speedMultiplier * Time.deltaTime));
+            _transform.Rotate(Vector3.forward *
+                              (degrees * characterStats.turnSpeed * speedMultiplier * Time.deltaTime));
         }
 
         public void TransitionToState(BrainState nextState)
@@ -75,10 +74,10 @@ namespace Characters.Brains
             var position = transform.position;
 
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(position, viewRadius);
+            Gizmos.DrawWireSphere(position, characterStats.viewRadius);
 
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(position, touchRadius);
+            Gizmos.DrawWireSphere(position, characterStats.touchRadius);
         }
     }
 }

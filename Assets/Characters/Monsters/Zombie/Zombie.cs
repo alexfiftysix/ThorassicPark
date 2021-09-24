@@ -12,7 +12,7 @@ namespace Characters.Monsters.Zombie
         // Biting
         private AudioSource _biteAudioSource;
         private float _biteDelay = 1.5f;
-        private float _biteTimePassed;
+        private float _biteTimePassed = 0;
 
         // Start is called before the first frame update
         public override void Start()
@@ -25,7 +25,6 @@ namespace Characters.Monsters.Zombie
         public override void Update()
         {
             _biteTimePassed += Time.deltaTime;
-            _biteTimePassed = 0;
             
             base.Update();
         }
@@ -48,6 +47,7 @@ namespace Characters.Monsters.Zombie
 
             _biteTimePassed = 0;
             var position = visitor.transform.position;
+            characterStats.meleeSound.Play(_biteAudioSource);
             Destroy(visitor);
             Instantiate(zombieBase, position, Quaternion.identity);
         }

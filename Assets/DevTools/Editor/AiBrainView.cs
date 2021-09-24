@@ -9,7 +9,6 @@ using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Object = System.Object;
 
 // ReSharper disable once CheckNamespace
 // Don't want the nesting in the editor that the namespace brings
@@ -44,13 +43,13 @@ public class AiBrainView : GraphView
         graphViewChanged += OnGraphViewChanged;
 
         // Load nodes
-        foreach (var brainState in _brain.states)
+        foreach (var brainState in _brain.nodes)
         {
             CreateNodeView(brainState);
         }
 
         // Load edges 
-        foreach (var parentNode in _brain.states)
+        foreach (var parentNode in _brain.nodes)
         {
             var children = Brain.GetChildren(parentNode);
             foreach (var childNode in children)
