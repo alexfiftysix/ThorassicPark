@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ArrowSaurWanderingTimePassed
   m_EditorClassIdentifier: 
   waitTime:
-    min: 3
-    max: 6
+    min: 0.5
+    max: 1

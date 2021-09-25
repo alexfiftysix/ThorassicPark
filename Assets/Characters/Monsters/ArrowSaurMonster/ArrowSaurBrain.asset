@@ -36,7 +36,7 @@ MonoBehaviour:
   description: Park Breaks
   decisions:
   - {fileID: 11400000, guid: f03d73abeccad2c409a38c5721cbc848, type: 2}
-  nextState: {fileID: -4666517828505114346}
+  nextNode: {fileID: -4666517828505114346}
 --- !u!114 &-1918178541607362737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
   description: Target died
   decisions:
   - {fileID: 11400000, guid: 1f6fc1785c4a9ea4aaec8fdc5737c87f, type: 2}
-  nextState: {fileID: -4666517828505114346}
+  nextNode: {fileID: -4666517828505114346}
 --- !u!114 &-1337483650646750831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +113,7 @@ MonoBehaviour:
   description: See target
   decisions:
   - {fileID: 11400000, guid: 4670aeffdb907c04e927b2e69268edb9, type: 2}
-  nextState: {fileID: -1337483650646750831}
+  nextNode: {fileID: -1337483650646750831}
 --- !u!114 &4957213686416742155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,9 +127,9 @@ MonoBehaviour:
   m_Name: Root
   m_EditorClassIdentifier: 
   guid: 00b321f85facb6348a1efaab0a572948
-  position: {x: 588, y: 228.64397}
+  position: {x: 43.493347, y: 360.6667}
   description: Root
-  startState: {fileID: -4666517828505114346}
+  startState: {fileID: 7091039970881825952}
 --- !u!114 &7091039970881825952
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,11 +3,13 @@ using System.Threading.Tasks;
 using Characters.Brains;
 using Characters.Brains.BrainStates;
 using Characters.Brains.Transitions;
+using Characters.Brains.UtilityNodes;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Random = Unity.Mathematics.Random;
 
 // ReSharper disable once CheckNamespace
 // Namespaces don't play nice with the UI editor
@@ -81,6 +83,9 @@ public sealed class NodeView : Node
             case BrainState _:
                 AddToClassList("state");
                 break;
+            case RandomNode _:
+                AddToClassList("random");
+                break;
             case BrainTransition _:
                 AddToClassList("transition");
                 break;
@@ -117,6 +122,11 @@ public sealed class NodeView : Node
                 Direction.Output,
                 Port.Capacity.Single,
                 typeof(bool)),
+            RandomNode _ => InstantiatePort(
+                Orientation.Horizontal,
+                Direction.Output,
+                Port.Capacity.Multi,
+                typeof(bool)),
             RootNode _ => InstantiatePort(
                 Orientation.Horizontal,
                 Direction.Output,
@@ -135,6 +145,7 @@ public sealed class NodeView : Node
         {
             BrainState _ => "State",
             BrainTransition _ => "Transition",
+            RandomNode _ => "Random",
             RootNode _ => "Root",
             _ => "No Name"
         };

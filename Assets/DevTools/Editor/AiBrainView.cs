@@ -4,6 +4,7 @@ using System.Linq;
 using Characters.Brains;
 using Characters.Brains.BrainStates;
 using Characters.Brains.Transitions;
+using Characters.Brains.UtilityNodes;
 using JetBrains.Annotations;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
@@ -114,6 +115,7 @@ public class AiBrainView : GraphView
         // If you want subtypes, consider TypeCache.GetTypesDerivedFrom<BrainNode>(), to get all types.
         evt.menu.AppendAction("State", action => CreateNode<BrainState>(worldMousePosition));
         evt.menu.AppendAction("Transition", action => CreateNode<BrainTransition>(worldMousePosition));
+        evt.menu.AppendAction("Random", action => CreateNode<RandomNode>(worldMousePosition));
         evt.menu.AppendAction("Root", action => CreateNode<RootNode>(worldMousePosition));
     }
 

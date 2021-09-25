@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Characters.Brains.BrainStates;
 using Characters.Brains.Transitions;
+using Characters.Brains.UtilityNodes;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -52,8 +53,11 @@ namespace Characters.Brains
                 case BrainState brainState when child is BrainTransition transition:
                     brainState.AddTransition(transition);
                     break;
-                case BrainTransition transition when child is BrainState brainState:
-                    transition.SetNextState(brainState);
+                case BrainTransition transition when child is BrainState || child is RandomNode:
+                    transition.SetNextNode(child);
+                    break;
+                case RandomNode randomNode when child is BrainState brainState:
+                    randomNode.AddState(brainState);
                     break;
                 case RootNode rootNode when child is BrainState brainState:
                     rootNode.SetStartState(brainState);
@@ -69,7 +73,10 @@ namespace Characters.Brains
                     brainState.RemoveTransition(transition);
                     break;
                 case BrainTransition transition when child is BrainState:
-                    transition.SetNextState(null);
+                    transition.SetNextNode(null);
+                    break;
+                case RandomNode randomNode when child is BrainState brainState:
+                    randomNode.RemoveState(brainState);
                     break;
                 case RootNode rootNode when child is BrainState:
                     rootNode.SetStartState(null);

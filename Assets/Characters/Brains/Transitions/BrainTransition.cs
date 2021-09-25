@@ -1,32 +1,47 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Characters.Brains.BrainStates;
 using Characters.Brains.Decisions;
+using Characters.Brains.UtilityNodes;
 using UnityEditor.UIElements;
-using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UIElements;
+using Object = UnityEngine.Object;
 
 namespace Characters.Brains.Transitions
 {
-    [System.Serializable]
+    [Serializable]
     public class BrainTransition : BrainNode
     {
         public List<BrainDecision> decisions = new List<BrainDecision>();
-        public BrainState nextState;
+        [FormerlySerializedAs("nextState")] public BrainNode nextNode;
 
-        public void SetNextState(BrainState brainState)
+
+        public void SetNextNode(BrainNode brainNode)
         {
-            nextState = brainState;
+            if (!CanConnectTo(brainNode)) throw new Exception("Can't add child");
+            nextNode = brainNode;
+        }
+
+        public BrainState GetNextState()
+        {
+            if (nextNode is RandomNode randomNode)
+            {
+                return randomNode.GetNextState();
+            }
+
+            return nextNode as BrainState;
         }
 
         public override List<BrainNode> GetChildren()
         {
-            return new List<BrainNode> { nextState };
+            return new List<BrainNode> { nextNode };
         }
 
         public override bool CanConnectTo(BrainNode other)
         {
-            return other is BrainState;
+            return other is BrainState || other is RandomNode;
         }
 
         private void DecisionChangedCallback(ChangeEvent<Object> evt)
