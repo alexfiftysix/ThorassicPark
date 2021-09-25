@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 382e100e069f4f37b1e7fc128c191476, type: 3}
-  m_Name: TurnRight
+  m_Script: {fileID: 11500000, guid: 683ffa5fdba055c4c85e08955ffd1fdc, type: 3}
+  m_Name: WalkForwardsSlowly
   m_EditorClassIdentifier: 
-  speed: 40
+  movementSpeed: 0.5
