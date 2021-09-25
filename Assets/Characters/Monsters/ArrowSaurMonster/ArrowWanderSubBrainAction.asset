@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 382e100e069f4f37b1e7fc128c191476, type: 3}
-  m_Name: TurnRight
+  m_Script: {fileID: 11500000, guid: 0c37d9fc21684f959e0ae9608fe77ac6, type: 3}
+  m_Name: ArrowWanderSubBrainAction
   m_EditorClassIdentifier: 
-  speed: 40
+  subBrain: {fileID: 11400000, guid: 5eef59e3513fb60459457071b88a1ef0, type: 2}

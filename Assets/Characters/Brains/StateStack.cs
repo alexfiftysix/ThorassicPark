@@ -23,10 +23,10 @@ namespace Characters.Brains
                 var currentState = _states.ElementAt(currentIndex);
                 var nextState = currentState.DoActions(controllable);
 
-                // If this state transitioned, all sub-brains need to go away
+                // If this state transitioned, all sub-brains below this state need to be removed
                 if (nextState != null)
                 {
-                    var popCount = maxIndex - currentIndex;
+                    var popCount = currentIndex;
                     for (var i = 0; i < popCount; i++)
                     {
                         _states.RemoveAt(0);
@@ -35,6 +35,7 @@ namespace Characters.Brains
                     maxIndex -= popCount;
                     currentIndex = 0;
                     _states[currentIndex] = nextState;
+                    nextState.Initialise(controllable);
                 }
 
                 // increment after resetting to 0 because otherwise you'll play the successful state twice

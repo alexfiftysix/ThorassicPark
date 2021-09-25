@@ -58,12 +58,18 @@ namespace GameManagement
 
         private void Update()
         {
-            slider.value = Mathf.Lerp(slider.value, _averageGrowthOverTime, sliderMoveSpeed * Time.deltaTime);
-            slider.maxValue = Mathf.Lerp(slider.maxValue, _highestGrowthOverTime * 1.25f, sliderGrowthSpeed * Time.deltaTime);
-            slider.minValue = Mathf.Lerp(slider.minValue, _lowestGrowthOverTime * 1.25f, sliderGrowthSpeed * Time.deltaTime);
+            if (slider != null)
+            {
+                slider.value = Mathf.Lerp(slider.value, _averageGrowthOverTime, sliderMoveSpeed * Time.deltaTime);
+                slider.maxValue = Mathf.Lerp(slider.maxValue, _highestGrowthOverTime * 1.25f,
+                    sliderGrowthSpeed * Time.deltaTime);
+                slider.minValue = Mathf.Lerp(slider.minValue, _lowestGrowthOverTime * 1.25f,
+                    sliderGrowthSpeed * Time.deltaTime);
 
-            var newX = Mathf.Lerp(slider.transform.position.x, _goalXPosition, Constants.UiMoveSpeed * Time.deltaTime);
-            slider.transform.position = new Vector2(newX, slider.transform.position.y);
+                var newX = Mathf.Lerp(slider.transform.position.x, _goalXPosition,
+                    Constants.UiMoveSpeed * Time.deltaTime);
+                slider.transform.position = new Vector2(newX, slider.transform.position.y);
+            }
         }
 
         private void OnParkBreaks()

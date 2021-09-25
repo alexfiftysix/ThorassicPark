@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: RootNode
   m_EditorClassIdentifier: 
   guid: 5c65ff2aac2d1934c8afddeb5e16cb5f
-  position: {x: 120.47999, y: 185.935}
+  position: {x: 120.74751, y: 203.2}
   description: RootNode
   startState: {fileID: -8461717952390407235}
 --- !u!114 &7041005443149316259

@@ -11,7 +11,7 @@ namespace Characters.Brains
     {
         public CharacterStats characterStats;
         public Brain brain;
-        private readonly StateStack _stateStack = new StateStack();
+        public readonly StateStack stateStack = new StateStack();
 
         private Transform _transform;
 
@@ -34,8 +34,8 @@ namespace Characters.Brains
         public virtual void Start()
         {
             _transform = transform;
-            _stateStack.Push(brain.rootNode.startState);
-            _stateStack.Initialise(this);
+            stateStack.Push(brain.rootNode.startState);
+            stateStack.Initialise(this);
             GameManager = FindObjectOfType<GameManager>();
             ChaseableManager = FindObjectOfType<ChaseableManager>();
             Random = new Random();
@@ -43,7 +43,7 @@ namespace Characters.Brains
 
         public virtual void Update()
         {
-            _stateStack.DoActions(this);
+            stateStack.DoActions(this);
         }
 
         public void Move(Vector2 direction, float speedMultiplier = 1)
