@@ -27,7 +27,12 @@ namespace Characters.Brains.BrainStates
             }
         }
 
-        public void DoActions(ControllableBase controllable)
+        /// <summary>
+        /// Performs actions and checks transitions
+        /// </summary>
+        /// <param name="controllable"></param>
+        /// <returns>next State if transition is successful or Null</returns>
+        public BrainState DoActions(ControllableBase controllable)
         {
             foreach (var brainAction in actions)
             {
@@ -38,9 +43,12 @@ namespace Characters.Brains.BrainStates
             {
                 if (transition.decisions.Any(decision => decision.Decide(controllable)))
                 {
-                    controllable.TransitionToState(transition.nextState);
+                    // controllable.TransitionToState(transition.nextState);
+                    return transition.nextState;
                 }
             }
+
+            return null;
         }
 
         public void AddTransition(BrainTransition transition)

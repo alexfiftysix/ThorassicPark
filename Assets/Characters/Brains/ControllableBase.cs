@@ -1,5 +1,4 @@
 ﻿using Buildings;
-using Characters.Brains.BrainStates;
 using Characters.Monsters;
 using Characters.Visitors;
 using GameManagement;
@@ -12,7 +11,7 @@ namespace Characters.Brains
     {
         public CharacterStats characterStats;
         public Brain brain;
-        [SerializeField] private BrainState state;
+        private readonly StateStack _stateStack = new StateStack();
 
         private Transform _transform;
 
@@ -35,8 +34,8 @@ namespace Characters.Brains
         public virtual void Start()
         {
             _transform = transform;
-            state = brain.rootNode.startState;
-            state.Initialise(this);
+            _stateStack.Push(brain.rootNode.startState);
+            _stateStack.Initialise(this);
             GameManager = FindObjectOfType<GameManager>();
             ChaseableManager = FindObjectOfType<ChaseableManager>();
             Random = new Random();
@@ -44,7 +43,7 @@ namespace Characters.Brains
 
         public virtual void Update()
         {
-            state.DoActions(this);
+            _stateStack.DoActions(this);
         }
 
         public void Move(Vector2 direction, float speedMultiplier = 1)
@@ -59,14 +58,6 @@ namespace Characters.Brains
         {
             _transform.Rotate(Vector3.forward *
                               (degrees * characterStats.turnSpeed * speedMultiplier * Time.deltaTime));
-        }
-
-        public void TransitionToState(BrainState nextState)
-        {
-            if (nextState == state) return;
-
-            state = nextState;
-            state.Initialise(this);
         }
 
         public void OnDrawGizmos()
