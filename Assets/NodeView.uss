@@ -113,8 +113,11 @@
     border-bottom-left-radius: 0;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    border-left-color: rgba(0, 74, 99, 255);
-    border-right-color: rgba(0, 74, 99, 255);
-    border-top-color: rgba(0, 74, 99, 255);
-    border-bottom-color: rgba(0, 74, 99, 255);
+    border-left-color: rgb(0, 74, 99);
+    border-right-color: rgb(0, 74, 99);
+    border-top-color: rgb(0, 74, 99);
+    border-bottom-color: rgb(0, 74, 99);
+}
+
+.random #title {
 }

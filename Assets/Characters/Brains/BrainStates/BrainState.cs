@@ -43,7 +43,7 @@ namespace Characters.Brains.BrainStates
             {
                 if (transition.decisions.Any(decision => decision.Decide(controllable)))
                 {
-                    return transition.nextState;
+                    return transition.GetNextState();
                 }
             }
 
